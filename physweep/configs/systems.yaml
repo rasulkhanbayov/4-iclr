@@ -1,0 +1,83 @@
+# PhysWeep system grids — fixed values for this study.
+# Source: physweep_main.tex, Appendix "System grids and rendering details"
+# (Table in Section app:systems). These are the values actually used for every
+# experiment; report them in Appendix C as the runbook requires.
+#
+# Rendering: 256x256, T=24 frames @ 24 fps, single high-contrast disk (radius
+# 8px) on a plain background, fixed ground line. Only theta and the seeded
+# initial condition vary within a system.
+
+render:
+  width: 256
+  height: 256
+  n_frames: 24
+  fps: 24
+  disk_radius_px: 8
+  seeds_per_point: 5   # m >= 5 per the paper's statistics paragraph
+
+systems:
+  projectile:
+    theta_name: g
+    units: m/s^2
+    in_range: [5, 7, 9.8, 12, 15]
+    out_of_range: [1.6, 3, 20, 25]
+    # 1.6 ~ Moon gravity, 25 ~ Jupiter-like (per README/teaser figure)
+
+  damped_pendulum_omega:
+    theta_name: omega
+    units: rad/s
+    in_range: [2, 3, 4, 5]
+    out_of_range: [8, 12]
+    # DEVIATION FROM PAPER DRAFT: the paper's example grid also listed
+    # omega=0.5 and omega=1 as out-of-range points, but their oscillation
+    # periods (12.6s, 6.3s) exceed what any current open I2V generator can
+    # produce in a single clip, and fit_omega_from_crossings requires a full
+    # period (>=2 zero crossings) to return a value at all -- there is no
+    # clip length that is both realistic for I2V and long enough for those
+    # two points. Dropped by decision on 2026-07-04; see CLAUDE.md Section 2.
+    fixed_zeta: 0.05   # hold damping in-range while sweeping omega
+    n_frames: 180      # override: needs >=2 full periods at omega=2 (worst case) for
+                       # fit_omega_from_crossings to find 2 upward zero crossings
+
+  damped_pendulum_zeta:
+    theta_name: zeta
+    units: dimensionless
+    in_range: [0.02, 0.05, 0.1]
+    out_of_range: [0.3, 0.6, 0.9]
+    fixed_omega: 3.0   # hold omega in-range while sweeping zeta
+    n_frames: 180
+    # NOTE (not a deviation, expected physics): zeta >= ~0.3 damps out within
+    # 1-2 oscillations, leaving too few envelope peaks for a reliable
+    # log-linear decay fit -- ground-truth validation shows fit R^2 dropping
+    # from ~1.0 (in-range) to ~0.2-0.8 (out-of-range), with zeta=0.9 failing
+    # to find 2 peaks at all. This is real physics (heavily damped systems
+    # barely oscillate), not a pipeline bug -- gate on fit R^2 per the
+    # runbook and report the non-physical/non-fittable rate as a finding for
+    # this axis specifically, do not force a number through a bad fit.
+
+  bouncing_ball:
+    theta_name: e
+    units: dimensionless (coefficient of restitution)
+    in_range: [0.6, 0.7, 0.8, 0.9]
+    out_of_range: [0.2, 0.35, 0.97]
+
+  spring_mass:
+    theta_name: k
+    units: N/m
+    in_range: [20, 40, 60, 80]
+    out_of_range: [5, 10, 200, 400]
+    mass_kg: 1.0
+    n_frames: 180   # override: k=5 -> period 2.81s, needs >=2 periods for fit_omega_from_crossings
+
+  inclined_slide:
+    theta_name: mu
+    units: dimensionless (friction coefficient)
+    in_range: [0.1, 0.2, 0.3, 0.4]
+    out_of_range: [0.01, 0.7, 1.0]
+    incline_deg: 60.0
+    # DEVIATION FROM PAPER DRAFT: paper's illustrative table implies a
+    # moderate incline; 30deg was tried first but static friction stalls
+    # motion entirely for mu >= tan(30deg)=0.577, which is inside the
+    # out-of-range grid (0.7, 1.0) -- zero motion means zero signal to
+    # recover mu from. 60deg (tan=1.73) keeps every grid point sliding.
+    # Decision made 2026-07-04; see CLAUDE.md Section 2.

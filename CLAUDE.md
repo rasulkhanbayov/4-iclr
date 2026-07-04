@@ -7,14 +7,33 @@ experiment, decision, or environment change — not at the end of a session.
 ## 0. Current state / next action
 
 **Status as of 2026-07-04:** Instance verified, paper bundle read, metrics
-smoke test PASSED. Git repo initialized locally, remote push to
-`https://github.com/rasulkhanbayov/4-iclr` in progress (empty repo, safe to
-push to). No model weights installed yet. No experiments run yet.
+smoke test PASSED. Git repo pushed to `https://github.com/rasulkhanbayov/4-iclr`
+(auth: paste a GitHub PAT when asked, used one-off via `-c http.extraheader`,
+never persisted to disk — see git log for the pattern). Python env built in
+`/workspace/4-iclr/.venv` (torch cu128 + diffusers stack, see Section 6).
 
-**Next action:** finish git remote setup and push initial commit, then set up
-the Python inference env (torch + diffusers + LTX-Video), then run **E6**
-(negative control) and **E0** (pilot gate) together — these are hard gates,
-nothing else may run before both pass. See Section 4 for pass/fail criteria.
+**The rendering engine now exists** (it did not before this session):
+`physweep/render.py` (6 sweep axes across 5 systems) + `physweep/track.py`
+(blob-centroid tracker + the pixel<->physics unit conversion) +
+`physweep/configs/systems.yaml` (exact grids). Full render -> track -> fit
+pipeline validated on GROUND-TRUTH synthetic trajectories (no generator
+involved) for every system — this is essentially E6's method already proven
+out per-system; E6 proper still needs to be run as a first-class logged
+experiment (aggregate PRE/slope/R^2 with bootstrap CIs across all systems and
+seeds, written to Section 5) before it counts as done. See Section 2 for
+per-system validated error rates, three deliberate grid/setup deviations from
+the paper's illustrative draft (all forced by physical/timing constraints,
+documented with rationale), and two expected (non-bug) low-fidelity regimes.
+Two fitters were added to `physweep_metrics.py` that the paper's system table
+requires but the shipped code was missing (`fit_zeta_from_envelope`,
+`fit_friction_from_slide`) — same style as the existing fitters, original
+smoke test still passes unchanged.
+
+**Next action:** commit the renderer/tracker/config/fitter additions, then
+formally run and log **E6** (aggregate negative control across all systems)
+together with **E0** (LTX-Video pilot gate, projectile only) — these are hard
+gates, nothing past them may run until both pass. LTX-Video itself is not
+installed yet (Section 6 checklist). See Section 4 for pass/fail criteria.
 
 Do not skip ahead in the experiment order in Section 3. Do not write any
 number into the paper that was not produced by an actual run recorded in
@@ -59,18 +78,65 @@ independently verified by the human authors before submission (see Section 7).
 
 ## 2. The five systems (ground truth, closed-form recovery)
 
-| System | Control theta | Recovered via | In-range | Out-of-range |
-|---|---|---|---|---|
-| Projectile | gravity g | parabola curvature | 5–15 | 1 (Moon-like), 25 (Jupiter-like) |
-| Damped pendulum | angular freq omega | zero-crossing period | typical | very short/long period |
-| Damped pendulum | damping zeta | envelope decay | light damping | heavy/near-critical |
-| Bouncing ball | restitution e | bounce-height ratio | 0.6–0.9 | 0.2, 0.99 |
-| Spring–mass | stiffness k | oscillation period | typical | very stiff/soft |
-| Inclined slide | friction mu | accel. along slope | moderate | near-frictionless/high |
+**Implemented and validated end-to-end** (render -> blob-track -> fit,
+ground-truth path, no generator involved yet) as of 2026-07-04. Code:
+`physweep/render.py` (simulator), `physweep/track.py` (blob tracker + the
+pixel-to-physics unit conversion), `physweep/configs/systems.yaml` (exact
+grids, actually used — supersedes the illustrative table in the paper draft).
 
-All rendered from a small deterministic 2D engine (no downloads, no labels).
-Exact grids must be saved to a config file and cited in Appendix C when
-defined — see Section 6 "Environment / setup" for where this lives once created.
+| System | Control theta | Recovered via | In-range grid | Out-of-range grid | Validated rel. error |
+|---|---|---|---|---|---|
+| Projectile | gravity g | parabola curvature | {5,7,9.8,12,15} | {1.6,3,20,25} | <0.15% |
+| Damped pendulum | angular freq omega | zero-crossing period | {2,3,4,5} | {8,12} (see deviation) | <0.6% |
+| Damped pendulum | damping zeta | envelope decay | {0.02,0.05,0.1} | {0.3,0.6,0.9} | <6% in-range; out-of-range often fit-gated (expected, see below) |
+| Bouncing ball | restitution e | bounce-height ratio | {0.6,0.7,0.8,0.9} | {0.2,0.35,0.97} | <1.5% for e>=0.6; up to ~23% for e<=0.35 (few/small bounces, see below) |
+| Spring–mass | stiffness k | oscillation period (k=m*omega_n^2) | {20,40,60,80} | {5,10,200,400} | <0.03% |
+| Inclined slide | friction mu | accel. along slope | {0.1,0.2,0.3,0.4} | {0.01,0.7,1.0} | <2% |
+
+**Three deliberate deviations from the paper's illustrative draft grids/setup
+(all made 2026-07-04, all forced by physical/timing constraints, not
+preference — see git history for the exact commit):**
+
+1. **Pendulum omega out-of-range dropped {0.5, 1}.** Their oscillation
+   periods (12.6s, 6.3s) exceed any realistic I2V generator clip length, and
+   `fit_omega_from_crossings` needs >=2 full periods (>=2 upward zero
+   crossings) to return a value at all — no clip length is both realistic
+   and long enough. Kept {8, 12} only for out-of-range.
+2. **Pendulum-omega and spring-mass clips extended to 180 frames (7.5s @
+   24fps)**, not the base 24 frames (1s), so the lowest omega/k in each grid
+   (omega=2, k=5) still completes >=2 full periods. All other systems keep
+   the base T=24 spec.
+3. **Inclined slide incline angle raised from an assumed 30 deg to 60 deg.**
+   At 30 deg, static friction stalls all motion once mu >= tan(30)=0.577 —
+   which is inside the out-of-range grid (0.7, 1.0), giving zero displacement
+   and zero signal to recover mu from. 60 deg (tan=1.73) keeps the object
+   sliding at every grid point including mu=1.0.
+
+**Two expected (not bugs) low-fidelity regimes, to report honestly rather than
+force a clean number:**
+- **Pendulum zeta >= ~0.3** damps out within 1-2 oscillations; envelope-decay
+  fit R^2 drops from ~1.0 (in-range) to 0.2-0.8 (out-of-range), and zeta=0.9
+  sometimes has too few peaks to fit at all. This is genuine heavily-damped
+  physics (it barely oscillates), not a pipeline defect. Gate on fit R^2 per
+  the runbook's non-physical-generation-rate mechanism; report the gated rate
+  as a finding for this axis.
+- **Bouncing ball e <= 0.35** loses most of its energy in 1-2 bounces, so
+  `fit_restitution_from_bounces`'s sqrt-ratio estimator has only 2-4 small,
+  closely-spaced peaks to work from — ground-truth relative error is ~12-23%
+  even with zero tracker noise, vs <1.5% for e>=0.6. This is a real precision
+  floor of the estimator at low restitution within a 24-frame clip, not a
+  bug; note it when reporting E1/E4 results for this system.
+
+Added two fitters missing from the original `physweep_metrics.py` (needed for
+pendulum-zeta and inclined-slide, which the paper's system table requires but
+the shipped code didn't implement): `fit_zeta_from_envelope` and
+`fit_friction_from_slide` / `friction_from_acceleration`. Same style/contract
+as the existing fitters (numpy-only, return `(theta_hat, r2)`). The original
+smoke test in `physweep_metrics.py` still passes unchanged.
+
+Rendering: 256x256, single high-contrast disk (radius 8px), plain background,
+fixed ground line — matches the paper's Appendix rendering spec exactly
+except for the two clip-length overrides above.
 
 **Two conditioning channels** (treat as a controlled axis, ablated in E8):
 - **C1 frame-implied**: multiple/first+last frames imply theta; isolates dynamics.
@@ -241,19 +307,21 @@ the system-python run — see Section 5).
 - [x] Create `requirements.txt` pinning exact versions.
 - [x] Install torch with a CUDA 12.8 wheel (matches A100 compute capability
       8.0 and driver_max_cuda 12.8).
+- [x] Write the deterministic 2D rendering engine for all 6 sweep axes across
+      5 systems (`physweep/render.py`) — validated against every fitter on
+      ground-truth trajectories, see Section 2.
+- [x] Implement the tracker: blob centroiding (`physweep/track.py`), per the
+      paper's "robust here" claim for high-contrast synthetic scenes.
+      CoTracker3 deferred to the E5(a) tracker-swap ablation.
+- [x] Save the exact in-range/out-of-range grids per system to
+      `physweep/configs/systems.yaml` (cite in Appendix C at write-up time).
 - [ ] Install LTX-Video (I2V mode) — verify current HF repo id, license, and
       VRAM footprint at install time; this is the first model to bring up
       (lightest/fastest per the runbook).
-- [ ] Write the deterministic 2D rendering engine for the 5 systems (Section
-      2) — produces conditioning frames + ground-truth theta. This does not
-      exist in the repo yet; `physweep_metrics.py` only has the metrics and
-      fitters, not the renderer.
-- [ ] Decide and implement the tracker: CoTracker3, or start with simple
-      color-blob centroiding (simpler, and the paper says it's "robust here"
-      for high-contrast synthetic scenes) — blob centroiding first is the
-      pragmatic MVP path; CoTracker becomes the E5(a) tracker-swap ablation.
-- [ ] Save the exact in-range/out-of-range grids per system to a config file
-      (the runbook requires this, cited in Appendix C).
+- [ ] Run and log E6 (aggregate, all systems) + E0 (LTX-Video pilot) as
+      first-class experiments in Section 5 — the per-system validation above
+      is necessary but not sufficient; it hasn't been assembled into the
+      paper's actual E6 statistic (PRE/slope/R^2 with bootstrap CIs) yet.
 
 **Models queue (frozen, inference-only, in this order):**
 1. LTX-Video (Lightricks), I2V — start here, lightest/fastest.

@@ -278,6 +278,54 @@ def fit_restitution_from_bounces(peak_heights):
     return e, _r2(h, h_fit)
 
 
+def fit_zeta_from_envelope(t, x, omega):
+    """Damping ratio from the exponential decay of the oscillation envelope:
+    x(t) ~ A * exp(-zeta*omega*t) * cos(omega_d*t + phi). The envelope is
+    traced through the local peak magnitudes of x (both signs), decay rate
+    lambda = zeta*omega is fit by a log-linear regression on those peaks, so
+    zeta = lambda / omega. Requires the driving omega (e.g. from
+    fit_omega_from_crossings on the same signal) since decay rate alone does
+    not separate zeta from omega. Returns (zeta_hat, r2_of_log_linear_fit)."""
+    t = np.asarray(t, float); x = np.asarray(x, float)
+    xc = x - np.mean(x)
+    envelope_t, envelope_v = [], []
+    for i in range(1, len(xc) - 1):
+        if abs(xc[i]) > abs(xc[i - 1]) and abs(xc[i]) >= abs(xc[i + 1]):
+            envelope_t.append(t[i])
+            envelope_v.append(abs(xc[i]))
+    if len(envelope_v) < 2 or omega <= 0:
+        return float("nan"), 0.0
+    envelope_t = np.asarray(envelope_t); envelope_v = np.asarray(envelope_v)
+    log_fit = np.polyfit(envelope_t, np.log(envelope_v + EPS), 1)
+    decay_rate = -float(log_fit[0])          # lambda = zeta*omega, envelope decays as exp(-lambda*t)
+    zeta = float(np.clip(decay_rate / omega, 0.0, 1.0))
+    v_fit = np.exp(np.polyval(log_fit, envelope_t))
+    return zeta, _r2(envelope_v, v_fit)
+
+
+def fit_friction_from_slide(t, s):
+    """Friction coefficient mu from acceleration along an incline of known
+    angle: s(t) = s0 + v0*t + 0.5*a*t^2 (distance along the slope), then
+    mu = (g*sin(angle) - a) / (g*cos(angle)). Returns (a_hat, r2); convert to
+    mu with `friction_from_acceleration` since g and angle are experiment
+    constants, not part of the trajectory fit itself."""
+    t = np.asarray(t, float); s = np.asarray(s, float)
+    A = np.vstack([np.ones_like(t), t, t ** 2]).T
+    coef, *_ = np.linalg.lstsq(A, s, rcond=None)
+    s_fit = A @ coef
+    a_hat = 2.0 * coef[2]
+    return float(a_hat), _r2(s, s_fit)
+
+
+def friction_from_acceleration(a_hat, incline_rad, g=9.81):
+    """mu_hat from a measured along-slope acceleration a_hat (m/s^2), a known
+    incline angle, and standard gravity. See fit_friction_from_slide."""
+    denom = g * np.cos(incline_rad)
+    if abs(denom) < EPS:
+        return float("nan")
+    return float((g * np.sin(incline_rad) - a_hat) / denom)
+
+
 # ---------------------------------------------------------------------------
 # Synthetic smoke test: exercises the METRICS, not any real model.
 # ---------------------------------------------------------------------------
