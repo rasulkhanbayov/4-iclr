@@ -50,15 +50,35 @@ full account. Remaining scope limit: this tested C2 text-conditioning only,
 not the paper's default C1 frame-implied channel (LTXConditionPipeline,
 needed for real C1, was unusable in this diffusers version).
 
-**Next action:** decide how to proceed given a confirmed null on LTX-Video/C2
-— options include (a) accepting the reframe and adjusting the paper's
-framing to "open generators do not honor conditioned dynamics" for this
-scope, (b) trying CogVideoX-5B-I2V next (per the runbook's model queue) to
-see whether the null is LTX-Video-specific or more general, or (c) some
-other path the user prefers. This is a real decision point — do not proceed
-to E1-E9 under any framing until it's made. Do not skip ahead in the
-experiment order in Section 3. Do not write any number into the paper that
-was not produced by an actual run recorded in Section 5.
+**CogVideoX-5B-I2V E0 also DONE** (2026-07-04): same headline REFRAME
+decision — slope(in) = 0.0699, 95% CI [-0.17, 0.30] (includes 0) — but via a
+completely different, and more interesting, mechanism than LTX-Video. Where
+LTX-Video mostly fails to produce any real fall (80% of clips fail the
+fit-quality gate), CogVideoX reliably produces confident, cleanly trackable
+falls (only 20% dropped, R^2 up to 0.996) that converge to one of ~3 FIXED
+acceleration values selected by the random seed, essentially independent of
+the conditioned gravity (e.g. seed 0 gives -11.41 +/- 0.03 across all five
+g-in-range values tested). This is structurally close to the paper's own H1
+(global prior reversion) hypothesis, though E0 only covers the in-range
+grid — it does not by itself adjudicate H1 vs H2 (that needs E7's
+out-of-range test). See Section 5 for the full comparison table.
+
+**Two independent models now agree on the headline finding** (conditioning
+not detectably honored under C2), via different mechanisms. This is a
+meaningfully stronger basis for the reframe than either model alone, and the
+CogVideoX seed-clustering result is a concrete, promotable finding worth
+following up with E7 specifically.
+
+**Next action:** a real decision point, now with two models' worth of
+evidence — options include (a) accepting the reframe as a 2-model finding
+and proceeding to E1/E4 for the full faithfulness curve across systems under
+this framing, (b) jumping toward an E7-style out-of-range test to see if
+CogVideoX's seed-clustering pattern is genuinely H1 (a promising, concrete
+lead), (c) trying the third model (SVD/DynamiCrafter) for a 3-model picture
+before committing to any framing, or (d) another path the user prefers. Do
+not proceed to E1-E9 under any framing until this is decided. Do not skip
+ahead in the experiment order in Section 3. Do not write any number into the
+paper that was not produced by an actual run recorded in Section 5.
 
 ---
 
@@ -399,6 +419,74 @@ value. If an experiment is blocked or partially run, say so explicitly.
     — it misroutes through a tiktoken BPE parser and crashes. Downgraded to
     `transformers>=4.44,<5` (landed on 4.57.6), which loads it correctly.
     Pinned in `requirements.txt`.
+
+### E0 (CogVideoX-5B-I2V) — second model, same pilot design
+- **Status:** DONE. **Decision: REFRAME** (same headline as LTX-Video, via a
+  clearly DIFFERENT mechanism). Script: `experiments/e0_pilot_cogvideox.py`.
+- **Date:** 2026-07-04. **Model:** `zai-org/CogVideoX-5b-I2V` (the paper's
+  "CogVideoX-5B-I2V"; THUDM's org appears to have moved to `zai-org` on HF).
+  480x720 (native training resolution), 49 frames requested (trimmed to
+  N_FRAMES=24 for fitting), 30 inference steps, guidance_scale=6.0 (model
+  default). Same C2 text-specified prompts as LTX-Video, same projectile
+  system/grid, same mid-air `ground_clearance_px=100` conditioning (applied
+  from the start here, since the LTX-Video confound check already
+  established it matters). ~2.3 min/clip on the A100 (much slower than
+  LTX-Video's ~2s/clip); 40 clips took ~89 minutes total. Peak VRAM 25.3GB
+  (with `pipe.vae.enable_tiling()` — needed at 480x720, comfortably under
+  the A100's 40GB).
+
+- **Result: slope(in) = 0.0699, 95% CI [-0.1683, 0.3048]** (includes 0).
+  PRE(in) = 2.0164 [1.8221, 2.2343] — very large, consistent with recovered
+  values being wildly off from the true (positive, 5-15) gravity range.
+  Fit-quality dropped rate = 20% (8/40) — much lower than LTX-Video's 80%,
+  because CogVideoX produces confident, cleanly trackable motion (R^2 up to
+  0.996) rather than a static or noisy blob. **The conditioning is still not
+  honored — just via a completely different failure mode.**
+
+- **The mechanism (visible directly in the raw gated data, not just the
+  aggregate slope):** recovered g_hat clusters tightly BY SEED, essentially
+  independent of the true conditioned g (5 through 15 all tested):
+  seed 0 -> -11.41 +/- 0.03 (5 g values, std well under 1%)
+  seed 1 -> -11.47 +/- 0.16
+  seed 3 -> -11.12 +/- 0.65
+  seed 4 -> -7.08  +/- 0.17
+  (seed 2 mostly failed the tracker/R^2 gate). Every one of these clips has
+  R^2 > 0.87 — the model is NOT confused or noisy, it is confidently and
+  smoothly generating one of a small number of fixed fall patterns, selected
+  by the initial noise seed, while completely ignoring the stated gravity
+  magnitude in the prompt. Visually (`results/debug_cogvideox_frame*.png`
+  before cleanup — see git history if needed) the ball falls and lands
+  convincingly; it just always falls at close to the same few rates.
+
+- **Relation to the paper's own H1 hypothesis (important caveat on how far
+  this claim goes):** this pattern — convergence to a small set of
+  seed-selected defaults independent of theta — is structurally very close
+  to what the paper calls H1 (global prior reversion to a default,
+  Section~\ref{sec:problem}/Eq. eq:pri). It is a suggestive, encouraging
+  sign that the paper's H1/H2 framework will have something real to
+  adjudicate. **But E0 only tests the IN-RANGE grid (5-15); it says nothing
+  about OUT-OF-RANGE behavior, which is what H1 vs H2 (Section 3, E7) is
+  actually about** (H1 is specifically a claim about behavior once theta
+  leaves the common range). Treat this as a promising pilot observation
+  motivating E7, not a completed mechanism adjudication.
+
+- **Comparison across the two models tested so far:**
+  | | LTX-Video | CogVideoX-5B-I2V |
+  |---|---|---|
+  | slope(in) | -0.0148 [-0.09, 0.04] | 0.0699 [-0.17, 0.30] |
+  | Fit-quality dropped | 80% | 20% |
+  | Failure mode | near-total inertia (ball barely moves at all) | confident motion toward ~2-3 fixed seed-selected fall rates |
+  | R^2 on gated clips | mediocre (0.88-0.995, but only 20% of clips gated) | strong (0.87-0.996, 80% of clips gated) |
+
+  Both reach the same headline conclusion (conditioning not detectably
+  honored) through opposite-looking behavior: LTX-Video mostly fails to
+  produce a physical fall at all; CogVideoX reliably produces a physical
+  fall but toward the wrong (seed-determined, not theta-determined) target.
+  Two independent models agreeing on the headline result, via different
+  mechanisms, is a stronger basis for the reframe than either alone — and
+  the CogVideoX mechanism in particular is a concrete, promotable finding in
+  its own right (motivates leading with H1-style framing once E7 actually
+  tests it out-of-range).
 
 ### E1 — Faithfulness curve
 - **Status:** NOT STARTED (blocked on E6+E0)
