@@ -13,3 +13,4 @@ __pycache__/
 venv_physweep/
 .hf_home/
 *.log
+.claude/

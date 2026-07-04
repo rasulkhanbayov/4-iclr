@@ -37,15 +37,26 @@ undamped sine) badly underrated real damped-oscillation fits; added
 `damped_sine_r2()` to `physweep_metrics.py` as the correct gate for that
 system.
 
-**Next action:** install LTX-Video (Section 6 checklist, not done yet), then
-run and log **E0** (pilot gate: LTX-Video, projectile only, slope beta on
-in-range g with a bootstrap CI). E0 is the second half of the hard gate — do
-not proceed to E1 until E0's decision (proceed vs. reframe) is made. See
-Section 4 for E0's exact pass/fail criteria.
+**E0 (pilot gate) is now DONE** (2026-07-04). **Decision: REFRAME.** LTX-Video
+does not detectably honor the conditioned gravity in this setup — slope(in)
+95% CI = [-1.14, 0.00] (includes 0), most clips failed the fit-quality gate
+(80% dropped), and visual inspection shows the ball staying essentially
+stationary near the ground regardless of the stated gravity, rather than
+falling. This was reached only after ruling out two pipeline bugs as the
+cause (see Section 5 for the full account) — the null result looks like a
+genuine behavioral finding, not an artifact, but read the caveats in Section
+5 before treating it as final (single model, single conditioning-channel
+design, small resolution relative to native, C2 not C1).
 
-Do not skip ahead in the experiment order in Section 3. Do not write any
-number into the paper that was not produced by an actual run recorded in
-Section 5.
+**Next action (per the runbook's own guidance for this outcome):** reframe
+the story to "open generators do not honor conditioned dynamics" for this
+setup, OR try to strengthen the conditioning before concluding — e.g. retry
+with the ball positioned clearly mid-air (not near the ground, which the
+model may read as "at rest") before fully committing to the reframe. This is
+a real decision point worth discussing with the user before proceeding to
+E1-E9 under either framing. Do not skip ahead in the experiment order in
+Section 3 until this is resolved. Do not write any number into the paper
+that was not produced by an actual run recorded in Section 5.
 
 ---
 
@@ -279,7 +290,98 @@ value. If an experiment is blocked or partially run, say so explicitly.
   in this experiment. See git history for the full investigation.
 
 ### E0 — Pilot / decision gate
-- **Status:** NOT STARTED
+- **Status:** DONE. **Decision: REFRAME** ("conditioning not detectably
+  honored" in this setup) — see caveats below before treating as final.
+- **Date:** 2026-07-04
+- **Model:** LTX-Video (`Lightricks/LTX-Video`, diffusers format), inference
+  only. System: projectile only, 5 in-range g + 3 out-of-range g, m=5 seeds.
+
+- **Result:** slope(in) = -0.5164, 95% CI [-1.1389, 0.0000] (includes 0).
+  PRE(in) = 1.0174 [0.8912, 1.1436]. Fit-quality (R^2>=0.8) dropped rate =
+  80% (32/40 clips) — either the tracker lost the disk entirely (NaN, ~45%
+  of clips) or the fit was poor. Of the 4 gated in-range points (all from a
+  single seed), 2 recovered g_hat~=0 and 2 recovered NEGATIVE g_hat.
+  Full data: `results/e0_pilot.json`.
+
+- **Visual root-cause check (not just trusting the fitted number):**
+  inspected generated frames directly for several clips (`results/debug_e0_case*.png`).
+  The ball starts near the ground line in the conditioning frame and, across
+  every g value and prompt tested (including "extremely strong gravity like
+  Jupiter, violent rapid acceleration"), it stays essentially STATIONARY for
+  the whole clip — it does not fall, regardless of what the text says. Where
+  the tracker returned a negative g_hat, the ball's shape had deformed into a
+  blob at the last frame (an artifact), which is what actually drove the
+  spurious "negative gravity" fit — not real upward motion. This looks like
+  a case of the model reading "ball resting near a ground line" as an
+  at-rest scene and not overriding that with text-specified dynamics, not
+  generic noise or a broken pipeline.
+
+- **Caveats before treating this as a final result (important):**
+  1. **Conditioning channel was forced to C2 (text-specified), not the
+     paper's default C1 (frame-implied)** — see the pipeline-bug account
+     below. A C2-only null result supports "this model doesn't respond to
+     TEXT-specified gravity here," which is weaker than a true C1 failure
+     (frame-implied motion, the paper's primary channel, was never
+     successfully tested).
+  2. Generation resolution (512x512) is still well below LTX-Video's native
+     ~704x1216 — improved stability over 256x256 (see below) but still
+     possibly out-of-distribution enough to affect fidelity.
+  3. The conditioning image places the ball ADJACENT to the ground line
+     (per physweep/render.py's projectile launch point) — plausibly readable
+     by the model as "already landed," biasing toward the stationary
+     response seen. A conditioning frame with the ball clearly mid-air might
+     behave differently and hasn't been tried.
+  4. Single model (LTX-Video only), single prompt template, 30 inference
+     steps, guidance_scale=3.0 (defaults, not tuned).
+  These caveats mean "REFRAME to conditioning-not-honored" is the right call
+  for THIS exact setup, but a genuinely careful E0 write-up should say so
+  explicitly rather than claim a clean general negative result about C1
+  frame-implied conditioning, which was never actually tested end-to-end.
+
+- **Full account of getting here (two real pipeline bugs found and fixed
+  before this result could be trusted; kept in full because a future session
+  could otherwise waste time rediscovering them):**
+  1. **First attempt (C1, single-frame):** conditioned on only the
+     projectile's first rendered frame. Produced exactly repeating g_hat
+     values per seed regardless of g_true (e.g. seed 0 always gave
+     g_hat=-0.009 no matter the actual g). Root cause: `simulate_projectile`
+     picks the initial launch velocity so the arc returns to the SAME y0 at
+     t=0 always — position at t=0 never depends on g by construction, so a
+     single first frame carries zero gravity signal. Not a generator
+     failure; an experiment design bug.
+  2. **Second attempt (proper C1, first+middle frame via LTXConditionPipeline):**
+     switched to `LTXConditionPipeline` (supports multi-frame/first+last
+     conditioning) and picked the trajectory's MIDDLE frame as the second
+     condition (the last frame turned out to ALSO be g-independent for the
+     same symmetric-arc reason — verified directly). Hit a real diffusers
+     0.39.0 bug: `LTXConditionPipeline.__call__` never computes/passes `mu`
+     to the scheduler's `set_timesteps`, while `LTXImageToVideoPipeline`
+     does — crashes with "`mu` must be passed when `use_dynamic_shifting`
+     is...True" (confirmed true in the shipped scheduler_config.json).
+     Wrote `physweep/ltx_patch.py` to compute `mu` exactly as the working
+     pipeline does (matched video_sequence_length, not an approximation) and
+     inject it. This fixed the crash, but the pipeline STILL produced pure
+     noise by mid-clip regardless of fix — confirmed this is
+     `LTXConditionPipeline`-specific and not our scene/resolution by testing
+     the exact same real photographic image, at LTX-Video's own documented
+     native resolution (704x512) and example prompt, through both pipelines:
+     `LTXImageToVideoPipeline` stayed clean and coherent through frame 24;
+     `LTXConditionPipeline` (patched) dissolved into a noisy painterly mess
+     by frame 24. Concluded `LTXConditionPipeline` has additional problems
+     in this diffusers version beyond the missing `mu`, not worth chasing
+     further. `physweep/ltx_patch.py` is kept (documents a real, reproducible
+     diffusers bug) but is NOT currently used by any experiment script.
+  3. **Final approach (C2, single-frame + explicit text):** switched to the
+     reliable `LTXImageToVideoPipeline`, single first-frame conditioning,
+     with gravity magnitude and a qualitative descriptor stated explicitly
+     in the prompt (see `gravity_prompt()` in `experiments/e0_pilot.py`).
+     Generation is stable and clean at 512x512 (verified visually) — this is
+     what actually ran and produced the numbers above.
+  - Also fixed along the way: `transformers` 5.13.0 (the version `pip`
+    resolved by default) cannot load LTX-Video's T5 tokenizer (`spiece.model`)
+    — it misroutes through a tiktoken BPE parser and crashes. Downgraded to
+    `transformers>=4.44,<5` (landed on 4.57.6), which loads it correctly.
+    Pinned in `requirements.txt`.
 
 ### E1 — Faithfulness curve
 - **Status:** NOT STARTED (blocked on E6+E0)
@@ -334,10 +436,30 @@ pip install -r requirements.txt
 ```
 **Installed as of 2026-07-04:** torch 2.11.0+cu128 (CUDA confirmed available,
 sees the A100-SXM4-40GB), numpy 2.5.0, scipy, opencv-python-headless, pillow,
-imageio(+ffmpeg), diffusers 0.39.0, transformers 5.13.0, accelerate,
-safetensors, sentencepiece, huggingface_hub. Pinned in `requirements.txt`.
-Metrics smoke test re-verified passing inside `.venv` (identical output to
-the system-python run — see Section 5).
+imageio(+ffmpeg), diffusers 0.39.0, transformers==4.57.6 (see pin note
+below), accelerate, safetensors, sentencepiece, tiktoken, huggingface_hub.
+Pinned in `requirements.txt`. Metrics smoke test re-verified passing inside
+`.venv` (identical output to the system-python run — see Section 5).
+
+**transformers pin (important, will bite again if bumped):** `pip install
+transformers` resolves to 5.13.0 by default, which CANNOT load LTX-Video's T5
+tokenizer — `transformers` 5.x's tokenizer-conversion path misroutes the
+tokenizer's `spiece.model` (SentencePiece format) through a tiktoken BPE
+parser and crashes (`ValueError: Error parsing line ... in spiece.model`).
+Fixed by pinning `transformers>=4.44,<5` (landed on 4.57.6). Also needed:
+`pip install tiktoken` (transformers imports it lazily and errors without it
+even when not actually using tiktoken-format files).
+
+**HF_HOME gotcha (will bite every new script/shell):** the instance's default
+`HF_HOME` (`/workspace/.hf_home`) is ROOT-OWNED — any `huggingface_hub`/
+`diffusers` download fails with `PermissionError`. Use a project-local cache
+instead: `/workspace/4-iclr/.hf_home` (already gitignored). **A shell
+`export HF_HOME=...` does NOT persist to a fresh Bash tool call / new
+background process** — every script that touches HF Hub must set it itself
+at the top: `os.environ["HF_HOME"] = ".../4-iclr/.hf_home"` (force-set, not
+`setdefault`, since the wrong value is already present in the environment,
+not merely unset). See `experiments/e0_pilot.py` top of `main()`-adjacent
+imports for the pattern.
 
 **To do before E6/E0 (update this list as it's done):**
 - [x] Create `requirements.txt` pinning exact versions.
@@ -351,13 +473,21 @@ the system-python run — see Section 5).
       CoTracker3 deferred to the E5(a) tracker-swap ablation.
 - [x] Save the exact in-range/out-of-range grids per system to
       `physweep/configs/systems.yaml` (cite in Appendix C at write-up time).
-- [ ] Install LTX-Video (I2V mode) — verify current HF repo id, license, and
-      VRAM footprint at install time; this is the first model to bring up
-      (lightest/fastest per the runbook).
-- [ ] Run and log E6 (aggregate, all systems) + E0 (LTX-Video pilot) as
-      first-class experiments in Section 5 — the per-system validation above
-      is necessary but not sufficient; it hasn't been assembled into the
-      paper's actual E6 statistic (PRE/slope/R^2 with bootstrap CIs) yet.
+- [x] Install LTX-Video (I2V mode): `Lightricks/LTX-Video`, diffusers format,
+      ~28GB (dominated by the T5-XXL text encoder). Loads at 14.25GB VRAM on
+      CUDA — comfortably within the paper's 24GB target and the A100's 40GB.
+- [x] Run and log E6 (aggregate, all systems): PASS, see Section 5.
+- [x] Run and log E0 (LTX-Video pilot): DONE, decision=REFRAME (with
+      caveats) — see Section 5 for the full account, including two real
+      pipeline bugs found and fixed (`LTXConditionPipeline`'s missing `mu`,
+      documented in `physweep/ltx_patch.py`; single-frame conditioning
+      carrying zero theta signal) before the result could be trusted.
+- [ ] **Open decision needed before E1:** either accept the reframe
+      ("conditioning not honored" for this model/setup) and adjust the paper's
+      framing accordingly, or first retry E0 with a stronger/fairer test of
+      C1 (frame-implied) conditioning — e.g. reposition the projectile launch
+      clearly mid-air so it doesn't visually read as "at rest," since that
+      was flagged as a plausible confound. See Section 5 caveats.
 
 **Models queue (frozen, inference-only, in this order):**
 1. LTX-Video (Lightricks), I2V — start here, lightest/fastest.
