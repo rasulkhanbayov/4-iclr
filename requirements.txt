@@ -1,0 +1,28 @@
+# PhysWeep environment — pinned 2026-07-04 on an A100-SXM4-40GB (CUDA 12.8, driver 570.133.20).
+#
+# Install:
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+#   pip install -r requirements.txt
+#
+# torch is installed separately from the cu128 index (not PyPI default) to match
+# this GPU's CUDA 12.8 / compute capability 8.0. Do not pin an older cu11x/cu124
+# index — see CLAUDE.md Section 6.
+
+torch==2.11.0+cu128        # install via the cu128 index command above, not from this file directly
+numpy==2.5.0
+scipy==1.18.0
+opencv-python-headless==5.0.0.93
+pillow==12.3.0
+imageio==2.37.3
+imageio-ffmpeg==0.6.0
+
+diffusers==0.39.0
+transformers==5.13.0
+accelerate==1.14.0
+safetensors==0.8.0
+sentencepiece==0.2.1
+huggingface_hub==1.22.0
+
+# Full transitive freeze (torch/CUDA deps, etc.) captured for exact reproduction
+# if needed: see git history of this file / re-run `pip freeze` in .venv.

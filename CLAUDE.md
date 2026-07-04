@@ -220,15 +220,27 @@ everything is lost on recycle/destroy. Persistence plan:
   remote instead once one is configured. **Do not let large artifacts pile up
   only in `/workspace` — sync or discard them after each experiment.**
 
-**Python env:** system Python 3.12.3; `/venv/main` exists but is currently
-empty of ML packages. Nothing installed yet as of 2026-07-04.
+**Python env:** project-local venv at `/workspace/4-iclr/.venv` (NOT the
+shared `/venv/main` — that venv's `site-packages`/`bin` are root-owned and
+installs there fail with permission errors; do not fight this, use `.venv`).
+`.venv` is gitignored (large/regenerable). Recreate anytime with:
+```
+python3 -m venv /workspace/4-iclr/.venv
+source /workspace/4-iclr/.venv/bin/activate
+pip install torch --index-url https://download.pytorch.org/whl/cu128
+pip install -r requirements.txt
+```
+**Installed as of 2026-07-04:** torch 2.11.0+cu128 (CUDA confirmed available,
+sees the A100-SXM4-40GB), numpy 2.5.0, scipy, opencv-python-headless, pillow,
+imageio(+ffmpeg), diffusers 0.39.0, transformers 5.13.0, accelerate,
+safetensors, sentencepiece, huggingface_hub. Pinned in `requirements.txt`.
+Metrics smoke test re-verified passing inside `.venv` (identical output to
+the system-python run — see Section 5).
 
 **To do before E6/E0 (update this list as it's done):**
-- [ ] Create `requirements.txt` pinning exact versions (torch, diffusers,
-      transformers, opencv-python or similar for tracking, huggingface_hub,
-      and CoTracker3 if used instead of blob centroiding).
-- [ ] Install torch with a CUDA 12.x wheel (A100 is compute capability 8.0,
-      any current cu12x wheel works — do not pin an old cu118-style index).
+- [x] Create `requirements.txt` pinning exact versions.
+- [x] Install torch with a CUDA 12.8 wheel (matches A100 compute capability
+      8.0 and driver_max_cuda 12.8).
 - [ ] Install LTX-Video (I2V mode) — verify current HF repo id, license, and
       VRAM footprint at install time; this is the first model to bring up
       (lightest/fastest per the runbook).
