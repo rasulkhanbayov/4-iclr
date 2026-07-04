@@ -72,19 +72,32 @@ def _render_positions(positions: np.ndarray) -> np.ndarray:
 PX_PER_M = 40.0  # rendering scale: shared across systems that use metric theta
 
 
-def simulate_projectile(g: float, seed: int, n_frames: int = N_FRAMES):
+def simulate_projectile(g: float, seed: int, n_frames: int = N_FRAMES,
+                        ground_clearance_px: float | None = None):
     """Launch a disk under gravity g (m/s^2) with an initial upward velocity
     chosen analytically so the full parabolic arc (launch to landing at the
     same height) spans the clip duration exactly, for every g in the grid.
     This keeps the arc fully visible and unclipped from g=1.6 to g=25 (image
     convention: y grows downward, so y(t) = y0 - v0*t + 0.5*g*t^2).
+
+    ground_clearance_px: distance from the ground line to y0 (the starting/
+    ending height of the symmetric arc). Default (None) samples 5-15px --
+    i.e. the ball starts almost touching the ground, which E6/E1/etc. were
+    validated against and should NOT be changed casually. Pass an explicit
+    larger value (e.g. 130) when the CONDITIONING FRAME must visually read
+    as "clearly mid-air" rather than "at rest on the ground" -- this was
+    added for E0 after finding the default confounded a generator's
+    tendency to keep a ground-adjacent object stationary with a genuine
+    gravity-conditioning failure (see CLAUDE.md Section 5). Max safe value
+    is bounded by apex_offset (up to ~115px at g=25) plus frame height.
     Returns (frames [T,H,W] uint8, y_px [T] float, t [T] float)."""
     rng = np.random.default_rng(seed)
     t = np.arange(n_frames) * DT
     duration = t[-1]
 
     v0 = 0.5 * g * duration          # m/s: symmetric arc returns to y0 at t=duration
-    y0 = GROUND_Y - DISK_RADIUS - rng.uniform(5, 15)   # start just above ground line
+    clearance = ground_clearance_px if ground_clearance_px is not None else rng.uniform(5, 15)
+    y0 = GROUND_Y - DISK_RADIUS - clearance
     x0 = rng.uniform(50, 80)
     vx = rng.uniform(60, 90)          # px/s, horizontal drift for visual clarity
 

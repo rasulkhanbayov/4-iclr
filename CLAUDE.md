@@ -37,26 +37,28 @@ undamped sine) badly underrated real damped-oscillation fits; added
 `damped_sine_r2()` to `physweep_metrics.py` as the correct gate for that
 system.
 
-**E0 (pilot gate) is now DONE** (2026-07-04). **Decision: REFRAME.** LTX-Video
-does not detectably honor the conditioned gravity in this setup — slope(in)
-95% CI = [-1.14, 0.00] (includes 0), most clips failed the fit-quality gate
-(80% dropped), and visual inspection shows the ball staying essentially
-stationary near the ground regardless of the stated gravity, rather than
-falling. This was reached only after ruling out two pipeline bugs as the
-cause (see Section 5 for the full account) — the null result looks like a
-genuine behavioral finding, not an artifact, but read the caveats in Section
-5 before treating it as final (single model, single conditioning-channel
-design, small resolution relative to native, C2 not C1).
+**E0 (pilot gate) is now DONE and CONFIRMED SOLID** (2026-07-04, two runs).
+**Decision: REFRAME.** LTX-Video does not detectably honor conditioned
+gravity under C2 (text-specified) conditioning — v2 (ball near ground):
+slope(in) 95% CI [-1.14, 0.00]; v3 (confound check, ball moved clearly
+mid-air, `ground_clearance_px=100`): slope(in) = -0.0148, 95% CI
+[-0.0895, 0.0387] — an even tighter, more confidently-flat null. The
+ground-adjacency confound raised after v2 is now RULED OUT. This was reached
+after fixing two real pipeline bugs (zero-signal single-frame conditioning;
+a genuine diffusers bug in `LTXConditionPipeline`) — see Section 5 for the
+full account. Remaining scope limit: this tested C2 text-conditioning only,
+not the paper's default C1 frame-implied channel (LTXConditionPipeline,
+needed for real C1, was unusable in this diffusers version).
 
-**Next action (per the runbook's own guidance for this outcome):** reframe
-the story to "open generators do not honor conditioned dynamics" for this
-setup, OR try to strengthen the conditioning before concluding — e.g. retry
-with the ball positioned clearly mid-air (not near the ground, which the
-model may read as "at rest") before fully committing to the reframe. This is
-a real decision point worth discussing with the user before proceeding to
-E1-E9 under either framing. Do not skip ahead in the experiment order in
-Section 3 until this is resolved. Do not write any number into the paper
-that was not produced by an actual run recorded in Section 5.
+**Next action:** decide how to proceed given a confirmed null on LTX-Video/C2
+— options include (a) accepting the reframe and adjusting the paper's
+framing to "open generators do not honor conditioned dynamics" for this
+scope, (b) trying CogVideoX-5B-I2V next (per the runbook's model queue) to
+see whether the null is LTX-Video-specific or more general, or (c) some
+other path the user prefers. This is a real decision point — do not proceed
+to E1-E9 under any framing until it's made. Do not skip ahead in the
+experiment order in Section 3. Do not write any number into the paper that
+was not produced by an actual run recorded in Section 5.
 
 ---
 
@@ -290,53 +292,68 @@ value. If an experiment is blocked or partially run, say so explicitly.
   in this experiment. See git history for the full investigation.
 
 ### E0 — Pilot / decision gate
-- **Status:** DONE. **Decision: REFRAME** ("conditioning not detectably
-  honored" in this setup) — see caveats below before treating as final.
+- **Status:** DONE (two runs, v2 then v3 with a confound fix). **Decision:
+  REFRAME** ("conditioning not detectably honored") — confirmed solid after
+  ruling out the main plausible confound. See caveats below (the C1-vs-C2
+  channel caveat still stands).
 - **Date:** 2026-07-04
 - **Model:** LTX-Video (`Lightricks/LTX-Video`, diffusers format), inference
   only. System: projectile only, 5 in-range g + 3 out-of-range g, m=5 seeds.
 
-- **Result:** slope(in) = -0.5164, 95% CI [-1.1389, 0.0000] (includes 0).
+- **v2 result (ball starts near the ground, `ground_clearance_px` default
+  5-15px):** slope(in) = -0.5164, 95% CI [-1.1389, 0.0000] (includes 0).
   PRE(in) = 1.0174 [0.8912, 1.1436]. Fit-quality (R^2>=0.8) dropped rate =
-  80% (32/40 clips) — either the tracker lost the disk entirely (NaN, ~45%
-  of clips) or the fit was poor. Of the 4 gated in-range points (all from a
-  single seed), 2 recovered g_hat~=0 and 2 recovered NEGATIVE g_hat.
-  Full data: `results/e0_pilot.json`.
+  80% (32/40 clips). Of the 4 gated in-range points (all one seed), 2
+  recovered g_hat~=0 and 2 recovered NEGATIVE g_hat (traced to a shape
+  deformation artifact at the last frame, not real upward motion).
 
-- **Visual root-cause check (not just trusting the fitted number):**
-  inspected generated frames directly for several clips (`results/debug_e0_case*.png`).
-  The ball starts near the ground line in the conditioning frame and, across
-  every g value and prompt tested (including "extremely strong gravity like
-  Jupiter, violent rapid acceleration"), it stays essentially STATIONARY for
-  the whole clip — it does not fall, regardless of what the text says. Where
-  the tracker returned a negative g_hat, the ball's shape had deformed into a
-  blob at the last frame (an artifact), which is what actually drove the
-  spurious "negative gravity" fit — not real upward motion. This looks like
-  a case of the model reading "ball resting near a ground line" as an
-  at-rest scene and not overriding that with text-specified dynamics, not
-  generic noise or a broken pipeline.
+- **v2 visual root-cause check:** inspected generated frames directly
+  (`results/e0_debug_evidence/`). The ball starts near the ground line and,
+  across every g value and prompt (including "extremely strong gravity like
+  Jupiter, violent rapid acceleration"), stays essentially STATIONARY the
+  whole clip. Flagged a plausible confound: a ball resting next to a ground
+  line might read as "at rest" to the model regardless of prompt, independent
+  of any real gravity-conditioning failure.
 
-- **Caveats before treating this as a final result (important):**
+- **v3 (confound check): re-ran with `ground_clearance_px=100`** so the
+  conditioning frame shows the ball clearly mid-air (verified visually first:
+  `results/debug_midair_cond.png` — ball ~124px above the ground line,
+  nowhere near it). Same C2 prompts, same everything else. **Result: slope(in)
+  = -0.0148, 95% CI [-0.0895, 0.0387]** — a MUCH tighter CI centered right on
+  0 (vs v2's wide [-1.14, 0.00]). Fit-quality dropped rate unchanged at 80%.
+  Of 5 gated in-range points (spanning g=5 to g=15), every recovered g_hat
+  was small and positive (0.20-0.66) regardless of the true g -- not just an
+  inconclusive null, a confident flat-zero response. Full data (this is what
+  `results/e0_pilot.json` currently holds; v2's JSON was overwritten, numbers
+  preserved here): 40 clips, `physweep/configs/systems.yaml` grid.
+
+- **Conclusion: the ground-adjacency confound is RULED OUT.** Moving the
+  ball clearly into mid-air did not rescue a hidden gravity effect — it
+  produced an even more confidently flat, near-zero slope. LTX-Video, under
+  C2 (text-specified gravity) conditioning with a single first-frame image,
+  does not detectably vary its generated motion with the stated gravity
+  magnitude, at either ground-adjacent or clearly-airborne starting
+  positions.
+
+- **Caveats that still stand (only #3 below was resolved by v3):**
   1. **Conditioning channel was forced to C2 (text-specified), not the
      paper's default C1 (frame-implied)** — see the pipeline-bug account
-     below. A C2-only null result supports "this model doesn't respond to
-     TEXT-specified gravity here," which is weaker than a true C1 failure
-     (frame-implied motion, the paper's primary channel, was never
-     successfully tested).
-  2. Generation resolution (512x512) is still well below LTX-Video's native
-     ~704x1216 — improved stability over 256x256 (see below) but still
+     below. This result supports "this model doesn't respond to
+     TEXT-specified gravity here" specifically; true frame-implied (C1)
+     conditioning was never successfully tested end-to-end (LTXConditionPipeline
+     was unusable — see below) and could behave differently.
+  2. Generation resolution (512x512) is still below LTX-Video's native
+     ~704x1216 — stable and clean at this size (verified visually) but still
      possibly out-of-distribution enough to affect fidelity.
-  3. The conditioning image places the ball ADJACENT to the ground line
-     (per physweep/render.py's projectile launch point) — plausibly readable
-     by the model as "already landed," biasing toward the stationary
-     response seen. A conditioning frame with the ball clearly mid-air might
-     behave differently and hasn't been tried.
-  4. Single model (LTX-Video only), single prompt template, 30 inference
-     steps, guidance_scale=3.0 (defaults, not tuned).
-  These caveats mean "REFRAME to conditioning-not-honored" is the right call
-  for THIS exact setup, but a genuinely careful E0 write-up should say so
-  explicitly rather than claim a clean general negative result about C1
-  frame-implied conditioning, which was never actually tested end-to-end.
+  3. ~~Ground-adjacency confound~~ — **RESOLVED by v3**: repositioning the
+     ball clearly mid-air did not change the conclusion.
+  4. Single model (LTX-Video only), single prompt template family, 30
+     inference steps, guidance_scale=3.0 (defaults, not tuned). A different
+     prompt phrasing, higher guidance, or a different model could behave
+     differently — this is E5(f) and E9 territory, not yet run.
+  The remaining honest framing: **for LTX-Video under C2 text-conditioning,
+  conditioning is not detectably honored** — solid within that scope, not
+  yet a general claim about C1 or about "video generators" broadly.
 
 - **Full account of getting here (two real pipeline bugs found and fixed
   before this result could be trusted; kept in full because a future session

@@ -98,12 +98,19 @@ def main():
     pipe.to("cuda")
 
     gen_num_frames = 25   # 8k+1 quantization; trim to N_FRAMES=24 for fitting
+    # Ground clearance forced to 100px (vs the default 5-15px) so the
+    # conditioning frame reads as "clearly mid-air," not "resting on the
+    # ground" -- ruling out a confound found in the first E0 attempt (see
+    # CLAUDE.md Section 5): a ball right next to the ground line may look
+    # at-rest to the generator regardless of what gravity the prompt states.
+    GROUND_CLEARANCE_PX = 100
     rows = []
     t0_all = time.time()
     for theta_set, label in [(g_in, "in"), (g_out, "out")]:
         for g_true in theta_set:
             for seed in range(n_seeds):
-                frames_gt, y_true, t_gt = simulate_projectile(g=g_true, seed=seed, n_frames=N_FRAMES)
+                frames_gt, y_true, t_gt = simulate_projectile(
+                    g=g_true, seed=seed, n_frames=N_FRAMES, ground_clearance_px=GROUND_CLEARANCE_PX)
                 first_frame = Image.fromarray(frames_gt[0]).convert("RGB").resize(
                     (GEN_RESOLUTION, GEN_RESOLUTION), Image.NEAREST)
                 prompt = gravity_prompt(g_true)
@@ -138,7 +145,7 @@ def main():
 
     result = {"rows": rows, "n_gated_in": len(theta_in), "fit_quality_dropped_rate": dropped_rate,
               "conditioning_channel": "C2_text_specified", "n_inference_steps": 30, "guidance_scale": 3.0,
-              "resolution": GEN_RESOLUTION}
+              "resolution": GEN_RESOLUTION, "ground_clearance_px": GROUND_CLEARANCE_PX}
 
     if len(theta_in) >= 4:
         slope, slope_lo, slope_hi = bootstrap_ci(faithfulness_slope, theta_in, hat_in, n_boot=2000)
