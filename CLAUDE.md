@@ -69,16 +69,21 @@ meaningfully stronger basis for the reframe than either model alone, and the
 CogVideoX seed-clustering result is a concrete, promotable finding worth
 following up with E7 specifically.
 
-**Next action:** a real decision point, now with two models' worth of
-evidence — options include (a) accepting the reframe as a 2-model finding
-and proceeding to E1/E4 for the full faithfulness curve across systems under
-this framing, (b) jumping toward an E7-style out-of-range test to see if
-CogVideoX's seed-clustering pattern is genuinely H1 (a promising, concrete
-lead), (c) trying the third model (SVD/DynamiCrafter) for a 3-model picture
-before committing to any framing, or (d) another path the user prefers. Do
-not proceed to E1-E9 under any framing until this is decided. Do not skip
-ahead in the experiment order in Section 3. Do not write any number into the
-paper that was not produced by an actual run recorded in Section 5.
+**Decision made (2026-07-04): accept the 2-model reframe, proceed under
+"open generators do not honor conditioned dynamics" (C2 conditioning).**
+**E1 is now DONE for the projectile system** (both models) — formalizes E0's
+already-collected data (same grid/seeds/conditioning) into E1's official
+slope/PRE/Spearman-rho statistics rather than re-spending GPU time. Both
+models: slope CI includes 0, small-magnitude Spearman rho. See Section 5.
+
+**Next action:** extend E1's design to the other 5 sweep axes (pendulum
+omega/zeta, bouncing ball, spring-mass, inclined slide) for E4 "generality
+across systems" — this is the next open item. The CogVideoX seed-clustering
+/ H1-like lead (Section 5) remains a promising, not-yet-adjudicated
+follow-up for E7 once E4 is further along. True C1 (frame-implied)
+conditioning and a third model (SVD/DynamiCrafter) remain open per-runbook
+items not yet attempted. Do not write any number into the paper that was
+not produced by an actual run recorded in Section 5.
 
 ---
 
@@ -489,7 +494,26 @@ value. If an experiment is blocked or partially run, say so explicitly.
   tests it out-of-range).
 
 ### E1 — Faithfulness curve
-- **Status:** NOT STARTED (blocked on E6+E0)
+- **Status:** DONE (projectile system, C2 conditioning, both models tested
+  so far). Script: `experiments/e1_faithfulness.py`. Formalizes E0's
+  already-collected data into E1's official statistics rather than
+  re-spending GPU time — E0's projectile grid/seeds/conditioning already
+  satisfies what E1 needs for this system. Other 5 systems and true C1
+  conditioning remain open (E4 and future-work scope respectively).
+- **Date:** 2026-07-04.
+
+| Model | slope beta (in) | PRE(in) | Spearman rho (full grid) |
+|---|---|---|---|
+| LTX-Video | -0.015 [-0.090, 0.039] | 0.853 | -0.268 |
+| CogVideoX-5B-I2V | 0.070 [-0.168, 0.305] | 2.016 | 0.046 |
+
+- **Reading:** both models' slope CIs include 0 and both Spearman rho values
+  are small in magnitude (LTX-Video's -0.268 is noise given the wide, zero-
+  crossing slope CI, not a real inverse relationship — flagged so it isn't
+  mistaken for a finding). Neither model shows a faithfulness curve that
+  tracks the conditioned gravity in any direction. This is the formal E1
+  confirmation of the E0 pilot's REFRAME decision, for the projectile system
+  specifically. Full data: `results/e1_faithfulness.json`.
 
 ### E2 — Extrapolation
 - **Status:** NOT STARTED
