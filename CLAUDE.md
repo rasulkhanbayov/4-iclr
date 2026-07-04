@@ -76,14 +76,28 @@ already-collected data (same grid/seeds/conditioning) into E1's official
 slope/PRE/Spearman-rho statistics rather than re-spending GPU time. Both
 models: slope CI includes 0, small-magnitude Spearman rho. See Section 5.
 
-**Next action:** extend E1's design to the other 5 sweep axes (pendulum
-omega/zeta, bouncing ball, spring-mass, inclined slide) for E4 "generality
-across systems" — this is the next open item. The CogVideoX seed-clustering
-/ H1-like lead (Section 5) remains a promising, not-yet-adjudicated
-follow-up for E7 once E4 is further along. True C1 (frame-implied)
-conditioning and a third model (SVD/DynamiCrafter) remain open per-runbook
-items not yet attempted. Do not write any number into the paper that was
-not produced by an actual run recorded in Section 5.
+**E4 (generality across systems) — LTX-Video DONE, CogVideoX IN PROGRESS.**
+LTX-Video result (2026-07-04): 4 of 5 remaining systems produced almost no
+usable data at all (94-100% fit-quality dropped rate); the one system with
+enough data (inclined_slide) shows a wide, zero-crossing slope CI, same
+story as projectile. Two of the five systems (pendulum_omega, spring_mass)
+are frame-capped at 97 generated frames (vs the ~180 ground truth needs),
+confounding "ignores conditioning" with "clip too short" for those two only
+— see Section 5 for the full breakdown and caveat. **CogVideoX's E4 run
+started 2026-07-04, background PID (check `ps aux | grep e4_generality`),
+log at `results/e4_cogvideox.log`, estimated ~10.7 HOURS** (measured: ~5.9
+min/clip for the 2 frame-capped systems, ~2.3 min/clip for the other 3, 170
+clips total) — this is a long-running background job, check with wide
+intervals (30-60+ min), not tight polling.
+
+**Next action:** wait for CogVideoX's E4 run to complete, then write up its
+results in Section 5 next to LTX-Video's for the full 2-model x 6-system
+picture. The CogVideoX seed-clustering / H1-like lead from E0 (Section 5)
+remains a promising, not-yet-adjudicated follow-up for E7 (needs
+out-of-range data specifically). True C1 (frame-implied) conditioning and a
+third model (SVD/DynamiCrafter) remain open per-runbook items not yet
+attempted. Do not write any number into the paper that was not produced by
+an actual run recorded in Section 5.
 
 ---
 
@@ -522,7 +536,53 @@ value. If an experiment is blocked or partially run, say so explicitly.
 - **Status:** NOT STARTED
 
 ### E4 — Generality across systems
-- **Status:** NOT STARTED
+- **Status:** LTX-Video DONE (all 5 remaining systems). CogVideoX-5B-I2V
+  IN PROGRESS (started 2026-07-04, ~10.7 hour estimated runtime — see
+  Section 6/below for why). Script: `experiments/e4_generality.py --model
+  {ltx,cogvideox}`, covers pendulum_omega, pendulum_zeta, bouncing_ball,
+  spring_mass, inclined_slide (projectile/gravity already covered by E0/E1).
+
+- **Frame-count cap (important, affects interpretation):** pendulum_omega
+  and spring_mass need ~180 frames on ground truth (E6) for the fitter to
+  see >=2 oscillation periods at the lowest omega/k in their grids. Neither
+  generator can practically produce clips that long (measured: CogVideoX
+  takes ~5.9 min for just 97 frames, vs ~2.3 min for 49). Capped generation
+  at `MAX_GEN_FRAMES=97` for both models — informative middle ground per the
+  user's direction, not the full requirement. This means a fit-quality
+  failure on these two systems conflates "the model doesn't honor
+  conditioning" with "the clip is too short to identify the parameter even
+  from a perfect video" — the results below can't cleanly separate those two
+  explanations for pendulum_omega/spring_mass specifically. The other 3
+  systems (pendulum_zeta, bouncing_ball, inclined_slide) use the validated
+  N_FRAMES=24, so no such confound for them.
+
+- **LTX-Video result (2026-07-04):**
+
+| System | n_gated_in / n_total | dropped rate | slope beta (in) |
+|---|---|---|---|
+| pendulum_omega | 0/30 | 100% | n/a — nothing survived the gate |
+| pendulum_zeta | 0/30 | 100% | n/a — nothing survived the gate |
+| bouncing_ball | 1/35 | 94% | n/a — only 1 point, no CI possible |
+| spring_mass | 0/40 | 100% | n/a — nothing survived the gate |
+| inclined_slide | 7/35 | 69% | -0.464, 95% CI [-1.75, 1.10] |
+
+  Four of five systems produced essentially no usable data at all (94-100%
+  dropped) — even worse than projectile's already-poor showing in E0 (80%
+  dropped there). Only inclined_slide yielded enough gated points for a
+  slope estimate, and it too has a wide, zero-crossing CI, consistent with
+  no detectable conditioning effect. Full data:
+  `results/e4_{system}_ltx.json`, `results/e4_generality_ltx.json`.
+  **Caveat:** for pendulum_omega/spring_mass this near-total failure is
+  confounded with the frame-cap limitation above — cannot distinguish
+  "ignores conditioning" from "clip too short to tell" for those two.
+  bouncing_ball and inclined_slide are NOT frame-capped (use N_FRAMES=24)
+  and still show very high drop rates — that result stands on its own and
+  reinforces the projectile finding: LTX-Video generally fails to produce
+  a trackable, physically-fittable trajectory under C2 conditioning across
+  system types, not just for projectile/gravity.
+
+- **CogVideoX-5B-I2V:** in progress — see Section 0 for live status; will be
+  added here once complete.
 
 ### E7 — Failure-mechanism adjudication
 - **Status:** NOT STARTED
