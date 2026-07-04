@@ -1,0 +1,195 @@
+================================================================================
+ PhysWeep -- EXPERIMENT RUNBOOK
+ Parameter faithfulness and extrapolation in pretrained video generators
+================================================================================
+
+--------------------------------------------------------------------------------
+ *** READ THESE TWO THINGS FIRST (most common ways this study goes wrong) ***
+--------------------------------------------------------------------------------
+ (1) RUN THE NEGATIVE CONTROL (E6) AND THE PILOT (E0) BEFORE ANYTHING ELSE.
+     - E6 feeds GROUND-TRUTH simulator video (not a model) into your whole
+       tracking + fitting pipeline. If PRE is not near 0 and slope not near 1
+       on E6, your MEASUREMENT is broken, not the model. Fix the pipeline
+       before you run a single generator.
+     - E0 checks whether the generator honors the conditioned parameter AT ALL
+       (is the in-range slope beta detectably > 0?). If it is flat, your story
+       changes from "faithful-in-range, reverts-out-of-range" to "conditioning
+       is not honored." Both are publishable, but you must know which world you
+       are in before investing in the full sweep.
+
+ (2) NEVER WRITE A NUMBER INTO THE PAPER THAT YOU DID NOT MEASURE.
+     Every value in the paper is currently a [RESULT PLACEHOLDER]. Replace each
+     one only with the output of your own runs, with its bootstrap CI. If a
+     result is weak, negative, or surprising, report it honestly and rewrite
+     the abstract/title framing to match (see "Reading the outcomes honestly"
+     in the paper). The framing must follow the data, not the other way round.
+--------------------------------------------------------------------------------
+
+
+RESOURCES (pin exact versions in a requirements file before you start)
+--------------------------------------------------------------------------------
+ Hardware: one GPU with >= 24 GB VRAM (e.g. RTX 4090 / 5090 / A5000 / cloud).
+           All work here is INFERENCE ONLY. No training.
+
+ Generators (frozen, off-the-shelf, image-to-video; verify current versions,
+ licenses, and VRAM at run time):
+   - LTX-Video (Lightricks), I2V mode. Lightest, fastest; start here.
+   - CogVideoX-5B-I2V (Tsinghua/Zhipu), dedicated I2V variant.
+   - Stable Video Diffusion or DynamiCrafter (I2V).
+   - Optional: a quantized Wan I2V if it fits in 24 GB; full Wan needs ~65-80 GB,
+     so skip the full model unless you have datacenter hardware.
+
+ Measurement:
+   - Tracker: CoTracker3 (Meta) OR simple color-blob centroiding on the
+     synthetic scenes (robust here; implement both, see E5 ablation).
+   - Fitting + metrics: physweep_metrics.py (numpy only).
+
+ Plausibility baselines (contrast only, not the main metric):
+   - A VLM auto-rater (record the exact model name, version, and prompt).
+   - A small human plausibility subset (a handful of raters) for calibration.
+
+ NOTE: model names and versions move fast. Re-verify on the model cards the
+ week you run, and pin commit hashes / version tags in your env file.
+
+
+SYSTEMS (procedurally generated; no downloads, no labels)
+--------------------------------------------------------------------------------
+ Render conditioning frames from a small deterministic 2D engine you control.
+ Each system has ONE clean sweep axis with a closed-form recovery:
+   projectile      -> gravity g           (parabola curvature)
+   damped pendulum -> angular freq omega   (zero-crossing period)
+                   -> damping zeta         (envelope decay)
+   bouncing ball   -> restitution e        (successive bounce-height ratio)
+   spring-mass     -> stiffness k          (oscillation period)
+   inclined slide  -> friction mu          (acceleration along slope)
+ Keep scenes simple and high-contrast (solid disk on plain background) so the
+ tracker is reliable and parameter identifiability (paper Assumption 1) holds.
+ Define an in-range split (values common in natural video) and an out-of-range
+ split (rare/absent values, e.g. Moon or Jupiter gravity) per system. Save the
+ exact grids to a config file and cite it in Appendix C.
+
+
+EXPERIMENTS
+--------------------------------------------------------------------------------
+ Order: E6 + E0 (gate) -> E1 -> E2 -> E3 -> E4 -> E7 -> E5 -> E8 -> E9 -> (E10).
+
+ E6  NEGATIVE CONTROL (validate the measurement)
+     Objective : confirm tracking + fitting recovers known theta from real
+                 simulator video.
+     Data      : ground-truth simulator continuations for all systems.
+     Method    : run them through the SAME tracker + fitter as model outputs.
+     Metrics   : PRE (expect ~0), slope (expect ~1), fit R2 (expect ~1).
+     Pass/fail : if not, fix the pipeline before touching a generator.
+     Supports  : measurement validity (precondition for every claim).
+
+ E0  PILOT / DECISION GATE (cheap)
+     Objective : does the generator honor the conditioned parameter at all?
+     Data      : projectile only; 5 in-range + 3 out-of-range g; 5 seeds each.
+     Method    : 1 model (LTX-Video). Generate, track, fit, compute slope beta.
+     Decision  : beta CI excludes 0  -> proceed to full study (main story).
+                 beta CI includes 0  -> reframe to "conditioning not honored".
+     Supports  : central premise; reduces "models ignore conditioning" risk.
+
+ E1  FAITHFULNESS CURVE (in-range)
+     Objective : establish in-range faithfulness per model.
+     Data      : full g sweep, in-range; all three models; m>=5 seeds.
+     Metrics   : theta_hat-vs-theta curve, slope beta, PRE(in), with bootstrap CIs.
+     Supports  : Contribution 2; the in-range baseline.
+
+ E2  EXTRAPOLATION + PRIOR REVERSION (headline)
+     Objective : quantify out-of-range failure and reversion to a default.
+     Data      : extend each sweep into the out-of-range split.
+     Metrics   : Extrapolation Gap EG; Prior-Reversion Index PRI; estimated
+                 default theta0 vs. the physically typical value; paired
+                 bootstrap test PRE(out) > PRE(in).
+     Supports  : prior-reversion hypothesis; distinguishes from Kang et al. 2025
+                 (frozen models, continuous parameter, quantified reversion).
+
+ E3  PLAUSIBILITY-MEASUREMENT GAP (what makes this not a plausibility benchmark)
+     Objective : show plausibility raters miss the parameter error.
+     Data      : out-of-range generations from E2.
+     Method    : score each with the VLM auto-rater (+ human subset); pair with PRE.
+     Metrics   : (mean plausibility, PRE(out)). Hypothesis: high P, high PRE.
+     Supports  : Contribution 1; reduces "why not just use VideoPhy" risk.
+
+ E4  GENERALITY ACROSS SYSTEMS
+     Objective : show the effect is not projectile-specific.
+     Data      : repeat E1-E3 on pendulum, bouncing ball, spring, inclined slide.
+     Metrics   : per-system table of slope, PRE(in/out), EG, PRI.
+     Supports  : Contribution 3 (broad applicability); reduces "single-setting" risk.
+
+ E5  ROBUSTNESS / ABLATIONS (complete set)
+     (a) tracker swap (CoTracker vs blob centroid): metrics should agree
+         -> the effect is not a tracker artifact.
+     (b) scale-invariance: rescale object size and clip fps; ratio metrics
+         (theta_hat/theta) should be unchanged.
+     (c) object-permanence / fit-quality gate rho sensitivity; report the
+         non-physical generation rate.
+     (d) conditioning length (#frames in C1) and resolution.
+     (e) classifier-free guidance scale: does higher guidance increase PRI/CBI?
+         (mechanistic link to memorization literature).
+     (f) prompt phrasing for the C2 (text-specified) channel.
+     Supports  : reduces "measurement / hyperparameter artifact" rejection risk.
+
+ E7  FAILURE-MECHANISM ADJUDICATION (sharper contribution)
+     Objective : decide HOW the model fails out-of-range, not just THAT it does.
+     Method    : on S_out, fit H1 (shrinkage -> PRI) and H2 (clamp at range
+                 edge -> CBI); select by leave-one-theta-out R^2 and dAIC;
+                 report theta_0 vs theta_edge. Use select_mechanism() in the
+                 metrics code.
+     Outcomes  : H1 = collapse to one default; H2 = mimic nearest seen value;
+                 neither = report observed behavior, do not force a label.
+     Supports  : the contribution recent papers set up but never test on frozen
+                 models.
+
+ E8  CONDITIONING-CHANNEL ABLATION
+     Objective : separate a dynamics failure from a text-control failure.
+     Method    : run E1-E2 under C1 (frame-implied dynamics) and C2 (text-
+                 specified regime, e.g. "on the Moon") for models supporting
+                 both; compare faithfulness and EG.
+
+ E9  CONTROLLABILITY AUDIT (high reviewer interest)
+     Objective : test whether a model that CLAIMS physics control delivers it.
+     Method    : apply E1-E2 and E7 to a controllability-claiming model
+                 (e.g. PhysChoreo / Phantom / PhysVideo, if weights available).
+                 Does the advertised knob move the realized parameter in-range,
+                 and does it extrapolate?
+
+ E10 MULTI-PARAMETER / COMBINATORIAL (optional)
+     Objective : connect to combinatorial generalization (Kang et al.).
+     Method    : sweep two parameters jointly (e.g. g and e); does faithfulness
+                 on one axis degrade when the other is out of range?
+
+ CONDITIONING CHANNELS (decide per model before running):
+   C1 frame-implied : model takes multiple/first+last frames; theta is implied
+                      by the conditioning motion. Isolates dynamics.
+   C2 text-specified: model takes one image + text naming the regime. Tests
+                      whether a named control moves the realized parameter.
+
+
+FLAG-BACK TRIGGERS (stop and reconsider, do not paper over)
+--------------------------------------------------------------------------------
+ - E6 PRE not near 0  -> measurement broken; do not run models yet.
+ - E0 slope flat       -> switch to the "conditioning not honored" framing.
+ - Fit R2 low on many generations -> objects morph/teleport; report the
+   non-physical rate as a finding and gate those out of PRE (do not force a fit).
+ - Estimated theta0 NOT near the typical value -> the "reverts to a memorized
+   prior" interpretation may be wrong; describe what you actually see instead.
+ - Results differ wildly across models -> report per-model; do not average away.
+
+
+INTEGRITY REMINDERS
+--------------------------------------------------------------------------------
+ - You (the human authors) are the only authors. The assistant drafted text and
+   code; you must independently verify everything, especially:
+     * the consistency proof (paper Appendix B is a sketch + obligation),
+     * every physics fitter against a known analytic case,
+     * every citation: open each paper, confirm authors/venue/year, and fill in
+       the {{placeholder}} author lists in physweep.bib (see README checklist).
+ - Anonymize for ICLR double-blind: no author names, no identifying repo links
+   in the submission PDF.
+ - ICLR allows LLM use with disclosure: check the current ICLR 2027 author guide
+   and include the required disclosure. You are responsible for all content.
+ - Confirm novelty before submission: re-run the arXiv search the week you
+   submit; the area moves fast and a closer neighbor may appear.
+================================================================================

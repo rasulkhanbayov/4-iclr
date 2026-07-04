@@ -1,0 +1,15 @@
+# Large/regenerable artifacts — sync via HF Hub or rclone, not git
+*.mp4
+*.avi
+*.mov
+weights/
+checkpoints/
+*.safetensors
+*.ckpt
+*.pt
+__pycache__/
+*.pyc
+.venv/
+venv_physweep/
+.hf_home/
+*.log
