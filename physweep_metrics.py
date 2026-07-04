@@ -258,10 +258,30 @@ def fit_omega_from_crossings(t, x):
         return float("nan"), 0.0
     period = float(np.mean(np.diff(crossings)))
     omega = 2.0 * np.pi / (period + EPS)
-    # goodness of fit against a fitted sine at this omega
+    # goodness of fit against a fitted UNDAMPED sine at this omega. NOTE: for a
+    # genuinely damped oscillator (paper's pendulum system) this R^2 degrades
+    # with real decay even when omega itself is recovered accurately -- it is
+    # a fit-quality diagnostic for this function's own undamped model, not a
+    # general non-physical-generation gate. Use damped_sine_r2() below (with a
+    # zeta estimate) as the fit-quality gate for damped-oscillator systems.
     A = np.vstack([np.sin(omega * t), np.cos(omega * t), np.ones_like(t)]).T
     coef, *_ = np.linalg.lstsq(A, x, rcond=None)
     return float(omega), _r2(x, A @ coef)
+
+
+def damped_sine_r2(t, x, omega, zeta):
+    """Fit-quality R^2 against a DAMPED sine model exp(-zeta*omega*t)*(a*sin+b*cos)
+    + const, for use as the fit-quality gate on genuinely damped oscillators
+    (e.g. the pendulum system) where fit_omega_from_crossings's own R^2
+    (computed against an undamped sine) would under-report quality purely
+    because of expected, real decay. omega and zeta are taken as already
+    estimated (e.g. from fit_omega_from_crossings and fit_zeta_from_envelope)."""
+    t = np.asarray(t, float); x = np.asarray(x, float)
+    envelope = np.exp(-zeta * omega * t)
+    A = np.vstack([envelope * np.sin(omega * t), envelope * np.cos(omega * t),
+                  np.ones_like(t)]).T
+    coef, *_ = np.linalg.lstsq(A, x, rcond=None)
+    return _r2(x, A @ coef)
 
 
 def fit_restitution_from_bounces(peak_heights):

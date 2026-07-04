@@ -29,11 +29,19 @@ requires but the shipped code was missing (`fit_zeta_from_envelope`,
 `fit_friction_from_slide`) — same style as the existing fitters, original
 smoke test still passes unchanged.
 
-**Next action:** commit the renderer/tracker/config/fitter additions, then
-formally run and log **E6** (aggregate negative control across all systems)
-together with **E0** (LTX-Video pilot gate, projectile only) — these are hard
-gates, nothing past them may run until both pass. LTX-Video itself is not
-installed yet (Section 6 checklist). See Section 4 for pass/fail criteria.
+**E6 (negative control) is now DONE and PASSED** (2026-07-04): PRE(in)=0.0031,
+slope(in)=1.0001, mean fit R^2=0.986 pooled across all 6 systems, 203
+measurements. See Section 5 for full per-system breakdown. One more bug was
+found and fixed along the way: `fit_omega_from_crossings`'s R^2 (against an
+undamped sine) badly underrated real damped-oscillation fits; added
+`damped_sine_r2()` to `physweep_metrics.py` as the correct gate for that
+system.
+
+**Next action:** install LTX-Video (Section 6 checklist, not done yet), then
+run and log **E0** (pilot gate: LTX-Video, projectile only, slope beta on
+in-range g with a bootstrap CI). E0 is the second half of the hard gate — do
+not proceed to E1 until E0's decision (proceed vs. reframe) is made. See
+Section 4 for E0's exact pass/fail criteria.
 
 Do not skip ahead in the experiment order in Section 3. Do not write any
 number into the paper that was not produced by an actual run recorded in
@@ -240,7 +248,35 @@ value. If an experiment is blocked or partially run, say so explicitly.
   nothing about any real video model — no GPU work has occurred yet.
 
 ### E6 — Negative control
-- **Status:** NOT STARTED
+- **Status:** PASS
+- **Date:** 2026-07-04
+- **Command:** `.venv/bin/python experiments/e6_negative_control.py`
+  (writes `results/e6_negative_control.json`)
+- **Method:** ground-truth simulator continuations (physweep/render.py) run
+  through the full tracker (physweep/track.py, blob centroiding) + fitter
+  (physweep_metrics.py) pipeline, for all 6 sweep axes, both in-range and
+  out-of-range grids, m=5 seeds per grid point (203 total measurements).
+  Fit-quality gate R^2>=0.8 per the runbook.
+- **Overall (pooled across all systems):** PRE(in)=0.0031 [0.0019, 0.0045],
+  slope(in)=1.0001 [1.00008, 1.00023], PRE(out)=0.0060 [0.0031, 0.0095],
+  mean fit R^2=0.986, fit-quality-dropped rate=1.5% (mostly heavily-damped
+  pendulum-zeta cases, expected per Section 2).
+- **Per-system PRE(in)/slope(in)/R^2:** projectile 0.0006/1.000/1.000;
+  pendulum_omega 0.0014/1.000/0.9996; pendulum_zeta 0.0007/1.004/0.916;
+  bouncing_ball 0.0147/1.151/0.964; spring_mass 0.0001/1.000/1.000;
+  inclined_slide 0.0010/0.997/1.000. (bouncing_ball's slope=1.151 in-range is
+  the one system worth watching going forward — still passes the coarse E6
+  bar but is the least clean of the six; see Section 2's note on low-e
+  restitution precision.)
+- **Verdict: PASS.** PRE(in)~0, slope(in)~1, R^2~1 as required. The
+  measurement pipeline is validated. Proceed to E0.
+- **Bug found and fixed during this run:** `fit_omega_from_crossings`'s
+  returned R^2 (fit against an UNDAMPED sine) badly under-reported fit
+  quality for real damped oscillations at higher omega (R^2 as low as 0.43 at
+  omega=12 despite <0.6% recovery error) — this would have wrongly gated out
+  good measurements. Added `damped_sine_r2()` to physweep_metrics.py and used
+  it (with a zeta estimate) as the actual gate for the pendulum_omega system
+  in this experiment. See git history for the full investigation.
 
 ### E0 — Pilot / decision gate
 - **Status:** NOT STARTED
