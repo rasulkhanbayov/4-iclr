@@ -76,28 +76,41 @@ already-collected data (same grid/seeds/conditioning) into E1's official
 slope/PRE/Spearman-rho statistics rather than re-spending GPU time. Both
 models: slope CI includes 0, small-magnitude Spearman rho. See Section 5.
 
-**E4 (generality across systems) — LTX-Video DONE, CogVideoX IN PROGRESS.**
-LTX-Video result (2026-07-04): 4 of 5 remaining systems produced almost no
-usable data at all (94-100% fit-quality dropped rate); the one system with
-enough data (inclined_slide) shows a wide, zero-crossing slope CI, same
-story as projectile. Two of the five systems (pendulum_omega, spring_mass)
-are frame-capped at 97 generated frames (vs the ~180 ground truth needs),
-confounding "ignores conditioning" with "clip too short" for those two only
-— see Section 5 for the full breakdown and caveat. **CogVideoX's E4 run
-started 2026-07-04, background PID (check `ps aux | grep e4_generality`),
-log at `results/e4_cogvideox.log`, estimated ~10.7 HOURS** (measured: ~5.9
-min/clip for the 2 frame-capped systems, ~2.3 min/clip for the other 3, 170
-clips total) — this is a long-running background job, check with wide
-intervals (30-60+ min), not tight polling.
+**E0, E1, and E4 are ALL NOW DONE** (2026-07-04/05) — the full 2-model
+(LTX-Video, CogVideoX-5B-I2V) x 6-system (projectile, pendulum omega/zeta,
+bouncing ball, spring-mass, inclined slide) in-range picture is complete
+under C2 (text-specified) conditioning. Headline: **both models fail to
+honor conditioning almost everywhere, via two distinct, individually
+reproducible mechanisms.**
+- **LTX-Video**: mostly produces no trackable/fittable motion at all
+  (80-100% fit-quality dropped rate in 5 of 6 systems).
+- **CogVideoX**: reliably produces confident, well-formed motion, but it
+  converges to a small set of parameter-independent fixed outcomes —
+  confirmed via clean SEED-CLUSTERING (same recovered value regardless of
+  the true conditioned parameter) in FOUR systems: projectile (gravity),
+  spring-mass (stiffness), bouncing ball (converges to restitution~1.0
+  specifically), and inclined slide (friction). This is structurally very
+  close to the paper's own H1 (global prior reversion) hypothesis — a
+  strong, reproducible LEAD, but IN-RANGE ONLY; nothing yet tests whether it
+  holds out-of-range, which is what H1 actually claims and what E7 tests.
 
-**Next action:** wait for CogVideoX's E4 run to complete, then write up its
-results in Section 5 next to LTX-Video's for the full 2-model x 6-system
-picture. The CogVideoX seed-clustering / H1-like lead from E0 (Section 5)
-remains a promising, not-yet-adjudicated follow-up for E7 (needs
-out-of-range data specifically). True C1 (frame-implied) conditioning and a
-third model (SVD/DynamiCrafter) remain open per-runbook items not yet
-attempted. Do not write any number into the paper that was not produced by
-an actual run recorded in Section 5.
+See Section 5 for full per-system tables, exact seed-cluster values, and all
+caveats (frame-cap confound on 2-3 systems specifically noted, does not
+affect the CogVideoX seed-clustering finding since that appears in both
+frame-capped and non-frame-capped systems).
+
+**Next action — a real decision point, now with the strongest evidence
+gathered so far:** (a) pursue an E7-style OUT-OF-RANGE test on CogVideoX
+specifically to actually adjudicate whether this is H1 (the seed-clusters
+should stay fixed regardless of how far out of range theta goes) — this is
+the most direct next step given how reproducible the in-range lead is; (b)
+write up the paper's results/discussion section now under the reframed
+story with this cross-system mechanism as the headline finding; (c) try a
+third model (SVD/DynamiCrafter) for a fuller picture before committing to
+any narrative; or (d) attempt true C1 (frame-implied) conditioning again
+with a different approach, since everything so far has been C2 only. Do not
+write any number into the paper that was not produced by an actual run
+recorded in Section 5.
 
 ---
 
@@ -581,8 +594,59 @@ value. If an experiment is blocked or partially run, say so explicitly.
   a trackable, physically-fittable trajectory under C2 conditioning across
   system types, not just for projectile/gravity.
 
-- **CogVideoX-5B-I2V:** in progress — see Section 0 for live status; will be
-  added here once complete.
+- **CogVideoX-5B-I2V result (2026-07-05, run completed overnight, ~12 hours
+  total — longer than the original 10.7hr estimate because pendulum_zeta
+  turned out to also need the expensive 97-frame cap, not just
+  pendulum_omega/spring_mass as first assumed):**
+
+| System | n_gated_in / n_total | dropped rate | slope beta (in) |
+|---|---|---|---|
+| pendulum_omega | 0/30 | 100% | n/a |
+| pendulum_zeta | 0/30 | 100% | n/a |
+| bouncing_ball | 1/35 | 97% | n/a — 1 point |
+| spring_mass | 0/40 | 100% | n/a |
+| inclined_slide | 0/35 | 100% | n/a |
+
+  Every single system fails the fit-quality gate almost completely on
+  CogVideoX too — even worse than LTX-Video's showing on 3 of 5 systems.
+  **But the ungated (raw) data tells a much more specific and interesting
+  story than "noisy failure" — the same seed-clustering signature from E0's
+  projectile pilot reproduces cleanly in three more systems:**
+
+  | System | Evidence of seed-clustering (in-range, raw data) |
+  |---|---|
+  | inclined_slide (mu) | seed=0: mu_hat=2.56 +/- 0.05; seed=1: 1.89 +/- 0.03; seed=2: 1.42 +/- 0.07; seed=3: 2.56 +/- 0.15; seed=4: 1.48 +/- 0.05 — tight, seed-determined clusters, **independent of true mu (0.01 to 1.00 tested)** |
+  | spring_mass (k) | seed=0: k_hat~160 (std 20); seed=2: k_hat~5.5 (std 0); seed=3: k_hat~236 (std 23); seed=4: k_hat~9 (std 5) — same pattern, noisier (frame-capped) but still clearly seed-clustered, not k-dependent |
+  | bouncing_ball (e) | ALL seeds converge to e_hat in [0.97, 1.00] regardless of seed OR true e (0.2 to 0.97 tested) — an even more extreme case: convergence to "perfectly elastic," barely varying by seed at all |
+  | projectile (g) | (from E0/E1) seed=0: g_hat=-11.4 +/- 0.03; seed=1: -11.5 +/- 0.16; seed=4: -7.1 +/- 0.17 — the original discovery of this pattern |
+
+  **This is now a 4-for-4 reproduction of a specific, well-defined failure
+  mode on CogVideoX: confident, cleanly-generated motion that converges to
+  one of a small number of FIXED outcomes selected by the random seed (or,
+  for bouncing_ball, to nearly the same single outcome regardless of seed),
+  essentially ignoring the conditioned physical parameter entirely.** This
+  is structurally exactly what the paper's H1 (global prior reversion)
+  hypothesis describes. **Important caveat, stated plainly: E0/E1/E4 are all
+  IN-RANGE data.** H1 is specifically a claim about OUT-OF-RANGE behavior
+  (Section~\ref{sec:problem}); nothing here has yet tested whether these
+  same fixed defaults persist, change, or disappear once theta leaves the
+  common range — that is exactly what E7 is for. Treat this as a strong,
+  reproducible LEAD motivating E7, not a completed mechanism adjudication.
+
+- **Cross-model, cross-system synthesis:** LTX-Video and CogVideoX both fail
+  to honor conditioning across nearly every system tested, but via
+  qualitatively different and consistent mechanisms:
+  - **LTX-Video**: mostly fails to produce a trackable, physically-fittable
+    trajectory AT ALL (94-100% dropped in 4/5 systems beyond projectile,
+    80% on projectile itself). The object tends toward near-total inertia.
+  - **CogVideoX**: reliably produces confident, often well-formed motion
+    (bouncing_ball and inclined_slide's ungated R^2 values are frequently
+    >0.9 before the strict gate), but that motion converges to a small set
+    of parameter-independent, often seed-selected fixed outcomes — the
+    right KIND of motion, the wrong AMOUNT, and confidently so.
+  Two models, six systems, one consistent headline conclusion via two
+  distinct, individually-reproducible mechanisms. Full data in
+  `results/e4_*_ltx.json` and `results/e4_*_cogvideox.json`.
 
 ### E7 — Failure-mechanism adjudication
 - **Status:** NOT STARTED

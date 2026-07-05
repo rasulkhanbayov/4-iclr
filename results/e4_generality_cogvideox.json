@@ -1,0 +1,32 @@
+{
+  "pendulum_omega": {
+    "n_total": 30,
+    "n_gated_in": 0,
+    "fit_quality_dropped_rate": 1.0,
+    "elapsed_seconds": 11305.261112451553
+  },
+  "pendulum_zeta": {
+    "n_total": 30,
+    "n_gated_in": 0,
+    "fit_quality_dropped_rate": 1.0,
+    "elapsed_seconds": 11316.284121513367
+  },
+  "bouncing_ball": {
+    "n_total": 35,
+    "n_gated_in": 1,
+    "fit_quality_dropped_rate": 0.9714285714285714,
+    "elapsed_seconds": 2057.488674402237
+  },
+  "spring_mass": {
+    "n_total": 40,
+    "n_gated_in": 0,
+    "fit_quality_dropped_rate": 1.0,
+    "elapsed_seconds": 15099.079859018326
+  },
+  "inclined_slide": {
+    "n_total": 35,
+    "n_gated_in": 0,
+    "fit_quality_dropped_rate": 1.0,
+    "elapsed_seconds": 2061.894188642502
+  }
+}
