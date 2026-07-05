@@ -136,18 +136,37 @@ same seed-clustering mechanism.** This is materially stronger than a
 single- or two-model claim — see Section 5 for the full cross-model table
 and reasoning.
 
+**E4 (generality across systems) is now DONE for ALL THREE MODELS**
+(2026-07-05) — the full 3-model x 6-system in-range picture is complete.
+DynamiCrafter's E4 run (~4.6 hours, subprocess-driven) confirmed: (a) a
+harder, non-adjustable limitation than the other two models on the 3
+long-clip systems (pendulum_omega, pendulum_zeta, spring_mass) — its fixed
+16-frame output cannot capture even 1 oscillation period, so these are
+100%, 96.67%, and 100% dropped respectively, not just frame-capped like on
+LTX-Video/CogVideoX; (b) bouncing_ball INDEPENDENTLY reproduces CogVideoX's
+exact "converges to perfectly elastic, e_hat~1.0" mechanism (seed=4:
+0.99-1.00 across e_true=0.6-0.9, R^2=1.000); (c) inclined_slide reveals a
+NEW variant worth naming — seed=0 shows TWO distinct tight clusters, one
+for in-range requests (~4.7) and a DIFFERENT one for out-of-range requests
+(~7.5-7.8), rather than one persistent default. See Section 5 for the full
+three-model comparison table and mechanism taxonomy.
+
 **Next action — a real decision point:** (a) write up the paper's
-results/discussion section now — there is a full, defensible, and honestly
-nuanced story across E0 (3 models) /E1/E4/E7 (reframe + a specific,
-partially-adjudicated seed-conditional-reversion mechanism reproduced
-across 2 of 3 models); (b) run E4 (generality across the other 5 systems)
-and/or E7 (out-of-range adjudication) on DynamiCrafter too, for full parity
-with CogVideoX's treatment; (c) try to properly test the seed-specific-H1
-hypothesis with a custom per-seed analysis (not in the paper's original
-method, would need justifying as an extension); or (d) attempt true C1
-(frame-implied) conditioning again with a different approach, since
-everything so far has been C2 only. Do not write any number into the paper
-that was not produced by an actual run recorded in Section 5.
+results/discussion section now — there is a full, defensible, and richly
+detailed story across E0 (3 models)/E1/E4 (3 models)/E7 (reframe + a
+family of related confident-wrong-default mechanisms, some single-default,
+some universal-convergence, one split-cluster); (b) extend E7 (formal
+out-of-range H1/H2 adjudication) to DynamiCrafter's projectile and/or
+inclined_slide data — the split-cluster inclined_slide pattern in
+particular would likely also register as "neither" under `select_mechanism`
+but for a THIRD distinct reason, worth characterizing formally the same way
+CogVideoX's seed-specific-default issue was; (c) try to properly test the
+seed-specific-H1 hypothesis with a custom per-seed analysis (not in the
+paper's original method, would need justifying as an extension); or (d)
+attempt true C1 (frame-implied) conditioning again with a different
+approach, since everything so far has been C2 only. Do not write any
+number into the paper that was not produced by an actual run recorded in
+Section 5.
 
 ---
 
@@ -756,20 +775,87 @@ value. If an experiment is blocked or partially run, say so explicitly.
   common range — that is exactly what E7 is for. Treat this as a strong,
   reproducible LEAD motivating E7, not a completed mechanism adjudication.
 
-- **Cross-model, cross-system synthesis:** LTX-Video and CogVideoX both fail
-  to honor conditioning across nearly every system tested, but via
-  qualitatively different and consistent mechanisms:
+- **DynamiCrafter_512 result (2026-07-05, ~4.6 hours: smoke-tested
+  inclined_slide standalone first, then the full 5-system sweep including a
+  full re-run of inclined_slide — deterministic given fixed seeds, values
+  matched exactly between the two runs):**
+
+| System | n_gated_in / n_total | dropped rate | slope beta (in) |
+|---|---|---|---|
+| pendulum_omega | 0/30 | **100%** | n/a |
+| pendulum_zeta | 1/30 | **96.67%** | n/a |
+| bouncing_ball | 5/35 | 74.3% | 16.35, 95% CI [-0.08, 53.07] (wide, ~meaningless) |
+| spring_mass | 0/40 | **100%** | n/a |
+| inclined_slide | 16/35 | 40.0% | 0.521, 95% CI [-6.19, 6.85] (wide, includes 0) |
+
+  **DynamiCrafter has a genuinely different, HARDER limitation profile than
+  the other two models for the long-clip systems**: pendulum_omega,
+  pendulum_zeta, and spring_mass need >=1-2 oscillation periods to be
+  identifiable at all, but DynamiCrafter generates a HARD FIXED 16 frames
+  (not a tunable cap like LTX-Video/CogVideoX's `MAX_GEN_FRAMES=97` —
+  there is no flag to make it generate more). At best frame_stride settings
+  this gives well under 1 period for these systems' lowest omega/k values —
+  so unlike the other two models (where the 97-frame cap was a real but
+  adjustable tradeoff), these three systems are FUNDAMENTALLY untestable on
+  DynamiCrafter as currently released, confirmed empirically (100%, 96.67%,
+  100% dropped) rather than just predicted from the frame-count math.
+
+  **bouncing_ball reproduces CogVideoX's exact "converges to perfectly
+  elastic" mechanism, independently:**
+  ```
+  seed=4: e_hat = 1.002, 0.996, 0.987, 0.986  for e_true = 0.60, 0.70, 0.80, 0.90
+  (all R^2 = 1.000 -- essentially perfect fits, not noise)
+  ```
+  This is the SAME signature CogVideoX showed on the same system (there:
+  all seeds converged to ~0.97-1.00 regardless of seed or true e). Two
+  independently-built models now show this exact "generated bounce is
+  always nearly perfectly elastic, regardless of what was requested"
+  behavior on the identical synthetic system.
+
+  **inclined_slide reveals a NEW, more nuanced variant worth naming — a
+  SPLIT cluster, not a single persistent one:**
+  ```
+  seed=0, in-range  (mu=0.10-0.40): mu_hat = 4.72, 4.72, 4.73, 4.81  (std=0.04)
+  seed=0, out-range (mu=0.01,0.70,1.00): mu_hat = 7.49, 7.50, 7.78   (std=0.13, R^2 0.79-0.80, just below gate)
+  seed=3, in-range:  mu_hat = 1.72, 1.82, 1.82, 1.82  (std=0.04)
+  seed=3, out-range: mu_hat = 1.52, 1.60, 1.68         (std=0.07 -- stays close to the in-range cluster)
+  ```
+  Seed=3 behaves like CogVideoX/DynamiCrafter-projectile: one persistent
+  fixed default across the whole range (closer to a clean H1 signature).
+  **Seed=0 instead shows TWO distinct, individually tight fixed clusters —
+  one for in-range requests (~4.7), a DIFFERENT one for out-of-range
+  requests (~7.5-7.8).** This doesn't fit either "ignores theta entirely"
+  (values do shift) or a clean single-default H1 (there are two regimes,
+  not one) — it looks like the model has learned a coarse in-range-vs-
+  out-of-range DISCRIMINATION without learning the continuous relationship
+  within either regime. Worth naming distinctly in the paper if this
+  pattern recurs (not yet formally tested via `select_mechanism` — would
+  likely also register as "neither," but for a third, different reason
+  than CogVideoX's seed-specific-default issue).
+
+- **Cross-THREE-model, six-system synthesis:** all three models fail to
+  honor conditioning almost everywhere tested, via mechanisms that cluster
+  into two broad families:
   - **LTX-Video**: mostly fails to produce a trackable, physically-fittable
-    trajectory AT ALL (94-100% dropped in 4/5 systems beyond projectile,
-    80% on projectile itself). The object tends toward near-total inertia.
-  - **CogVideoX**: reliably produces confident, often well-formed motion
-    (bouncing_ball and inclined_slide's ungated R^2 values are frequently
-    >0.9 before the strict gate), but that motion converges to a small set
-    of parameter-independent, often seed-selected fixed outcomes — the
-    right KIND of motion, the wrong AMOUNT, and confidently so.
-  Two models, six systems, one consistent headline conclusion via two
-  distinct, individually-reproducible mechanisms. Full data in
-  `results/e4_*_ltx.json` and `results/e4_*_cogvideox.json`.
+    trajectory AT ALL (80-100% dropped in 5/6 systems). Near-total inertia.
+  - **CogVideoX and DynamiCrafter**: both reliably produce confident,
+    often well-formed motion (frequently R^2 > 0.9 on individual clips),
+    but that motion converges to a small set of PARAMETER-INDEPENDENT
+    fixed outcomes — sometimes a single global default (CogVideoX's
+    projectile/spring-mass, DynamiCrafter's inclined_slide seed=3),
+    sometimes a genuinely universal convergence point regardless of seed
+    (both models' bouncing_ball converging near restitution=1.0), and at
+    least once a split in-range/out-of-range pair of defaults
+    (DynamiCrafter's inclined_slide seed=0) that doesn't fit either H1 or
+    H2 cleanly. DynamiCrafter additionally has a hard architectural
+    ceiling (fixed 16-frame output) that makes 3 of the 6 systems
+    fundamentally untestable regardless of any other factor — a different
+    KIND of limitation than the other two models' adjustable frame caps.
+  Three independently-architected models, six physics systems, one
+  consistent headline finding (conditioning not honored), reached via a
+  small family of related but not identical confident-wrong-default
+  mechanisms. Full data in `results/e4_*_ltx.json`, `results/e4_*_cogvideox.json`,
+  and `results/e4_*_dynamicrafter.json`.
 
 ### E7 — Failure-mechanism adjudication
 - **Status:** DONE for CogVideoX/projectile (reused E0's existing

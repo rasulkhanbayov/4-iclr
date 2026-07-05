@@ -31,6 +31,7 @@ from physweep.render import (
     simulate_damped_pendulum, simulate_bouncing_ball, simulate_spring_mass,
     simulate_inclined_slide, N_FRAMES, DISK_VALUE,
 )
+from experiments.e0_pilot_dynamicrafter import run_dynamicrafter, DC_ROOT, DC_N_FRAMES, FRAME_STRIDE
 from physweep.track import centroid_track, pixel_y_to_physics_y, px_to_m
 from physweep_metrics import (
     fit_omega_from_crossings, fit_zeta_from_envelope, fit_restitution_from_bounces,
@@ -292,15 +293,35 @@ def make_cogvideox_generate_fn(pipe):
     return generate_fn
 
 
+def make_dynamicrafter_generate_fn():
+    # DynamiCrafter generates a HARD FIXED 16 frames -- not configurable.
+    # For systems whose ground-truth n_frames > 16 (pendulum_omega,
+    # spring_mass, both need ~180 for >=2 oscillation periods) this means
+    # the fitter gets far less than 1 period regardless of frame_stride --
+    # a fundamental capability ceiling, not a tunable cap like the other two
+    # models' MAX_GEN_FRAMES. Run anyway per the user's decision, expect
+    # near-total failure on those two, which is itself a documented finding.
+    work_dir = os.path.join(DC_ROOT, "e4_run")
+    os.makedirs(work_dir, exist_ok=True)
+
+    def generate_fn(first_frame, prompt, seed, n_frames):
+        video_np = run_dynamicrafter(first_frame, prompt, seed, work_dir)
+        if video_np is None:
+            return np.full((DC_N_FRAMES, 256, 256), np.nan)
+        return video_np
+    return generate_fn
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", choices=["ltx", "cogvideox"], required=True)
+    parser.add_argument("--model", choices=["ltx", "cogvideox", "dynamicrafter"], required=True)
     parser.add_argument("--systems", nargs="*", default=list(SYSTEMS.keys()))
     args = parser.parse_args()
 
     cfg = load_config()
     n_seeds = cfg["render"]["seeds_per_point"]
 
+    pipe = None
     if args.model == "ltx":
         from diffusers import LTXImageToVideoPipeline
         print("Loading LTX-Video...")
@@ -308,7 +329,7 @@ def main():
         pipe.to("cuda")
         generate_fn = make_ltx_generate_fn(pipe)
         model_tag = "ltx"
-    else:
+    elif args.model == "cogvideox":
         from diffusers import CogVideoXImageToVideoPipeline
         print("Loading CogVideoX-5B-I2V...")
         pipe = CogVideoXImageToVideoPipeline.from_pretrained("zai-org/CogVideoX-5b-I2V", torch_dtype=torch.bfloat16)
@@ -316,6 +337,10 @@ def main():
         pipe.vae.enable_tiling()
         generate_fn = make_cogvideox_generate_fn(pipe)
         model_tag = "cogvideox"
+    else:
+        print("Using DynamiCrafter_512 (subprocess-driven, no in-process pipeline)...")
+        generate_fn = make_dynamicrafter_generate_fn()
+        model_tag = "dynamicrafter"
 
     all_summaries = {}
     for sys_name in args.systems:
