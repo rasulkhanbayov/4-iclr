@@ -99,18 +99,32 @@ caveats (frame-cap confound on 2-3 systems specifically noted, does not
 affect the CogVideoX seed-clustering finding since that appears in both
 frame-capped and non-frame-capped systems).
 
-**Next action — a real decision point, now with the strongest evidence
-gathered so far:** (a) pursue an E7-style OUT-OF-RANGE test on CogVideoX
-specifically to actually adjudicate whether this is H1 (the seed-clusters
-should stay fixed regardless of how far out of range theta goes) — this is
-the most direct next step given how reproducible the in-range lead is; (b)
-write up the paper's results/discussion section now under the reframed
-story with this cross-system mechanism as the headline finding; (c) try a
-third model (SVD/DynamiCrafter) for a fuller picture before committing to
-any narrative; or (d) attempt true C1 (frame-implied) conditioning again
-with a different approach, since everything so far has been C2 only. Do not
-write any number into the paper that was not produced by an actual run
-recorded in Section 5.
+**E7 (mechanism adjudication) is now DONE for CogVideoX/projectile**
+(2026-07-05, reused E0's existing out-of-range data, zero new GPU time).
+Result is genuinely nuanced, not a clean win: `select_mechanism` labels it
+"neither" H1 nor H2, but for a specific, informative reason — PRI=0.97 and
+the jointly-estimated theta0=-10.56 land almost exactly on the seed-cluster
+values already found in-range (strongly consistent with SOME form of prior
+reversion), and AIC strongly prefers H1's shape over H2's (dAIC=-47.9), but
+the leave-one-out R^2 is negative because the paper's H1 test assumes ONE
+global default while our actual finding is that CogVideoX reverts to a
+SEED-SPECIFIC default — the parametric test doesn't have a slot for that.
+The extrapolation gap itself is unambiguous and significant: PRE(out) -
+PRE(in) = 1.068 [0.267, 1.891], one-sided p=0.0055. LTX-Video couldn't be
+adjudicated at all (only 3 of 15 out-of-range clips survived the
+fit-quality gate). See Section 5 for the full reasoning — this nuance
+belongs in the paper's discussion/limitations, not smoothed over.
+
+**Next action — a real decision point:** (a) write up the paper's
+results/discussion section now — there is a full, defensible, and honestly
+nuanced story across E0/E1/E4/E7 (reframe + a specific, partially-adjudicated
+seed-conditional-reversion mechanism on CogVideoX); (b) try to properly
+test the seed-specific-H1 hypothesis with a custom per-seed analysis (not
+in the paper's original method, would need justifying as an extension); (c)
+try a third model (SVD/DynamiCrafter) for a fuller picture; or (d) attempt
+true C1 (frame-implied) conditioning again with a different approach, since
+everything so far has been C2 only. Do not write any number into the paper
+that was not produced by an actual run recorded in Section 5.
 
 ---
 
@@ -649,7 +663,56 @@ value. If an experiment is blocked or partially run, say so explicitly.
   `results/e4_*_ltx.json` and `results/e4_*_cogvideox.json`.
 
 ### E7 — Failure-mechanism adjudication
-- **Status:** NOT STARTED
+- **Status:** DONE for CogVideoX/projectile (reused E0's existing
+  out-of-range data, no new GPU time). LTX-Video: insufficient gated
+  out-of-range points (only 3, need >=4) — not adjudicable with current
+  data. Script: `experiments/e7_mechanism_adjudication.py`.
+- **Date:** 2026-07-05.
+
+- **CogVideoX-5B-I2V result (12 gated out-of-range points: g=1.6, 3.0, 20.0
+  x ~4 seeds each; note g=25 and one more grid point were entirely dropped
+  by the fit-quality gate):**
+  - `select_mechanism(theta0=None)` — theta0 estimated jointly: **PRI=0.97**
+    (near-total reversion, alpha=0.026 means recovered g_hat is almost
+    completely insensitive to true g), estimated **theta0=-10.56** (strikingly
+    close to the in-range seed-cluster values of -11.0 to -11.5 found in
+    E0/E4), **dAIC=-47.9 strongly favors H1 over H2**. But **LOO_R2_H1=-0.50**
+    (negative — the leave-one-theta-out H1 fit is worse than just predicting
+    the mean), which trips `select_mechanism`'s stricter RSS-ratio gate, so
+    the function's own label is **"neither"**, not a clean H1 call.
+  - `select_mechanism(theta0=Earth g=9.81)` — forcing the physically
+    "typical" default instead of estimating it: PRI drops to 0.53, dAIC
+    flips to +4.4 (now favors H2 by that measure), still labeled "neither."
+  - **Paired bootstrap: PRE(out) - PRE(in) = 1.068 [0.267, 1.891],
+    one-sided p=0.0055** — a real, statistically significant extrapolation
+    gap exists. This part is unambiguous.
+
+- **How to read "neither" here (important — this is not a null result, it's
+  a specific, informative shape mismatch):** AIC prefers H1's shape strongly
+  and the estimated theta0 lands almost exactly on the seed-cluster values
+  already seen in-range — genuinely suggestive of prior reversion. But the
+  negative LOO-R^2 makes sense once you recall WHY: E0/E4 showed the
+  reversion target is **seed-specific** (seed=0 always -11.4, seed=4 always
+  -7.1, etc.), not one single global theta0. Pooling multiple seeds'
+  distinct fixed points and fitting ONE theta0 to all of them necessarily
+  leaves structured (not random) residual error — exactly what tanks a
+  leave-one-out fit even when the general "reverts to something roughly
+  fixed" shape is correct. **`select_mechanism` as specified in the paper
+  assumes a single global default; it does not have a per-seed variant.**
+  This is a real, honest finding to report as-is: strong evidence of some
+  form of prior reversion (high PRI, real extrapolation gap, theta0 lands
+  near the observed clusters), but the specific parametric H1 test as
+  written doesn't cleanly fit BECAUSE the reversion appears to be
+  seed-conditional rather than a single fixed point — arguably a more
+  specific and interesting finding than a clean H1 label would have been,
+  but not the label the paper's Eq. eq:pri anticipates. Worth flagging in
+  the paper's limitations/discussion rather than forcing a label.
+
+- **LTX-Video:** could not be adjudicated — only 3 of 15 out-of-range clips
+  passed the fit-quality gate (need >=4 for `select_mechanism`'s LOO step).
+  Consistent with LTX-Video's broader pattern of producing untrackable
+  output; there simply isn't enough signal to test H1 vs H2 for this model
+  with the current data. Full data: `results/e7_mechanism_adjudication.json`.
 
 ### E5 — Robustness / ablations
 - **Status:** NOT STARTED
