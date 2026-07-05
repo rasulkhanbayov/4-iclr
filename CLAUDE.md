@@ -115,14 +115,37 @@ adjudicated at all (only 3 of 15 out-of-range clips survived the
 fit-quality gate). See Section 5 for the full reasoning — this nuance
 belongs in the paper's discussion/limitations, not smoothed over.
 
+**Third model (DynamiCrafter_512) E0 is now DONE too** (2026-07-05) — a
+much bigger integration lift than LTX-Video/CogVideoX since it's a
+standalone (non-diffusers) research codebase run via subprocess (isolated
+venv at `external/dynamicrafter_venv`, two real dependency-version bugs
+fixed — `open_clip_torch` pinned to the exact `2.22.0` DynamiCrafter
+expects, and a `torchvision.io.write_video`-removed-in-newer-torchvision
+patch to use `imageio` instead). Result: same REFRAME decision (slope(in)
+CI [-0.47, 0.48]), but **notably better fit-quality (37.5% dropped vs 80%
+for the other two)**, and the seed-clustering signature reproduces a THIRD
+time — cleanly enough that this single E0 run already shows fixed clusters
+persisting from g=1.6 through g=20 (in- AND out-of-range together). SVD was
+considered and explicitly ruled out first: it has no text-conditioning
+parameter at all, so it cannot receive theta under either C1 or C2 as this
+study needs.
+
+**Three independently-architected models now agree on the headline
+finding, and two of three (CogVideoX, DynamiCrafter) independently show the
+same seed-clustering mechanism.** This is materially stronger than a
+single- or two-model claim — see Section 5 for the full cross-model table
+and reasoning.
+
 **Next action — a real decision point:** (a) write up the paper's
 results/discussion section now — there is a full, defensible, and honestly
-nuanced story across E0/E1/E4/E7 (reframe + a specific, partially-adjudicated
-seed-conditional-reversion mechanism on CogVideoX); (b) try to properly
-test the seed-specific-H1 hypothesis with a custom per-seed analysis (not
-in the paper's original method, would need justifying as an extension); (c)
-try a third model (SVD/DynamiCrafter) for a fuller picture; or (d) attempt
-true C1 (frame-implied) conditioning again with a different approach, since
+nuanced story across E0 (3 models) /E1/E4/E7 (reframe + a specific,
+partially-adjudicated seed-conditional-reversion mechanism reproduced
+across 2 of 3 models); (b) run E4 (generality across the other 5 systems)
+and/or E7 (out-of-range adjudication) on DynamiCrafter too, for full parity
+with CogVideoX's treatment; (c) try to properly test the seed-specific-H1
+hypothesis with a custom per-seed analysis (not in the paper's original
+method, would need justifying as an extension); or (d) attempt true C1
+(frame-implied) conditioning again with a different approach, since
 everything so far has been C2 only. Do not write any number into the paper
 that was not produced by an actual run recorded in Section 5.
 
@@ -534,6 +557,92 @@ value. If an experiment is blocked or partially run, say so explicitly.
   its own right (motivates leading with H1-style framing once E7 actually
   tests it out-of-range).
 
+### E0 (DynamiCrafter_512) — third model, biggest integration lift, same pilot design
+- **Status:** DONE. **Decision: REFRAME** (third model, third confirmation).
+  Script: `experiments/e0_pilot_dynamicrafter.py`.
+- **Date:** 2026-07-05.
+
+- **Integration was substantially harder than LTX-Video/CogVideoX** (both
+  diffusers pipelines called in-process) because DynamiCrafter
+  (`Doubiiu/DynamiCrafter_512`) is a standalone research codebase, NOT
+  diffusers-compatible:
+  1. Cloned `https://github.com/Doubiiu/DynamiCrafter` into
+     `external/DynamiCrafter/`.
+  2. Built an ISOLATED venv (`external/dynamicrafter_venv`) rather than
+     reusing `.venv` — its `requirements.txt` pins very old versions (torch
+     2.0.0, transformers 4.25.1) that would conflict with the working
+     LTX-Video/CogVideoX environment. Installed a modern torch (2.11.0+cu128,
+     same as `.venv`) instead of the old pin — fine, since DynamiCrafter's
+     actual torch API usage is version-tolerant.
+  3. **Real bug #1:** installing latest `open_clip_torch` (3.3.0) broke with
+     `AttributeError: 'VisionTransformer' object has no attribute
+     'input_patchnorm'` — that attribute was removed/renamed upstream.
+     Fixed by installing the EXACT version DynamiCrafter's own
+     `requirements.txt` specifies, `open_clip_torch==2.22.0`, not latest.
+  4. **Real bug #2:** `torchvision.io.write_video` (used to save output
+     clips) was removed entirely in `torchvision>=0.20` (dropped its video
+     backend). Patched `scripts/evaluation/inference.py` directly (2 call
+     sites) to use `imageio.mimwrite` instead — a local repo clone, safe to
+     edit directly rather than monkeypatching.
+  5. Unlike the other two models, DynamiCrafter has **no in-process Python
+     API** — it's a batch CLI tool (`scripts/evaluation/inference.py`) that
+     reads an image + a `prompts.txt` from a directory and writes an `.mp4`
+     to a results directory. `experiments/e0_pilot_dynamicrafter.py` wraps
+     this with `subprocess.run(...)` per clip: write conditioning
+     image+prompt to a work directory, shell out, read back the video with
+     `imageio`, feed into the same tracker/fitter pipeline as the other two
+     models. Model specifics: generates a FIXED 16 frames (not
+     configurable); `frame_stride=24` used as an FPS-equivalent knob for the
+     512 checkpoint so the fitter's dt matches actual generated timing.
+
+- **Result: slope(in) = -0.0250, 95% CI [-0.4656, 0.4798]** (includes 0).
+  PRE(in) = 0.781 [0.638, 0.914]. **Fit-quality dropped rate = 37.5%
+  (15/40)** — notably BETTER than both LTX-Video (80%) and CogVideoX (80%);
+  DynamiCrafter produces the most reliably trackable output of the three
+  models tested.
+
+- **The seed-clustering pattern reproduces a THIRD time, and unusually
+  cleanly** — this time visible across BOTH in-range and out-of-range points
+  in the same run (E0 alone, no separate E4/E7 needed to see it):
+
+  | seed | n gated (in+out) | mean g_hat | std | g_true range covered |
+  |---|---|---|---|---|
+  | 0 | 4 | 0.105 | 0.180 | 5, 9.8, 15 (in), 20 (out) |
+  | 1 | 8 | 6.512 | 1.874 | 1.6, 3 (out), 5, 7, 9.8, 12, 15 (in), 20 (out) |
+  | 3 | 8 | -0.035 | **0.062** | 1.6, 3 (out), 5, 7, 9.8, 12, 15 (in), 20 (out) |
+  | 4 | 4 | -2.021 | 1.032 | 1.6 (out), 7, 9.8, 15 (in) |
+
+  Seed=3's cluster (std=0.062) spans the ENTIRE tested range (1.6 to 20,
+  both in- and out-of-range) with essentially no drift — the recovered
+  gravity for that seed is close to constant regardless of what was
+  requested, from the lowest to the highest g tested. Seed=1's cluster
+  (mean~6.5) similarly holds together from g=1.6 out to g=20. This is
+  actually richer evidence for H1 than CogVideoX's in-range-only pattern,
+  because it already includes out-of-range points showing the SAME cluster
+  membership — i.e., DynamiCrafter's fixed defaults appear to persist
+  out-of-range, which is the actual H1 claim (not yet formally run through
+  `select_mechanism`, but the raw data pattern is suggestive on its own).
+
+- **Cross-THREE-model summary (all under C2 text-specified conditioning,
+  projectile system):**
+
+| Model | slope(in) 95% CI | Fit-quality dropped | Mechanism |
+|---|---|---|---|
+| LTX-Video | [-0.09, 0.04] | 80% | Near-total inertia — mostly no real fall at all |
+| CogVideoX-5B-I2V | [-0.17, 0.30] | 80% | Confident fall to seed-fixed wrong defaults (4 systems) |
+| DynamiCrafter_512 | [-0.47, 0.48] | 37.5% (best of the three) | Confident fall to seed-fixed wrong defaults, clusters persist out-of-range within this single run |
+
+  **Three independently-architected models (different labs, different
+  training data, different architectures — LTX's DiT, CogVideoX's 3D VAE +
+  expert transformer, DynamiCrafter's latent video diffusion + dual
+  CLIP/image conditioning) now agree on the headline finding, and TWO of the
+  three (CogVideoX, DynamiCrafter) show the same specific seed-clustering
+  signature independently.** This is a materially stronger claim than a
+  single-model or even two-model finding: it looks like a genuine property
+  of how current I2V diffusion models handle under-specified or
+  out-of-training-distribution physical conditioning, not an artifact of
+  any one architecture, training run, or codebase.
+
 ### E1 — Faithfulness curve
 - **Status:** DONE (projectile system, C2 conditioning, both models tested
   so far). Script: `experiments/e1_faithfulness.py`. Formalizes E0's
@@ -805,15 +914,33 @@ imports for the pattern.
       clearly mid-air so it doesn't visually read as "at rest," since that
       was flagged as a plausible confound. See Section 5 caveats.
 
-**Models queue (frozen, inference-only, in this order):**
-1. LTX-Video (Lightricks), I2V — start here, lightest/fastest.
-2. CogVideoX-5B-I2V (Tsinghua/Zhipu).
-3. Stable Video Diffusion or DynamiCrafter (I2V).
-4. Optional: quantized Wan I2V if it fits in 40GB (full Wan needs ~65-80GB,
-   skip unless it fits — A100-40GB is borderline, verify quantized VRAM
-   before attempting).
-5. For E9 only: a model that claims physics controllability (PhysChoreo /
-   Phantom / PhysVideo), if weights are available.
+**Models queue (frozen, inference-only):**
+1. [x] LTX-Video (Lightricks), I2V — DONE. `.venv`, diffusers
+       `LTXImageToVideoPipeline`. `Lightricks/LTX-Video`, ~28GB.
+2. [x] CogVideoX-5B-I2V (Zhipu, org moved to `zai-org` on HF) — DONE.
+       `.venv`, diffusers `CogVideoXImageToVideoPipeline`.
+       `zai-org/CogVideoX-5b-I2V`, ~21.6GB.
+3. [x] DynamiCrafter_512 (`Doubiiu/DynamiCrafter_512`) — DONE. **NOT
+       diffusers-compatible** — standalone codebase cloned to
+       `external/DynamiCrafter/`, isolated venv at
+       `external/dynamicrafter_venv` (own modern torch, but
+       `open_clip_torch` MUST be pinned to exactly `2.22.0` — newer versions
+       changed the VisionTransformer API DynamiCrafter's code depends on).
+       Also patched `scripts/evaluation/inference.py`: replaced
+       `torchvision.io.write_video` (removed in torchvision>=0.20) with
+       `imageio.mimwrite` at its 2 call sites. Run via subprocess per clip
+       (`experiments/e0_pilot_dynamicrafter.py`), not an in-process pipeline
+       call — see Section 5 for the full integration account.
+    - **Stable Video Diffusion was considered and explicitly ruled out**:
+      `StableVideoDiffusionPipeline` has NO text-prompt parameter at all
+      (only `motion_bucket_id`/`fps`/`noise_aug_strength`), so it cannot
+      receive the conditioned physical parameter under either C1 or C2 as
+      this study defines them. Not attempted.
+4. [ ] Optional: quantized Wan I2V if it fits in 40GB (full Wan needs
+       ~65-80GB, skip unless it fits — A100-40GB is borderline, verify
+       quantized VRAM before attempting). Not attempted.
+5. [ ] For E9 only: a model that claims physics controllability (PhysChoreo /
+       Phantom / PhysVideo), if weights are available. Not attempted.
 
 All runs are inference-only — no training anywhere in this project.
 

@@ -14,3 +14,8 @@ venv_physweep/
 .hf_home/
 *.log
 .claude/
+
+# Third-party model codebases and their isolated envs (large, re-clonable;
+# not our code) -- see CLAUDE.md Section 6 for exact clone/setup commands.
+external/DynamiCrafter/
+external/dynamicrafter_venv/
