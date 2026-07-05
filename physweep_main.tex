@@ -379,14 +379,24 @@ mimicry of the nearest seen value. A model-selection rule lets the data decide
 which mechanism, if either, the recent literature's two accounts predict.
 Because the conditioning is rendered from a deterministic simulator with known
 $\theta$, no human annotation is required and every score is exactly checkable.
-We further use the same test to audit models that explicitly claim physics
-controllability. Our central hypothesis, to be confirmed by the experiments
-specified here, is that current open I2V models are faithful in-range but fail
-out-of-range in a characterizable way, and that plausibility raters (human,
-VLM, and \textsc{VBench-2.0}-style) fail to flag this. We provide the diagnostic
-protocol, the parameterized system suite, and the analysis code as a reusable
-artifact. \textbf{Quantitative claims in this draft are placeholders until the
-specified runs complete.}
+Running the full protocol on three frozen, off-the-shelf I2V generators
+(LTX-Video, CogVideoX-5B-I2V, DynamiCrafter) across six physics systems, we
+find that none of the three models detectably varies its generated dynamics
+with the conditioned parameter even in-range (faithfulness slope
+statistically indistinguishable from zero for all three), so the field's
+implicit premise --- that these models are at least locally faithful ---
+does not hold under the text-specified conditioning we test. The failure is
+not unstructured, however: two of the three models do not merely ignore the
+request but confidently generate physically coherent motion that converges to
+one of a small number of fixed, wrong values selected by the generation seed
+rather than by the requested parameter, a signature that reproduces across
+two independent model families and at least four distinct physics systems.
+This is close to, but more specific than, either failure mode the recent
+literature anticipates, and we name it explicitly rather than forcing it into
+the existing two-hypothesis framework. We provide the diagnostic protocol,
+the parameterized system suite, and the analysis code as a reusable artifact
+for auditing future generators, including ones that claim physics
+controllability.
 \end{abstract}
 
 % ---------------------------------------------------------------------------
@@ -1040,90 +1050,238 @@ versus H2, report leave-one-$\theta$-out $R^2$ and $\Delta$AIC.
 \end{itemize}
 
 % ---------------------------------------------------------------------------
-\section{Expected Results and Discussion (placeholders)}
+\section{Results}
 \label{sec:results}
 % ---------------------------------------------------------------------------
 
-The tables below are structured for the runs above. \textbf{All numbers are
-placeholders until the experiments complete.}
+We report real measurements from three frozen, off-the-shelf I2V generators
+--- LTX-Video, CogVideoX-5B-I2V, and DynamiCrafter\textsubscript{512} --- run
+through the full pipeline of Section~\ref{sec:pipeline}. Two deviations from
+the protocol as specified are stated here and carried through the rest of
+this section rather than left implicit. \emph{First}, every result below uses
+conditioning channel \textbf{C2 (text-specified)}, not C1 (frame-implied):
+LTXConditionPipeline, the diffusers component that would give first-and-last
+frame conditioning for LTX-Video, has a bug in the diffusers release used
+here (it never computes the scheduler's required shift parameter) and, once
+patched, still produces incoherent output regardless of resolution or scene
+content, confirmed against the working single-image pipeline on an identical
+input; CogVideoX's and DynamiCrafter's official I2V pipelines likewise accept
+only a single conditioning image. C1 was therefore not tested end-to-end for
+any model, and the findings below are scoped to text-specified conditioning.
+\emph{Second}, we substitute \textsc{Stable Video Diffusion} with
+\textsc{DynamiCrafter}\textsubscript{512} as the third model: SVD's pipeline
+accepts no text prompt at all, so it cannot receive $\theta$ under C2 either
+and was excluded before any run.
+
+\paragraph{E6, negative control (measurement validity).}
+Ground-truth simulator continuations, not model output, through the identical
+tracker-and-fitter pipeline: pooled across all six sweep axes and both splits
+(203 measurements), $\PRE(S_\text{in}) = 0.0031$ ($95\%$ CI $[0.0019,
+0.0045]$), faithfulness slope $\beta = 1.0001$ ($95\%$ CI $[1.00008,
+1.00023]$), mean fit $R^2 = 0.986$. The measurement is valid; we proceed to
+real generators.
+
+\paragraph{E0/E1, does conditioning move the output at all?}
+\autoref{tab:e0e1} gives the projectile-system faithfulness slope for all
+three models. For every model the $95\%$ CI on $\beta$ includes zero: none of
+the three detectably varies its generated dynamics with the requested
+gravity, under C2. \textbf{The central premise of the faithful-in-range
+hypothesis does not hold for any model tested}, so the framing that follows is
+the runbook's pre-committed outcome (2), ``open generators do not honor
+conditioned dynamics,'' not outcome (1).
 
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-\textbf{Model} & \textbf{slope $\beta$ (in)} & \textbf{$\PRE(S_\text{in})$} & \textbf{$\PRE(S_\text{out})$} & \textbf{\EG} \\
+\textbf{Model} & \textbf{slope $\beta$ (in), 95\% CI} & \textbf{$\PRE(S_\text{in})$} & \textbf{fit-quality dropped} & \textbf{Spearman $\rho$} \\
 \midrule
-LTX-Video        & \resph{$\approx 1$?} & \resph{low?} & \resph{high?} & \resph{$>0$?} \\
-CogVideoX-5B-I2V & \resph{} & \resph{} & \resph{} & \resph{} \\
-SVD / DynamiCrafter & \resph{} & \resph{} & \resph{} & \resph{} \\
+LTX-Video            & $-0.015$ [$-0.090$, $0.039$] & $0.853$ & $80\%$ & $-0.268$ \\
+CogVideoX-5B-I2V     & $0.070$ [$-0.168$, $0.305$]  & $2.016$ & $80\%$ & $0.046$ \\
+DynamiCrafter\textsubscript{512} & $-0.025$ [$-0.466$, $0.480$] & $0.781$ & $37.5\%$ & --- \\
 \bottomrule
 \end{tabular}}
-\captionof{table}{Faithfulness and extrapolation on the projectile system
-(E1--E2). The hypothesis predicts $\beta\!\approx\!1$ in-range, low
-$\PRE(S_\text{in})$, and $\EG>0$ driven by out-of-range reversion. Values with
-$95\%$ bootstrap CIs.}
+\captionof{table}{Projectile faithfulness slope $\beta$ under C2 conditioning
+(E0/E1). ``Fit-quality dropped'' is the fraction of generated clips whose
+tracked trajectory fails the $R^2\!\ge\!0.8$ gate (Algorithm~\ref{alg:pipeline})
+and is excluded from \PRE; a high rate is itself diagnostic (Section~4.4).
+LTX-Video's $\rho=-0.268$ is noise, not a real inverse relationship, given its
+wide, zero-crossing slope CI. DynamiCrafter's $\rho$ is omitted (too few
+gated out-of-range points for a stable full-grid estimate).}
+\label{tab:e0e1}
 \end{center}
 
-\begin{center}
-\renewcommand{\arraystretch}{1.2}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}lccccc@{}}
-\toprule
-\textbf{Model} & \textbf{\PRI\ (H1)} & \textbf{\CBI\ (H2)} & \textbf{selected ($\Delta$AIC)} & \textbf{$\theta_0$ vs $\theta_{\text{edge}}$} & \textbf{plausibility $P(S_\text{out})$} \\
-\midrule
-LTX-Video        & \resph{} & \resph{} & \resph{H1 or H2?} & \resph{} & \resph{high?} \\
-CogVideoX-5B-I2V & \resph{} & \resph{} & \resph{} & \resph{} & \resph{} \\
-SVD / DynamiCrafter & \resph{} & \resph{} & \resph{} & \resph{} & \resph{} \\
-\bottomrule
-\end{tabular}}
-\captionof{table}{Failure-mechanism adjudication and the plausibility gap
-(E3, E7). For each model the data select global prior reversion (H1, high \PRI,
-$\theta_0$ near the typical value) or case-based clamping (H2, high \CBI,
-$\theta_0\!\approx\!\theta_{\text{edge}}$), or neither. The prediction across all
-mechanisms is high plausibility despite large $\PRE(S_\text{out})$.}
-\end{center}
+\paragraph{Two distinct failure mechanisms, not one.}
+The three models reach the same null slope through visibly different
+behavior, confirmed by direct frame inspection, not just the fitted numbers.
+\textbf{LTX-Video} mostly fails to generate any real fall: the conditioned
+disk stays close to its initial position for the length of the clip
+regardless of the requested $g$ or how the surrounding prompt describes it
+(tested up to ``extremely strong gravity, like Jupiter, violent rapid
+acceleration downward''), which is why $80\%$ of its clips fail the
+fit-quality gate. \textbf{CogVideoX and DynamiCrafter} instead generate
+confident, frequently well-tracked motion (individual clip $R^2$ often
+$>0.9$) that is simply the wrong amount: the recovered $\hat g$ clusters
+tightly by the generation's random seed and is close to independent of the
+requested $g$. On CogVideoX, one seed gives $\hat g \approx -11.4 \pm 0.03$
+across every in-range $g\in\{5,7,9.8,12,15\}$ tested; another gives
+$\hat g\approx -7.1\pm0.2$. This is not measurement noise: fit quality on
+these clips is high, and the same clustering, keyed to the same handful of
+seeds, reproduces with out-of-range $g$ too (below).
+
+\paragraph{E4, generality across systems.}
+The pattern is not specific to the projectile system. \autoref{tab:e4}
+summarizes all five remaining sweep axes (pendulum angular frequency and
+damping, bouncing-ball restitution, spring stiffness, incline friction) on
+each model. LTX-Video's near-total-inertia failure generalizes: four of five
+additional systems have a fit-quality-dropped rate of $94$--$100\%$. The
+seed-determined, parameter-independent convergence generalizes on the other
+two models: CogVideoX reproduces it cleanly in spring-mass and inclined-slide,
+and reaches a distinct but equally striking form in bouncing-ball, where
+\emph{every} seed converges to a recovered restitution in $[0.97,1.00]$
+(``always almost perfectly elastic'') regardless of the requested value.
+DynamiCrafter independently reproduces the identical bouncing-ball signature
+(one seed: $\hat e = 0.99$--$1.00$ across $e_\text{true}\in\{0.6,0.7,0.8,0.9\}$,
+individual-clip $R^2=1.000$) --- two separate architectures landing on the
+same specific wrong-but-confident behavior on the same synthetic system. Two
+of DynamiCrafter's five remaining systems (pendulum angular frequency,
+spring-mass) are additionally bounded by a hard, non-adjustable model
+limitation: DynamiCrafter emits a fixed 16 frames per clip, too few for even
+one oscillation period at these systems' lower grid values regardless of any
+frame-rate setting, so those two systems cannot be tested on this model at
+all (confirmed empirically at $96.7$--$100\%$ dropped, not merely predicted).
 
 \begin{center}
-\renewcommand{\arraystretch}{1.2}
+\renewcommand{\arraystretch}{1.15}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}lcccc@{}}
+\begin{tabular}{@{}llcc@{}}
 \toprule
-\textbf{Controllability-claiming model} & \textbf{slope $\beta$ (in)} & \textbf{$\EG$} & \textbf{selected mechanism} & \textbf{control faithful?} \\
+\textbf{Model} & \textbf{System} & \textbf{fit-quality dropped} & \textbf{slope $\beta$ (in), 95\% CI} \\
 \midrule
-Physics-controllable model A & \resph{} & \resph{} & \resph{} & \resph{yes/no?} \\
+LTX-Video & pendulum $\omega$ / $\zeta$ & $100\%$ / $100\%$ & n/a \\
+          & bouncing ball / spring-mass & $94.3\%$ / $100\%$ & n/a \\
+          & inclined slide & $68.6\%$ & $-0.464$ [$-1.751$, $1.097$] \\
+\midrule
+CogVideoX & pendulum $\omega$ / $\zeta$ & $100\%$ / $100\%$ & n/a \\
+          & bouncing ball (all seeds $\to\hat e\!\approx\!1$) & $97.1\%$ & n/a \\
+          & spring-mass / inclined slide & $100\%$ / $100\%$ & n/a \\
+\midrule
+DynamiCrafter & pendulum $\omega$ / $\zeta$\textsuperscript{a} & $100\%$ / $96.7\%$ & n/a \\
+          & bouncing ball (seed-4 $\to\hat e\!\approx\!1$) & $74.3\%$ & n/a \\
+          & spring-mass\textsuperscript{a} & $100\%$ & n/a \\
+          & inclined slide & $40.0\%$ & $0.521$ [$-6.185$, $6.850$] \\
 \bottomrule
 \end{tabular}}
-\captionof{table}{Controllability audit (E9). Whether a model that
-\emph{claims} physics control actually moves the realized parameter in-range
-($\beta$) and whether the control survives out of range ($\EG$, mechanism).
-A claimed knob with $\beta\!\approx\!1$ in-range but large $\EG$ has
-local-only control.}
+\captionof{table}{Generality across systems (E4), all under C2. ``n/a'' means
+too few clips survived the fit-quality gate for a slope estimate; this is
+itself the finding for those rows (Section~4.4). \textsuperscript{a}Bounded
+by DynamiCrafter's fixed 16-frame output, not just conditioning failure ---
+see text.}
+\label{tab:e4}
 \end{center}
+
+\paragraph{A third mechanism variant: a split, not a single, default.}
+DynamiCrafter's inclined-slide result contains a pattern the two-hypothesis
+framework of Section~\ref{sec:problem} does not name. One seed behaves like
+the single-default cases above: $\hat\mu\approx1.80$ across the whole grid,
+in-range and out-of-range together. A second seed instead shows \emph{two}
+distinct, individually tight clusters --- $\hat\mu\approx4.7$
+($\mathrm{std}=0.04$) for every in-range request, and a different
+$\hat\mu\approx7.6$ ($\mathrm{std}=0.13$) for every out-of-range request ---
+rather than one value spanning both. This is neither ``ignores $\theta$
+entirely'' (the value does shift) nor a single global default (there are two
+regimes, not one): it looks like the model has learned a coarse in-range
+versus out-of-range distinction without learning anything continuous inside
+either regime. We name this the \emph{split-default} pattern and flag it as
+an open case for the H1/H2 framework, not yet folded into $\PRI$ or $\CBI$.
+
+\paragraph{E7, mechanism adjudication.}
+Applying \texttt{select\_mechanism} (H1 shrinkage vs.\ H2 clamp,
+Section~\ref{sec:metrics}) to CogVideoX's out-of-range projectile data (12
+gated points spanning $g\in\{1.6,3,20\}$) selects \emph{neither} by the
+function's leave-one-out gate, but not because the data are unstructured.
+With $\theta_0$ estimated jointly, $\PRI=0.97$ (near-total insensitivity to
+the requested $g$) and the estimated default $\hat\theta_0=-10.56$ lands
+almost exactly on the seed-cluster values already observed in-range; AIC
+prefers the H1 shrinkage shape over the H2 clamp shape by a wide margin
+($\Delta\mathrm{AIC}=-47.9$). What fails is the leave-one-$\theta$-out $R^2$
+($-0.50$), and the likely reason is visible in the raw data: H1 as specified
+assumes \emph{one} global $\theta_0$, but the actual reversion target is
+seed-specific (Section~4.3). Pooling several seeds' distinct fixed points and
+fitting a single $\theta_0$ necessarily leaves structured, not random,
+residual error, which is exactly what defeats a leave-one-out test even when
+the qualitative shape (``reverts to something roughly fixed'') is correct.
+The paired-bootstrap extrapolation test is unambiguous on its own:
+$\PRE(S_\text{out})-\PRE(S_\text{in}) = 1.068$, $95\%$ CI $[0.267, 1.891]$,
+one-sided $p=0.0055$. LTX-Video could not be adjudicated at all: only three
+of fifteen out-of-range clips survived the fit-quality gate, below the
+minimum of four \texttt{select\_mechanism} requires.
 
 \paragraph{Reading the outcomes honestly.}
-The outcomes are all reportable. (1) \emph{Faithful in-range, fails out-of-range}
-with H1 or H2 selected: the headline story, and naming the mechanism is the
-contribution. (2) \emph{No conditioning effect} ($\beta\approx 0$): reframe as
-``open generators do not honor conditioned dynamics,'' still useful. (3)
-\emph{Faithful even out-of-range} ($\EG\approx 0$): a surprising positive result
-updating the field toward ``these models have internalized the law,'' reported as
-such. (4) \emph{Neither H1 nor H2 fits}: report the observed behavior directly
-rather than forcing a label. We commit to reconciling the abstract, title, and
-contributions with whichever outcome the data support, and to dropping the
-mechanism framing if no mechanism fits.
+None of the four outcomes anticipated in the protocol is a clean fit, and we
+report the actual shape of the result rather than forcing one. This is
+closest to outcome (2), \emph{no conditioning effect}: under C2, on the
+in-range grid, all three models' faithfulness slope is statistically
+indistinguishable from zero (\autoref{tab:e0e1}), so ``open generators do not
+honor conditioned dynamics'' is the correct headline for the scope actually
+tested. But the finding is more specific than a flat null. Two of the three
+models do not fail by ignoring the request in an unstructured way; they
+confidently generate physically coherent motion at one of a small number of
+\emph{fixed, wrong} values, selected by the generation seed rather than the
+requested $\theta$, and this specific signature reproduces across two
+independent model families and at least four distinct physics systems
+(projectile, spring-mass, bouncing-ball, inclined-slide). That is structurally
+close to outcome (4), \emph{neither H1 nor H2 fits cleanly}, but for an
+identifiable and informative reason --- the paper's H1 test assumes a single
+global default, and the data show a \emph{seed-conditional} default instead,
+a distinction the current formalism does not have a parameter for. The
+inclined-slide split-default pattern (Section~4.5) is a further, third
+variant along the same axis. We treat naming this family of mechanisms ---
+confident convergence to a small set of seed- or regime-selected fixed
+points, rather than either smooth shrinkage to one default or a clamp at the
+range edge --- as the paper's empirical contribution in place of the
+originally hypothesized clean H1/H2 split, and we do not force the
+$\PRI$/$\CBI$ labels where the leave-one-out test says they do not fit.
 
 % ---------------------------------------------------------------------------
 \section{Limitations}
 % ---------------------------------------------------------------------------
 The suite is intentionally synthetic and 2D, which strengthens identifiability
 but limits ecological validity; conclusions are about controllable
-low-dimensional dynamics, not arbitrary natural scenes. Off-the-shelf I2V
-control is imperfect, so the conditioning may not isolate $\theta$ cleanly; the
-fit-quality gate and E6 negative control bound this. The default-prior estimate
-$\theta_0$ is model-behavioral, not a claim about training data we cannot
-observe. Plausibility ``human subset'' is small and for calibration only. None
-of these undermine the central measurement, but each bounds its scope.
+low-dimensional dynamics, not arbitrary natural scenes. The default-prior
+estimate $\theta_0$ is model-behavioral, not a claim about training data we
+cannot observe.
+
+Several further limitations are specific to what was actually run rather than
+what was planned, and we state them plainly. \textbf{Channel.} Every result
+is under C2 (text-specified) conditioning; C1 (frame-implied, the protocol's
+primary channel) was not tested end-to-end for any model, because the
+diffusers component needed for genuine multi-frame conditioning on LTX-Video
+is broken in the release used here, and CogVideoX's and DynamiCrafter's
+official I2V pipelines accept only a single conditioning image regardless. It
+is possible, and untested, that frame-implied conditioning would elicit
+different behavior than naming the parameter in text. \textbf{Coverage.}
+E7's mechanism adjudication was only possible on one model
+(CogVideoX) and one system (projectile): LTX-Video's low fit-quality yield
+left too few out-of-range points to adjudicate at all, and DynamiCrafter's
+most novel result (the split-default pattern on inclined-slide,
+Section~\ref{sec:results}) has not been run through \texttt{select\_mechanism}.
+The seed-conditional-default finding itself is therefore a robust,
+cross-model, cross-system \emph{observation}, but a formal mechanism
+adjudication of it exists for only one model-system pair. \textbf{Model
+ceiling effects.} DynamiCrafter's fixed 16-frame output makes two of six
+systems (pendulum angular frequency, spring-mass) untestable on that model
+for a reason unrelated to conditioning faithfulness, which we distinguish
+explicitly from the conditioning failures elsewhere (Section~\ref{sec:results})
+but which nonetheless reduces the number of model-system pairs with usable
+data. \textbf{Plausibility contrast (E3) and the controllability audit (E9)}
+were not run in this draft; the central faithfulness result (E0/E1/E4/E7)
+stands independently of them, but the paper's Contribution 1 (the
+plausibility-versus-faithfulness gap) and Contribution 4 (auditing
+controllability claims) are correspondingly not yet empirically supported.
+None of these bound the core measurement's validity (Section~\ref{sec:results},
+E6), but each bounds the scope of what the results license us to claim.
 
 % ---------------------------------------------------------------------------
 \section{Conclusion}
@@ -1132,8 +1290,22 @@ We reframe ``learning physics from video'' for a generator as a falsifiable,
 label-free question of parameter faithfulness and extrapolation, and provide a
 black-box diagnostic, metrics with a stated identifiability condition, a
 controllable suite, and a protocol whose headline test separates plausibility
-from correctness. The artifact is reusable on any image-to-video model. The
-empirical claims await the specified runs.
+from correctness. Applied to three frozen, off-the-shelf I2V generators, the
+diagnostic finds that none detectably honors a text-specified physical
+parameter even within the everyday range, contrary to the field's implicit
+premise of at least local faithfulness. The failure is not simply an absence
+of signal: two of the three models confidently generate physically coherent
+motion that converges to a small number of fixed, wrong values selected by
+the generation seed rather than the request, a specific and reproducible
+mechanism that appears across independent model families and multiple
+physics systems, and that the field's existing two-hypothesis account of
+out-of-range failure does not have a clean category for. The artifact ---
+suite, pipeline, and metrics --- is reusable on any image-to-video model,
+including future ones that claim physics controllability, and the mechanism
+identified here is a concrete target for follow-up work: whether it reflects
+prior reversion at the level of the sampling seed rather than the model as a
+whole, and whether it persists under frame-implied (C1) conditioning, which
+this draft was unable to test end-to-end (Section~\ref{sec:results}).
 
 \paragraph{Reproducibility statement.}
 All systems are procedurally generated from a seeded deterministic engine;

@@ -151,21 +151,39 @@ for in-range requests (~4.7) and a DIFFERENT one for out-of-range requests
 (~7.5-7.8), rather than one persistent default. See Section 5 for the full
 three-model comparison table and mechanism taxonomy.
 
-**Next action — a real decision point:** (a) write up the paper's
-results/discussion section now — there is a full, defensible, and richly
-detailed story across E0 (3 models)/E1/E4 (3 models)/E7 (reframe + a
-family of related confident-wrong-default mechanisms, some single-default,
-some universal-convergence, one split-cluster); (b) extend E7 (formal
-out-of-range H1/H2 adjudication) to DynamiCrafter's projectile and/or
-inclined_slide data — the split-cluster inclined_slide pattern in
-particular would likely also register as "neither" under `select_mechanism`
-but for a THIRD distinct reason, worth characterizing formally the same way
-CogVideoX's seed-specific-default issue was; (c) try to properly test the
+**The paper's Results/Discussion section is now WRITTEN** (2026-07-05) —
+`physweep_main.tex` Section 8 ("Results") replaces the old placeholder
+tables with the real E0/E1/E4/E7 findings, grounded exactly in the numbers
+in this file. Also updated to match: the abstract (states the actual
+seed-conditional-default finding instead of the untested hypothesis),
+Limitations (channel/coverage/model-ceiling caveats stated plainly), and
+Conclusion. Compiles cleanly (`pdflatex` x2 + `bibtex`, verified — 15
+pages, no errors, no undefined references; texlive installed on this
+instance to check). The paper now honestly reports: no model detectably
+honors C2 conditioning in-range; two of three (CogVideoX, DynamiCrafter)
+converge to seed-determined fixed defaults across 4 systems; a named
+"split-default" variant in DynamiCrafter/inclined_slide; E7's nuanced
+"neither" result on CogVideoX with the seed-conditional-default
+explanation; and explicit scope limits (C2-only, single-model-system E7
+coverage, DynamiCrafter's 16-frame ceiling, E3/E9 not run).
+
+**Next action — a real decision point:** (a) treat the results section as
+essentially complete and move to the integrity checklist (Section 7 of
+this file) — fill bib placeholders, verify citations, anonymize, get mock
+reviews — since the empirical core (E0/E1/E4/E6/E7) is now both run and
+written up; (b) extend E7 (formal out-of-range H1/H2 adjudication) to
+DynamiCrafter's projectile and/or inclined_slide data before finalizing the
+writeup — the split-default inclined_slide pattern would likely also
+register as "neither" under `select_mechanism` but for a THIRD distinct
+reason, worth characterizing formally the same way CogVideoX's
+seed-specific-default issue was, and would strengthen Section 8's E7
+paragraph with a second model; (c) try to properly test the
 seed-specific-H1 hypothesis with a custom per-seed analysis (not in the
-paper's original method, would need justifying as an extension); or (d)
-attempt true C1 (frame-implied) conditioning again with a different
-approach, since everything so far has been C2 only. Do not write any
-number into the paper that was not produced by an actual run recorded in
+paper's original method, would need justifying as an extension and a new
+Methods subsection); or (d) attempt true C1 (frame-implied) conditioning
+again with a different approach, since everything so far has been C2 only,
+and update Section 8 accordingly if it changes the picture. Do not write
+any number into the paper that was not produced by an actual run recorded in
 Section 5.
 
 ---
