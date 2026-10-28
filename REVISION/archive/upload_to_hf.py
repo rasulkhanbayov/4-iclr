@@ -9,6 +9,7 @@ Build the Hugging Face archive and (only with --upload) push it.
 Staging is a folder of symlinks to the real files (no copies) plus README.md (the dataset card),
 MANIFEST.sha256 and snapshot/4-ICLR_small_files.tar.gz. upload_large_folder resumes if interrupted:
 re-run the same command. After uploading, verify before deleting anything:
+  python archive/check_hf.py                                                  # every file on HF vs. local, no download
   python archive/restore_data.py --source hf --target-root /tmp/pw_verify     # full download + sha256 check
 """
 
@@ -74,9 +75,11 @@ def build_staging(staging):
               ("snapshot", "snapshot/4-ICLR_small_files.list.txt", os.path.join(staging, "snapshot", "4-ICLR_small_files.list.txt"))]
     shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), "dataset_card.md"), os.path.join(staging, "README.md"))
     print(f"hashing {len(files)} files ...", flush=True)
-    with open(os.path.join(staging, "MANIFEST.sha256"), "w") as f:
+    tmp = os.path.join(staging, "MANIFEST.sha256.partial")   # renamed only when complete, so --reuse-staging
+    with open(tmp, "w") as f:                                  # never resumes from a half-written manifest
         for _, repo_path, local in sorted(files, key=lambda x: x[1]):
             f.write(f"{sha256(local)}  {repo_path}\n")
+    os.replace(tmp, os.path.join(staging, "MANIFEST.sha256"))
     return files
 
 
@@ -114,9 +117,9 @@ def main():
     api = HfApi(token=tok)
     api.create_repo(a.repo_id, repo_type="dataset", private=not a.public, exist_ok=True)
     api.upload_large_folder(repo_id=a.repo_id, repo_type="dataset", folder_path=a.staging,
-                            ignore_patterns=[MARKER, ".cache/**"], private=not a.public)
+                            ignore_patterns=[MARKER, ".cache/**", "*.partial"], private=not a.public)
     print(f"\nuploaded to https://huggingface.co/datasets/{a.repo_id}"
-          f"\nNext: python archive/restore_data.py --source hf --target-root /tmp/pw_verify")
+          f"\nNext: python archive/check_hf.py")
 
 
 if __name__ == "__main__":

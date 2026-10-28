@@ -24,7 +24,8 @@ import sys
 import tarfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from archive_lib import BASE, PARTS, REPO_ID, SAMPLE_VIDEOS, hf_token, part_of, read_manifest, sha256, to_local  # noqa: E402
+from archive_lib import (BASE, PARTS, REPO_ID, SAMPLE_VIDEOS, hf_retry, hf_token, part_of, read_manifest,  # noqa: E402
+                         sha256, to_local)
 
 
 def select(manifest, parts, sample):
@@ -40,10 +41,17 @@ def select(manifest, parts, sample):
     return sorted(out)
 
 
+def resolve_revision(repo_id, revision):
+    """The archive's commit hash. With a hash, snapshot_download skips files it already put in local_dir
+    without asking HF, so a retry after a 429 resumes instead of starting over."""
+    from huggingface_hub import HfApi
+    return hf_retry(HfApi(token=hf_token()).dataset_info, repo_id, revision=revision).sha
+
+
 def fetch_hf(repo_id, revision, download_dir, patterns):
     from huggingface_hub import snapshot_download
-    return snapshot_download(repo_id=repo_id, repo_type="dataset", revision=revision, local_dir=download_dir,
-                             allow_patterns=patterns, token=hf_token())
+    return hf_retry(snapshot_download, repo_id=repo_id, repo_type="dataset", revision=revision,
+                    local_dir=download_dir, allow_patterns=patterns, token=hf_token())
 
 
 def main():
@@ -63,6 +71,8 @@ def main():
 
     if a.source == "hf":
         src = a.download_dir
+        a.revision = resolve_revision(a.repo_id, a.revision)
+        print(f"archive commit {a.revision}", flush=True)
         fetch_hf(a.repo_id, a.revision, src, ["MANIFEST.sha256", "README.md"])
     else:
         src = os.path.abspath(a.source)

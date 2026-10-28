@@ -378,3 +378,28 @@ private for now. No deletions, no upload, no git commands this session.
   old dynamicrafter_venv depends on the v1 env's Python (deleting one breaks the other).
 **Not done (needs the user):** git commit/push; the HF upload (`archive/upload_to_hf.py --upload`), its
 full-download verification, and every deletion group in `STORAGE_PLAN.md`.
+
+## 2026-10-28 (evening): HF upload done; verification against HF
+
+- The user ran `archive/upload_to_hf.py --upload` (an earlier attempt on panther-login was killed in its
+  first seconds; nothing had been hashed or sent). upload_large_folder's cache records all 5,576 files
+  (5,574 + README.md + MANIFEST.sha256) as committed: 5,105 LFS/Xet, 471 in git.
+- The full download back (`restore_data.py --source hf`) stopped on HTTP 429: a free account allows 1,000
+  API calls per 5 minutes and each file costs about one (one Xet read token per file). Fixed:
+  `archive_lib.hf_retry` waits out a 429 (also when wrapped, as on a HEAD call) and resumes;
+  `restore_data.py` pins the archive commit hash first, so a retry skips finished files without a request.
+- New `archive/check_hf.py`: lists the repo (about 10 API calls) and compares every file with its local
+  original: size, plus HF's sha256 for LFS/Xet files and the git blob id for files in git. Read-only.
+  Tested offline against a listing built from the upload cache: clean listing matches 5,576/5,576;
+  planted faults (missing, wrong sha256, wrong blob id, wrong size, extra file, changed local file) are
+  all caught. `slurm/v2/40_archive_upload.sh` now runs upload → check_hf → full download → number check.
+- `/export/hbku-research` free space fell from 476G (morning) to 293G; not from this work (staging is
+  symlinks). Not investigated: other projects are on that filesystem.
+**Not done (needs the user):** run `check_hf.py` and the full download/number check; git commit/push;
+every deletion group in `STORAGE_PLAN.md`.
+- Checked before deletion, without git commands: GitHub `ivc-revision` = local = `f14e1f9` (pushed 15:36;
+  repo is public, `.env` not in that commit, all of `REVISION/env/` and the code in it); 8 archive files
+  changed after it (6 edited, `check_hf.py` and `40_archive_upload.sh` new) still need a commit/push.
+  `check_hf.py --no-rehash`: HF dataset private, commit bd83fb66, 5,576/5,576 files match the manifest.
+  The user chose to skip the full download test. Added the 429'd partial download (`verify_restore.dl`)
+  to group 1 and the staging folder to group 3.

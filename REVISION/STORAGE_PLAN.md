@@ -85,6 +85,7 @@ Each group lists what must be true first. Run from any directory.
 rm -rf "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/.hf_home"
 find "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR" -path "*/external" -prune -o -type d -name __pycache__ -prune -print -exec rm -rf {} +
 rm -rf /export/hbku-research/rakh90100/physweep_revision/hf_home/xet
+rm -rf /export/hbku-research/rakh90100/physweep_revision/verify_restore.dl   # partial download from the 429'd test (226M)
 ```
 
 **Group 2a: model weights (546G)** — first: HF upload verified; `REVISION/env/` pushed to git.
@@ -112,12 +113,14 @@ rebuilds it as a self-contained conda env, so this only matters if 2c is skipped
 source ~/miniconda3/etc/profile.d/conda.sh && conda env remove -y -n physweep
 ```
 
-**Group 3: generated runs (10.6G)** — first: `python REVISION/archive/restore_data.py --source hf
---target-root /tmp/pw_verify` finished with 0 mismatches and 0 missing files, and `reproduce_numbers.py`
-run against `/tmp/pw_verify` gave the same counts as `PROVENANCE.md` (see `RESTORE.md`, section 2).
+**Group 3: generated runs (10.6G)** — first: `python REVISION/archive/check_hf.py` printed `RESULT: OK`,
+`python REVISION/archive/restore_data.py --source hf --target-root /tmp/pw_verify` finished with 0
+mismatches and 0 missing files, and `reproduce_numbers.py` run against `/tmp/pw_verify` gave the same
+counts as `PROVENANCE.md` (see `RESTORE.md`, section 2). `slurm/v2/40_archive_upload.sh` does all three.
 ```bash
 rm -rf /export/hbku-research/rakh90100/physweep_revision/runs/{main_text,api_text,pilot,pilot_b}
 rm -rf /tmp/pw_verify /export/hbku-research/rakh90100/physweep_revision/hf_archive_download
+rm -rf /export/hbku-research/rakh90100/physweep_revision/hf_archive_staging   # symlinks + upload cache (426M); rm does not follow symlinks
 ```
 
 ## Risks

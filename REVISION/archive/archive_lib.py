@@ -131,3 +131,36 @@ def hf_token():
             if line.startswith("HF_TOKEN="):
                 return line.split("=", 1)[1].strip().strip("'\"")
     return None
+
+
+def _rate_limit_response(e):
+    """The HTTP response if e, or an error it was raised from, is HF's 429 (a 429 on a HEAD call comes
+    back wrapped in LocalEntryNotFoundError)."""
+    seen = set()
+    while e is not None and id(e) not in seen:
+        seen.add(id(e))
+        r = getattr(e, "response", None)
+        if getattr(r, "status_code", None) == 429:
+            return r
+        e = e.__cause__ or e.__context__
+    return None
+
+
+def hf_retry(fn, *args, max_waits=40, **kwargs):
+    """Call fn, waiting out HF's rate limit (free accounts: 1,000 API calls per 5 minutes; a download
+    costs about one per file) and calling it again. Callers must make a repeat call resume, not restart."""
+    import time
+    for _ in range(max_waits):
+        try:
+            return fn(*args, **kwargs)
+        except Exception as e:
+            r = _rate_limit_response(e)
+            if r is None:
+                raise
+            try:
+                wait = int(r.headers.get("Retry-After", "")) + 10
+            except ValueError:
+                wait = 310
+            print(f"\n[{time.strftime('%H:%M:%S')}] HF rate limit (429): waiting {wait} s, then resuming", flush=True)
+            time.sleep(wait)
+    return fn(*args, **kwargs)

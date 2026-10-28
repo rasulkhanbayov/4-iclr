@@ -25,7 +25,10 @@ the rest under `4-ICLR/`). Every file is checked against `MANIFEST.sha256`. A fi
 never overwritten: it is skipped if its hash matches, and reported as a conflict otherwise.
 `--target-root DIR` restores under `DIR` instead, which is how the archive is verified before deleting.
 `--snapshot` also unpacks a tarball of every small project file, as a fallback if something never
-reached git.
+reached git. A free HF account allows 1,000 API calls per 5 minutes, and a download costs about one per
+file, so a full restore pauses about five times for 5 minutes (it prints when) and resumes on its own.
+While the originals still exist, `python REVISION/archive/check_hf.py` compares every file on HF with
+its local original by size and hash, without downloading (about 10 API calls).
 
 ## 2. Numbers check (CPU, ~15 s; ~2 min with --recompute)
 
