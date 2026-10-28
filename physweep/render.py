@@ -73,7 +73,7 @@ PX_PER_M = 40.0  # rendering scale: shared across systems that use metric theta
 
 
 def simulate_projectile(g: float, seed: int, n_frames: int = N_FRAMES,
-                        ground_clearance_px: float | None = None):
+                        ground_clearance_px: float | None = None, dt_scale: float = 1.0):
     """Launch a disk under gravity g (m/s^2) with an initial upward velocity
     chosen analytically so the full parabolic arc (launch to landing at the
     same height) spans the clip duration exactly, for every g in the grid.
@@ -90,9 +90,18 @@ def simulate_projectile(g: float, seed: int, n_frames: int = N_FRAMES,
     tendency to keep a ground-adjacent object stationary with a genuine
     gravity-conditioning failure (see CLAUDE.md Section 5). Max safe value
     is bounded by apex_offset (up to ~115px at g=25) plus frame height.
+
+    dt_scale (E5b scale-invariance ablation, added 2026-08-2x): multiplies
+    the per-frame timestep, so dt_scale=2.0 means each rendered frame
+    represents TWICE the real elapsed time (equivalent to halving the
+    effective clip fps while keeping n_frames fixed) -- the object covers
+    more of its trajectory per frame. Default 1.0 reproduces the exact
+    behavior every prior E0/E1/E4/E6/E7 call relied on; this parameter did
+    not exist when those were validated, so leaving it at the default is
+    required for reproducing those results, not just convenient.
     Returns (frames [T,H,W] uint8, y_px [T] float, t [T] float)."""
     rng = np.random.default_rng(seed)
-    t = np.arange(n_frames) * DT
+    t = np.arange(n_frames) * DT * dt_scale
     duration = t[-1]
 
     v0 = 0.5 * g * duration          # m/s: symmetric arc returns to y0 at t=duration
@@ -114,10 +123,13 @@ def simulate_projectile(g: float, seed: int, n_frames: int = N_FRAMES,
 # ---------------------------------------------------------------------------
 # System 2/3: Damped pendulum (theta = omega or zeta)
 # ---------------------------------------------------------------------------
-def simulate_damped_pendulum(omega: float, zeta: float, seed: int, n_frames: int = N_FRAMES):
+def simulate_damped_pendulum(omega: float, zeta: float, seed: int, n_frames: int = N_FRAMES,
+                             dt_scale: float = 1.0):
     """Small-angle damped pendulum: theta(t) = A * exp(-zeta*omega*t) *
     cos(omega_d * t + phi), omega_d = omega*sqrt(1-zeta^2) (underdamped).
     Rendered as a disk (bob) swinging from a fixed pivot.
+    dt_scale: see simulate_projectile's docstring (E5b ablation); default 1.0
+    reproduces every prior call's exact behavior.
     Returns (frames, bob_x_px [T] float [the oscillatory observable], t [T])."""
     rng = np.random.default_rng(seed)
     pivot_x, pivot_y = WIDTH / 2, 40.0
@@ -128,7 +140,7 @@ def simulate_damped_pendulum(omega: float, zeta: float, seed: int, n_frames: int
     zeta = min(zeta, 0.999)
     omega_d = omega * np.sqrt(max(1.0 - zeta ** 2, 1e-6))
 
-    t = np.arange(n_frames) * DT
+    t = np.arange(n_frames) * DT * dt_scale
     angle = amp0 * np.exp(-zeta * omega * t) * np.cos(omega_d * t + phi)
 
     bob_x = pivot_x + length_px * np.sin(angle)
@@ -143,12 +155,17 @@ def simulate_damped_pendulum(omega: float, zeta: float, seed: int, n_frames: int
 # System 4: Bouncing ball (theta = e, restitution)
 # ---------------------------------------------------------------------------
 def simulate_bouncing_ball(e: float, seed: int, n_frames: int = N_FRAMES, g: float = 800.0,
-                           drop_height_px: float = 15.0):
+                           drop_height_px: float = 15.0, dt_scale: float = 1.0):
     """Vertical bounce with coefficient of restitution e. g and drop_height_px
     are chosen (not physically literal) so that >= 3 bounces occur within the
     24-frame clip across the full e grid (0.2-0.97) — a real bounce needs
     enough sub-clip time to show >=2 peaks for fit_restitution_from_bounces.
     Integrated with small sub-steps per frame for bounce-timing accuracy.
+    dt_scale: see simulate_projectile's docstring (E5b ablation); scales
+    BOTH the reported frame timestamps and the physics substep integration
+    (sub_dt), so the simulated bounce dynamics themselves run at the scaled
+    rate, not just their reported labels. Default 1.0 reproduces every
+    prior call's exact behavior.
     Returns (frames, y_px [T] float, t [T], peak_heights [np.ndarray of
     successive local-maximum heights above ground, one per completed bounce]).
     """
@@ -159,8 +176,8 @@ def simulate_bouncing_ball(e: float, seed: int, n_frames: int = N_FRAMES, g: flo
     vy = 0.0
 
     substeps = 20
-    sub_dt = DT / substeps
-    t = np.arange(n_frames) * DT
+    sub_dt = DT * dt_scale / substeps
+    t = np.arange(n_frames) * DT * dt_scale
     ys = np.empty(n_frames)
     heights = np.empty(n_frames)
     peak_heights = []
@@ -192,9 +209,12 @@ def simulate_bouncing_ball(e: float, seed: int, n_frames: int = N_FRAMES, g: flo
 # ---------------------------------------------------------------------------
 # System 5: Spring-mass (theta = k, recovered via oscillation period)
 # ---------------------------------------------------------------------------
-def simulate_spring_mass(k: float, seed: int, n_frames: int = N_FRAMES, mass_kg: float = 1.0):
+def simulate_spring_mass(k: float, seed: int, n_frames: int = N_FRAMES, mass_kg: float = 1.0,
+                         dt_scale: float = 1.0):
     """Undamped horizontal spring-mass: x(t) = A*cos(omega_n*t + phi),
     omega_n = sqrt(k/m). k in N/m with a px-per-meter scale for rendering.
+    dt_scale: see simulate_projectile's docstring (E5b ablation); default
+    1.0 reproduces every prior call's exact behavior.
     Returns (frames, x_px [T] float, t [T])."""
     rng = np.random.default_rng(seed)
     px_per_m = 60.0
@@ -204,7 +224,7 @@ def simulate_spring_mass(k: float, seed: int, n_frames: int = N_FRAMES, mass_kg:
     cx0 = WIDTH / 2
 
     omega_n = np.sqrt(k / mass_kg)
-    t = np.arange(n_frames) * DT
+    t = np.arange(n_frames) * DT * dt_scale
     x_m = amp_m * np.cos(omega_n * t + phi)
     x_px = cx0 + x_m * px_per_m
     x_px = np.clip(x_px, DISK_RADIUS, WIDTH - DISK_RADIUS)
@@ -218,7 +238,7 @@ def simulate_spring_mass(k: float, seed: int, n_frames: int = N_FRAMES, mass_kg:
 # System 6: Inclined slide (theta = mu, recovered via acceleration along slope)
 # ---------------------------------------------------------------------------
 def simulate_inclined_slide(mu: float, seed: int, n_frames: int = N_FRAMES,
-                            incline_deg: float = 60.0, g: float = 300.0):
+                            incline_deg: float = 60.0, g: float = 300.0, dt_scale: float = 1.0):
     """Disk sliding down a frictional incline: a = g*(sin(a_rad) - mu*cos(a_rad))
     (px/s^2, clipped at 0 so it never slides back up). Returns (frames,
     s_px [T] float [distance traveled along the slope], t [T]).
@@ -228,13 +248,16 @@ def simulate_inclined_slide(mu: float, seed: int, n_frames: int = N_FRAMES,
     mu >= tan(incline_deg), and the paper's out-of-range grid goes up to
     mu=1.0. tan(60deg)=1.73 clears that with margin; tan(30deg)=0.577 would
     leave mu=0.7 and mu=1.0 stationary (zero signal). See CLAUDE.md Section 2.
+
+    dt_scale: see simulate_projectile's docstring (E5b ablation); default
+    1.0 reproduces every prior call's exact behavior.
     """
     rng = np.random.default_rng(seed)
     a_rad = np.deg2rad(incline_deg)
     accel = max(g * (np.sin(a_rad) - mu * np.cos(a_rad)), 0.0)
 
     s0 = rng.uniform(0, 10)
-    t = np.arange(n_frames) * DT
+    t = np.arange(n_frames) * DT * dt_scale
     s = s0 + 0.5 * accel * t ** 2   # starts at rest
 
     # map slope-distance to (x, y) pixel coords along the incline

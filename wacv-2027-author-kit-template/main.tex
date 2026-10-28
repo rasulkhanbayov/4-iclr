@@ -1,0 +1,1192 @@
+% WACV 2027 Paper Template
+% based on the ICCV 2025 template (https://media.eventhosts.cc/Conferences/ICCV2025/ICCV2025-Author-Kit-Feb.zip) with
+% WACV-specific details (e.g., 2 tracks) from the WACV 2025 template (https://www.dropbox.com/scl/fi/su44zgdhrzik26p2xu37k/WACV-2025-Author-Kit-Template.zip?rlkey=5qcfimjhxnmx3wlyk7yhk8wg7&dl=0)
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+% \usepackage[review,algorithms]{wacv}      % To produce the REVIEW version for the algorithms track
+% \usepackage[review,applications]{wacv}      % To produce the REVIEW version for the applications track
+\usepackage[review,datasets]{wacv}      % To produce the REVIEW version for the datasets track
+% \usepackage{wacv}              % To produce the CAMERA-READY version
+%\usepackage[pagenumbers]{wacv} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{wacvblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=wacvblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\wacvPaperID{*****} % *** Enter the WACV Paper ID here
+\def\confName{WACV}
+\def\confYear{2027}
+
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{\textbf{Does the Video Follow the Physics You Asked For?}}
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+% Anonymous for double-blind review; wacv.sty's review mode ignores this
+% block and prints "Anonymous WACV Datasets Track submission" instead.
+\author{Anonymous Authors\\ Under double-blind review at WACV 2027}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Image-to-video generators are often credited with having absorbed physical
+dynamics as implicit world models, largely on the strength of plausibility
+scores judging whether a clip looks visually consistent with real-world
+motion. Plausibility is the wrong test: a clip can look perfectly natural
+while encoding the wrong value of the governing physical parameter. We ask
+instead whether a generated continuation realizes the specific physical
+quantity it was conditioned on, for example a gravitational acceleration
+or a coefficient of restitution, both within the everyday range and pushed
+beyond it. \textsc{PhysWeep} answers this label-free, treating a frozen,
+off-the-shelf generator as a black box mapping a control parameter to a
+trajectory, recovering the realized value from generated pixels by
+tracking and closed-form physics fitting, and scoring a Parameter Recovery
+Error (\PRE), an in-range/out-of-range Extrapolation Gap (\EG), and which
+of two competing failure mechanisms a model-selection rule favors:
+collapse to a single default (\PRI), or clamping to the nearest seen value
+(\CBI). Every score comes from a deterministic simulator with a known
+ground-truth parameter, so the pipeline is exactly checkable and needs no
+human annotation. Across three frozen generators (LTX-Video,
+CogVideoX-5B-I2V, DynamiCrafter) and five physics systems (six sweep axes,
+since the damped pendulum contributes two), none detectably
+varies its generated dynamics with the conditioned parameter even
+in-range, a failure plausibility-based evaluation would have missed
+entirely. The failure is structured: two of the three models confidently
+generate physically coherent motion that converges to one of a small
+number of fixed, wrong values selected by the generation seed rather than
+the request, a signature reproducing across two model families and at
+least four physics systems. This sits between the two failure modes the
+recent literature anticipates, so we name it explicitly rather than force
+a label. We release the diagnostic protocol, the parameterized system
+suite, and the analysis code as a reusable audit for future generators,
+including ones that claim physics controllability.
+\end{abstract}
+\section{Introduction}
+% ---------------------------------------------------------------------------
+
+The rapid progress of video generation has revived an old hope: that a model
+trained only to predict pixels will, as a by-product, learn the laws that
+govern how the world moves \citep{brooks2024sora,agarwal2025cosmos}. If true,
+such generators could serve as cheap, general simulators for science and
+robotics. The community has accordingly invested heavily in measuring
+\emph{physical plausibility} of generated video, through benchmarks that ask
+human raters or VLM auto-raters whether motion ``looks right''
+\citep{bansal2024videophy,bansal2025videophy2,meng2024phygenbench,motamed2025physicsiq,zhang2025morpheus,phyworldbench2025}.
+
+Plausibility is the wrong target on its own. A generator can produce a clip
+that is visually flawless yet encodes a physically \emph{incorrect} value of
+the relevant parameter. A ball can fall with a smooth, natural-looking arc
+whose implied gravitational acceleration is simply wrong, and no plausibility
+rater will object, because the arc is locally consistent. The scientifically
+meaningful question is not ``does it look physical'' but ``does it realize the
+\emph{specific} physics implied by its conditioning, and does that realization
+extend beyond the values the model saw most often during training.'' The
+second clause matters because a model that has truly internalized a law should
+treat the controlling parameter as a free variable, whereas a model that has
+memorized typical motions will fall back on what it has seen whenever it is
+pushed away from the common case.
+
+Recent roadmaps single out exactly this gap. Surveys of the field now name
+\emph{intrinsic faithfulness} and \emph{controllability} as the defining
+frontier for video models as world simulators and note that comprehensive
+metrics for it remain underexplored
+\citep{roadmap2025visualworld,evolution2026videogen}, and the newest
+benchmark suites add ``Physics'' and ``Controllability'' dimensions but score
+them with VLM and question-answering proxies rather than exact, swept
+measurement \citep{vbench2_2025,t2vphysbench2025,likephys2025}. Such judge-based
+scores are hard to reproduce or audit because the judge's weights, versions, and
+APIs drift over time \citep{phyground2026}; an exact parameter recovered from
+pixels by a fixed estimator does not. The current generation of methods
+explicitly \emph{claims} physics controllability and even
+beyond-distribution generalization
+\citep{physchoreo2025,phantom2026,physvideo2026,phyco2026,motionforcing2026}, and
+the very newest work proposes inference-time fixes for physical
+\emph{extrapolation} \citep{lapg2026}. None of this work tests whether a
+\emph{conditioned} physical parameter is realized in the generated pixels, or
+whether that control survives outside the everyday range, and none provides a
+fixed, auditable measurement against which such fixes can be checked.
+
+We turn ``physical understanding'' of
+a pretrained video generator into a falsifiable measurement: treat the frozen
+model as a black-box map from a conditioned control parameter $\theta$ to a
+trajectory, recover the realized $\thetah$ from generated pixels with no human
+labels, and quantify faithfulness, out-of-range extrapolation, and the
+\emph{form} of any failure. Beyond detecting failure, \textsc{PhysWeep}
+adjudicates between two mechanisms the recent literature proposes: collapse to
+a single global default, or case-based mimicry of the nearest seen value. The
+result is a reusable, model-agnostic diagnostic and a clean separation between
+\emph{plausibility} and \emph{parameter faithfulness}.
+
+No existing line of work actually does this. \citet{kang2025howfar} study generalization (in-distribution, out-of-distribution,
+combinatorial) but \emph{train diffusion models from scratch} on a 2D testbed
+and report binary success or failure; they characterize the OOD failure as
+``case-based'' generalization, where the model mimics the nearest training
+example rather than abstracting the law. \citet{invisiblehand2026} corroborate
+that scaling fails to extrapolate and probe \emph{internal} states. Neither
+recovers a continuous parameter from the generated pixels of a frozen model,
+nor adjudicates whether the failure is collapse to one global default or
+nearest-value mimicry, nor connects the effect to a controllable knob.
+Plausibility benchmarks \citep{motamed2025physicsiq,zhang2025morpheus,bansal2025videophy2,vbench2_2025}
+measure adherence on fixed clips, not the response of the model to a
+\emph{swept} control parameter. Property-readout methods recover physical
+quantities from \emph{input} videos via internal features
+\citep{inferring2025dynamic,invisiblehand2026}, which measures what the
+encoder represents, not whether the \emph{generated} continuation honors a
+requested parameter. \textsc{PhysWeep} fills the gap: a black-box,
+generation-side, parameter-swept, label-free test that also names the failure
+mechanism, reusable to audit models that claim controllability.
+
+\paragraph{Contributions.}
+\begin{enumerate}[leftmargin=1.4em,itemsep=2pt,topsep=2pt]
+  \item \textbf{A reframing.} We separate \emph{plausibility} from
+  \emph{parameter faithfulness} and argue the latter is the operationally
+  meaningful sense of ``learning physics from video'' for a generator, then
+  specify a full protocol over open I2V models around this contrast, stating
+  in advance the results that would confirm or refute each hypothesis
+  (Sections~\ref{sec:problem}--\ref{sec:results}).
+  \item \textbf{A diagnostic, metrics, and a mechanism adjudication.} We define
+  \PRE, the Extrapolation Gap \EG, a monotonicity score, and two competing
+  failure-form indices, the Prior-Reversion Index \PRI\ and the Case-Based
+  Index \CBI, each computable label-free with bootstrap confidence intervals,
+  together with a model-selection criterion that lets the data decide between
+  global default collapse and case-based nearest-value mimicry, a question the
+  recent literature raises but does not test on frozen generators
+  (Section~\ref{sec:metrics}).
+  \item \textbf{A controllable suite.}
+  \textsc{PhysWeep} ships deterministic, parameterized systems with procedural
+  conditioning and ground-truth $\theta$ (Section~\ref{sec:suite}). Because the
+  estimator is fixed and label-free, the measurement is reproducible and
+  auditable by construction, unlike evolving VLM-judge scores
+  \citep{phyground2026}, and the suite is reusable to test any future model,
+  including ones that claim physics controllability or improved extrapolation.
+\end{enumerate}
+
+% ===================== TEASER (Figure 1) =====================
+% MIGRATION NOTE: this tikzpicture's absolute coordinates/text width (11cm)
+% were sized for the old single-column ICLR-style page (~17.5cm text width);
+% WACV's single column is only ~8.25cm wide. Wrapped in \resizebox (same
+% pattern already used for every table in this paper) rather than converting
+% to figure*, to preserve the original in-place \captionof placement instead
+% of floating it -- rescale the 0.68 factor below (or swap in figure* if a
+% two-column-spanning teaser is preferred) once this is actually compiled
+% and the real overflow/underflow amount is visible.
+\begin{center}
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[
+  font=\footnotesize,
+  >={Stealth[length=2.3mm]},
+  card/.style={draw=gray!55,fill=gray!2,rounded corners=2pt,minimum width=17mm,minimum height=13mm,inner sep=0pt},
+  net/.style={draw=black!80,fill=black!85,text=white,rounded corners=3pt,align=center,inner sep=3pt,minimum height=13mm,minimum width=16mm},
+  good/.style={draw=green!55!black,fill=green!9,rounded corners=3pt,align=center,inner sep=4pt,minimum height=13mm,minimum width=24mm},
+  bad/.style={draw=red!70!black,fill=red!7,rounded corners=3pt,align=center,inner sep=4pt,minimum height=13mm,minimum width=24mm},
+  capt/.style={align=center,font=\scriptsize},
+]
+
+% ---- helper: a video-frame card showing a ball on a parabolic arc ----
+% #1 node name, #2 curvature k (bigger = steeper/out-of-range)
+\newcommand{\arccard}[2]{%
+  \begin{scope}[shift={(#1.center)}]
+    \draw[gray!35,line width=0.3mm] (-0.72,-0.5) -- (0.72,-0.5); % ground
+    \draw[blue!35,densely dotted,line width=0.3mm]
+      plot[smooth,domain=-0.66:0.66,samples=20] (\x,{0.42-#2*\x*\x-0.05});
+    \foreach \x/\s in {-0.62/0.4,-0.34/0.5,0/0.6,0.34/0.7}
+      {\fill[blue!35] (\x,{0.42-#2*\x*\x-0.05}) circle (\s mm);}
+    \fill[blue!75!black] (0.62,{0.42-#2*0.62*0.62-0.05}) circle (0.9mm); % current ball
+  \end{scope}}
+% helper: small white snowflake (frozen marker) at a coordinate
+\newcommand{\snow}[1]{\foreach \a in {0,60,120}{%
+  \draw[white,line width=0.22mm] ($#1+(\a:1.3mm)$)--($#1+(\a+180:1.3mm)$);}}
+
+% ====================== PANEL (a): the probe (top band) ======================
+\node[anchor=west,font=\small\bfseries] at (1.2,13.55)
+  {(a) Probe a \emph{frozen} video generator with known physics};
+
+% IN-RANGE row
+\node[card] (fin) at (2.9,12.5) {};
+\arccard{fin}{1.1}
+\node[capt,below=0.4mm of fin] {given frames, $g{=}9.8$\\ \textcolor{green!45!black}{(everyday, in-range)}};
+\node[net,right=10mm of fin] (gin) {Frozen\\I2V};
+\snow{(gin.north west)+(0.32,-0.3)}
+\node[good,right=10mm of gin] (rin) {recovered $\hat g\!\approx\!9.8$\\[1pt]\cmark~\textbf{faithful}};
+\draw[->,thick] (fin) -- (gin);
+\draw[->,thick] (gin) -- node[above=0.3mm,font=\scriptsize]{generate} node[below=0.3mm,font=\scriptsize]{+ track, fit} (rin);
+
+% OUT-OF-RANGE row
+\node[card] (fout) at (2.9,10.0) {};
+\arccard{fout}{2.6}
+\node[capt,below=0.4mm of fout] {given frames, $g{=}25$\\ \textcolor{red!60!black}{(rare, out-of-range)}};
+\node[net,right=10mm of fout] (gout) {Frozen\\I2V};
+\snow{(gout.north west)+(0.32,-0.3)}
+\node[bad,right=10mm of gout] (rout) {recovered $\hat g\!\to\!9.8$\\[1pt]\xmark~\textbf{reverts to prior}};
+\draw[->,thick] (fout) -- (gout);
+\draw[->,thick] (gout) -- node[above=0.3mm,font=\scriptsize]{generate} node[below=0.3mm,font=\scriptsize]{+ track, fit} (rout);
+
+% ---- thesis strip between panels ----
+\node[draw=gray!45,fill=gray!7,rounded corners=3pt,inner sep=4pt,
+      font=\footnotesize,align=center,text width=11cm] at (6.7,7.95)
+  {A plausibility rater (human or VLM) scores \textbf{both} clips as fine; only the
+   measured $\hat g$ separates right physics from wrong.};
+
+% ====================== PANEL (b): the money plot (bottom) ======================
+\node[anchor=west,font=\small\bfseries] at (1.2,7.05)
+  {(b) The measurement plausibility misses};
+
+\begin{scope}[shift={(4.4,0.35)}]
+  \def\xm{6.0}\def\ym{6.0}\def\xe{3.5}\def\tz{2.0}
+  % region shading
+  \fill[green!9] (0,0) rectangle (\xe,\ym);
+  \fill[red!6]   (\xe,0) rectangle (\xm,\ym);
+  % recovery-error wedge (between observed and ideal), filled + hatched
+  \fill[red!16]
+     (\xe,\xe) .. controls (4.3,3.1) and (5.2,2.45) .. (\xm,2.3) -- (\xm,\xm) -- cycle;
+  \fill[pattern=north east lines,pattern color=red!45]
+     (\xe,\xe) .. controls (4.3,3.1) and (5.2,2.45) .. (\xm,2.3) -- (\xm,\xm) -- cycle;
+  % default theta_0 line
+  \draw[densely dotted,red!60!black,line width=0.7pt] (0,\tz) -- (\xm,\tz);
+  \node[font=\scriptsize,red!60!black,anchor=north east] at (\xm,\tz-0.06) {default $\theta_0$ (memorized)};
+  % ideal identity
+  \draw[dashed,gray!65,line width=0.7pt] (0,0) -- (\ym,\ym);
+  \node[font=\scriptsize,gray!40!black,rotate=45,anchor=south] at (2.0,2.0) {ideal $\hat g{=}g$};
+  % plausibility flat-high line
+  \draw[orange!85!black,line width=1pt] (0.12,5.5) -- (\xm,5.5);
+  \node[orange!72!black,font=\scriptsize,anchor=south west] at (0.16,5.57) {plausibility score stays high};
+  % observed faithfulness curve
+  \draw[blue!75!black,line width=1.7pt]
+      (0.3,0.3) -- (\xe,\xe) .. controls (4.3,3.1) and (5.2,2.45) .. (\xm,2.3);
+  \node[blue!72!black,font=\scriptsize,anchor=west] at (0.85,0.62) {observed $\hat g$};
+  % range edge divider
+  \draw[densely dashdotted,gray!55] (\xe,0) -- (\xe,\ym);
+  % axes
+  \draw[->,thick] (0,0) -- (\xm+0.35,0);
+  \draw[->,thick] (0,0) -- (0,\ym+0.35);
+  \node[font=\scriptsize,anchor=north] at (2.1,-0.5) {conditioned $\theta$ (true $g$)};
+  \node[font=\scriptsize,gray!45!black,anchor=north] at (\xe,-0.05) {range edge};
+  \node[font=\scriptsize,rotate=90,anchor=south] at (-0.55,\ym/2) {recovered $\hat g$};
+  % region annotations
+  \node[green!45!black,font=\scriptsize,align=center] at (1.7,4.25) {\textbf{faithful}\\(follows ideal)};
+  \node[red!62!black,font=\scriptsize,anchor=south] at (4.7,4.85) {\textbf{prior reversion}};
+  \node[red!72!black,font=\scriptsize,align=center] at (4.95,3.45) {recovery\\error};
+\end{scope}
+\end{tikzpicture}%
+}
+\captionof{figure}{\textbf{Plausibility is not the same as following the physics
+you asked for.} \textbf{(a)} \textsc{PhysWeep} renders conditioning frames from a
+deterministic simulator with a known control parameter (here gravity $g$), feeds
+them to a \emph{frozen}, off-the-shelf image-to-video generator treated as a
+black box, and recovers the realized parameter $\hat g$ from the \emph{generated}
+pixels by tracking and physics fitting, with no human labels. For an everyday
+value the recovery is faithful; for an out-of-range value the generation falls
+back toward a memorized default $\theta_0$, even though a plausibility rater
+scores both clips as fine. \textbf{(b)} Sweeping $\theta$ exposes this: $\hat g$
+hugs the ideal $\hat g{=}g$ line in-range (green), then bends away out-of-range
+(red), opening the hatched recovery-error region while the plausibility score
+stays high. The Extrapolation Gap, Prior-Reversion Index, and Case-Based Index
+(Section~\ref{sec:metrics}) quantify this region and name the mechanism.
+\emph{Curves illustrate the hypothesis under test; they are not measured results.}}
+\end{center}
+
+% ---------------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+% ---------------------------------------------------------------------------
+
+A large family of benchmarks scores whether generated video looks physical:
+\textsc{VideoPhy} and \textsc{VideoPhy-2} use human and learned raters of
+physical commonsense \citep{bansal2024videophy,bansal2025videophy2};
+\textsc{PhyGenBench} and \textsc{PhyWorldBench} expand the taxonomy of laws and
+prompts \citep{meng2024phygenbench,phyworldbench2025}; \textsc{Physics-IQ}
+covers fluids, optics, solids, magnetism, and thermodynamics on real footage
+\citep{motamed2025physicsiq}; \textsc{Morpheus} uses conservation-law metrics on
+real experiments \citep{zhang2025morpheus}; \textsc{T2VPhysBench} organizes the
+evaluation around first-principles laws \citep{t2vphysbench2025}; and
+\textsc{LikePhys} scores intuitive physics by the likelihood a model assigns to
+valid versus invalid synthetic pairs \citep{likephys2025}. The newest suite,
+\textsc{VBench-2.0}, adds ``Physics'' and ``Controllability'' dimensions but
+scores them with VLM and question-answering proxies \citep{vbench2_2025}. All
+answer ``does it look right'' or ``does it prefer the valid clip,'' not ``does it
+realize a \emph{requested} parameter and extrapolate''; \textsc{PhysWeep} is
+complementary and measures the latter. \citet{phyground2026} separately argue
+that VLM-as-judge benchmarks are difficult to reproduce or audit because the
+judge's weights, versions, and APIs evolve, and that general judges miss subtle
+violations; \textsc{PhysWeep} sidesteps this, since a parameter recovered from
+pixels by a fixed, closed-form estimator is deterministic and re-checkable,
+independent of any evolving model. Recent roadmaps and surveys make the same
+point at the level of the whole field: video models are progressing from
+surface fidelity toward intrinsic faithfulness, controllability, and planning,
+and comprehensive metrics for these properties remain scarce
+\citep{roadmap2025visualworld,evolution2026videogen}; \textsc{PhysWeep}
+contributes one such metric for the faithfulness-of-control axis.
+
+A wave of 2025--2026 methods inject physical structure to make generation more
+controllable or consistent: part-aware editable simulation
+\citep{physchoreo2025}, joint visual--physical latent dynamics
+\citep{phantom2026}, orthogonal-view geometry guidance \citep{physvideo2026},
+ControlNet-based continuous control of friction, restitution, and force with
+claimed beyond-simulation generalization \citep{phyco2026}, and decoupled motion
+forcing under a quality--consistency--controllability trilemma
+\citep{motionforcing2026}; in parallel, inference-time schemes promote physical
+\emph{extrapolation} directly \citep{lapg2026}. These are exactly the systems
+whose \emph{claimed} control or extrapolation \textsc{PhysWeep} can audit, for
+\emph{frozen, black-box} models, where the gradient or training access those
+methods rely on is unavailable (Section~\ref{sec:protocol}). On the mechanism
+side, \citet{kang2025howfar} find that scaling yields in-distribution success
+but OOD failure, with ``case-based'' behavior (mimicking the closest training
+example, prioritizing color $>$ size $>$ velocity $>$ shape), and the
+diffusion-memorization literature links such collapse to overestimation of
+training modes amplified by classifier-free guidance \citep{diffmemorize2025};
+we turn these observations into a testable dichotomy on frozen generators
+(Section~\ref{sec:problem}) and a guidance-scale ablation
+(Section~\ref{sec:protocol}).
+
+Two further lines of work are adjacent but distinct. Recent work recovers
+physical properties from \emph{input} videos using internal features
+\citep{inferring2025dynamic} or probes diffusion-model states for linearly
+decodable plausibility \citep{invisiblehand2026}; these characterize the
+model's \emph{encoder}, whereas \textsc{PhysWeep} measures the
+\emph{generation side}, whether the synthesized continuation obeys the
+conditioned dynamics, read off the pixels by an external tracker with no
+access to weights or activations. VLMs are separately used to plan plausible
+generation \citep{vlipp2025} and to judge implausibility \citep{travl2025},
+and recent analyses question whether VLMs reason about physical
+transformations at all \citep{vlmcannotreason2026}; we use a VLM auto-rater
+only as a \emph{plausibility baseline} to contrast against exact measurement.
+Classic vision-physics benchmarks such as \textsc{Physion} and \textsc{PHYRE}
+\citep{bear2021physion,bakhtin2019phyre} evaluate prediction or planning, not
+the parameter faithfulness of a generative model, and quality metrics such as
+FVD and VBench \citep{unterthiner2018fvd,huang2024vbench} are orthogonal to
+our question.
+
+% ---------------------------------------------------------------------------
+\section{Problem: Plausibility versus Parameter Faithfulness}
+\label{sec:problem}
+% ---------------------------------------------------------------------------
+
+Let a physical system be governed by a known law $f$ with a scalar control
+parameter $\theta \in \Theta \subset \mathbb{R}$ (the framework extends to
+vector $\theta$; we use scalar sweeps for clean identifiability). Given an
+initial condition $s_0$, the true trajectory is
+$\tau_\theta = f(s_0,\theta)$, observed as a short clip of frames.
+
+A generator $G$ is given conditioning frames $c(s_0,\theta)$ rendered from
+$\tau_\theta$ and produces a continuation video $v = G(c(s_0,\theta))$. We
+\emph{do not} assume access to $G$'s weights, training data, or activations:
+$G$ is a black box. An external, model-independent estimator $R$ maps the
+generated pixels to a recovered parameter $\thetah = R(v)$ by tracking the
+relevant object(s) and fitting $f$.
+
+\begin{definition}[Parameter faithfulness]
+$G$ is \emph{$\epsilon$-faithful} on a sweep $S\subseteq\Theta$ if
+$\mathbb{E}_{s_0}\,|R(G(c(s_0,\theta)))-\theta| \le \epsilon$ for all
+$\theta\in S$.
+\end{definition}
+
+Plausibility, by contrast, is a property of $v$ alone: a rater $P(v)\in[0,1]$
+scores whether $v$ looks physical, independent of the conditioned $\theta$. The
+two come apart precisely when $v$ is locally smooth but encodes the wrong
+$\theta$. The empirical core of this paper is to measure how far apart they are
+as $\theta$ leaves the common range.
+
+\paragraph{Two hypotheses for out-of-range failure.}
+The recent literature offers two distinct accounts of what a generator does
+when $\theta$ leaves the common range, and they make different predictions for
+$\thetah$ that our sweep can separate. Let $S_\text{in}$ denote the in-range
+(common) values.
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt,topsep=2pt]
+  \item \textbf{The prior-reversion hypothesis.} $\thetah$ is a convex pull toward a
+  single default $\theta_0$ (for example a typical Earth gravity), independent
+  of where in $S_\text{out}$ the request lies:
+  $\thetah \approx \alpha\theta + (1-\alpha)\theta_0$ with a fixed $\theta_0$.
+  \item \textbf{The case-clamping hypothesis.} $\thetah$ tracks the \emph{nearest
+  in-range value} the model has seen \citep{kang2025howfar}, so as $\theta$ grows
+  past the range edge $\theta_{\text{edge}}$, $\thetah \approx \theta_{\text{edge}}$
+  (it sticks at the boundary of experience rather than collapsing to one center).
+\end{itemize}
+The prior-reversion and case-clamping hypotheses coincide only in the special case $\theta_0=\theta_{\text{edge}}$;
+in general the curve of $\thetah$ versus $\theta$ in $S_\text{out}$ is flat at
+$\theta_0$ under prior reversion and clamped at $\theta_{\text{edge}}$ under case clamping. Naming which
+holds is itself a finding, and Section~\ref{sec:metrics} gives indices and a
+selection rule that let the data decide rather than assuming either.
+
+% ---------------------------------------------------------------------------
+\section{Metrics}
+\label{sec:metrics}
+% ---------------------------------------------------------------------------
+
+Fix a system with sweep grid $\{\theta_i\}_{i=1}^{n}$, partitioned into an
+in-range set $S_\text{in}$ (values common in natural video) and an
+out-of-range set $S_\text{out}$ (values rare or absent, for example sub-lunar
+or super-Jovian gravity). For each $\theta_i$ we draw $m$ initial conditions
+and generations and obtain recovered values $\{\thetah_{ij}\}_{j=1}^{m}$.
+
+\paragraph{Parameter Recovery Error (\PRE).}
+The normalized recovery error on a set $S$:
+\begin{equation}
+\PRE(S) \;=\; \frac{1}{|S|}\sum_{\theta_i\in S}
+   \frac{1}{m}\sum_{j=1}^{m}
+   \frac{\big|\thetah_{ij}-\theta_i\big|}{|\theta_i|+\delta},
+\end{equation}
+with small $\delta>0$ for numerical stability. Lower is better; $\PRE=0$ is
+perfect faithfulness.
+
+\paragraph{Faithfulness slope and monotonicity.}
+The least-squares slope $\beta$ of $\thetah$ on $\theta$ over $S_\text{in}$.
+A faithful model has $\beta\approx 1$; a model ignoring the conditioning has
+$\beta\approx 0$. Because the response may be nonlinear, we also report
+Spearman's $\rho$ between $\theta$ and $\thetah$ over the full sweep, which
+captures whether the model preserves the \emph{ordering} of requested values
+even when the scale is off.
+
+\paragraph{Extrapolation Gap (\EG).}
+\begin{equation}
+\EG \;=\; \PRE(S_\text{out}) - \PRE(S_\text{in}).
+\end{equation}
+$\EG\approx 0$ indicates the model extrapolates as well as it interpolates;
+$\EG\gg 0$ indicates extrapolation failure localized outside the common range.
+
+\paragraph{Two failure-form indices and a selection rule.}
+To adjudicate between the prior-reversion and case-clamping hypotheses
+(Section~\ref{sec:problem}) we fit both models to the
+out-of-range data and report:
+\begin{align}
+\text{prior reversion:}\quad & \thetah = \alpha\,\theta + (1-\alpha)\,\theta_0 + \varepsilon,
+   & \PRI &= 1-\hat\alpha, \label{eq:pri}\\
+\text{case clamping:}\quad & \thetah = \min(\theta,\theta_{\text{edge}}) + \varepsilon,
+   & \CBI &= 1 - \frac{\mathrm{RSS}_{\text{clamp}}}{\mathrm{RSS}_{\text{null}}}. \nonumber
+\end{align}
+$\PRI=0$ means no reversion (the request is followed); $\PRI=1$ means the
+output ignores the request and returns the default $\theta_0$. $\CBI$ is the
+variance of out-of-range $\thetah$ explained by clamping at the range edge.
+We then select between the two hypotheses by held-out fit (leave-one-$\theta$-out $R^2$)
+and by the Akaike criterion, reporting which mechanism the data favor per model
+and per system, with the possibility that neither fits (a third, model-specific
+behavior) reported as such. The default $\theta_0$ and the edge
+$\theta_{\text{edge}}$ are reported, not assumed, and $\theta_0$ is additionally
+compared to the physically typical value (for gravity, Earth's
+$9.81\,\text{m/s}^2$).
+
+\paragraph{Stochasticity.}
+Generators are sampled with multiple seeds per condition, yielding a
+\emph{distribution} of $\thetah$. We separate two error sources: the bias
+$\mathbb{E}[\thetah]-\theta$ (what \PRE\ and the indices above capture) and the
+within-condition dispersion $\mathrm{std}(\thetah)$, reported on its own so that
+a model that is unbiased-but-noisy is not confused with one that is
+biased-but-consistent.
+
+\paragraph{Units and scale.}
+We render conditioning ourselves, so the pixel-to-length and frame-to-time
+scales are fixed and self-consistent within each clip. To remove any residual
+ambiguity from a generator rescaling the scene, all metrics use the
+\emph{ratio} $\thetah/\theta$ (equivalently, dimensionless parameters), which is
+invariant to a common spatial or temporal rescaling of a clip; an explicit
+scale-invariance check is an ablation (Section~\ref{sec:protocol}).
+
+\paragraph{Plausibility-measurement gap.}
+For a plausibility rater $P$ (human subset, a VLM auto-rater, and the
+\textsc{VBench-2.0} physics/controllability score \citep{vbench2_2025} where
+applicable), report mean $P(v)$ alongside \PRE\ on $S_\text{out}$. The headline
+quantity is the pair $\big(P(S_\text{out}),\,\PRE(S_\text{out})\big)$: the
+hypothesis predicts high $P$ (looks fine) with high \PRE\ (wrong parameter).
+
+\paragraph{Uncertainty.}
+All metrics are reported with $95\%$ bootstrap confidence intervals over
+$(\theta_i,\text{seed})$ pairs, and the in-range-versus-out-of-range \PRE\
+difference is tested with a paired bootstrap (Section~\ref{sec:protocol}).
+
+\subsection{Identifiability of the recovered parameter}
+
+The metrics are only meaningful if $\thetah=R(v)$ is well defined. We state the
+condition explicitly rather than burying it.
+
+\begin{assumption}[Trackability and parametric identifiability]
+\label{ass:ident}
+On the system's clip horizon, (i) the tracked observable (object center,
+angle, or contact times) is recoverable from the generated frames up to bounded
+noise, and (ii) the map $\theta \mapsto$ (the fitted statistic of $f$) is
+injective on $\Theta$.
+\end{assumption}
+
+\begin{proposition}[Consistency of $R$ under Assumption~\ref{ass:ident}]
+\label{prop:consistency}
+If the tracking noise is zero-mean with variance $\sigma^2\to 0$ as frame
+resolution and count grow, and $f$ is parameterized so that the fitting
+statistic is a continuous injective function of $\theta$, then the
+least-squares estimator $\thetah$ converges in probability to the parameter
+realized in the trajectory as $\sigma^2\to 0$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Under injectivity the inverse of the fitting statistic is well defined and, by
+continuity, continuous on the compact $\Theta$. The least-squares fit of $f$ is
+a continuous functional of the tracked observable; composing with the
+continuous inverse and applying the continuous mapping theorem to the
+$\sigma^2\to 0$ limit gives convergence in probability. Full statement and the
+regularity conditions on $f$ for each system are in the supplementary material.
+\end{proof}
+
+\begin{remark}[Scope, stated honestly]
+Proposition~\ref{prop:consistency} concerns the \emph{estimator} $R$, not the
+\emph{generator} $G$. It guarantees that if $G$ produces a trajectory with a
+well-defined realized parameter, we can recover it; it makes no claim about
+whether $G$'s output is itself governed by a single clean $\theta$. When the
+generated motion is not well described by $f$ (for example, the object morphs
+or teleports), the fit residual is large; we therefore report a
+\textbf{fit-quality gate} ($R^2$ of the physics fit) and treat low-fit
+generations as a separate ``non-physical'' category rather than forcing a
+$\thetah$. This gate is itself a label-free signal and is reported per system.
+\end{remark}
+
+\textbf{This is the only formal claim in the paper, and it is deliberately
+about measurement, not about the generator.} Any stronger statement (for
+example a guaranteed lower bound on \PRI\ for diffusion models) is left as an
+open conjecture; we do not prove it and do not rely on it.
+
+% ---------------------------------------------------------------------------
+\section{The \textsc{PhysWeep} Suite}
+\label{sec:suite}
+% ---------------------------------------------------------------------------
+
+Each system is a deterministic renderer producing (a) conditioning frames, (b)
+ground-truth $\theta$, and (c) a single, interpretable sweep axis. Scenes are
+intentionally simple and high-contrast so that the external tracker is robust
+and Assumption~\ref{ass:ident} is easy to satisfy; this keeps the measurement,
+not the perception, in focus.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{System} & \textbf{Control $\theta$} & \textbf{Recovered statistic} & \textbf{In / out-of-range example} \\
+\midrule
+Projectile        & gravity $g$               & parabola curvature $\to g$         & in: $5\text{--}15$; out: $1$ (Moon), $25$ (Jupiter-like) \\
+Damped pendulum   & angular freq.\ $\omega$   & zero-crossing period $\to\omega$   & in: typical; out: very short / long period \\
+                  & damping $\zeta$           & envelope decay $\to\zeta$          & in: light; out: heavy / near-critical \\
+Bouncing ball     & restitution $e$           & bounce-height ratio $\to e$        & in: $0.6\text{--}0.9$; out: $0.2$, $0.99$ \\
+Spring--mass      & stiffness $k$             & oscillation period $\to k$         & in: typical; out: very stiff / very soft \\
+Inclined slide    & friction $\mu$            & acceleration along slope $\to\mu$  & in: moderate; out: near-frictionless / high \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{The \textsc{PhysWeep} systems. Each has one clean sweep axis
+with a closed-form map from a tracked statistic to the parameter, so recovery
+is exact and label-free. In/out-of-range splits are defined by what is common
+in natural video; exact grids are in the supplementary material.}
+\end{center}
+
+% ---------------------------------------------------------------------------
+\section{Measurement Pipeline}
+\label{sec:pipeline}
+% ---------------------------------------------------------------------------
+
+\begin{algorithm}[H]
+\caption{\textsc{PhysWeep} measurement for one system and one model}
+\label{alg:pipeline}
+\begin{algorithmic}[1]
+\Require frozen generator $G$; sweep grid $\{\theta_i\}$; seeds $\{z_j\}$;
+         law $f$; tracker $T$; fit-quality threshold $\rho$
+\For{each $\theta_i$ and seed $z_j$}
+  \State render conditioning frames $c_{ij}\gets \textsc{Render}(s_0(z_j),\theta_i)$
+  \State generate continuation $v_{ij}\gets G(c_{ij})$
+  \State track observable $o_{ij}\gets T(v_{ij})$
+  \State fit law: $(\thetah_{ij}, R^2_{ij})\gets \textsc{Fit}(f, o_{ij})$
+  \If{$R^2_{ij}<\rho$} \State mark $v_{ij}$ \textbf{non-physical} (excluded from \PRE) \EndIf
+  \State score plausibility $p_{ij}\gets P(v_{ij})$ \Comment{human subset + VLM rater}
+\EndFor
+\State compute \PRE, slope $\beta$, \EG, \PRI\ (Eq.~\ref{eq:pri}), with bootstrap CIs
+\State \Return metrics, fit-quality rate, plausibility-measurement pairs
+\end{algorithmic}
+\end{algorithm}
+
+Rendering uses a small deterministic 2D engine (no external assets). Tracking
+uses an off-the-shelf point/blob tracker (for example CoTracker
+\citep{karaev2023cotracker} or simple color-blob centroiding on the synthetic
+scenes, which is robust here). Fitting is closed-form per system
+(least-squares parabola, period from zero crossings, envelope decay, bounce
+ratios). The pipeline is inference-only and runs on a single 24\,GB GPU.
+
+\paragraph{How $\theta$ is conditioned.}
+Image-to-video models accept different inputs, so we specify two conditioning
+channels and treat the choice as a controlled axis (ablated in
+Section~\ref{sec:protocol}). \textbf{Frame-implied conditioning:} for models that accept
+multiple initial frames or a first-and-last frame, we supply rendered frames
+whose motion already implies $\theta$ (the parameter is identifiable from the
+conditioning itself), and ask the model to continue; faithfulness here means the
+continuation keeps the same $\theta$. \textbf{Text-specified conditioning:} for models
+that accept one image plus text, we supply a single first frame plus a prompt
+that names the regime (for example ``on the Moon'' versus ``on Jupiter'') and
+recover $\theta$ from the continuation. Frame-implied conditioning isolates dynamics from semantics; text-specified conditioning
+tests whether a named control actually moves the realized parameter. Reporting
+both prevents attributing a failure of one channel to the model in general.
+
+% ---------------------------------------------------------------------------
+\section{Experimental Protocol}
+\label{sec:protocol}
+% ---------------------------------------------------------------------------
+
+We test frozen, off-the-shelf image-to-video generators that run on a single
+24\,GB consumer GPU: LTX-Video \citep{hacohen2024ltxvideo}, CogVideoX-5B-I2V
+\citep{yang2024cogvideox}, and Stable Video Diffusion / DynamiCrafter
+\citep{blattmann2023svd,xing2024dynamicrafter}, optionally a quantized Wan
+\citep{wan2025} if it fits (current versions, licenses, and VRAM verified and
+pinned at run time). Plausibility is contrasted against, not used as, the main
+metric: a VLM auto-rater prompted for ``is this motion physically plausible''
+(exact model and prompt reported), a small human plausibility subset for
+calibration, and, where applicable, the \textsc{VBench-2.0} physics/
+controllability score \citep{vbench2_2025}. Statistically, we use $m\ge5$
+seeds per $(\theta_i,\text{model})$, report mean and $95\%$ bootstrap CIs, test
+$\PRE(S_\text{out})>\PRE(S_\text{in})$ with a paired bootstrap over matched
+initial conditions and report effect sizes rather than only $p$-values, and for
+prior reversion versus case clamping report leave-one-$\theta$-out $R^2$ and
+$\Delta$AIC.
+
+% ---------------------------------------------------------------------------
+\section{Results}
+\label{sec:results}
+% ---------------------------------------------------------------------------
+
+We report real measurements from three frozen, off-the-shelf I2V generators
+(LTX-Video, CogVideoX-5B-I2V, and DynamiCrafter\textsubscript{512}) run
+through the full pipeline of Section~\ref{sec:pipeline}. Two deviations from
+the protocol as specified are stated here and carried through the rest of
+this section rather than left implicit. \emph{First}, every result below uses
+\textbf{text-specified conditioning}, not frame-implied conditioning:
+LTXConditionPipeline, the diffusers component that would give first-and-last
+frame conditioning for LTX-Video, has a bug in the diffusers release used
+here (it never computes the scheduler's required shift parameter) and, once
+patched, still produces incoherent output regardless of resolution or scene
+content, confirmed against the working single-image pipeline on an identical
+input; CogVideoX's and DynamiCrafter's official I2V pipelines likewise accept
+only a single conditioning image. Frame-implied conditioning was therefore not tested end-to-end for
+any model, and the findings below are scoped to text-specified conditioning.
+\emph{Second}, we substitute \textsc{Stable Video Diffusion} with
+\textsc{DynamiCrafter}\textsubscript{512} as the third model: SVD's pipeline
+accepts no text prompt at all, so it cannot receive $\theta$ under text-specified conditioning either
+and was excluded before any run.
+
+\paragraph{The negative control (measurement validity).}
+Ground-truth simulator continuations, not model output, through the identical
+tracker-and-fitter pipeline: pooled across all six sweep axes and both splits
+(203 measurements), $\PRE(S_\text{in}) = 0.0031$ ($95\%$ CI $[0.0019,
+0.0045]$), faithfulness slope $\beta = 1.0001$ ($95\%$ CI $[1.00008,
+1.00023]$), mean fit $R^2 = 0.986$. The measurement is valid; we proceed to
+real generators.
+
+\paragraph{The pilot and faithfulness-curve experiments: does conditioning move the output at all?}
+\autoref{tab:e0e1} gives the projectile-system faithfulness slope for all
+three models. For every model the $95\%$ CI on $\beta$ includes zero: none of
+the three detectably varies its generated dynamics with the requested
+gravity, under text-specified conditioning. \textbf{The central premise of the faithful-in-range
+hypothesis does not hold for any model tested}, so the framing that follows is
+the runbook's pre-committed outcome (2), ``open generators do not honor
+conditioned dynamics,'' not outcome (1).
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model} & \textbf{slope $\beta$ (in), 95\% CI} & \textbf{$\PRE(S_\text{in})$} & \textbf{fit-quality dropped} & \textbf{Spearman $\rho$} \\
+\midrule
+LTX-Video            & $-0.015$ [$-0.090$, $0.039$] & $0.853$ & $78.2\%$ & $-0.268$ \\
+CogVideoX-5B-I2V     & $0.070$ [$-0.168$, $0.305$]  & $2.016$ & $20.0\%$ & $0.046$ \\
+DynamiCrafter\textsubscript{512} & $-0.025$ [$-0.466$, $0.480$] & $0.781$ & $40.0\%$ & --- \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{Projectile faithfulness slope $\beta$ under text-specified conditioning
+(pilot and faithfulness-curve experiments). ``Fit-quality dropped'' is the fraction of generated clips whose
+tracked trajectory fails the $R^2\!\ge\!0.8$ gate (Algorithm~\ref{alg:pipeline})
+and is excluded from \PRE; a high rate is itself diagnostic (Section~4.4).
+LTX-Video's $\rho=-0.268$ is noise, not a real inverse relationship, given its
+wide, zero-crossing slope CI. DynamiCrafter's $\rho$ is omitted (too few
+gated out-of-range points for a stable full-grid estimate).}
+\label{tab:e0e1}
+\end{center}
+
+\paragraph{Two distinct failure mechanisms, not one.}
+The three models reach the same null slope through visibly different
+behavior, confirmed by direct frame inspection, not just the fitted numbers.
+\textbf{LTX-Video} mostly fails to generate any real fall: the conditioned
+disk stays close to its initial position for the length of the clip
+regardless of the requested $g$ or how the surrounding prompt describes it
+(tested up to ``extremely strong gravity, like Jupiter, violent rapid
+acceleration downward''), which is why $80\%$ of its clips fail the
+fit-quality gate. \textbf{CogVideoX and DynamiCrafter} instead generate
+confident, frequently well-tracked motion (individual clip $R^2$ often
+$>0.9$) that is simply the wrong amount: the recovered $\hat g$ clusters
+tightly by the generation's random seed and is close to independent of the
+requested $g$. On CogVideoX, one seed gives $\hat g \approx -11.4 \pm 0.03$
+across every in-range $g\in\{5,7,9.8,12,15\}$ tested; another gives
+$\hat g\approx -7.1\pm0.2$. This is not measurement noise: fit quality on
+these clips is high, and the same clustering, keyed to the same handful of
+seeds, reproduces with out-of-range $g$ too (below).
+
+\paragraph{The generality experiment: results across systems.}
+The pattern is not specific to the projectile system. \autoref{tab:e4}
+summarizes all five remaining sweep axes (pendulum angular frequency and
+damping, bouncing-ball restitution, spring stiffness, incline friction) on
+each model. LTX-Video's near-total-inertia failure generalizes: four of five
+additional systems have a fit-quality-dropped rate of $94$--$100\%$. The
+seed-determined, parameter-independent convergence generalizes on the other
+two models: CogVideoX reproduces it cleanly in spring-mass and inclined-slide,
+and reaches a distinct but equally striking form in bouncing-ball, where
+\emph{every} seed converges to a recovered restitution in $[0.97,1.00]$
+(``always almost perfectly elastic'') regardless of the requested value.
+DynamiCrafter independently reproduces the identical bouncing-ball signature
+(one seed: $\hat e = 0.99$--$1.00$ across $e_\text{true}\in\{0.6,0.7,0.8,0.9\}$,
+individual-clip $R^2=1.000$), two separate architectures landing on the
+same specific wrong-but-confident behavior on the same synthetic system. Three
+of DynamiCrafter's five remaining systems (pendulum angular frequency,
+pendulum damping, spring-mass) are additionally bounded by a hard,
+non-adjustable model limitation: DynamiCrafter emits a fixed 16 frames per
+clip, too few for even one oscillation period at these systems' lower grid
+values regardless of any frame-rate setting, so those three systems cannot
+be tested on this model at
+all (confirmed empirically at $96.7$--$100\%$ dropped, not merely predicted).
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcc@{}}
+\toprule
+\textbf{Model} & \textbf{System} & \textbf{fit-quality dropped} & \textbf{slope $\beta$ (in), 95\% CI} \\
+\midrule
+LTX-Video & pendulum $\omega$ / $\zeta$ & $100\%$ / $100\%$ & n/a \\
+          & bouncing ball / spring-mass & $92.3\%$ / $100\%$ & n/a \\
+          & inclined slide & $68.6\%$ & $-0.464$ [$-1.751$, $1.097$] \\
+\midrule
+CogVideoX & pendulum $\omega$ / $\zeta$ & $100\%$ / $100\%$ & n/a \\
+          & bouncing ball (all seeds $\to\hat e\!\approx\!1$) & $91.6\%$ & n/a \\
+          & spring-mass / inclined slide & $100\%$ / $100\%$ & n/a \\
+\midrule
+DynamiCrafter & pendulum $\omega$ / $\zeta$\textsuperscript{a} & $100\%$ / $96.7\%$ & n/a \\
+          & bouncing ball (seed-4 $\to\hat e\!\approx\!1$) & $78.0\%$ & n/a \\
+          & spring-mass\textsuperscript{a} & $100\%$ & n/a \\
+          & inclined slide & $28.0\%$ & $0.521$ [$-6.185$, $6.850$] \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{Generality across systems (generality experiment), all under text-specified conditioning. ``n/a'' means
+too few clips survived the fit-quality gate for a slope estimate; this is
+itself the finding for those rows (Section~4.4). \textsuperscript{a}Bounded
+by DynamiCrafter's fixed 16-frame output, not just conditioning failure;
+see text.}
+\label{tab:e4}
+\end{center}
+
+\paragraph{A third mechanism variant: a split, not a single, default.}
+DynamiCrafter's inclined-slide result contains a pattern the two-hypothesis
+framework of Section~\ref{sec:problem} does not name. One seed behaves like
+the single-default cases above: $\hat\mu\approx1.80$ across the whole grid,
+in-range and out-of-range together. A second seed instead shows \emph{two}
+distinct, individually tight clusters: $\hat\mu\approx4.7$
+($\mathrm{std}=0.04$) for every in-range request, and a different
+$\hat\mu\approx7.6$ ($\mathrm{std}=0.13$) for every out-of-range request,
+rather than one value spanning both. This is neither ``ignores $\theta$
+entirely'' (the value does shift) nor a single global default (there are two
+regimes, not one): it looks like the model has learned a coarse in-range
+versus out-of-range distinction without learning anything continuous inside
+either regime. We name this the \emph{split-default} pattern and flag it as
+an open case for the prior-reversion/case-clamping framework, not yet folded into $\PRI$ or $\CBI$.
+
+\paragraph{The extrapolation and mechanism-adjudication experiments, all systems and
+models.}
+We extend the single CogVideoX/projectile adjudication to every model-system
+pair with at least four gated out-of-range points (\texttt{select\_mechanism}'s
+own leave-one-out minimum), reusing the generality experiment's out-of-range grid together with a
+targeted follow-up seed batch on the two pairs closest to that threshold
+(see the supplementary material for the exact seed counts). This yields
+\textbf{8 of 18} model-system pairs formally adjudicated; \autoref{tab:e2}
+reports all eight. Every one is labeled \emph{neither} by
+\texttt{select\_mechanism}'s strict leave-one-out gate, for the same reason
+already identified on CogVideoX/projectile: AIC prefers the prior-reversion
+shape over the case-clamping shape by a wide margin in every case (all
+$\Delta\mathrm{AIC}<0$, most strongly for CogVideoX/bouncing-ball,
+$\Delta\mathrm{AIC}=-100.4$, the most decisive result in the whole study),
+and PRI is high (median $0.99$ across the eight pairs), but the
+leave-one-$\theta$-out $R^2$ is negative throughout because prior reversion as specified
+assumes \emph{one} global $\theta_0$ while the actual reversion target is
+seed- or regime-conditional (Section~4.3). The paired-bootstrap
+extrapolation test is only computable for six of the eight pairs (the two
+bouncing-ball rows lack a stable in-range \PRE\ since only one in-range clip
+per model clears the fit-quality gate there, see \autoref{tab:e2}'s note),
+and among those six it is significant in \emph{both directions}: CogVideoX/
+projectile shows the predicted worse-out-of-range pattern
+($\PRE(S_\text{out})-\PRE(S_\text{in})=1.068$, $95\%$ CI $[0.267,1.891]$,
+one-sided $p=0.0055$), but DynamiCrafter/inclined-slide shows the
+\emph{opposite}: a significantly \emph{lower} out-of-range \PRE\
+($-0.939$, $95\%$ CI $[-1.571,-0.354]$). We do not paper over this: it is
+not evidence of genuine out-of-range faithfulness on that pair, but a
+consequence of the split-default pattern (Section~4.5), where the
+out-of-range regime's fixed cluster happens to sit numerically closer to
+the true out-of-range values than the in-range cluster sits to the true
+in-range values, for reasons unrelated to the model tracking $\theta$. The
+remaining four pairs' CIs include zero. The remaining
+ten pairs stay unadjudicated: three (DynamiCrafter$\times\{\omega,\zeta,
+k\}$) are the model's fixed 16-frame ceiling (Section~4.4, architecturally
+permanent); the other seven (three on LTX-Video and four on CogVideoX, out
+of each model's five non-projectile, non-adjudicated systems) show a demonstrated
+near-zero fit-quality-gated yield that a substantial additional seed budget
+did not move (e.g. LTX-Video/pendulum-$\omega$ stayed at $99.1\%$ dropped
+across 110 out-of-range attempts), which we read as a property of those
+generators on those systems rather than a sample-size shortfall.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+\textbf{Model} & \textbf{System} & \textbf{$n_\text{out}$} & \textbf{EG} & \textbf{PRI} & \textbf{$\Delta$AIC} & \textbf{PRE(out)$-$PRE(in)} \\
+\midrule
+LTX-Video & projectile & 7 & $0.985$ & $1.000$ & $-4.0$ & $0.98$ [$-0.33,2.73$] \\
+LTX-Video & bouncing ball & 4 & --- & $1.000$ & $-9.8$ & --- \\
+LTX-Video & inclined slide & 4 & $0.264$ & $0.514$ & $-11.3$ & $0.26$ [$-0.51,1.00$] \\
+CogVideoX & projectile & 12 & $1.068$ & $0.974$ & $-47.9$ & $1.07$ [$0.27,1.89$]$^{*}$ \\
+CogVideoX & bouncing ball & 9 & --- & $0.999$ & $-100.4$ & --- \\
+DynamiCrafter & projectile & 17 & $0.050$ & $0.988$ & $-22.2$ & $0.05$ [$-0.22,0.34$] \\
+DynamiCrafter & bouncing ball & 6 & $-0.761$ & $0.223$ & $-0.6$ & $-0.76$ [$-2.74,0.34$] \\
+DynamiCrafter & inclined slide & 20 & $-0.939$ & $1.000$ & $-16.0$ & $-0.94$ [$-1.57,-0.35$]$^{*}$ \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{Extrapolation and mechanism adjudication: every model-system pair with $\ge4$ gated
+out-of-range points, all selected as \emph{neither} prior reversion nor case clamping by
+\texttt{select\_mechanism}'s strict test (see text for why). EG and the
+paired-bootstrap PRE difference are omitted (---) for the two bouncing-ball
+rows because $\theta$ enters \PRE's denominator and bouncing-ball's
+in-range grid does not itself clear the fit-quality gate at a stable point
+for this pair, making the in-range PRE ill-conditioned; PRI/$\Delta$AIC are
+computed on the out-of-range data alone and are unaffected.
+$^{*}$The only two paired-bootstrap results whose $95\%$ CI excludes zero,
+in \emph{opposite} directions ($p=0.0055$ and $p=1.0000$ one-sided
+respectively; see text for why the second is not evidence of genuine
+out-of-range faithfulness).}
+\label{tab:e2}
+\end{center}
+
+\paragraph{The plausibility-measurement-gap experiment.}
+We ran the full protocol: Qwen2.5-VL-7B-Instruct \citep{qwen25vl} rated
+every clip from the generality experiment's saved videos, 1--5, on the same in-range/out-of-range
+grid, all three models $\times$ all six systems (18 pairs, 630 rated clips).
+The hypothesized pairing was high $P$, high \PRE\ on $S_\text{out}$
+(Section~\ref{sec:metrics}). What we actually found does not support that
+pairing, but for a reason that changes what the experiment demonstrates.
+Pooled mean $P$ is low for every model (LTX-Video $2.20$, DynamiCrafter
+$1.76$, CogVideoX $1.26$, all on a $1$--$5$ scale), which is consistent with
+the hypothesis on its face. But the rater never once assigned a $4$ across
+all $630$ clips, and CogVideoX's scores are bimodal at the scale's two
+extremes ($1$ or $5$, literally never $2$, $3$, or $4$), which is not the
+behavior of a rater engaging with each clip's motion. We therefore checked
+the rating against the thing it is supposed to track: the correlation
+between tracker fit quality $R^2$ (itself a direct measure of whether the
+clip contains coherent, trackable physical motion at all) and $P$ is
+$0.075$ for CogVideoX, $0.019$ for LTX-Video, and $-0.164$ for
+DynamiCrafter, i.e. statistically indistinguishable from zero, and slightly
+negative where it is not. A hand inspection of individual clips confirms
+this directly: a CogVideoX clip whose tracked trajectory collapses into
+pure texture noise by the halfway point (fit $R^2=0.48$) was scored $5/5$,
+while an LTX-Video clip with a clean, fully-tracked fall
+across all 24 frames (fit $R^2=0.99$) was scored $1/5$. We read this as a
+genuine finding about the measurement, not a pipeline defect: we ruled out
+video-loading truncation (the frame-sampling parameter passed to the
+rater's video preprocessor is a no-op at this project's clip lengths, verified
+against the library's own resampling formula), response-parsing failure
+(zero unparseable responses across all 630 ratings), and file-level
+corruption (byte-identical container/codec metadata across low- and
+high-scoring clips) before concluding that Qwen2.5-VL-7B, at least under
+this prompt, does not track physical coherence on this benchmark's stimulus
+distribution: a minimalist single-disk synthetic scene appears to elicit
+a coarse synthetic-versus-real stylistic judgment rather than a physics
+judgment, in both directions. This is itself a legitimate result of the plausibility-measurement-gap experiment: the
+protocol's own premise is that plausibility and parameter faithfulness are
+distinct axes, and an automated plausibility rater that fails to track even
+gross physical coherence is direct evidence for exactly that gap, at the
+level of the measurement rather than the generator. We report it as such
+rather than as evidence that the generated motion looks implausible, which
+the data do not support (Section~\ref{sec:limitations}).
+
+\paragraph{The robustness and ablation experiments.}
+We ran the full ablation set on the projectile system across all three
+models where each sub-ablation applies (some are architecturally no-ops
+for a given model, disclosed below rather than silently omitted).
+\textbf{(a) Tracker swap.} We reran CoTracker3 \citep{karaev2023cotracker}
+on every already-generated clip and re-fit the identical closed-form
+recipe on its trajectory instead of blob-centroiding's. On rows where
+both trackers independently clear the fit-quality gate, agreement is
+strong for LTX-Video on projectile ($r=0.984$) and inclined-slide
+($r=0.997$), directly confirming those two findings are not a
+blob-centroid artifact. For DynamiCrafter, agreement is strong specifically
+on the seed cluster already reported in Section~\ref{sec:results} (seed 3,
+which both trackers place near zero at every $g$ tested, in-range and
+out-of-range alike), but the two trackers disagree in sign on a different
+seed's recovered value (seed 1: blob centroiding recovers $\hat g\approx
++4.2$ to $+4.5$, CoTracker3 recovers $\hat g\approx-0.9$ to $-1.3$, on the
+same clips). We report this precisely rather than as a blanket
+tracker-agreement claim: the seed-clustering phenomenon itself replicates
+under an independent tracker, but at least one specific cluster's numeric
+value is tracker-sensitive, which qualifies how much precision that one
+number carries. \textbf{(b) Scale-invariance, (e) guidance scale, (f)
+prompt phrasing.} Across every swept variant (5 disk-size/frame-rate
+rescalings, 4 classifier-free guidance values, 2 alternative prompt
+templates, plus (d) 2 conditioning resolutions for LTX-Video), the
+in-range faithfulness slope for LTX-Video and DynamiCrafter stays small in
+magnitude and unstable in sign (LTX-Video: $-0.26$ to $+1.38$ across 13
+non-default variants; DynamiCrafter: $-0.25$ to $+0.12$ across 6), with no
+variant recovering a consistently positive faithfulness slope. The null
+conditioning-faithfulness finding is therefore not an artifact of one
+particular rendering scale, guidance scale, or prompt template; it is
+stable across the swept nuisance-parameter space for both models with
+usable gated data. CogVideoX's ablation columns are uninformative rather
+than confirmatory: every variant, including its own default at these
+settings, gates 0 of 40 clips, a floor effect traced to the raw generation
+frame budget rather than to any of the swept parameters (see
+Section~\ref{sec:limitations}). \textbf{(c) Fit-quality-gate sensitivity}
+was already reported against the full extrapolation dataset and is
+unaffected by this ablation pass (Section~\ref{sec:results}, extrapolation and mechanism-adjudication experiments): the
+null in-range-slope conclusion does not flip to significant at any tested
+gate threshold from $0.5$ to $0.95$.
+
+\paragraph{The conditioning-channel ablation.}
+We ran frame-implied conditioning end to end on DynamiCrafter, the one
+model with an official multi-frame checkpoint through the same inference
+code already used for every text-specified-conditioning result (Section~\ref{sec:limitations}),
+scoped to the three systems where DynamiCrafter's text-specified-conditioning data is usable
+(projectile, bouncing-ball, inclined-slide). For projectile, whose true
+last frame is degenerate by construction (Section~\ref{sec:results}), we
+conditioned on the first and \emph{middle} frame instead, after confirming
+the middle frame's height does vary with $g$ on the ground-truth
+trajectory; the other two systems use first and last. Frame-implied conditioning does not recover
+conditioning faithfulness either, and the shape of the failure is if
+anything more decisive than under text-specified conditioning. On projectile, fit quality actually
+\emph{improves} under frame-implied conditioning ($10\%$ dropped vs.\ text-specified conditioning's $30\%$), but every
+gated clip across all five seeds and the full $g$ range from $1.6$ to $20$
+converges to $\hat g\approx 0$ (slope$=0.017$, $95\%$ CI
+$[-0.008,0.047]$): rather than the seed-diverse fixed defaults text-specified conditioning produces
+on this system (Section~\ref{sec:results}), frame-implied conditioning collapses to a single
+near-universal default of essentially no fall, confirmed not to be an
+artifact of a degenerate conditioning image (the ground-truth middle frame
+at $g=20$ is $39$px lower than at $g=5$, a large, real signal the model
+evidently does not use). Inclined-slide shows the same qualitative pattern
+even more starkly: recovered $\hat\mu$ sits in a narrow band around
+$1.7$--$1.8$ across nearly the entire grid, true $\mu$ from $0.01$ to
+$1.00$, with a dropped rate similar to text-specified conditioning's ($23\%$ vs.\ $29\%$).
+Bouncing-ball reproduces text-specified conditioning's already-documented near-elastic convergence
+under frame-implied conditioning as well, at a higher dropped rate ($63\%$ vs.\ $86\%$ for text-specified conditioning,
+i.e.\ better but still the majority of clips fail the fit-quality gate on
+both channels). Frame-implied conditioning does not rescue faithfulness on
+this model; if anything, the one system with a clean enough signal to
+compare (projectile) shows frame-implied conditioning producing a \emph{more} uniform, channel-
+independent wrong default than text-specified conditioning's seed-diverse ones.
+
+\paragraph{The multi-parameter experiment (optional).}
+We swept the damped pendulum's angular frequency $\omega$ and damping
+ratio $\zeta$ jointly ($\omega\in\{3,5,8\}$, $\zeta\in\{0.05,0.2,0.3\}$, 5
+seeds each) on LTX-Video and CogVideoX, to ask whether faithfulness on one
+axis degrades further when the other is pushed out of range. Both models
+return a $100\%$ fit-quality-dropped rate (best clip $R^2=0.14$), matching
+the already-documented near-total dropped rate for the single-axis
+pendulum systems, so the cross-axis-degradation question is not testable
+on this system for either model. DynamiCrafter was excluded for the same
+reason as the single-axis pendulum systems: its fixed 16-frame output
+cannot reach one oscillation period at this grid's frame count.
+
+\paragraph{Reading the outcomes honestly.}
+None of the four outcomes anticipated in the protocol is a clean fit, and we
+report the actual shape of the result rather than forcing one. This is
+closest to outcome (2), \emph{no conditioning effect}: under text-specified conditioning, on the
+in-range grid, all three models' faithfulness slope is statistically
+indistinguishable from zero (\autoref{tab:e0e1}), so ``open generators do not
+honor conditioned dynamics'' is the correct headline for the scope actually
+tested. But the finding is more specific than a flat null. Two of the three
+models do not fail by ignoring the request in an unstructured way; they
+confidently generate physically coherent motion at one of a small number of
+\emph{fixed, wrong} values, selected by the generation seed rather than the
+requested $\theta$, and this specific signature reproduces across two
+independent model families and at least four distinct physics systems
+(projectile, spring-mass, bouncing-ball, inclined-slide). That is structurally
+close to outcome (4), \emph{neither the prior-reversion nor the case-clamping
+hypothesis fits cleanly}, but for an
+identifiable and informative reason: the prior-reversion test assumes a single
+global default, and the data show a \emph{seed-conditional} default instead,
+a distinction the current formalism does not have a parameter for. The
+inclined-slide split-default pattern (Section~4.5) is a further, third
+variant along the same axis. We treat naming this family of mechanisms,
+confident convergence to a small set of seed- or regime-selected fixed
+points, rather than either smooth shrinkage to one default or a clamp at the
+range edge, as the paper's empirical contribution in place of the
+originally hypothesized clean prior-reversion/case-clamping split, and we do not force the
+$\PRI$/$\CBI$ labels where the leave-one-out test says they do not fit.
+
+% ---------------------------------------------------------------------------
+\section{Limitations}
+\label{sec:limitations}
+% ---------------------------------------------------------------------------
+The suite is intentionally synthetic and 2D, which strengthens identifiability
+but limits ecological validity; conclusions are about controllable
+low-dimensional dynamics, not arbitrary natural scenes. The default-prior
+estimate $\theta_0$ is model-behavioral, not a claim about training data we
+cannot observe.
+
+Several further limitations are specific to what was actually run rather than
+what was planned, and we state them plainly. \textbf{Channel.} Every result
+reported above is under text-specified conditioning. Frame-implied conditioning
+(the protocol's primary channel) is not testable end-to-end via any official
+pipeline for LTX-Video (the diffusers component needed for genuine
+multi-frame conditioning is broken in the release used here, beyond a real
+scheduler-parameter bug we found and fixed) or CogVideoX (its official
+image-to-video pipeline accepts only a single conditioning image; the only
+multi-frame variants that exist are unofficial third-party repositories, not
+a bounded integration). DynamiCrafter does ship an official first-and-last-
+frame interpolation checkpoint through the same inference code already
+integrated in this project, and we ran a frame-implied-conditioning experiment against it on the
+three systems where DynamiCrafter's text-specified-conditioning data is usable
+(Section~\ref{sec:results}, conditioning-channel ablation): it does not recover faithfulness either,
+and on projectile specifically collapses to an even more uniform,
+channel-independent wrong default than text-specified conditioning produces. This result is
+DynamiCrafter-only; frame-implied conditioning remains genuinely untested for LTX-Video and
+CogVideoX for the reasons above, and it remains possible that
+frame-implied conditioning would behave differently on either of them.
+\textbf{Coverage.}
+Formal mechanism adjudication (\autoref{tab:e2}) now covers 8 of the 18
+model-system pairs, spanning all three models, not the single
+CogVideoX/projectile pair of an earlier draft. The remaining ten stay
+unadjudicated for two distinct reasons that should not be conflated: three
+(DynamiCrafter on pendulum angular frequency, damping, and spring stiffness)
+are blocked by the model's fixed-frame-count ceiling discussed next, which
+is permanent regardless of seed budget; the other seven (LTX-Video and
+CogVideoX on their remaining non-projectile systems) showed a demonstrated
+near-zero fit-quality-gated yield that persisted after a substantial
+additional seed push targeted specifically at the two closest-to-threshold
+pairs (see the supplementary material), which we read as evidence the low yield
+is a property of those generators on those systems rather than a
+sample-size artifact, though we cannot rule out that a still larger budget
+or a different prompt template would move it. Every adjudicated pair is
+labeled \emph{neither} prior reversion nor case clamping by \texttt{select\_mechanism}'s strict
+test, for the identified reason that the actual reversion target is seed-
+or regime-conditional rather than a single global default; this is
+consistent across all eight pairs, not an artifact of the one pair
+originally checked. \textbf{Model
+ceiling effects.} DynamiCrafter's fixed 16-frame output makes three of six
+systems (pendulum angular frequency, pendulum damping, spring-mass)
+untestable on that model for a reason unrelated to conditioning faithfulness, which we distinguish
+explicitly from the conditioning failures elsewhere (Section~\ref{sec:results})
+but which nonetheless reduces the number of model-system pairs with usable
+data. \textbf{Plausibility contrast (plausibility-measurement-gap experiment).} We ran a single automated VLM rater
+(Qwen2.5-VL-7B-Instruct) and found it does not track physical coherence on
+this benchmark's stimulus distribution (Section~\ref{sec:results}): scores
+never reach $4/5$ for any model, CogVideoX's scores are bimodal at the
+scale's extremes, and correlation with tracker fit quality is
+indistinguishable from zero for every model. We did not test whether a
+different prompt, a larger or different VLM, or human raters would show the
+same failure, so we cannot yet say whether this is a general property of
+automated plausibility rating on minimalist synthetic physics scenes or
+specific to this rater and prompt; a human-rated subset compared against
+the existing VLM scores would resolve this and is the natural next step.
+\textbf{The multi-parameter experiment} was run but proved uninformative
+rather than negative: on the damped pendulum, both LTX-Video and CogVideoX
+return a $100\%$ fit-quality-dropped rate across the full joint grid
+(Section~\ref{sec:results}), matching the near-total dropped rate already
+documented for this system under a single-axis sweep, so the
+cross-axis-degradation question it asks is not testable on this system for
+either model.
+\textbf{CogVideoX's ablation
+coverage (robustness and ablation experiments).} At the shorter raw generation frame budget this project's
+ablation sweep uses for the projectile system, CogVideoX gates 0 of 40
+clips in every variant, including its own default at these settings, versus
+the $20.0\%$ dropped rate reported for the same model-system pair
+elsewhere (Section~\ref{sec:results}) at a longer raw frame budget (49
+frames trimmed to 24, rather than $\sim$25 frames used directly). This is a
+floor effect of generation frame budget, not a new finding about
+conditioning faithfulness, and it means the robustness and ablation
+experiments' scale-invariance, resolution, guidance-scale, and
+prompt-phrasing variants' robustness claim is
+supported by LTX-Video and DynamiCrafter only; CogVideoX's ablation columns
+are uninformative rather than confirmatory. Neither of these bounds the
+core measurement's validity (Section~\ref{sec:results}, negative control), but each
+bounds the scope of what the results license us to claim.
+
+% ---------------------------------------------------------------------------
+\section{Conclusion}
+% ---------------------------------------------------------------------------
+We reframe ``learning physics from video'' for a generator as a falsifiable,
+label-free question of parameter faithfulness and extrapolation, and provide a
+black-box diagnostic, metrics with a stated identifiability condition, a
+controllable suite, and a protocol whose headline test separates plausibility
+from correctness. Applied to three frozen, off-the-shelf I2V generators, the
+diagnostic finds that none detectably honors a text-specified physical
+parameter even within the everyday range, contrary to the field's implicit
+premise of at least local faithfulness. The failure is not simply an absence
+of signal: two of the three models confidently generate physically coherent
+motion that converges to a small number of fixed, wrong values selected by
+the generation seed rather than the request, a specific and reproducible
+mechanism that appears across independent model families and multiple
+physics systems, and that the field's existing two-hypothesis account of
+out-of-range failure does not have a clean category for. The artifact,
+suite, pipeline, and metrics, is reusable on any image-to-video model,
+including future ones that claim physics controllability, and the mechanism
+identified here is a concrete target for follow-up work: whether it reflects
+prior reversion at the level of the sampling seed rather than the model as a
+whole, and whether it persists under frame-implied conditioning, which
+this draft was unable to test end-to-end (Section~\ref{sec:results}).
+
+\paragraph{Reproducibility statement.}
+All systems are procedurally generated from a seeded deterministic engine;
+models are public; trackers and fitting are off-the-shelf or closed-form. The
+analysis code (metrics, bootstrap CIs, synthetic smoke test) and the system
+generators are released. No human-annotated labels are used. We will fill the
+WACV reproducibility checklist at submission per the current author guide.
+
+\paragraph{Ethics statement.}
+The work uses synthetic scenes and public models; no human-subjects data was
+collected (the plausibility contrast, Section~\ref{sec:results}, uses an
+automated VLM rater only, see Limitations). The diagnostic is intended to
+prevent overclaiming about video generators as physical simulators, which
+has safety relevance in robotics and scientific settings.
+
+\paragraph{Use of large language models.}
+We used an LLM (Claude) as a drafting and coding assistant throughout this
+project. WACV's author guidelines ask that any tool important to the
+paper's methodology, including LLMs, be described as part of that
+methodology rather than in a separate mandated section; we disclose it here
+in full for transparency regardless. \emph{Uses we treat as
+requiring disclosure}: an LLM produced the initial draft of the consistency-proof sketch
+(Proposition~\ref{prop:consistency}, restated in full in the supplementary
+material) and the
+initial implementation of every physics-recovery fitter in
+\texttt{physweep\_metrics.py}. Both were independently verified by the
+human authors before use: the proof was checked by hand against the stated
+assumptions (A1)--(A3) (independent verification during preparation
+surfaced one real correction, the $\omega$-versus-$\omega_d$ caveat now
+stated explicitly in the supplementary material, and one latent code-level
+bug in an unused default argument, fixed before submission), and every
+fitter was validated against closed-form ground-truth trajectories with a
+passing smoke test (Section~\ref{sec:results}, negative control) before being used in any
+experiment. The LLM was not used to choose the prior-reversion/case-clamping hypotheses, design the
+sweep grids, or interpret a result beyond drafting prose the authors then
+edited against the actual measured numbers. \emph{Recommended-disclosure
+uses}: an LLM produced first drafts of the related-work and results prose,
+which the authors rewrote and fact-checked against the measured results in
+Section~\ref{sec:results} and the underlying result files, and assisted
+with general code editing and debugging during experiment implementation.
+\textbf{Every reported number in this paper comes from the authors actually
+running the described experiments on the stated frozen models; no result
+was fabricated or generated by an LLM.} The authors take full
+responsibility for all content in this submission, including all
+AI-assisted portions.
+
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+\end{document}

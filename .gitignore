@@ -19,3 +19,11 @@ venv_physweep/
 # not our code) -- see CLAUDE.md Section 6 for exact clone/setup commands.
 external/DynamiCrafter/
 external/dynamicrafter_venv/
+
+# secrets (HF token)
+.env
+
+# private, not for a public repo
+/reviews.txt
+REVISION/submitted/reviews.txt
+End Users Guide - Panther*.pdf

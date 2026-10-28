@@ -1,0 +1,15 @@
+model=hunyuan15_i2v host=crirdchpxd001 NVIDIA H200, 143771 MiB
+[hunyuan15_i2v] run=pilot_b shard 0/1: 12 clips in shard, 0 already done, 12 to do
+[hunyuan15_i2v] loaded in 490s
+[hunyuan15_i2v] 1/12 bouncing_ball θ=0.6 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 142s
+[hunyuan15_i2v] 2/12 bouncing_ball θ=0.6 s=1 z=1000: θ̂=0.9131432022559729 R²=1.000 invalid_shape/None 116s
+[hunyuan15_i2v] 3/12 bouncing_ball θ=0.9 s=0 z=1000: θ̂=1.0528376117563538 R²=0.329 invalid_fit/None 116s
+[hunyuan15_i2v] 4/12 bouncing_ball θ=0.9 s=1 z=1000: θ̂=1.0700585096903774 R²=0.422 invalid_fit/None 116s
+[hunyuan15_i2v] 5/12 inclined_slide θ=0.1 s=0 z=1000: θ̂=1.4010458782366952 R²=1.000 valid/confirmed 116s
+[hunyuan15_i2v] 6/12 inclined_slide θ=0.1 s=1 z=1000: θ̂=1.4123498489189206 R²=1.000 valid/confirmed 116s
+[hunyuan15_i2v] 7/12 inclined_slide θ=0.4 s=0 z=1000: θ̂=1.398605145695669 R²=1.000 valid/confirmed 116s
+[hunyuan15_i2v] 8/12 inclined_slide θ=0.4 s=1 z=1000: θ̂=1.4081049771391174 R²=1.000 valid/confirmed 116s
+[hunyuan15_i2v] 9/12 projectile θ=5 s=0 z=1000: θ̂=5.501094957050087 R²=1.000 valid/confirmed 116s
+[hunyuan15_i2v] 10/12 projectile θ=5 s=1 z=1000: θ̂=8.51432967713638 R²=1.000 invalid_shape/None 116s
+[hunyuan15_i2v] 11/12 projectile θ=15 s=0 z=1000: θ̂=8.98896589140627 R²=0.993 invalid_shape/None 116s
+[hunyuan15_i2v] 12/12 projectile θ=15 s=1 z=1000: θ̂=9.121435218622018 R²=0.995 invalid_shape/None 116s

@@ -1,0 +1,10 @@
+Loading pipeline components...:   0%|          | 0/10 [00:00<?, ?it/s]Loading pipeline components...:  10%|█         | 1/10 [00:04<00:41,  4.61s/it]Loading pipeline components...:  30%|███       | 3/10 [00:11<00:25,  3.58s/it]Loading pipeline components...:  50%|█████     | 5/10 [00:11<00:08,  1.77s/it]Loading pipeline components...:  60%|██████    | 6/10 [00:14<00:09,  2.28s/it]Guiders are currently an experimental feature under active development. The API is subject to breaking changes in future releases.
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][A
+Loading checkpoint shards:  25%|██▌       | 1/4 [01:30<04:31, 90.37s/it][A
+Loading checkpoint shards:  50%|█████     | 2/4 [02:54<02:53, 86.71s/it][A
+Loading checkpoint shards:  75%|███████▌  | 3/4 [04:12<01:22, 82.74s/it][A
+Loading checkpoint shards: 100%|██████████| 4/4 [04:36<00:00, 59.72s/it][ALoading checkpoint shards: 100%|██████████| 4/4 [04:36<00:00, 69.24s/it]
+Loading pipeline components...:  80%|████████  | 8/10 [04:52<02:02, 61.47s/it]Loading pipeline components...:  90%|█████████ | 9/10 [05:51<01:00, 60.98s/it]Loading pipeline components...: 100%|██████████| 10/10 [05:52<00:00, 45.90s/it]Loading pipeline components...: 100%|██████████| 10/10 [05:52<00:00, 35.27s/it]
+Modular Diffusers is currently an experimental feature under active development. The API is subject to breaking changes in future releases.
+Using cache found in /export/hbku-research/rakh90100/physweep_revision/torch_home/hub/facebookresearch_co-tracker_main

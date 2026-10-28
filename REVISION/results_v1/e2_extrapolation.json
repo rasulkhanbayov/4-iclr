@@ -1,0 +1,444 @@
+{
+  "ltx": {
+    "projectile": {
+      "n_gated_in": 5,
+      "n_gated_out": 7,
+      "status": "adjudicated",
+      "theta_out": [
+        20.0,
+        20.0,
+        20.0,
+        1.6,
+        1.6,
+        3.0,
+        20.0
+      ],
+      "hat_out": [
+        0.028757752060291603,
+        -0.40634845133595776,
+        19.870665646507476,
+        0.7819527858555397,
+        18.002323436400424,
+        16.659063730206128,
+        1.0944976893379237
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 1.0,
+        "CBI": 0.0,
+        "alpha": -0.3586444690391853,
+        "theta0": 9.142102167852709,
+        "theta_edge": 15.0,
+        "AIC_H1": 33.57833587048259,
+        "AIC_H2": 37.618453113921106,
+        "dAIC": -4.040117243438516,
+        "LOO_R2_H1": -0.7337961820469896,
+        "selected": "neither"
+      },
+      "theta_edge": 15.0,
+      "extrapolation_gap": 0.9849878438964182,
+      "paired_bootstrap_PRE_out_minus_in": [
+        0.9849878438964182,
+        -0.333607977316951,
+        2.7309508940343052,
+        0.107
+      ]
+    },
+    "pendulum_omega": {
+      "n_gated_in": 0,
+      "n_gated_out": 1,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 1. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "pendulum_zeta": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "bouncing_ball": {
+      "n_gated_in": 1,
+      "n_gated_out": 4,
+      "status": "adjudicated",
+      "theta_out": [
+        0.35,
+        0.2,
+        0.35,
+        0.97
+      ],
+      "hat_out": [
+        0.8126719287800598,
+        1.2584265160346422,
+        1.2184538106505791,
+        0.9443441666790557
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 1.0,
+        "CBI": 0.0,
+        "alpha": -0.2864958375379008,
+        "theta0": 0.9268672892615741,
+        "theta_edge": 0.9,
+        "AIC_H1": -10.368701383075669,
+        "AIC_H2": -0.5955443048858355,
+        "dAIC": -9.773157078189833,
+        "LOO_R2_H1": -6.962091198081061,
+        "selected": "neither"
+      },
+      "theta_edge": 0.9
+    },
+    "spring_mass": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "inclined_slide": {
+      "n_gated_in": 7,
+      "n_gated_out": 4,
+      "status": "adjudicated",
+      "theta_out": [
+        0.01,
+        0.01,
+        1.0,
+        1.0
+      ],
+      "hat_out": [
+        2.524567801371732,
+        2.1540718766129765,
+        3.445615826751884,
+        2.1950552230794425
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 0.5141255697744345,
+        "CBI": 0.0,
+        "alpha": 0.4858744302255656,
+        "theta0": 4.540643826982405,
+        "theta_edge": 0.4,
+        "AIC_H1": -2.1925031580724426,
+        "AIC_H2": 9.068858527963576,
+        "dAIC": -11.261361686036018,
+        "LOO_R2_H1": -2.1446043623475903,
+        "selected": "neither"
+      },
+      "theta_edge": 0.4,
+      "extrapolation_gap": 0.26363471840534825,
+      "paired_bootstrap_PRE_out_minus_in": [
+        0.26363471840534825,
+        -0.5068976321432843,
+        1.0037281477018685,
+        0.242
+      ]
+    }
+  },
+  "cogvideox": {
+    "projectile": {
+      "n_gated_in": 20,
+      "n_gated_out": 12,
+      "status": "adjudicated",
+      "theta_out": [
+        1.6,
+        1.6,
+        1.6,
+        1.6,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "hat_out": [
+        -11.031283736382363,
+        -11.520857091471743,
+        -11.845871390684973,
+        -5.979655911291497,
+        -11.414862567954652,
+        -11.402896080958332,
+        -11.097286022203006,
+        -7.532075360626053,
+        -9.806634829399655,
+        -11.523556516846385,
+        -12.008517169600825,
+        -5.6314467270315
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 0.9735872546273638,
+        "CBI": 0.0,
+        "alpha": 0.02641274537263621,
+        "theta0": -10.561795819415863,
+        "theta_edge": 15.0,
+        "AIC_H1": 23.121813841592626,
+        "AIC_H2": 70.99533783595332,
+        "dAIC": -47.873523994360696,
+        "LOO_R2_H1": -0.4980822636216262,
+        "selected": "neither"
+      },
+      "theta_edge": 15.0,
+      "extrapolation_gap": 1.0684296178988615,
+      "paired_bootstrap_PRE_out_minus_in": [
+        1.0684296178988615,
+        0.26664589102362507,
+        1.8911097626506908,
+        0.0055
+      ]
+    },
+    "pendulum_omega": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "pendulum_zeta": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "bouncing_ball": {
+      "n_gated_in": 1,
+      "n_gated_out": 9,
+      "status": "adjudicated",
+      "theta_out": [
+        0.2,
+        0.35,
+        0.2,
+        0.2,
+        0.35,
+        0.35,
+        0.97,
+        0.97,
+        0.97
+      ],
+      "hat_out": [
+        0.9978580010732354,
+        0.9989697266453266,
+        1.0015173434859883,
+        0.9967573157730297,
+        1.0012991853376445,
+        0.9967372704973003,
+        1.000756333147025,
+        1.001669388366902,
+        0.9967310022117405
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 0.9987354495208117,
+        "CBI": 0.0,
+        "alpha": 0.0012645504791883163,
+        "theta0": 0.9997675027361165,
+        "theta_edge": 0.9,
+        "AIC_H1": -107.67704136720131,
+        "AIC_H2": -7.28616562635383,
+        "dAIC": -100.39087574084748,
+        "LOO_R2_H1": -0.6726103761311402,
+        "selected": "neither"
+      },
+      "theta_edge": 0.9
+    },
+    "spring_mass": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "inclined_slide": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    }
+  },
+  "dynamicrafter": {
+    "projectile": {
+      "n_gated_in": 16,
+      "n_gated_out": 17,
+      "status": "adjudicated",
+      "theta_out": [
+        1.6,
+        1.6,
+        1.6,
+        3.0,
+        3.0,
+        3.0,
+        20.0,
+        20.0,
+        20.0,
+        1.6,
+        1.6,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        20.0,
+        20.0
+      ],
+      "hat_out": [
+        7.080828156414493,
+        -0.02353897430872367,
+        -0.4368703166078478,
+        5.986711907924956,
+        3.6660919560934753,
+        -0.11757760606737543,
+        0.4164644824770388,
+        10.782743531336305,
+        0.06781648086208245,
+        0.731034555987874,
+        0.16949140491132567,
+        -0.13834452670900413,
+        11.310368572810978,
+        0.009192663501699333,
+        1.8494263463787775,
+        1.7252966248281871,
+        0.05212025528076557
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 0.9878479192890526,
+        "CBI": 0.0,
+        "alpha": 0.012152080710947416,
+        "theta0": 2.474996182986872,
+        "theta_edge": 15.0,
+        "AIC_H1": 49.10403948678927,
+        "AIC_H2": 71.2838812662572,
+        "dAIC": -22.179841779467928,
+        "LOO_R2_H1": -0.3175820390835544,
+        "selected": "neither"
+      },
+      "theta_edge": 15.0,
+      "extrapolation_gap": 0.05021272076964556,
+      "paired_bootstrap_PRE_out_minus_in": [
+        0.05021272076964556,
+        -0.2209635146065933,
+        0.3378626938694362,
+        0.3865
+      ]
+    },
+    "pendulum_omega": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "pendulum_zeta": {
+      "n_gated_in": 0,
+      "n_gated_out": 1,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 1. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "bouncing_ball": {
+      "n_gated_in": 5,
+      "n_gated_out": 6,
+      "status": "adjudicated",
+      "theta_out": [
+        0.2,
+        0.35,
+        0.97,
+        0.97,
+        0.35,
+        0.97
+      ],
+      "hat_out": [
+        0.8318336447153619,
+        0.4123307894406997,
+        0.46879491644746446,
+        1.0926978924471171,
+        0.9931750509843367,
+        2.3099227984587767
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 0.22349469239332176,
+        "CBI": 0.0,
+        "alpha": 0.7765053076066782,
+        "theta0": 2.34925032355895,
+        "theta_edge": 0.9,
+        "AIC_H1": -2.702698579683789,
+        "AIC_H2": -2.1036863584445653,
+        "dAIC": -0.5990122212392235,
+        "LOO_R2_H1": -0.8254770651699668,
+        "selected": "neither"
+      },
+      "theta_edge": 0.9,
+      "extrapolation_gap": -0.7614125368996152,
+      "paired_bootstrap_PRE_out_minus_in": [
+        -0.7614125368996152,
+        -2.739782498755525,
+        0.3419459920585756,
+        0.675
+      ]
+    },
+    "spring_mass": {
+      "n_gated_in": 0,
+      "n_gated_out": 0,
+      "status": "insufficient_data",
+      "note": "need >=4 gated out-of-range points for select_mechanism(); have 0. Add seeds via e4_generality.py --seeds-out ... --start-seed ... --merge (projectile uses e0_pilot.py / e0_pilot_dynamicrafter.py, same flags -- see slurm_jobs/01-03_e2_gapfill_*.sh)."
+    },
+    "inclined_slide": {
+      "n_gated_in": 16,
+      "n_gated_out": 20,
+      "status": "adjudicated",
+      "theta_out": [
+        0.01,
+        0.01,
+        0.7,
+        0.7,
+        1.0,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "hat_out": [
+        1.5200890882809972,
+        2.1510033197598206,
+        1.594542475186189,
+        -1.9914457526353244,
+        1.6817286496780302,
+        0.41583148930671265,
+        1.5102783809297364,
+        1.8149707155615067,
+        1.7010588251230847,
+        1.244118184258627,
+        0.47321826423633195,
+        1.252104549174232,
+        1.8230576909124592,
+        1.714879763903109,
+        1.3029491741509112,
+        0.6152033971443508,
+        1.5130537604083587,
+        1.7754880275803946,
+        1.7088774698890814,
+        1.303569386811141
+      ],
+      "select_mechanism_theta0_free": {
+        "PRI": 1.0,
+        "CBI": 0.0,
+        "alpha": -0.2228760377162529,
+        "theta0": 1.127241279700506,
+        "theta_edge": 0.4,
+        "AIC_H1": -1.8536394288743585,
+        "AIC_H2": 14.150014142229422,
+        "dAIC": -16.00365357110378,
+        "LOO_R2_H1": -0.15053386292018334,
+        "selected": "neither"
+      },
+      "theta_edge": 0.4,
+      "extrapolation_gap": -0.9393149197801087,
+      "paired_bootstrap_PRE_out_minus_in": [
+        -0.9393149197801087,
+        -1.5713173319356957,
+        -0.353605026401678,
+        1.0
+      ]
+    }
+  }
+}

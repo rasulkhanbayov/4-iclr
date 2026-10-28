@@ -1,0 +1,159 @@
+=== E10, LTX-Video ===
+Loading LTX-Video...
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=2: omega_hat=7.298 zeta_hat=0.000 r2=0.067
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=0: omega_hat=3.055 zeta_hat=0.072 r2=0.136
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=0: omega_hat=3.118 zeta_hat=0.033 r2=0.073
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=0: omega_hat=3.078 zeta_hat=0.073 r2=0.135
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+
+Total time: 417.6s for 45 clips
+{
+  "omega_faithfulness_when_zeta_other_in_range": {
+    "n_gated": 0,
+    "n_total": 15
+  },
+  "zeta_faithfulness_when_omega_other_in_range": {
+    "n_gated": 0,
+    "n_total": 30
+  },
+  "omega_faithfulness_when_zeta_other_out_of_range": {
+    "n_gated": 0,
+    "n_total": 30
+  },
+  "zeta_faithfulness_when_omega_other_out_of_range": {
+    "n_gated": 0,
+    "n_total": 15
+  },
+  "overall_dropped_rate": 1.0,
+  "n_total": 45,
+  "elapsed_seconds": 417.5722289085388
+}
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e10_multi_parameter_ltx.json
+
+=== E10, CogVideoX ===
+Loading CogVideoX-5B-I2V...
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=0: omega_hat=9.869 zeta_hat=0.011 r2=0.043
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=1: omega_hat=5.947 zeta_hat=0.019 r2=0.061
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=2: omega_hat=4.687 zeta_hat=0.014 r2=0.045
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=3: omega_hat=12.265 zeta_hat=0.006 r2=0.077
+  omega_true=  3.0 (in) zeta_true= 0.05 (in) seed=4: omega_hat=1.978 zeta_hat=0.079 r2=0.044
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.20 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=0: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  3.0 (in) zeta_true= 0.30 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=0: omega_hat=9.887 zeta_hat=0.017 r2=0.056
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=1: omega_hat=5.950 zeta_hat=0.020 r2=0.067
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=3: omega_hat=8.769 zeta_hat=0.013 r2=0.107
+  omega_true=  5.0 (in) zeta_true= 0.05 (in) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=0: omega_hat=22.157 zeta_hat=0.000 r2=0.034
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=3: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.20 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=0: omega_hat=22.097 zeta_hat=0.000 r2=0.033
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=1: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=2: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=3: omega_hat=2.093 zeta_hat=0.044 r2=0.117
+  omega_true=  5.0 (in) zeta_true= 0.30 (out) seed=4: omega_hat=nan zeta_hat=nan r2=0.000
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=0: omega_hat=26.092 zeta_hat=0.005 r2=0.052
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=1: omega_hat=5.953 zeta_hat=0.012 r2=0.051
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=2: omega_hat=11.092 zeta_hat=0.012 r2=0.052
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=3: omega_hat=17.538 zeta_hat=0.002 r2=0.039
+  omega_true=  8.0 (out) zeta_true= 0.05 (in) seed=4: omega_hat=12.193 zeta_hat=0.006 r2=0.048
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=0: omega_hat=27.932 zeta_hat=0.007 r2=0.054
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=1: omega_hat=9.917 zeta_hat=0.004 r2=0.044
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=2: omega_hat=8.376 zeta_hat=0.001 r2=0.038
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=3: omega_hat=15.806 zeta_hat=0.005 r2=0.056
+  omega_true=  8.0 (out) zeta_true= 0.20 (out) seed=4: omega_hat=7.002 zeta_hat=0.014 r2=0.047
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=0: omega_hat=26.198 zeta_hat=0.008 r2=0.063
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=1: omega_hat=9.920 zeta_hat=0.000 r2=0.038
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=2: omega_hat=8.383 zeta_hat=0.005 r2=0.045
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=3: omega_hat=15.816 zeta_hat=0.005 r2=0.058
+  omega_true=  8.0 (out) zeta_true= 0.30 (out) seed=4: omega_hat=10.494 zeta_hat=0.009 r2=0.053
+
+Total time: 18416.9s for 45 clips
+{
+  "omega_faithfulness_when_zeta_other_in_range": {
+    "n_gated": 0,
+    "n_total": 15
+  },
+  "zeta_faithfulness_when_omega_other_in_range": {
+    "n_gated": 0,
+    "n_total": 30
+  },
+  "omega_faithfulness_when_zeta_other_out_of_range": {
+    "n_gated": 0,
+    "n_total": 30
+  },
+  "zeta_faithfulness_when_omega_other_out_of_range": {
+    "n_gated": 0,
+    "n_total": 15
+  },
+  "overall_dropped_rate": 1.0,
+  "n_total": 45,
+  "elapsed_seconds": 18416.938311576843
+}
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e10_multi_parameter_cogvideox.json
+
+== E10 done. Cross-axis degradation summary for both models ==
+
+ltx:
+  omega_faithfulness_when_zeta_other_in_range: {'n_gated': 0, 'n_total': 15}
+  omega_faithfulness_when_zeta_other_out_of_range: {'n_gated': 0, 'n_total': 30}
+  zeta_faithfulness_when_omega_other_in_range: {'n_gated': 0, 'n_total': 30}
+  zeta_faithfulness_when_omega_other_out_of_range: {'n_gated': 0, 'n_total': 15}
+  overall_dropped_rate: 1.0
+
+cogvideox:
+  omega_faithfulness_when_zeta_other_in_range: {'n_gated': 0, 'n_total': 15}
+  omega_faithfulness_when_zeta_other_out_of_range: {'n_gated': 0, 'n_total': 30}
+  zeta_faithfulness_when_omega_other_in_range: {'n_gated': 0, 'n_total': 30}
+  zeta_faithfulness_when_omega_other_out_of_range: {'n_gated': 0, 'n_total': 15}
+  overall_dropped_rate: 1.0

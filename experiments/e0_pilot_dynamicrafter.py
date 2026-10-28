@@ -88,7 +88,20 @@ def run_dynamicrafter(image: Image.Image, prompt: str, seed: int, work_dir: str)
         "--frame_stride", str(FRAME_STRIDE),
         "--timestep_spacing", "uniform_trailing", "--guidance_rescale", "0.7", "--perframe_ae",
     ]
-    proc = subprocess.run(cmd, cwd=DC_ROOT, capture_output=True, text=True, timeout=300)
+    # 900s (15min), not the original 300s: this shells out to a FRESH
+    # subprocess per clip, so every call pays full checkpoint-load time from
+    # disk (not just DDIM sampling) -- unlike the ~4.6hr/~215-clip E4 run's
+    # ~77s/clip AVERAGE (which amortizes model load across one long-lived
+    # process), a single cold-start call can exceed 300s on a shared/loaded
+    # node. Confirmed by a real timeout on Panther 2026-08-07 (job 371641)
+    # killing the entire gap-fill job on its FIRST clip -- see CLAUDE.md.
+    t0 = time.time()
+    try:
+        proc = subprocess.run(cmd, cwd=DC_ROOT, capture_output=True, text=True, timeout=900)
+    except subprocess.TimeoutExpired:
+        print(f"DynamiCrafter subprocess TIMED OUT after {time.time()-t0:.0f}s (limit 900s)")
+        return None
+    print(f"  (DynamiCrafter subprocess took {time.time()-t0:.0f}s)")
     if proc.returncode != 0:
         print("DynamiCrafter subprocess FAILED:")
         print(proc.stderr[-3000:])
@@ -106,9 +119,27 @@ def run_dynamicrafter(image: Image.Image, prompt: str, seed: int, work_dir: str)
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    # Same --seeds-in/--seeds-out/--start-seed/--merge pattern as
+    # experiments/e0_pilot.py and e4_generality.py -- lets a re-run add MORE
+    # out-of-range seeds (to clear e2_extrapolation.py's >=4-gated-points
+    # minimum) without regenerating in-range clips that already have enough
+    # gated data.
+    parser.add_argument("--seeds-in", type=int, default=None)
+    parser.add_argument("--seeds-out", type=int, default=None)
+    parser.add_argument("--start-seed", type=int, default=0)
+    parser.add_argument("--merge", action="store_true")
+    args = parser.parse_args()
+
     cfg = load_config()
     proj_cfg = cfg["systems"]["projectile"]
-    n_seeds = cfg["render"]["seeds_per_point"]
+    base_seeds = cfg["render"]["seeds_per_point"]
+    seeds_in = args.seeds_in if args.seeds_in is not None else base_seeds
+    seeds_out = args.seeds_out if args.seeds_out is not None else base_seeds
+    seeds_by_label = {"in": list(range(args.start_seed, args.start_seed + seeds_in)),
+                      "out": list(range(args.start_seed, args.start_seed + seeds_out))}
+    print(f"seeds: in-range={seeds_by_label['in']}, out-of-range={seeds_by_label['out']}")
     g_in = proj_cfg["in_range"][:5]
     g_out = proj_cfg["out_of_range"][:3]
 
@@ -125,7 +156,7 @@ def main():
     t0_all = time.time()
     for theta_set, label in [(g_in, "in"), (g_out, "out")]:
         for g_true in theta_set:
-            for seed in range(n_seeds):
+            for seed in seeds_by_label[label]:
                 # render ground truth at DC_N_FRAMES/FRAME_STRIDE so the first
                 # conditioning frame and the timestamps match what DynamiCrafter
                 # will actually produce
@@ -151,6 +182,16 @@ def main():
                 print(f"g_true={g_true:6.2f} seed={seed}: g_hat={g_hat if not np.isnan(g_hat) else float('nan'):.3f} r2={r2:.3f}")
 
     print(f"\nTotal time: {time.time()-t0_all:.1f}s for {len(rows)} clips")
+
+    out_path_existing = os.path.join(RESULTS_DIR, "e0_pilot_dynamicrafter.json")
+    if args.merge and os.path.exists(out_path_existing):
+        with open(out_path_existing) as f:
+            existing_rows = json.load(f)["rows"]
+        by_key = {(r["g_true"], r["split"], r["seed"]): r for r in existing_rows}
+        for r in rows:
+            by_key[(r["g_true"], r["split"], r["seed"])] = r
+        rows = list(by_key.values())
+        print(f"Merged into existing file -> {len(rows)} total rows (de-duped on g_true/split/seed)")
 
     gated = [r for r in rows if r["r2"] >= FIT_R2_GATE and not np.isnan(r["g_hat"])]
     dropped_rate = 1.0 - len(gated) / max(len(rows), 1)

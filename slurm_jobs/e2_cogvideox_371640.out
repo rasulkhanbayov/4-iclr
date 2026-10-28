@@ -1,0 +1,238 @@
+=== bouncing_ball: +8 out-of-range seeds (5-12), N_FRAMES=24 system, faster ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9, 10, 11, 12]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+bouncing_ball (cogvideox)
+======================================================================
+  e_true=  0.20 seed=5: e_hat=1.000 r2=0.035
+  e_true=  0.20 seed=6: e_hat=0.999 r2=0.792
+  e_true=  0.20 seed=7: e_hat=1.000 r2=0.169
+  e_true=  0.20 seed=8: e_hat=0.992 r2=0.327
+  e_true=  0.20 seed=9: e_hat=0.957 r2=0.515
+  e_true=  0.20 seed=10: e_hat=0.997 r2=0.249
+  e_true=  0.20 seed=11: e_hat=0.998 r2=0.806
+  e_true=  0.20 seed=12: e_hat=1.000 r2=0.472
+  e_true=  0.35 seed=5: e_hat=1.000 r2=0.002
+  e_true=  0.35 seed=6: e_hat=0.999 r2=0.979
+  e_true=  0.35 seed=7: e_hat=1.000 r2=0.079
+  e_true=  0.35 seed=8: e_hat=0.994 r2=0.314
+  e_true=  0.35 seed=9: e_hat=0.953 r2=0.501
+  e_true=  0.35 seed=10: e_hat=0.997 r2=0.306
+  e_true=  0.35 seed=11: e_hat=0.994 r2=0.729
+  e_true=  0.35 seed=12: e_hat=0.999 r2=0.596
+  e_true=  0.97 seed=5: e_hat=1.000 r2=0.033
+  e_true=  0.97 seed=6: e_hat=0.999 r2=0.455
+  e_true=  0.97 seed=7: e_hat=1.001 r2=0.526
+  e_true=  0.97 seed=8: e_hat=0.992 r2=0.371
+  e_true=  0.97 seed=9: e_hat=0.949 r2=0.475
+  e_true=  0.97 seed=10: e_hat=0.999 r2=0.439
+  e_true=  0.97 seed=11: e_hat=0.978 r2=0.601
+  e_true=  0.97 seed=12: e_hat=1.000 r2=0.145
+Merged 24 new rows into 35 existing -> 59 total (after de-dup on theta/split/seed)
+
+bouncing_ball: n_gated_in=1/59 dropped_rate=94.92% elapsed=1519s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_bouncing_ball_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_generality_cogvideox.json
+
+======================================================================
+E4 SUMMARY (cogvideox)
+======================================================================
+System               slope (in)               dropped_rate  
+bouncing_ball        n/a                      94.92%        
+=== inclined_slide: +8 out-of-range seeds (5-12), N_FRAMES=24 system, faster ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9, 10, 11, 12]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+inclined_slide (cogvideox)
+======================================================================
+  mu_true=  0.01 seed=5: mu_hat=1.679 r2=0.023
+  mu_true=  0.01 seed=6: mu_hat=1.783 r2=0.002
+  mu_true=  0.01 seed=7: mu_hat=1.800 r2=0.003
+  mu_true=  0.01 seed=8: mu_hat=1.779 r2=0.004
+  mu_true=  0.01 seed=9: mu_hat=2.765 r2=0.369
+  mu_true=  0.01 seed=10: mu_hat=2.026 r2=0.083
+  mu_true=  0.01 seed=11: mu_hat=2.455 r2=0.427
+  mu_true=  0.01 seed=12: mu_hat=2.021 r2=0.388
+  mu_true=  0.70 seed=5: mu_hat=1.552 r2=0.051
+  mu_true=  0.70 seed=6: mu_hat=1.722 r2=0.001
+  mu_true=  0.70 seed=7: mu_hat=1.102 r2=0.083
+  mu_true=  0.70 seed=8: mu_hat=2.004 r2=0.051
+  mu_true=  0.70 seed=9: mu_hat=2.401 r2=0.490
+  mu_true=  0.70 seed=10: mu_hat=1.888 r2=0.015
+  mu_true=  0.70 seed=11: mu_hat=2.067 r2=0.055
+  mu_true=  0.70 seed=12: mu_hat=1.680 r2=0.003
+  mu_true=  1.00 seed=5: mu_hat=1.689 r2=0.019
+  mu_true=  1.00 seed=6: mu_hat=1.889 r2=0.025
+  mu_true=  1.00 seed=7: mu_hat=1.207 r2=0.068
+  mu_true=  1.00 seed=8: mu_hat=1.945 r2=0.024
+  mu_true=  1.00 seed=9: mu_hat=2.944 r2=0.368
+  mu_true=  1.00 seed=10: mu_hat=1.675 r2=0.003
+  mu_true=  1.00 seed=11: mu_hat=2.516 r2=0.395
+  mu_true=  1.00 seed=12: mu_hat=1.891 r2=0.239
+Merged 24 new rows into 35 existing -> 59 total (after de-dup on theta/split/seed)
+
+inclined_slide: n_gated_in=0/59 dropped_rate=100.00% elapsed=1519s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_inclined_slide_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_generality_cogvideox.json
+
+======================================================================
+E4 SUMMARY (cogvideox)
+======================================================================
+System               slope (in)               dropped_rate  
+inclined_slide       n/a                      100.00%       
+=== pendulum_omega: +8 out-of-range seeds (5-12), 97-frame-capped system, slow ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9, 10, 11, 12]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+pendulum_omega (cogvideox)
+======================================================================
+  omega_true=  8.00 seed=5: omega_hat=22.747 r2=0.033
+  omega_true=  8.00 seed=6: omega_hat=51.252 r2=0.014
+  omega_true=  8.00 seed=7: omega_hat=26.914 r2=0.028
+  omega_true=  8.00 seed=8: omega_hat=29.654 r2=0.021
+  omega_true=  8.00 seed=9: omega_hat=28.041 r2=0.024
+  omega_true=  8.00 seed=10: omega_hat=36.892 r2=0.005
+  omega_true=  8.00 seed=11: omega_hat=32.105 r2=0.025
+  omega_true=  8.00 seed=12: omega_hat=27.953 r2=0.030
+  omega_true= 12.00 seed=5: omega_hat=22.738 r2=0.033
+  omega_true= 12.00 seed=6: omega_hat=nan r2=0.000
+  omega_true= 12.00 seed=7: omega_hat=23.549 r2=0.032
+  omega_true= 12.00 seed=8: omega_hat=32.685 r2=0.022
+  omega_true= 12.00 seed=9: omega_hat=31.514 r2=0.019
+  omega_true= 12.00 seed=10: omega_hat=nan r2=0.000
+  omega_true= 12.00 seed=11: omega_hat=32.109 r2=0.024
+  omega_true= 12.00 seed=12: omega_hat=27.951 r2=0.029
+Merged 16 new rows into 30 existing -> 46 total (after de-dup on theta/split/seed)
+
+pendulum_omega: n_gated_in=0/46 dropped_rate=100.00% elapsed=6543s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_pendulum_omega_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_generality_cogvideox.json
+
+======================================================================
+E4 SUMMARY (cogvideox)
+======================================================================
+System               slope (in)               dropped_rate  
+pendulum_omega       n/a                      100.00%       
+=== pendulum_zeta: +8 out-of-range seeds (5-12), 97-frame-capped system, slow ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9, 10, 11, 12]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+pendulum_zeta (cogvideox)
+======================================================================
+  zeta_true=  0.30 seed=5: zeta_hat=0.011 r2=-0.084
+  zeta_true=  0.30 seed=6: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=7: zeta_hat=0.003 r2=-0.132
+  zeta_true=  0.30 seed=8: zeta_hat=0.000 r2=-0.067
+  zeta_true=  0.30 seed=9: zeta_hat=0.002 r2=-0.037
+  zeta_true=  0.30 seed=10: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=11: zeta_hat=0.004 r2=-0.039
+  zeta_true=  0.30 seed=12: zeta_hat=0.005 r2=-0.031
+  zeta_true=  0.60 seed=5: zeta_hat=0.011 r2=-0.069
+  zeta_true=  0.60 seed=6: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=7: zeta_hat=0.002 r2=-0.130
+  zeta_true=  0.60 seed=8: zeta_hat=0.000 r2=-0.070
+  zeta_true=  0.60 seed=9: zeta_hat=0.000 r2=-0.038
+  zeta_true=  0.60 seed=10: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=11: zeta_hat=0.004 r2=-0.052
+  zeta_true=  0.60 seed=12: zeta_hat=0.005 r2=-0.034
+  zeta_true=  0.90 seed=5: zeta_hat=0.020 r2=-0.073
+  zeta_true=  0.90 seed=6: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=7: zeta_hat=0.001 r2=-0.121
+  zeta_true=  0.90 seed=8: zeta_hat=0.000 r2=-0.064
+  zeta_true=  0.90 seed=9: zeta_hat=0.000 r2=-0.037
+  zeta_true=  0.90 seed=10: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=11: zeta_hat=0.005 r2=-0.048
+  zeta_true=  0.90 seed=12: zeta_hat=0.006 r2=-0.035
+Merged 24 new rows into 30 existing -> 54 total (after de-dup on theta/split/seed)
+
+pendulum_zeta: n_gated_in=0/54 dropped_rate=100.00% elapsed=9816s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_pendulum_zeta_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_generality_cogvideox.json
+
+======================================================================
+E4 SUMMARY (cogvideox)
+======================================================================
+System               slope (in)               dropped_rate  
+pendulum_zeta        n/a                      100.00%       
+=== spring_mass: +8 out-of-range seeds (5-12), 97-frame-capped system, slow ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9, 10, 11, 12]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+spring_mass (cogvideox)
+======================================================================
+  k_true=   5.0 seed=5: k_hat=19.669 r2=0.061
+  k_true=   5.0 seed=6: k_hat=nan r2=0.000
+  k_true=   5.0 seed=7: k_hat=303.180 r2=0.034
+  k_true=   5.0 seed=8: k_hat=304.868 r2=0.034
+  k_true=   5.0 seed=9: k_hat=110.314 r2=0.053
+  k_true=   5.0 seed=10: k_hat=nan r2=0.000
+  k_true=   5.0 seed=11: k_hat=667.066 r2=0.035
+  k_true=   5.0 seed=12: k_hat=366.547 r2=0.032
+  k_true=  10.0 seed=5: k_hat=nan r2=0.000
+  k_true=  10.0 seed=6: k_hat=nan r2=0.000
+  k_true=  10.0 seed=7: k_hat=195.620 r2=0.042
+  k_true=  10.0 seed=8: k_hat=248.830 r2=0.041
+  k_true=  10.0 seed=9: k_hat=76.851 r2=0.075
+  k_true=  10.0 seed=10: k_hat=nan r2=0.000
+  k_true=  10.0 seed=11: k_hat=667.433 r2=0.034
+  k_true=  10.0 seed=12: k_hat=246.525 r2=0.036
+  k_true= 200.0 seed=5: k_hat=44.269 r2=0.057
+  k_true= 200.0 seed=6: k_hat=nan r2=0.000
+  k_true= 200.0 seed=7: k_hat=986.616 r2=0.013
+  k_true= 200.0 seed=8: k_hat=785.355 r2=0.011
+  k_true= 200.0 seed=9: k_hat=196.949 r2=0.045
+  k_true= 200.0 seed=10: k_hat=nan r2=0.000
+  k_true= 200.0 seed=11: k_hat=1129.520 r2=0.027
+  k_true= 200.0 seed=12: k_hat=149.612 r2=0.041
+  k_true= 400.0 seed=5: k_hat=44.265 r2=0.057
+  k_true= 400.0 seed=6: k_hat=nan r2=0.000
+  k_true= 400.0 seed=7: k_hat=987.483 r2=0.013
+  k_true= 400.0 seed=8: k_hat=784.416 r2=0.015
+  k_true= 400.0 seed=9: k_hat=150.672 r2=0.059
+  k_true= 400.0 seed=10: k_hat=nan r2=0.000
+  k_true= 400.0 seed=11: k_hat=1018.133 r2=0.028
+  k_true= 400.0 seed=12: k_hat=195.312 r2=0.038
+Merged 32 new rows into 40 existing -> 72 total (after de-dup on theta/split/seed)
+
+spring_mass: n_gated_in=0/72 dropped_rate=100.00% elapsed=13086s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_spring_mass_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_generality_cogvideox.json
+
+======================================================================
+E4 SUMMARY (cogvideox)
+======================================================================
+System               slope (in)               dropped_rate  
+spring_mass          n/a                      100.00%       
+=== re-running E2 analysis to see what cleared the gate ===
+ltx            projectile        n_out=  7  EG=0.985  PRI=1.000  dAIC=-4.0  selected=neither
+ltx            pendulum_omega    n_out=  1  INSUFFICIENT (need >=4)
+ltx            pendulum_zeta     n_out=  0  INSUFFICIENT (need >=4)
+ltx            bouncing_ball     n_out=  4  EG=n/a  PRI=1.000  dAIC=-9.8  selected=neither
+ltx            spring_mass       n_out=  0  INSUFFICIENT (need >=4)
+ltx            inclined_slide    n_out=  4  EG=0.264  PRI=0.514  dAIC=-11.3  selected=neither
+cogvideox      projectile        n_out= 12  EG=1.068  PRI=0.974  dAIC=-47.9  selected=neither
+cogvideox      pendulum_omega    n_out=  0  INSUFFICIENT (need >=4)
+cogvideox      pendulum_zeta     n_out=  0  INSUFFICIENT (need >=4)
+cogvideox      bouncing_ball     n_out=  2  INSUFFICIENT (need >=4)
+cogvideox      spring_mass       n_out=  0  INSUFFICIENT (need >=4)
+cogvideox      inclined_slide    n_out=  0  INSUFFICIENT (need >=4)
+dynamicrafter  projectile        n_out=  9  EG=0.056  PRI=0.937  dAIC=-10.3  selected=neither
+dynamicrafter  pendulum_omega    n_out=  0  INSUFFICIENT (need >=4)
+dynamicrafter  pendulum_zeta     n_out=  1  INSUFFICIENT (need >=4)
+dynamicrafter  bouncing_ball     n_out=  4  EG=-0.880  PRI=0.841  dAIC=-1.0  selected=neither
+dynamicrafter  spring_mass       n_out=  0  INSUFFICIENT (need >=4)
+dynamicrafter  inclined_slide    n_out=  5  EG=-0.529  PRI=1.000  dAIC=-0.1  selected=neither
+
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e2_extrapolation.json
+
+7/18 model-system pairs adjudicated this run. See results/e2_extrapolation.json's 'note' field on each 'insufficient_data' entry for exactly what SLURM job would close that gap.

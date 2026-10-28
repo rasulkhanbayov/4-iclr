@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/experiments/e0_pilot_dynamicrafter.py", line 219, in <module>
+    main()
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/experiments/e0_pilot_dynamicrafter.py", line 155, in main
+    video_np = run_dynamicrafter(first_frame, prompt, seed, work_dir)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/experiments/e0_pilot_dynamicrafter.py", line 91, in run_dynamicrafter
+    proc = subprocess.run(cmd, cwd=DC_ROOT, capture_output=True, text=True, timeout=300)
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/subprocess.py", line 505, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/subprocess.py", line 1154, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/subprocess.py", line 2022, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/subprocess.py", line 1198, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/bin/python', 'scripts/evaluation/inference.py', '--seed', '5', '--ckpt_path', 'checkpoints/dynamicrafter_512_v1/model.ckpt', '--config', 'configs/inference_512_v1.0.yaml', '--savedir', '/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e0_run/results', '--n_samples', '1', '--bs', '1', '--height', '320', '--width', '512', '--unconditional_guidance_scale', '7.5', '--ddim_steps', '50', '--ddim_eta', '1.0', '--prompt_dir', '/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e0_run/input', '--text_input', '--video_length', '16', '--frame_stride', '24', '--timestep_spacing', 'uniform_trailing', '--guidance_rescale', '0.7', '--perframe_ae']' timed out after 300 seconds

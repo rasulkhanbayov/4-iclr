@@ -1,0 +1,10 @@
+The config attributes {'clip_output': False} were passed to AutoencoderKLWan, but are not expected and will be ignored. Please verify your config.json configuration file.
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s][A
+Loading checkpoint shards:  20%|██        | 1/5 [00:17<01:10, 17.68s/it][A
+Loading checkpoint shards:  40%|████      | 2/5 [00:36<00:55, 18.41s/it][A
+Loading checkpoint shards:  60%|██████    | 3/5 [01:02<00:43, 21.70s/it][A
+Loading checkpoint shards:  80%|████████  | 4/5 [01:25<00:22, 22.26s/it][A
+Loading checkpoint shards: 100%|██████████| 5/5 [01:27<00:00, 14.89s/it][ALoading checkpoint shards: 100%|██████████| 5/5 [01:27<00:00, 17.43s/it]
+Loading pipeline components...:  20%|██        | 1/5 [01:27<05:49, 87.49s/it]Loading pipeline components...:  40%|████      | 2/5 [01:28<01:49, 36.48s/it]Loading pipeline components...: 100%|██████████| 5/5 [01:28<00:00, 10.39s/it]Loading pipeline components...: 100%|██████████| 5/5 [01:28<00:00, 17.68s/it]
+Using cache found in /export/hbku-research/rakh90100/physweep_revision/torch_home/hub/facebookresearch_co-tracker_main

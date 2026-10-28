@@ -1,0 +1,64 @@
+% fig_pipeline.tex -- the PhysWeep audit pipeline as a flow diagram.
+% Draft only, not yet wired into main.tex. Standalone-compilable via
+% preview.tex or wrapped in its own \documentclass{standalone}.
+%
+% Shows: theta (ground truth) -> deterministic renderer -> conditioning
+% frames -> frozen generator -> generated clip -> tracker+fitter ->
+% theta_hat -> metrics (PRE/EG/PRI/CBI/SDI). This is the "how it works"
+% figure a reader wants before the Metrics section's equations.
+
+\begin{tikzpicture}[
+  font=\small,
+  box/.style={draw=black!70, rounded corners=2pt, minimum height=0.9cm,
+              minimum width=2.1cm, align=center, fill=white, line width=0.8pt},
+  known/.style={box, fill=ForestGreen!8, draw=ForestGreen!55!black},
+  frozen/.style={box, fill=BurntOrange!10, draw=BurntOrange!70!black},
+  measure/.style={box, fill=RoyalBlue!8, draw=RoyalBlue!60!black},
+  metric/.style={box, fill=Plum!10, draw=Plum!65!black, minimum width=2.6cm},
+  arr/.style={-{Stealth[length=2.2mm]}, thick, black!70},
+  lbl/.style={font=\scriptsize, black!55, align=center}
+]
+
+% ---- top row: the generative half ----
+\node[known] (theta) at (0,0) {ground truth\\$\theta$ (swept)};
+\node[known] (render) at (3.0,0) {deterministic\\renderer};
+\node[known] (cond) at (6.0,0) {conditioning\\frames};
+\node[frozen] (gen) at (9.0,0) {frozen\\generator $G$};
+\node[frozen] (clip) at (12.0,0) {generated\\clip $v$};
+
+\draw[arr] (theta) -- (render);
+\draw[arr] (render) -- (cond);
+\draw[arr] (cond) -- (gen);
+\draw[arr] (gen) -- (clip);
+
+\node[lbl] at (1.5,0.62) {simulate $\tau_\theta$};
+\node[lbl] at (4.5,0.62) {render frames};
+\node[lbl,align=center] at (7.5,0.75) {no weights,\\no activations};
+
+% ---- bottom row: the measurement half, running back left ----
+\node[measure] (track) at (12.0,-2.0) {tracker};
+\node[measure] (fit) at (9.0,-2.0) {closed-form\\fit $f$};
+\node[measure] (thetahat) at (6.0,-2.0) {recovered\\$\thetah$};
+\node[metric] (metrics) at (2.2,-2.0) {\PRE, \EG, \PRI, \CBI, SDI};
+
+\draw[arr] (clip) -- (track);
+\draw[arr] (track) -- (fit);
+\draw[arr] (fit) -- (thetahat);
+\draw[arr] (thetahat) -- (metrics);
+
+\node[lbl] at (12.0,-1.05) {color-blob / CoTracker3};
+\node[lbl] at (7.5,-1.35) {no labels used};
+
+% ---- the comparison arrow that closes the loop: theta vs theta_hat ----
+\draw[arr, RoyalBlue!60!black, dashed] (thetahat) to[bend right=18] (theta.south);
+\node[lbl, RoyalBlue!55!black] at (4.0,-2.85) {compare $\thetah$ against the known $\theta$};
+
+% ---- gate annotation ----
+\node[draw=red!55!black, fill=red!5, rounded corners=2pt, font=\scriptsize,
+      align=left, inner sep=3pt] at (9.0,-3.4)
+  {fit-quality gate: $R^2 \!\ge\! 0.8$\\
+   below gate $\Rightarrow$ marked non-physical,\\
+   excluded from \PRE, rate reported};
+\draw[arr, red!55!black, densely dotted] (fit.south) -- (9.0,-2.95);
+
+\end{tikzpicture}

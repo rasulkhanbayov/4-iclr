@@ -1,0 +1,460 @@
+variant=default  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Using DynamiCrafter_512 (subprocess-driven, no in-process pipeline)...
+
+======================================================================
+projectile (dynamicrafter, variant=default)
+======================================================================
+  (DynamiCrafter subprocess took 342s)
+  g_true=  5.00 seed=0: g_hat=-0.022 r2=0.881
+  (DynamiCrafter subprocess took 83s)
+  g_true=  5.00 seed=1: g_hat=5.996 r2=0.996
+  (DynamiCrafter subprocess took 81s)
+  g_true=  5.00 seed=2: g_hat=5.283 r2=0.570
+  (DynamiCrafter subprocess took 84s)
+  g_true=  5.00 seed=3: g_hat=-0.119 r2=0.855
+  (DynamiCrafter subprocess took 81s)
+  g_true=  5.00 seed=4: g_hat=-29.159 r2=0.671
+  (DynamiCrafter subprocess took 85s)
+  g_true=  7.00 seed=0: g_hat=0.025 r2=0.740
+  (DynamiCrafter subprocess took 82s)
+  g_true=  7.00 seed=1: g_hat=4.236 r2=0.983
+  (DynamiCrafter subprocess took 83s)
+  g_true=  7.00 seed=2: g_hat=2.014 r2=0.688
+  (DynamiCrafter subprocess took 83s)
+  g_true=  7.00 seed=3: g_hat=0.000 r2=0.943
+  (DynamiCrafter subprocess took 84s)
+  g_true=  7.00 seed=4: g_hat=-2.176 r2=0.981
+  (DynamiCrafter subprocess took 81s)
+  g_true=  9.80 seed=0: g_hat=0.023 r2=0.915
+  (DynamiCrafter subprocess took 83s)
+  g_true=  9.80 seed=1: g_hat=4.474 r2=0.974
+  (DynamiCrafter subprocess took 81s)
+  g_true=  9.80 seed=2: g_hat=6.816 r2=0.553
+  (DynamiCrafter subprocess took 84s)
+  g_true=  9.80 seed=3: g_hat=0.008 r2=0.947
+  (DynamiCrafter subprocess took 83s)
+  g_true=  9.80 seed=4: g_hat=-2.293 r2=0.981
+  (DynamiCrafter subprocess took 84s)
+  g_true= 12.00 seed=0: g_hat=0.009 r2=0.562
+  (DynamiCrafter subprocess took 84s)
+  g_true= 12.00 seed=1: g_hat=6.726 r2=0.993
+  (DynamiCrafter subprocess took 82s)
+  g_true= 12.00 seed=2: g_hat=3.742 r2=0.770
+  (DynamiCrafter subprocess took 83s)
+  g_true= 12.00 seed=3: g_hat=-0.022 r2=0.896
+  (DynamiCrafter subprocess took 82s)
+  g_true= 12.00 seed=4: g_hat=-2.185 r2=0.984
+  (DynamiCrafter subprocess took 83s)
+  g_true= 15.00 seed=0: g_hat=-0.006 r2=0.878
+  (DynamiCrafter subprocess took 83s)
+  g_true= 15.00 seed=1: g_hat=6.373 r2=0.995
+  (DynamiCrafter subprocess took 85s)
+  g_true= 15.00 seed=2: g_hat=2.168 r2=0.529
+  (DynamiCrafter subprocess took 82s)
+  g_true= 15.00 seed=3: g_hat=-0.039 r2=0.923
+  (DynamiCrafter subprocess took 83s)
+  g_true= 15.00 seed=4: g_hat=-3.396 r2=0.972
+  (DynamiCrafter subprocess took 85s)
+  g_true=  1.60 seed=0: g_hat=-0.026 r2=0.807
+  (DynamiCrafter subprocess took 83s)
+  g_true=  1.60 seed=1: g_hat=7.056 r2=0.991
+  (DynamiCrafter subprocess took 83s)
+  g_true=  1.60 seed=2: g_hat=-0.022 r2=0.534
+  (DynamiCrafter subprocess took 87s)
+  g_true=  1.60 seed=3: g_hat=-0.019 r2=0.882
+  (DynamiCrafter subprocess took 83s)
+  g_true=  1.60 seed=4: g_hat=-0.560 r2=0.993
+  (DynamiCrafter subprocess took 84s)
+  g_true=  3.00 seed=0: g_hat=0.094 r2=0.802
+  (DynamiCrafter subprocess took 84s)
+  g_true=  3.00 seed=1: g_hat=6.016 r2=0.996
+  (DynamiCrafter subprocess took 85s)
+  g_true=  3.00 seed=2: g_hat=2.764 r2=0.215
+  (DynamiCrafter subprocess took 82s)
+  g_true=  3.00 seed=3: g_hat=-0.124 r2=0.858
+  (DynamiCrafter subprocess took 83s)
+  g_true=  3.00 seed=4: g_hat=-30.205 r2=0.649
+  (DynamiCrafter subprocess took 83s)
+  g_true= 20.00 seed=0: g_hat=0.340 r2=0.993
+  (DynamiCrafter subprocess took 82s)
+  g_true= 20.00 seed=1: g_hat=10.769 r2=0.936
+  (DynamiCrafter subprocess took 83s)
+  g_true= 20.00 seed=2: g_hat=3.447 r2=0.802
+  (DynamiCrafter subprocess took 80s)
+  g_true= 20.00 seed=3: g_hat=0.054 r2=0.865
+  (DynamiCrafter subprocess took 82s)
+  g_true= 20.00 seed=4: g_hat=-31.224 r2=0.670
+projectile: n_gated=28/40 dropped_rate=30.00% elapsed=3607s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_projectile_dynamicrafter.json
+
+======================================================================
+pendulum_omega (dynamicrafter, variant=default)
+======================================================================
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  2.00 seed=0: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 89s)
+  omega_true=  2.00 seed=1: omega_hat=30.091 r2=0.083
+  (DynamiCrafter subprocess took 87s)
+  omega_true=  2.00 seed=2: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  omega_true=  2.00 seed=3: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  omega_true=  2.00 seed=4: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  omega_true=  3.00 seed=0: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  omega_true=  3.00 seed=1: omega_hat=28.807 r2=0.302
+  (DynamiCrafter subprocess took 83s)
+  omega_true=  3.00 seed=2: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  3.00 seed=3: omega_hat=17.572 r2=0.020
+  (DynamiCrafter subprocess took 83s)
+  omega_true=  3.00 seed=4: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  omega_true=  4.00 seed=0: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  omega_true=  4.00 seed=1: omega_hat=27.828 r2=0.092
+  (DynamiCrafter subprocess took 84s)
+  omega_true=  4.00 seed=2: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  omega_true=  4.00 seed=3: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  4.00 seed=4: omega_hat=48.924 r2=0.060
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  5.00 seed=0: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  omega_true=  5.00 seed=1: omega_hat=18.314 r2=0.296
+  (DynamiCrafter subprocess took 83s)
+  omega_true=  5.00 seed=2: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  5.00 seed=3: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  omega_true=  5.00 seed=4: omega_hat=24.578 r2=0.161
+  (DynamiCrafter subprocess took 80s)
+  omega_true=  8.00 seed=0: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  8.00 seed=1: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  8.00 seed=2: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  omega_true=  8.00 seed=3: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  omega_true=  8.00 seed=4: omega_hat=23.400 r2=0.101
+  (DynamiCrafter subprocess took 83s)
+  omega_true= 12.00 seed=0: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  omega_true= 12.00 seed=1: omega_hat=41.793 r2=0.001
+  (DynamiCrafter subprocess took 82s)
+  omega_true= 12.00 seed=2: omega_hat=41.072 r2=0.014
+  (DynamiCrafter subprocess took 82s)
+  omega_true= 12.00 seed=3: omega_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  omega_true= 12.00 seed=4: omega_hat=23.203 r2=0.191
+pendulum_omega: n_gated=0/30 dropped_rate=100.00% elapsed=2536s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_pendulum_omega_dynamicrafter.json
+
+======================================================================
+pendulum_zeta (dynamicrafter, variant=default)
+======================================================================
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.02 seed=0: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  zeta_true=  0.02 seed=1: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.02 seed=2: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  zeta_true=  0.02 seed=3: zeta_hat=0.021 r2=0.998
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.02 seed=4: zeta_hat=0.088 r2=1.000
+  (DynamiCrafter subprocess took 82s)
+  zeta_true=  0.05 seed=0: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  zeta_true=  0.05 seed=1: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  zeta_true=  0.05 seed=2: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  zeta_true=  0.05 seed=3: zeta_hat=0.018 r2=0.544
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.05 seed=4: zeta_hat=0.000 r2=-0.050
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.10 seed=0: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  zeta_true=  0.10 seed=1: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.10 seed=2: zeta_hat=0.000 r2=0.151
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.10 seed=3: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 87s)
+  zeta_true=  0.10 seed=4: zeta_hat=0.000 r2=-0.069
+  (DynamiCrafter subprocess took 87s)
+  zeta_true=  0.30 seed=0: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.30 seed=1: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  zeta_true=  0.30 seed=2: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  zeta_true=  0.30 seed=3: zeta_hat=0.356 r2=0.847
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.30 seed=4: zeta_hat=0.000 r2=0.237
+  (DynamiCrafter subprocess took 85s)
+  zeta_true=  0.60 seed=0: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.60 seed=1: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 86s)
+  zeta_true=  0.60 seed=2: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  zeta_true=  0.60 seed=3: zeta_hat=0.000 r2=0.788
+  (DynamiCrafter subprocess took 83s)
+  zeta_true=  0.60 seed=4: zeta_hat=0.048 r2=0.161
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.90 seed=0: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  zeta_true=  0.90 seed=1: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  zeta_true=  0.90 seed=2: zeta_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 81s)
+  zeta_true=  0.90 seed=3: zeta_hat=0.000 r2=0.832
+  (DynamiCrafter subprocess took 84s)
+  zeta_true=  0.90 seed=4: zeta_hat=0.000 r2=-0.057
+pendulum_zeta: n_gated=4/30 dropped_rate=86.67% elapsed=2527s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_pendulum_zeta_dynamicrafter.json
+
+======================================================================
+bouncing_ball (dynamicrafter, variant=default)
+======================================================================
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.60 seed=0: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  e_true=  0.60 seed=1: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.60 seed=2: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.60 seed=3: e_hat=1.084 r2=0.505
+  (DynamiCrafter subprocess took 83s)
+  e_true=  0.60 seed=4: e_hat=2.041 r2=0.028
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.70 seed=0: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.70 seed=1: e_hat=4.071 r2=0.632
+  (DynamiCrafter subprocess took 83s)
+  e_true=  0.70 seed=2: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.70 seed=3: e_hat=1.124 r2=0.721
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.70 seed=4: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 90s)
+  e_true=  0.80 seed=0: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 81s)
+  e_true=  0.80 seed=1: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.80 seed=2: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.80 seed=3: e_hat=1.040 r2=0.191
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.80 seed=4: e_hat=0.982 r2=1.000
+  (DynamiCrafter subprocess took 81s)
+  e_true=  0.90 seed=0: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 81s)
+  e_true=  0.90 seed=1: e_hat=12.006 r2=1.000
+  (DynamiCrafter subprocess took 83s)
+  e_true=  0.90 seed=2: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.90 seed=3: e_hat=1.069 r2=0.457
+  (DynamiCrafter subprocess took 85s)
+  e_true=  0.90 seed=4: e_hat=1.001 r2=1.000
+  (DynamiCrafter subprocess took 83s)
+  e_true=  0.20 seed=0: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.20 seed=1: e_hat=0.963 r2=0.293
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.20 seed=2: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 81s)
+  e_true=  0.20 seed=3: e_hat=1.104 r2=0.787
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.20 seed=4: e_hat=1.408 r2=-0.001
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.35 seed=0: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  e_true=  0.35 seed=1: e_hat=0.755 r2=0.873
+  (DynamiCrafter subprocess took 88s)
+  e_true=  0.35 seed=2: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  e_true=  0.35 seed=3: e_hat=0.990 r2=0.140
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.35 seed=4: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  e_true=  0.97 seed=0: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  e_true=  0.97 seed=1: e_hat=0.861 r2=0.677
+  (DynamiCrafter subprocess took 84s)
+  e_true=  0.97 seed=2: e_hat=0.699 r2=1.000
+  (DynamiCrafter subprocess took 82s)
+  e_true=  0.97 seed=3: e_hat=1.098 r2=0.645
+  (DynamiCrafter subprocess took 85s)
+  e_true=  0.97 seed=4: e_hat=nan r2=0.000
+bouncing_ball: n_gated=5/35 dropped_rate=85.71% elapsed=2939s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_bouncing_ball_dynamicrafter.json
+
+======================================================================
+spring_mass (dynamicrafter, variant=default)
+======================================================================
+  (DynamiCrafter subprocess took 84s)
+  k_true=  20.0 seed=0: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true=  20.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=  20.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=  20.0 seed=3: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=  20.0 seed=4: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=  40.0 seed=0: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=  40.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=  40.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true=  40.0 seed=3: k_hat=227.396 r2=0.373
+  (DynamiCrafter subprocess took 81s)
+  k_true=  40.0 seed=4: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true=  60.0 seed=0: k_hat=2482.294 r2=0.026
+  (DynamiCrafter subprocess took 84s)
+  k_true=  60.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  k_true=  60.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  k_true=  60.0 seed=3: k_hat=1363.358 r2=0.032
+  (DynamiCrafter subprocess took 83s)
+  k_true=  60.0 seed=4: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true=  80.0 seed=0: k_hat=2396.429 r2=0.038
+  (DynamiCrafter subprocess took 83s)
+  k_true=  80.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  k_true=  80.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=  80.0 seed=3: k_hat=909.583 r2=0.186
+  (DynamiCrafter subprocess took 82s)
+  k_true=  80.0 seed=4: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true=   5.0 seed=0: k_hat=3903.284 r2=0.005
+  (DynamiCrafter subprocess took 82s)
+  k_true=   5.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 82s)
+  k_true=   5.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true=   5.0 seed=3: k_hat=2727.321 r2=0.013
+  (DynamiCrafter subprocess took 81s)
+  k_true=   5.0 seed=4: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true=  10.0 seed=0: k_hat=2491.750 r2=0.023
+  (DynamiCrafter subprocess took 87s)
+  k_true=  10.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 85s)
+  k_true=  10.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true=  10.0 seed=3: k_hat=1421.223 r2=0.071
+  (DynamiCrafter subprocess took 84s)
+  k_true=  10.0 seed=4: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true= 200.0 seed=0: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true= 200.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true= 200.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true= 200.0 seed=3: k_hat=4043.952 r2=0.283
+  (DynamiCrafter subprocess took 85s)
+  k_true= 200.0 seed=4: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 86s)
+  k_true= 400.0 seed=0: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 87s)
+  k_true= 400.0 seed=1: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 84s)
+  k_true= 400.0 seed=2: k_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 83s)
+  k_true= 400.0 seed=3: k_hat=1222.054 r2=0.045
+  (DynamiCrafter subprocess took 83s)
+  k_true= 400.0 seed=4: k_hat=673.551 r2=0.095
+spring_mass: n_gated=0/40 dropped_rate=100.00% elapsed=3364s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_spring_mass_dynamicrafter.json
+
+======================================================================
+inclined_slide (dynamicrafter, variant=default)
+======================================================================
+  (DynamiCrafter subprocess took 86s)
+  mu_true=  0.10 seed=0: mu_hat=4.652 r2=0.926
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.10 seed=1: mu_hat=1.321 r2=0.846
+  (DynamiCrafter subprocess took 83s)
+  mu_true=  0.10 seed=2: mu_hat=0.355 r2=0.426
+  (DynamiCrafter subprocess took 83s)
+  mu_true=  0.10 seed=3: mu_hat=1.743 r2=1.000
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.10 seed=4: mu_hat=1.584 r2=0.961
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.20 seed=0: mu_hat=4.636 r2=0.916
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.20 seed=1: mu_hat=1.519 r2=0.837
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.20 seed=2: mu_hat=1.218 r2=0.859
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.20 seed=3: mu_hat=1.819 r2=1.000
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.20 seed=4: mu_hat=1.603 r2=0.962
+  (DynamiCrafter subprocess took 82s)
+  mu_true=  0.30 seed=0: mu_hat=4.677 r2=0.921
+  (DynamiCrafter subprocess took 83s)
+  mu_true=  0.30 seed=1: mu_hat=1.552 r2=0.840
+  (DynamiCrafter subprocess took 86s)
+  mu_true=  0.30 seed=2: mu_hat=0.505 r2=0.539
+  (DynamiCrafter subprocess took 82s)
+  mu_true=  0.30 seed=3: mu_hat=1.823 r2=0.999
+  (DynamiCrafter subprocess took 83s)
+  mu_true=  0.30 seed=4: mu_hat=1.603 r2=0.955
+  (DynamiCrafter subprocess took 85s)
+  mu_true=  0.40 seed=0: mu_hat=4.764 r2=0.925
+  (DynamiCrafter subprocess took 81s)
+  mu_true=  0.40 seed=1: mu_hat=1.710 r2=0.828
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.40 seed=2: mu_hat=0.396 r2=0.401
+  (DynamiCrafter subprocess took 83s)
+  mu_true=  0.40 seed=3: mu_hat=1.817 r2=0.999
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.40 seed=4: mu_hat=1.560 r2=0.961
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.01 seed=0: mu_hat=7.424 r2=0.792
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.01 seed=1: mu_hat=-6.888 r2=0.955
+  (DynamiCrafter subprocess took 86s)
+  mu_true=  0.01 seed=2: mu_hat=1.603 r2=1.000
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.01 seed=3: mu_hat=1.514 r2=0.998
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.01 seed=4: mu_hat=2.160 r2=0.986
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  0.70 seed=0: mu_hat=7.551 r2=0.804
+  (DynamiCrafter subprocess took 78s)
+  mu_true=  0.70 seed=1: mu_hat=-0.982 r2=0.662
+  (DynamiCrafter subprocess took 72s)
+  mu_true=  0.70 seed=2: mu_hat=0.738 r2=0.611
+  (DynamiCrafter subprocess took 73s)
+  mu_true=  0.70 seed=3: mu_hat=1.592 r2=1.000
+  (DynamiCrafter subprocess took 73s)
+  mu_true=  0.70 seed=4: mu_hat=-2.032 r2=0.983
+  (DynamiCrafter subprocess took 74s)
+  mu_true=  1.00 seed=0: mu_hat=7.781 r2=0.790
+  (DynamiCrafter subprocess took 73s)
+  mu_true=  1.00 seed=1: mu_hat=4.232 r2=0.597
+  (DynamiCrafter subprocess took 74s)
+  mu_true=  1.00 seed=2: mu_hat=0.189 r2=0.627
+  (DynamiCrafter subprocess took 81s)
+  mu_true=  1.00 seed=3: mu_hat=1.684 r2=0.996
+  (DynamiCrafter subprocess took 84s)
+  mu_true=  1.00 seed=4: mu_hat=3.335 r2=0.639
+inclined_slide: n_gated=25/35 dropped_rate=28.57% elapsed=2877s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_inclined_slide_dynamicrafter.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_dynamicrafter_summary.json

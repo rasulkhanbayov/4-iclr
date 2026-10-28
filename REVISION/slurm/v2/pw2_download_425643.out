@@ -1,0 +1,11 @@
+nfs-phys-srvs.isi1.qcri.org:/hbku-research   10T  6.1T  4.0T  61% /export/hbku-research
+OK   Lightricks/LTX-Video: 28.4 GB in 834s
+OK   zai-org/CogVideoX-5b-I2V: 21.6 GB in 1073s
+OK   Wan-AI/Wan2.2-TI2V-5B-Diffusers: 34.2 GB in 13255s
+OK   zai-org/CogVideoX1.5-5B-I2V: 31.1 GB in 732s
+OK   Wan-AI/Wan2.2-I2V-A14B-Diffusers: 126.2 GB in 5548s
+OK   hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_i2v: 54.2 GB in 2s
+OK   Lightricks/LTX-2: 144.7 GB in 1s
+OK   nvidia/Cosmos-Predict2-2B-Video2World: 14.7 GB in 1s
+FAILED: none
+nfs-phys-srvs.isi1.qcri.org:/hbku-research   10T  6.5T  3.6T  65% /export/hbku-research

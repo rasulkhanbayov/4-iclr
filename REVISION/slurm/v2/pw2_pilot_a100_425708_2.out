@@ -1,0 +1,15 @@
+model=dynamicrafter host=crirdcmgpu006 NVIDIA A100 80GB PCIe, 81920 MiB
+[dynamicrafter] run=pilot shard 2/1: 12 clips in shard, 0 already done, 12 to do
+[dynamicrafter] loaded in 0s
+[dynamicrafter] 1/12 bouncing_ball θ=0.6 s=0 z=1000: ERROR TimeoutExpired: Command '['/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/bin/python
+[dynamicrafter] 2/12 bouncing_ball θ=0.6 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 831s
+[dynamicrafter] 3/12 bouncing_ball θ=0.9 s=0 z=1000: θ̂=1.4590761697499612 R²=1.000 invalid_static/None 70s
+[dynamicrafter] 4/12 bouncing_ball θ=0.9 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 69s
+[dynamicrafter] 5/12 inclined_slide θ=0.1 s=0 z=1000: θ̂=1.4234333658030365 R²=0.999 valid/confirmed 69s
+[dynamicrafter] 6/12 inclined_slide θ=0.1 s=1 z=1000: θ̂=1.5987512588841293 R²=1.000 valid/confirmed 68s
+[dynamicrafter] 7/12 inclined_slide θ=0.4 s=0 z=1000: θ̂=1.4474319215364915 R²=1.000 valid/confirmed 68s
+[dynamicrafter] 8/12 inclined_slide θ=0.4 s=1 z=1000: θ̂=1.587570243002858 R²=1.000 valid/confirmed 68s
+[dynamicrafter] 9/12 projectile θ=5 s=0 z=1000: θ̂=0.18734653460076664 R²=0.962 valid/confirmed 69s
+[dynamicrafter] 10/12 projectile θ=5 s=1 z=1000: θ̂=1.0880377432227715 R²=0.995 invalid_shape/None 67s
+[dynamicrafter] 11/12 projectile θ=15 s=0 z=1000: θ̂=-0.007629772744332049 R²=0.610 invalid_fit/None 80s
+[dynamicrafter] 12/12 projectile θ=15 s=1 z=1000: θ̂=1.1833282693118856 R²=0.993 invalid_shape/None 70s

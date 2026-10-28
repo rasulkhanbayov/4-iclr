@@ -1,0 +1,41 @@
+task 9: run=main_text model=cogvideox15_i2v mode=crossed n_noise=4 shard=2/8 host=crirdcmgpu006 NVIDIA A100 80GB PCIe
+[cogvideox15_i2v] run=main_text shard 2/8: 38 clips in shard, 12 already done, 38 to do
+[cogvideox15_i2v] loaded in 27s
+[cogvideox15_i2v] 1/38 projectile θ=5 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 2/38 projectile θ=5 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 3/38 projectile θ=7 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 4/38 projectile θ=7 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 5/38 projectile θ=9.8 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 6/38 projectile θ=9.8 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1019s
+[cogvideox15_i2v] 7/38 projectile θ=12 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1019s
+[cogvideox15_i2v] 8/38 projectile θ=12 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1019s
+[cogvideox15_i2v] 9/38 projectile θ=15 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1033s
+[cogvideox15_i2v] 10/38 projectile θ=15 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1026s
+[cogvideox15_i2v] 11/38 projectile θ=1.6 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 12/38 projectile θ=1.6 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 13/38 projectile θ=25 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 14/38 projectile θ=25 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1019s
+[cogvideox15_i2v] 15/38 bouncing_ball θ=0.6 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 16/38 bouncing_ball θ=0.6 s=2 z=1002: θ̂=0.9814967417613307 R²=0.401 invalid_fit/None 1018s
+[cogvideox15_i2v] 17/38 bouncing_ball θ=0.7 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 18/38 bouncing_ball θ=0.7 s=2 z=1002: θ̂=0.9890666223490499 R²=0.596 invalid_fit/None 1018s
+[cogvideox15_i2v] 19/38 bouncing_ball θ=0.8 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 20/38 bouncing_ball θ=0.8 s=2 z=1002: θ̂=0.9706589333984693 R²=0.394 invalid_fit/None 1018s
+[cogvideox15_i2v] 21/38 bouncing_ball θ=0.9 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 22/38 bouncing_ball θ=0.9 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 23/38 bouncing_ball θ=0.2 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 24/38 bouncing_ball θ=0.2 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 25/38 bouncing_ball θ=0.97 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1018s
+[cogvideox15_i2v] 26/38 bouncing_ball θ=0.97 s=2 z=1002: θ̂=0.9464300368635543 R²=0.397 invalid_fit/None 1018s
+[cogvideox15_i2v] 27/38 inclined_slide θ=0.1 s=0 z=1002: θ̂=None R²=0.000 invalid_fit/None 1020s
+[cogvideox15_i2v] 28/38 inclined_slide θ=0.1 s=2 z=1002: θ̂=1.68105796795888 R²=0.688 invalid_fit/None 1019s
+[cogvideox15_i2v] 29/38 inclined_slide θ=0.2 s=0 z=1002: θ̂=1.7911033232509739 R²=0.993 valid/confirmed 1022s
+[cogvideox15_i2v] 30/38 inclined_slide θ=0.2 s=2 z=1002: θ̂=1.691038334106653 R²=0.677 invalid_fit/None 1018s
+[cogvideox15_i2v] 31/38 inclined_slide θ=0.3 s=0 z=1002: θ̂=1.790780334667688 R²=0.993 valid/confirmed 1019s
+[cogvideox15_i2v] 32/38 inclined_slide θ=0.3 s=2 z=1002: θ̂=1.7423108678461063 R²=0.917 invalid_shape/None 1019s
+[cogvideox15_i2v] 33/38 inclined_slide θ=0.4 s=0 z=1002: θ̂=1.7910527377794874 R²=0.993 valid/confirmed 1019s
+[cogvideox15_i2v] 34/38 inclined_slide θ=0.4 s=2 z=1002: θ̂=1.7434200194158291 R²=0.918 invalid_shape/None 1018s
+[cogvideox15_i2v] 35/38 inclined_slide θ=0.01 s=0 z=1002: θ̂=1.7886984314665908 R²=0.995 valid/confirmed 1019s
+[cogvideox15_i2v] 36/38 inclined_slide θ=0.01 s=2 z=1002: θ̂=None R²=0.000 invalid_fit/None 1019s
+[cogvideox15_i2v] 37/38 inclined_slide θ=1.0 s=0 z=1002: θ̂=1.7507474909719816 R²=0.988 valid/confirmed 1019s
+[cogvideox15_i2v] 38/38 inclined_slide θ=1.0 s=2 z=1002: θ̂=1.7590297441513263 R²=0.942 valid/confirmed 1019s

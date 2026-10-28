@@ -1,0 +1,28 @@
+--- a/scripts/evaluation/inference.py
++++ b/scripts/evaluation/inference.py
+@@ -7,6 +7,7 @@
+ 
+ import torch
+ import torchvision
++import imageio
+ import torchvision.transforms as transforms
+ from pytorch_lightning import seed_everything
+ from PIL import Image
+@@ -130,7 +131,7 @@
+         grid = (grid + 1.0) / 2.0
+         grid = (grid * 255).to(torch.uint8).permute(0, 2, 3, 1)
+         path = os.path.join(savedirs[idx], filename)
+-        torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'}) ## crf indicates the quality
++        imageio.mimwrite(path, grid.numpy(), fps=fps)  ## crf indicates the quality (torchvision.io.write_video removed in torchvision>=0.20)
+ 
+ 
+ def save_results_seperate(prompt, samples, filename, fakedir, fps=10, loop=False):
+@@ -153,7 +154,7 @@
+             grid = (grid + 1.0) / 2.0
+             grid = (grid * 255).to(torch.uint8).permute(1, 2, 3, 0) #thwc
+             path = os.path.join(savedirs[idx].replace('samples', 'samples_separate'), f'{filename.split(".")[0]}_sample{i}.mp4')
+-            torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
++            imageio.mimwrite(path, grid.numpy(), fps=fps)  # torchvision.io.write_video removed in torchvision>=0.20
+ 
+ def get_latent_z(model, videos):
+     b, c, t, h, w = videos.shape

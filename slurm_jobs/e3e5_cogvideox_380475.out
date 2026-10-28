@@ -1,0 +1,2 @@
+=== fast systems (24-frame, ~2.3min/clip): projectile, bouncing_ball, inclined_slide ===
+variant=default  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]

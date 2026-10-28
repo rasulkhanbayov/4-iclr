@@ -1,0 +1,30 @@
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/12 [00:00<?, ?it/s][A
+Loading checkpoint shards:   8%|▊         | 1/12 [00:36<06:40, 36.40s/it][A
+Loading checkpoint shards:  17%|█▋        | 2/12 [01:11<05:54, 35.47s/it][A
+Loading checkpoint shards:  25%|██▌       | 3/12 [01:47<05:23, 35.99s/it][A
+Loading checkpoint shards:  33%|███▎      | 4/12 [02:20<04:35, 34.49s/it][A
+Loading checkpoint shards:  42%|████▏     | 5/12 [02:53<03:58, 34.09s/it][A
+Loading checkpoint shards:  50%|█████     | 6/12 [03:24<03:19, 33.23s/it][A
+Loading checkpoint shards:  58%|█████▊    | 7/12 [03:58<02:46, 33.22s/it][A
+Loading checkpoint shards:  67%|██████▋   | 8/12 [04:31<02:13, 33.39s/it][A
+Loading checkpoint shards:  75%|███████▌  | 9/12 [05:06<01:41, 33.68s/it][A
+Loading checkpoint shards:  83%|████████▎ | 10/12 [05:37<01:06, 33.02s/it][A
+Loading checkpoint shards:  92%|█████████▏| 11/12 [06:12<00:33, 33.64s/it][A
+Loading checkpoint shards: 100%|██████████| 12/12 [06:36<00:00, 30.60s/it][ALoading checkpoint shards: 100%|██████████| 12/12 [06:36<00:00, 33.04s/it]
+Loading pipeline components...:  17%|█▋        | 1/6 [06:36<33:04, 396.99s/it]Loading pipeline components...:  33%|███▎      | 2/6 [06:40<11:01, 165.37s/it]Loading pipeline components...:  50%|█████     | 3/6 [06:42<04:32, 90.79s/it] Loading pipeline components...:  67%|██████▋   | 4/6 [06:42<01:50, 55.14s/it]
+Loading checkpoint shards:   0%|          | 0/12 [00:00<?, ?it/s][A
+Loading checkpoint shards:   8%|▊         | 1/12 [00:38<07:00, 38.22s/it][A
+Loading checkpoint shards:  17%|█▋        | 2/12 [01:16<06:21, 38.11s/it][A
+Loading checkpoint shards:  25%|██▌       | 3/12 [01:50<05:26, 36.29s/it][A
+Loading checkpoint shards:  33%|███▎      | 4/12 [02:32<05:09, 38.74s/it][A
+Loading checkpoint shards:  42%|████▏     | 5/12 [03:36<05:34, 47.78s/it][A
+Loading checkpoint shards:  50%|█████     | 6/12 [04:31<05:01, 50.20s/it][A
+Loading checkpoint shards:  58%|█████▊    | 7/12 [05:26<04:18, 51.69s/it][A
+Loading checkpoint shards:  67%|██████▋   | 8/12 [06:07<03:13, 48.29s/it][A
+Loading checkpoint shards:  75%|███████▌  | 9/12 [06:52<02:21, 47.28s/it][A
+Loading checkpoint shards:  83%|████████▎ | 10/12 [07:54<01:43, 51.97s/it][A
+Loading checkpoint shards:  92%|█████████▏| 11/12 [09:06<00:57, 57.86s/it][A
+Loading checkpoint shards: 100%|██████████| 12/12 [09:31<00:00, 48.01s/it][ALoading checkpoint shards: 100%|██████████| 12/12 [09:31<00:00, 47.63s/it]
+Loading pipeline components...: 100%|██████████| 6/6 [16:14<00:00, 177.47s/it]Loading pipeline components...: 100%|██████████| 6/6 [16:14<00:00, 162.43s/it]
+Using cache found in /export/hbku-research/rakh90100/physweep_revision/torch_home/hub/facebookresearch_co-tracker_main

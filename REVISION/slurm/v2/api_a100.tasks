@@ -1,0 +1,6 @@
+# Seed-free tier check ("API mode"): fresh noise seed per clip, 4 scenes x 2 samples = 152 clips/model.
+# CogVideoX1.5 and Cosmos are left out to save ~65 GPU-h; 7 models are enough for the check.
+api_text     ltx              api      2       0     1
+api_text     cogvideox        api      2       0     1
+api_text     dynamicrafter    api      2       0     1
+api_text     wan22_ti2v_5b    api      2       0     1

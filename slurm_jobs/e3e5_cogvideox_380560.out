@@ -1,0 +1,256 @@
+=== fast systems (24-frame, ~2.3min/clip): projectile, bouncing_ball, inclined_slide ===
+variant=default  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=default)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=1.698 r2=0.323
+  g_true=  5.00 seed=1: g_hat=0.832 r2=0.076
+  g_true=  5.00 seed=2: g_hat=1.534 r2=0.558
+  g_true=  5.00 seed=3: g_hat=1.168 r2=0.220
+  g_true=  5.00 seed=4: g_hat=1.820 r2=0.416
+  g_true=  7.00 seed=0: g_hat=2.381 r2=0.409
+  g_true=  7.00 seed=1: g_hat=0.365 r2=0.007
+  g_true=  7.00 seed=2: g_hat=1.098 r2=0.323
+  g_true=  7.00 seed=3: g_hat=2.023 r2=0.469
+  g_true=  7.00 seed=4: g_hat=1.632 r2=0.303
+  g_true=  9.80 seed=0: g_hat=1.897 r2=0.301
+  g_true=  9.80 seed=1: g_hat=0.212 r2=0.002
+  g_true=  9.80 seed=2: g_hat=1.312 r2=0.534
+  g_true=  9.80 seed=3: g_hat=1.500 r2=0.255
+  g_true=  9.80 seed=4: g_hat=1.733 r2=0.371
+  g_true= 12.00 seed=0: g_hat=1.544 r2=0.232
+  g_true= 12.00 seed=1: g_hat=0.234 r2=0.004
+  g_true= 12.00 seed=2: g_hat=1.425 r2=0.543
+  g_true= 12.00 seed=3: g_hat=0.783 r2=0.069
+  g_true= 12.00 seed=4: g_hat=1.545 r2=0.325
+  g_true= 15.00 seed=0: g_hat=2.148 r2=0.442
+  g_true= 15.00 seed=1: g_hat=0.574 r2=0.034
+  g_true= 15.00 seed=2: g_hat=1.038 r2=0.441
+  g_true= 15.00 seed=3: g_hat=1.205 r2=0.230
+  g_true= 15.00 seed=4: g_hat=1.617 r2=0.330
+  g_true=  1.60 seed=0: g_hat=2.019 r2=0.346
+  g_true=  1.60 seed=1: g_hat=0.940 r2=0.090
+  g_true=  1.60 seed=2: g_hat=1.647 r2=0.528
+  g_true=  1.60 seed=3: g_hat=1.116 r2=0.198
+  g_true=  1.60 seed=4: g_hat=2.093 r2=0.488
+  g_true=  3.00 seed=0: g_hat=1.765 r2=0.282
+  g_true=  3.00 seed=1: g_hat=0.851 r2=0.098
+  g_true=  3.00 seed=2: g_hat=2.022 r2=0.482
+  g_true=  3.00 seed=3: g_hat=0.776 r2=0.072
+  g_true=  3.00 seed=4: g_hat=1.968 r2=0.478
+  g_true= 20.00 seed=0: g_hat=1.418 r2=0.215
+  g_true= 20.00 seed=1: g_hat=-0.009 r2=0.000
+  g_true= 20.00 seed=2: g_hat=0.584 r2=0.171
+  g_true= 20.00 seed=3: g_hat=1.148 r2=0.204
+  g_true= 20.00 seed=4: g_hat=1.225 r2=0.162
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2547s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_projectile_cogvideox.json
+
+======================================================================
+bouncing_ball (cogvideox, variant=default)
+======================================================================
+  e_true=  0.60 seed=0: e_hat=0.989 r2=0.539
+  e_true=  0.60 seed=1: e_hat=0.974 r2=0.406
+  e_true=  0.60 seed=2: e_hat=1.001 r2=0.523
+  e_true=  0.60 seed=3: e_hat=0.984 r2=0.402
+  e_true=  0.60 seed=4: e_hat=0.994 r2=0.384
+  e_true=  0.70 seed=0: e_hat=0.994 r2=0.593
+  e_true=  0.70 seed=1: e_hat=0.979 r2=0.393
+  e_true=  0.70 seed=2: e_hat=1.001 r2=0.502
+  e_true=  0.70 seed=3: e_hat=0.988 r2=0.390
+  e_true=  0.70 seed=4: e_hat=1.000 r2=0.181
+  e_true=  0.80 seed=0: e_hat=0.991 r2=0.528
+  e_true=  0.80 seed=1: e_hat=0.969 r2=0.408
+  e_true=  0.80 seed=2: e_hat=1.001 r2=0.605
+  e_true=  0.80 seed=3: e_hat=0.976 r2=0.420
+  e_true=  0.80 seed=4: e_hat=0.992 r2=0.374
+  e_true=  0.90 seed=0: e_hat=0.997 r2=0.835
+  e_true=  0.90 seed=1: e_hat=0.977 r2=0.400
+  e_true=  0.90 seed=2: e_hat=1.001 r2=0.580
+  e_true=  0.90 seed=3: e_hat=0.992 r2=0.372
+  e_true=  0.90 seed=4: e_hat=1.000 r2=0.038
+  e_true=  0.20 seed=0: e_hat=0.979 r2=0.495
+  e_true=  0.20 seed=1: e_hat=0.980 r2=0.374
+  e_true=  0.20 seed=2: e_hat=1.001 r2=0.698
+  e_true=  0.20 seed=3: e_hat=0.998 r2=0.150
+  e_true=  0.20 seed=4: e_hat=1.000 r2=0.424
+  e_true=  0.35 seed=0: e_hat=0.985 r2=0.511
+  e_true=  0.35 seed=1: e_hat=0.985 r2=0.282
+  e_true=  0.35 seed=2: e_hat=1.001 r2=0.619
+  e_true=  0.35 seed=3: e_hat=0.991 r2=0.327
+  e_true=  0.35 seed=4: e_hat=1.000 r2=0.383
+  e_true=  0.97 seed=0: e_hat=0.984 r2=0.485
+  e_true=  0.97 seed=1: e_hat=0.983 r2=0.354
+  e_true=  0.97 seed=2: e_hat=1.001 r2=0.620
+  e_true=  0.97 seed=3: e_hat=0.974 r2=0.483
+  e_true=  0.97 seed=4: e_hat=0.997 r2=0.187
+bouncing_ball: n_gated=1/35 dropped_rate=97.14% elapsed=2229s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_bouncing_ball_cogvideox.json
+
+======================================================================
+inclined_slide (cogvideox, variant=default)
+======================================================================
+  mu_true=  0.10 seed=0: mu_hat=2.620 r2=0.555
+  mu_true=  0.10 seed=1: mu_hat=1.914 r2=0.006
+  mu_true=  0.10 seed=2: mu_hat=1.446 r2=0.021
+  mu_true=  0.10 seed=3: mu_hat=2.811 r2=0.495
+  mu_true=  0.10 seed=4: mu_hat=1.436 r2=0.020
+  mu_true=  0.20 seed=0: mu_hat=2.481 r2=0.391
+  mu_true=  0.20 seed=1: mu_hat=1.861 r2=0.004
+  mu_true=  0.20 seed=2: mu_hat=1.521 r2=0.017
+  mu_true=  0.20 seed=3: mu_hat=2.439 r2=0.223
+  mu_true=  0.20 seed=4: mu_hat=1.468 r2=0.017
+  mu_true=  0.30 seed=0: mu_hat=2.560 r2=0.497
+  mu_true=  0.30 seed=1: mu_hat=1.849 r2=0.004
+  mu_true=  0.30 seed=2: mu_hat=1.396 r2=0.026
+  mu_true=  0.30 seed=3: mu_hat=2.542 r2=0.327
+  mu_true=  0.30 seed=4: mu_hat=1.449 r2=0.019
+  mu_true=  0.40 seed=0: mu_hat=2.573 r2=0.565
+  mu_true=  0.40 seed=1: mu_hat=1.916 r2=0.007
+  mu_true=  0.40 seed=2: mu_hat=1.322 r2=0.034
+  mu_true=  0.40 seed=3: mu_hat=2.456 r2=0.246
+  mu_true=  0.40 seed=4: mu_hat=1.559 r2=0.010
+  mu_true=  0.01 seed=0: mu_hat=2.212 r2=0.176
+  mu_true=  0.01 seed=1: mu_hat=1.912 r2=0.006
+  mu_true=  0.01 seed=2: mu_hat=1.231 r2=0.035
+  mu_true=  0.01 seed=3: mu_hat=2.957 r2=0.486
+  mu_true=  0.01 seed=4: mu_hat=1.603 r2=0.007
+  mu_true=  0.70 seed=0: mu_hat=2.072 r2=0.083
+  mu_true=  0.70 seed=1: mu_hat=1.892 r2=0.006
+  mu_true=  0.70 seed=2: mu_hat=1.447 r2=0.021
+  mu_true=  0.70 seed=3: mu_hat=2.614 r2=0.445
+  mu_true=  0.70 seed=4: mu_hat=1.412 r2=0.025
+  mu_true=  1.00 seed=0: mu_hat=2.249 r2=0.186
+  mu_true=  1.00 seed=1: mu_hat=1.927 r2=0.008
+  mu_true=  1.00 seed=2: mu_hat=1.340 r2=0.028
+  mu_true=  1.00 seed=3: mu_hat=2.638 r2=0.418
+  mu_true=  1.00 seed=4: mu_hat=1.617 r2=0.007
+inclined_slide: n_gated=0/35 dropped_rate=100.00% elapsed=2228s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_inclined_slide_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_cogvideox_summary.json
+=== slow, frame-capped systems (97-frame, ~5.9min/clip): pendulum_omega, pendulum_zeta, spring_mass ===
+variant=default  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+pendulum_omega (cogvideox, variant=default)
+======================================================================
+  omega_true=  2.00 seed=0: omega_hat=8.748 r2=0.048
+  omega_true=  2.00 seed=1: omega_hat=37.757 r2=0.011
+  omega_true=  2.00 seed=2: omega_hat=nan r2=0.000
+  omega_true=  2.00 seed=3: omega_hat=9.931 r2=0.059
+  omega_true=  2.00 seed=4: omega_hat=nan r2=0.000
+  omega_true=  3.00 seed=0: omega_hat=8.740 r2=0.044
+  omega_true=  3.00 seed=1: omega_hat=5.955 r2=0.053
+  omega_true=  3.00 seed=2: omega_hat=nan r2=0.000
+  omega_true=  3.00 seed=3: omega_hat=7.945 r2=0.064
+  omega_true=  3.00 seed=4: omega_hat=1.834 r2=0.024
+  omega_true=  4.00 seed=0: omega_hat=27.093 r2=0.019
+  omega_true=  4.00 seed=1: omega_hat=5.955 r2=0.052
+  omega_true=  4.00 seed=2: omega_hat=nan r2=0.000
+  omega_true=  4.00 seed=3: omega_hat=11.920 r2=0.060
+  omega_true=  4.00 seed=4: omega_hat=nan r2=0.000
+  omega_true=  5.00 seed=0: omega_hat=27.145 r2=0.020
+  omega_true=  5.00 seed=1: omega_hat=3.971 r2=0.045
+  omega_true=  5.00 seed=2: omega_hat=nan r2=0.000
+  omega_true=  5.00 seed=3: omega_hat=11.919 r2=0.059
+  omega_true=  5.00 seed=4: omega_hat=nan r2=0.000
+  omega_true=  8.00 seed=0: omega_hat=30.988 r2=0.022
+  omega_true=  8.00 seed=1: omega_hat=24.088 r2=0.028
+  omega_true=  8.00 seed=2: omega_hat=27.005 r2=0.026
+  omega_true=  8.00 seed=3: omega_hat=22.827 r2=0.028
+  omega_true=  8.00 seed=4: omega_hat=24.472 r2=0.032
+  omega_true= 12.00 seed=0: omega_hat=30.990 r2=0.022
+  omega_true= 12.00 seed=1: omega_hat=21.095 r2=0.033
+  omega_true= 12.00 seed=2: omega_hat=13.894 r2=0.036
+  omega_true= 12.00 seed=3: omega_hat=26.304 r2=0.025
+  omega_true= 12.00 seed=4: omega_hat=26.185 r2=0.030
+pendulum_omega: n_gated=0/30 dropped_rate=100.00% elapsed=12300s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_pendulum_omega_cogvideox.json
+
+======================================================================
+pendulum_zeta (cogvideox, variant=default)
+======================================================================
+  zeta_true=  0.02 seed=0: zeta_hat=0.012 r2=-0.015
+  zeta_true=  0.02 seed=1: zeta_hat=0.000 r2=-0.058
+  zeta_true=  0.02 seed=2: zeta_hat=0.024 r2=-0.022
+  zeta_true=  0.02 seed=3: zeta_hat=0.009 r2=-0.031
+  zeta_true=  0.02 seed=4: zeta_hat=0.020 r2=-0.025
+  zeta_true=  0.05 seed=0: zeta_hat=0.009 r2=-0.016
+  zeta_true=  0.05 seed=1: zeta_hat=0.000 r2=-0.062
+  zeta_true=  0.05 seed=2: zeta_hat=nan r2=0.000
+  zeta_true=  0.05 seed=3: zeta_hat=0.009 r2=-0.020
+  zeta_true=  0.05 seed=4: zeta_hat=0.018 r2=-0.029
+  zeta_true=  0.10 seed=0: zeta_hat=0.012 r2=-0.009
+  zeta_true=  0.10 seed=1: zeta_hat=0.000 r2=-0.065
+  zeta_true=  0.10 seed=2: zeta_hat=0.001 r2=-0.037
+  zeta_true=  0.10 seed=3: zeta_hat=0.008 r2=-0.059
+  zeta_true=  0.10 seed=4: zeta_hat=0.020 r2=-0.016
+  zeta_true=  0.30 seed=0: zeta_hat=0.000 r2=-0.037
+  zeta_true=  0.30 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=2: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=3: zeta_hat=0.012 r2=-0.012
+  zeta_true=  0.30 seed=4: zeta_hat=0.000 r2=-0.062
+  zeta_true=  0.60 seed=0: zeta_hat=0.006 r2=-0.022
+  zeta_true=  0.60 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=2: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=3: zeta_hat=0.004 r2=-0.044
+  zeta_true=  0.60 seed=4: zeta_hat=0.033 r2=-0.022
+  zeta_true=  0.90 seed=0: zeta_hat=0.006 r2=-0.023
+  zeta_true=  0.90 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=2: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=3: zeta_hat=0.009 r2=-0.043
+  zeta_true=  0.90 seed=4: zeta_hat=0.000 r2=-0.063
+pendulum_zeta: n_gated=0/30 dropped_rate=100.00% elapsed=12299s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_pendulum_zeta_cogvideox.json
+
+======================================================================
+spring_mass (cogvideox, variant=default)
+======================================================================
+  k_true=  20.0 seed=0: k_hat=149.234 r2=0.047
+  k_true=  20.0 seed=1: k_hat=110.965 r2=0.057
+  k_true=  20.0 seed=2: k_hat=5.536 r2=0.055
+  k_true=  20.0 seed=3: k_hat=249.205 r2=0.039
+  k_true=  20.0 seed=4: k_hat=13.367 r2=0.038
+  k_true=  40.0 seed=0: k_hat=194.612 r2=0.041
+  k_true=  40.0 seed=1: k_hat=98.542 r2=0.047
+  k_true=  40.0 seed=2: k_hat=5.540 r2=0.055
+  k_true=  40.0 seed=3: k_hat=249.666 r2=0.039
+  k_true=  40.0 seed=4: k_hat=13.406 r2=0.036
+  k_true=  60.0 seed=0: k_hat=148.921 r2=0.047
+  k_true=  60.0 seed=1: k_hat=35.456 r2=0.050
+  k_true=  60.0 seed=2: k_hat=nan r2=0.000
+  k_true=  60.0 seed=3: k_hat=196.865 r2=0.052
+  k_true=  60.0 seed=4: k_hat=3.927 r2=0.026
+  k_true=  80.0 seed=0: k_hat=149.027 r2=0.045
+  k_true=  80.0 seed=1: k_hat=98.538 r2=0.048
+  k_true=  80.0 seed=2: k_hat=nan r2=0.000
+  k_true=  80.0 seed=3: k_hat=249.452 r2=0.039
+  k_true=  80.0 seed=4: k_hat=3.927 r2=0.029
+  k_true=   5.0 seed=0: k_hat=148.173 r2=0.044
+  k_true=   5.0 seed=1: k_hat=49.311 r2=0.056
+  k_true=   5.0 seed=2: k_hat=5.521 r2=0.041
+  k_true=   5.0 seed=3: k_hat=196.426 r2=0.052
+  k_true=   5.0 seed=4: k_hat=3.907 r2=0.023
+  k_true=  10.0 seed=0: k_hat=109.641 r2=0.052
+  k_true=  10.0 seed=1: k_hat=nan r2=0.000
+  k_true=  10.0 seed=2: k_hat=nan r2=0.000
+  k_true=  10.0 seed=3: k_hat=70.169 r2=0.079
+  k_true=  10.0 seed=4: k_hat=3.923 r2=0.034
+  k_true= 200.0 seed=0: k_hat=369.162 r2=0.033
+  k_true= 200.0 seed=1: k_hat=nan r2=0.000
+  k_true= 200.0 seed=2: k_hat=nan r2=0.000
+  k_true= 200.0 seed=3: k_hat=98.725 r2=0.059
+  k_true= 200.0 seed=4: k_hat=304.467 r2=0.036
+  k_true= 400.0 seed=0: k_hat=439.445 r2=0.035
+  k_true= 400.0 seed=1: k_hat=1416.990 r2=0.009
+  k_true= 400.0 seed=2: k_hat=nan r2=0.000
+  k_true= 400.0 seed=3: k_hat=98.719 r2=0.058
+  k_true= 400.0 seed=4: k_hat=437.676 r2=0.035
+spring_mass: n_gated=0/40 dropped_rate=100.00% elapsed=16398s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_spring_mass_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_cogvideox_summary.json

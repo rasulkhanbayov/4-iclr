@@ -1,0 +1,43 @@
+{
+ "model": "simulator_pair",
+ "spec": {
+  "repo": null,
+  "cls": "simulator",
+  "W": 512,
+  "H": 320,
+  "num_frames": 16,
+  "fps": 24,
+  "steps": 0,
+  "guidance": null,
+  "queue": "cpu",
+  "env": "main",
+  "frame_mode": "pair"
+ },
+ "args": {
+  "model": "simulator_pair",
+  "run": "frame",
+  "out_root": "/tmp/claude-1980770492/-export-home-rakh90100-Rasul-research-ideas--2--4-ICLR/1745feb0-7822-4a82-85cc-8cbb922a3acf/scratchpad/fcdry",
+  "systems": [
+   "projectile",
+   "bouncing_ball",
+   "inclined_slide"
+  ],
+  "mode": "crossed",
+  "n_scene": 4,
+  "n_noise": 4,
+  "style": "structured",
+  "channel": "frame",
+  "frame_mode": null,
+  "prompt_variant": "default",
+  "pilot": true,
+  "limit": null,
+  "shard_index": 0,
+  "shard_count": 1,
+  "no_cotracker": true,
+  "offload": false
+ },
+ "load_seconds": 1.5020370483398438e-05,
+ "host": "crimv3mgpu015",
+ "slurm_job": null,
+ "gpu": "Tesla P100-PCIE-16GB"
+}

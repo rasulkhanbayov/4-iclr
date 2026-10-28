@@ -1,0 +1,41 @@
+task 7: run=main_text model=cogvideox15_i2v mode=crossed n_noise=4 shard=0/8 host=crirdcmgpu006 NVIDIA A100 80GB PCIe
+[cogvideox15_i2v] run=main_text shard 0/8: 38 clips in shard, 0 already done, 38 to do
+[cogvideox15_i2v] loaded in 302s
+[cogvideox15_i2v] 1/38 projectile θ=5 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1032s
+[cogvideox15_i2v] 2/38 projectile θ=5 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1032s
+[cogvideox15_i2v] 3/38 projectile θ=7 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1031s
+[cogvideox15_i2v] 4/38 projectile θ=7 s=2 z=1000: θ̂=0.051269213444611945 R²=0.991 valid/confirmed 1033s
+[cogvideox15_i2v] 5/38 projectile θ=9.8 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1032s
+[cogvideox15_i2v] 6/38 projectile θ=9.8 s=2 z=1000: θ̂=0.18814836044990468 R²=0.887 valid/confirmed 1033s
+[cogvideox15_i2v] 7/38 projectile θ=12 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1031s
+[cogvideox15_i2v] 8/38 projectile θ=12 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1032s
+[cogvideox15_i2v] 9/38 projectile θ=15 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1033s
+[cogvideox15_i2v] 10/38 projectile θ=15 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1033s
+[cogvideox15_i2v] 11/38 projectile θ=1.6 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1032s
+[cogvideox15_i2v] 12/38 projectile θ=1.6 s=2 z=1000: θ̂=0.05208250457483463 R²=0.990 valid/confirmed 1031s
+[cogvideox15_i2v] 13/38 projectile θ=25 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1033s
+[cogvideox15_i2v] 14/38 projectile θ=25 s=2 z=1000: θ̂=0.05241577502778279 R²=0.989 valid/confirmed 1032s
+[cogvideox15_i2v] 15/38 bouncing_ball θ=0.6 s=0 z=1000: θ̂=1.0315972323473561 R²=0.018 invalid_fit/None 1033s
+[cogvideox15_i2v] 16/38 bouncing_ball θ=0.6 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1032s
+[cogvideox15_i2v] 17/38 bouncing_ball θ=0.7 s=0 z=1000: θ̂=1.0287316860759186 R²=0.063 invalid_fit/None 1032s
+[cogvideox15_i2v] 18/38 bouncing_ball θ=0.7 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1033s
+[cogvideox15_i2v] 19/38 bouncing_ball θ=0.8 s=0 z=1000: θ̂=1.0317424287239056 R²=0.060 invalid_fit/None 1033s
+[cogvideox15_i2v] 20/38 bouncing_ball θ=0.8 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1033s
+[cogvideox15_i2v] 21/38 bouncing_ball θ=0.9 s=0 z=1000: θ̂=1.0310593551674265 R²=0.040 invalid_fit/None 1039s
+[cogvideox15_i2v] 22/38 bouncing_ball θ=0.9 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1033s
+[cogvideox15_i2v] 23/38 bouncing_ball θ=0.2 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1037s
+[cogvideox15_i2v] 24/38 bouncing_ball θ=0.2 s=2 z=1000: θ̂=None R²=0.000 invalid_fit/None 1032s
+[cogvideox15_i2v] 25/38 bouncing_ball θ=0.97 s=0 z=1000: θ̂=1.027525553347318 R²=-0.003 invalid_fit/None 1033s
+[cogvideox15_i2v] 26/38 bouncing_ball θ=0.97 s=2 z=1000: θ̂=1.3931601704651089 R²=-0.264 invalid_fit/None 1033s
+[cogvideox15_i2v] 27/38 inclined_slide θ=0.1 s=0 z=1000: θ̂=1.6854908519221639 R²=1.000 valid/confirmed 1034s
+[cogvideox15_i2v] 28/38 inclined_slide θ=0.1 s=2 z=1000: θ̂=1.6873646993485967 R²=0.999 valid/confirmed 1033s
+[cogvideox15_i2v] 29/38 inclined_slide θ=0.2 s=0 z=1000: θ̂=1.6852461944224228 R²=1.000 valid/confirmed 1033s
+[cogvideox15_i2v] 30/38 inclined_slide θ=0.2 s=2 z=1000: θ̂=1.6850905981094622 R²=0.999 valid/confirmed 1032s
+[cogvideox15_i2v] 31/38 inclined_slide θ=0.3 s=0 z=1000: θ̂=1.6844338736385704 R²=1.000 valid/confirmed 1033s
+[cogvideox15_i2v] 32/38 inclined_slide θ=0.3 s=2 z=1000: θ̂=1.6871813231275663 R²=0.999 valid/confirmed 1032s
+[cogvideox15_i2v] 33/38 inclined_slide θ=0.4 s=0 z=1000: θ̂=1.6854529417886197 R²=1.000 valid/confirmed 1033s
+[cogvideox15_i2v] 34/38 inclined_slide θ=0.4 s=2 z=1000: θ̂=1.6864280920282584 R²=0.999 valid/confirmed 1033s
+[cogvideox15_i2v] 35/38 inclined_slide θ=0.01 s=0 z=1000: θ̂=1.685654536261135 R²=1.000 valid/confirmed 1033s
+[cogvideox15_i2v] 36/38 inclined_slide θ=0.01 s=2 z=1000: θ̂=1.6873911537219406 R²=0.999 valid/confirmed 1032s
+[cogvideox15_i2v] 37/38 inclined_slide θ=1.0 s=0 z=1000: θ̂=1.6816071498275682 R²=1.000 valid/confirmed 1033s
+[cogvideox15_i2v] 38/38 inclined_slide θ=1.0 s=2 z=1000: θ̂=1.6894742590492282 R²=1.000 valid/confirmed 1033s

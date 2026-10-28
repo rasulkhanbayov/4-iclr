@@ -1,0 +1,716 @@
+Loading Qwen/Qwen2.5-VL-7B-Instruct...
+ltx/projectile: 40/40 rows have a saved video to score.
+  theta=5 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=5 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.889
+  theta=5 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.044
+  theta=5 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.992
+  theta=5 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.889
+  theta=7 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=7 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.715
+  theta=7 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.024
+  theta=7 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.986
+  theta=7 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.890
+  theta=9.8 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=9.8 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.902
+  theta=9.8 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.376
+  theta=9.8 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.270
+  theta=9.8 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=12 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=12 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.472
+  theta=12 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.999
+  theta=12 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.986
+  theta=12 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.880
+  theta=15 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=15 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.719
+  theta=15 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=15 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.990
+  theta=15 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.889
+  theta=1.6 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=1.6 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.929
+  theta=1.6 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=1.6 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.996
+  theta=1.6 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.879
+  theta=3 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=3 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.890
+  theta=3 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.082
+  theta=3 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.988
+  theta=3 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=20 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=20 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.942
+  theta=20 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.732
+  theta=20 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.999
+  theta=20 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.960
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_projectile_ltx.json
+Out-of-range mean plausibility = 2.00/5 (n=15)
+PRE(out-of-range) = 0.6858 (n_gated=8)
+E3 headline pair (ltx/projectile): (mean plausibility=2.00, PRE(out)=0.6858)
+Report the actual pair as measured -- do not force the hypothesized reading if the numbers don't support it (this project's standing 'reading outcomes honestly' rule).
+ltx/pendulum_omega: 30/30 rows have a saved video to score.
+  theta=2 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=2 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=2 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.014
+  theta=2 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=2 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=3 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=3 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=3 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=3 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=3 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=4 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=4 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=4 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.072
+  theta=4 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=4 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.004
+  theta=5 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.019
+  theta=5 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=5 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=5 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=5 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.018
+  theta=8 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=8 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=8 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.028
+  theta=8 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=8 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=12 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.040
+  theta=12 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=12 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=12 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=12 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.000
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_pendulum_omega_ltx.json
+Out-of-range mean plausibility = 3.00/5 (n=10)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for ltx/pendulum_omega (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+ltx/pendulum_zeta: 30/30 rows have a saved video to score.
+  theta=0.02 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.02 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.02 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.02 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.02 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.05 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.05 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.05 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.023
+  theta=0.05 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.05 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.1 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.1 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.1 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.140
+  theta=0.1 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.1 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.3 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.3 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.3 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.301
+  theta=0.3 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.3 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.9 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.9 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.9 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.9 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.9 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.000
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_pendulum_zeta_ltx.json
+Out-of-range mean plausibility = 2.87/5 (n=15)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for ltx/pendulum_zeta (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+ltx/bouncing_ball: 35/35 rows have a saved video to score.
+  theta=0.6 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.773
+  theta=0.6 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.6 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.6 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.7 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.7 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.861
+  theta=0.7 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.7 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.7 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.8 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.8 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.777
+  theta=0.8 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.8 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.8 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.9 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.9 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.714
+  theta=0.9 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.9 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.9 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.2 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.2 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.414
+  theta=0.2 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.2 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.2 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.151
+  theta=0.35 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.35 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.506
+  theta=0.35 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.35 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.35 seed=4 split=out: plausibility=3.0 PRE-relevant r2=1.000
+  theta=0.97 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.97 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.346
+  theta=0.97 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.97 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.732
+  theta=0.97 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.276
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_bouncing_ball_ltx.json
+Out-of-range mean plausibility = 2.40/5 (n=15)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for ltx/bouncing_ball (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+ltx/spring_mass: 40/40 rows have a saved video to score.
+  theta=20 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=20 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=20 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=20 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=20 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.120
+  theta=40 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=40 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.087
+  theta=40 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=40 seed=3 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=40 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.117
+  theta=60 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=60 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=60 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=60 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=60 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.126
+  theta=80 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=80 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=80 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=80 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=80 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.100
+  theta=5 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=5 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.262
+  theta=5 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=5 seed=3 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=5 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.031
+  theta=10 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.016
+  theta=10 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.254
+  theta=10 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=10 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=10 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.018
+  theta=200 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=200 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.286
+  theta=200 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=200 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=200 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.120
+  theta=400 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=400 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.292
+  theta=400 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=400 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=400 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.103
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_spring_mass_ltx.json
+Out-of-range mean plausibility = 2.00/5 (n=20)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for ltx/spring_mass (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+ltx/inclined_slide: 35/35 rows have a saved video to score.
+  theta=0.1 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.1 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.1 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.1 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.1 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.977
+  theta=0.2 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.2 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.940
+  theta=0.2 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.2 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.2 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.981
+  theta=0.3 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.3 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.959
+  theta=0.3 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.3 seed=3 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.3 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.979
+  theta=0.4 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.4 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.865
+  theta=0.4 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.4 seed=3 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.4 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.977
+  theta=0.01 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.095
+  theta=0.01 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.953
+  theta=0.01 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.01 seed=3 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.01 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.983
+  theta=0.7 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.7 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.766
+  theta=0.7 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.008
+  theta=0.7 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.7 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=1.0 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=1.0 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.924
+  theta=1.0 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.011
+  theta=1.0 seed=3 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=1.0 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.970
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_inclined_slide_ltx.json
+Out-of-range mean plausibility = 2.20/5 (n=15)
+PRE(out-of-range) = 1.6082 (n_gated=4)
+E3 headline pair (ltx/inclined_slide): (mean plausibility=2.20, PRE(out)=1.6082)
+Report the actual pair as measured -- do not force the hypothesized reading if the numbers don't support it (this project's standing 'reading outcomes honestly' rule).
+cogvideox/projectile: 40/40 rows have a saved video to score.
+  theta=5 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.323
+  theta=5 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.076
+  theta=5 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.558
+  theta=5 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.220
+  theta=5 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.416
+  theta=7 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.409
+  theta=7 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.007
+  theta=7 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.323
+  theta=7 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.469
+  theta=7 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.303
+  theta=9.8 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.301
+  theta=9.8 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.002
+  theta=9.8 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.534
+  theta=9.8 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.255
+  theta=9.8 seed=4 split=in: plausibility=5.0 PRE-relevant r2=0.371
+  theta=12 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.232
+  theta=12 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.004
+  theta=12 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.543
+  theta=12 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.069
+  theta=12 seed=4 split=in: plausibility=5.0 PRE-relevant r2=0.325
+  theta=15 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.442
+  theta=15 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.034
+  theta=15 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.441
+  theta=15 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.230
+  theta=15 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.330
+  theta=1.6 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.346
+  theta=1.6 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.090
+  theta=1.6 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.528
+  theta=1.6 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.198
+  theta=1.6 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.488
+  theta=3 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.282
+  theta=3 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.098
+  theta=3 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.482
+  theta=3 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.072
+  theta=3 seed=4 split=out: plausibility=5.0 PRE-relevant r2=0.478
+  theta=20 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.215
+  theta=20 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=20 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.171
+  theta=20 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.204
+  theta=20 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.162
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_projectile_cogvideox.json
+Out-of-range mean plausibility = 1.27/5 (n=15)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for cogvideox/projectile (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+cogvideox/pendulum_omega: 30/30 rows have a saved video to score.
+  theta=2 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.048
+  theta=2 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.011
+  theta=2 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=2 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.059
+  theta=2 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=3 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.044
+  theta=3 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.053
+  theta=3 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=3 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.064
+  theta=3 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.024
+  theta=4 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.019
+  theta=4 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.052
+  theta=4 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=4 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.060
+  theta=4 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=5 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.020
+  theta=5 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.045
+  theta=5 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=5 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.059
+  theta=5 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=8 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.022
+  theta=8 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.028
+  theta=8 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.026
+  theta=8 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.028
+  theta=8 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.032
+  theta=12 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.022
+  theta=12 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.033
+  theta=12 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.036
+  theta=12 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.025
+  theta=12 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.030
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_pendulum_omega_cogvideox.json
+Out-of-range mean plausibility = 1.00/5 (n=10)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for cogvideox/pendulum_omega (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+cogvideox/pendulum_zeta: 30/30 rows have a saved video to score.
+  theta=0.02 seed=0 split=in: plausibility=1.0 PRE-relevant r2=-0.015
+  theta=0.02 seed=1 split=in: plausibility=1.0 PRE-relevant r2=-0.058
+  theta=0.02 seed=2 split=in: plausibility=1.0 PRE-relevant r2=-0.022
+  theta=0.02 seed=3 split=in: plausibility=1.0 PRE-relevant r2=-0.031
+  theta=0.02 seed=4 split=in: plausibility=1.0 PRE-relevant r2=-0.025
+  theta=0.05 seed=0 split=in: plausibility=1.0 PRE-relevant r2=-0.016
+  theta=0.05 seed=1 split=in: plausibility=1.0 PRE-relevant r2=-0.062
+  theta=0.05 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.05 seed=3 split=in: plausibility=1.0 PRE-relevant r2=-0.020
+  theta=0.05 seed=4 split=in: plausibility=1.0 PRE-relevant r2=-0.029
+  theta=0.1 seed=0 split=in: plausibility=1.0 PRE-relevant r2=-0.009
+  theta=0.1 seed=1 split=in: plausibility=1.0 PRE-relevant r2=-0.065
+  theta=0.1 seed=2 split=in: plausibility=1.0 PRE-relevant r2=-0.037
+  theta=0.1 seed=3 split=in: plausibility=1.0 PRE-relevant r2=-0.059
+  theta=0.1 seed=4 split=in: plausibility=1.0 PRE-relevant r2=-0.016
+  theta=0.3 seed=0 split=out: plausibility=1.0 PRE-relevant r2=-0.037
+  theta=0.3 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.3 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.3 seed=3 split=out: plausibility=1.0 PRE-relevant r2=-0.012
+  theta=0.3 seed=4 split=out: plausibility=1.0 PRE-relevant r2=-0.062
+  theta=0.6 seed=0 split=out: plausibility=1.0 PRE-relevant r2=-0.022
+  theta=0.6 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.6 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.6 seed=3 split=out: plausibility=1.0 PRE-relevant r2=-0.044
+  theta=0.6 seed=4 split=out: plausibility=1.0 PRE-relevant r2=-0.022
+  theta=0.9 seed=0 split=out: plausibility=1.0 PRE-relevant r2=-0.023
+  theta=0.9 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.9 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.9 seed=3 split=out: plausibility=1.0 PRE-relevant r2=-0.043
+  theta=0.9 seed=4 split=out: plausibility=1.0 PRE-relevant r2=-0.063
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_pendulum_zeta_cogvideox.json
+Out-of-range mean plausibility = 1.00/5 (n=15)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for cogvideox/pendulum_zeta (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+cogvideox/bouncing_ball: 35/35 rows have a saved video to score.
+  theta=0.6 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.539
+  theta=0.6 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.406
+  theta=0.6 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.523
+  theta=0.6 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.402
+  theta=0.6 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.384
+  theta=0.7 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.593
+  theta=0.7 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.393
+  theta=0.7 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.502
+  theta=0.7 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.390
+  theta=0.7 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.181
+  theta=0.8 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.528
+  theta=0.8 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.408
+  theta=0.8 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.605
+  theta=0.8 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.420
+  theta=0.8 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.374
+  theta=0.9 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.835
+  theta=0.9 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.400
+  theta=0.9 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.580
+  theta=0.9 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.372
+  theta=0.9 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.038
+  theta=0.2 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.495
+  theta=0.2 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.374
+  theta=0.2 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.698
+  theta=0.2 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.150
+  theta=0.2 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.424
+  theta=0.35 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.511
+  theta=0.35 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.282
+  theta=0.35 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.619
+  theta=0.35 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.327
+  theta=0.35 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.383
+  theta=0.97 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.485
+  theta=0.97 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.354
+  theta=0.97 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.620
+  theta=0.97 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.483
+  theta=0.97 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.187
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_bouncing_ball_cogvideox.json
+Out-of-range mean plausibility = 1.00/5 (n=15)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for cogvideox/bouncing_ball (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+cogvideox/spring_mass: 40/40 rows have a saved video to score.
+  theta=20 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.047
+  theta=20 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.057
+  theta=20 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.055
+  theta=20 seed=3 split=in: plausibility=5.0 PRE-relevant r2=0.039
+  theta=20 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.038
+  theta=40 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.041
+  theta=40 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.047
+  theta=40 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.055
+  theta=40 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.039
+  theta=40 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.036
+  theta=60 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.047
+  theta=60 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.050
+  theta=60 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=60 seed=3 split=in: plausibility=5.0 PRE-relevant r2=0.052
+  theta=60 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.026
+  theta=80 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.045
+  theta=80 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.048
+  theta=80 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=80 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.039
+  theta=80 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.029
+  theta=5 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.044
+  theta=5 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.056
+  theta=5 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.041
+  theta=5 seed=3 split=out: plausibility=5.0 PRE-relevant r2=0.052
+  theta=5 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.023
+  theta=10 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.052
+  theta=10 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=10 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=10 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.079
+  theta=10 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.034
+  theta=200 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.033
+  theta=200 seed=1 split=out: plausibility=5.0 PRE-relevant r2=0.000
+  theta=200 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=200 seed=3 split=out: plausibility=5.0 PRE-relevant r2=0.059
+  theta=200 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.036
+  theta=400 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.035
+  theta=400 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.009
+  theta=400 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=400 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.058
+  theta=400 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.035
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_spring_mass_cogvideox.json
+Out-of-range mean plausibility = 1.60/5 (n=20)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for cogvideox/spring_mass (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+cogvideox/inclined_slide: 35/35 rows have a saved video to score.
+  theta=0.1 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.555
+  theta=0.1 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.006
+  theta=0.1 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.021
+  theta=0.1 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.495
+  theta=0.1 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.020
+  theta=0.2 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.391
+  theta=0.2 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.004
+  theta=0.2 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.017
+  theta=0.2 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.223
+  theta=0.2 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.017
+  theta=0.3 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.497
+  theta=0.3 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.004
+  theta=0.3 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.026
+  theta=0.3 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.327
+  theta=0.3 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.019
+  theta=0.4 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.565
+  theta=0.4 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.007
+  theta=0.4 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.034
+  theta=0.4 seed=3 split=in: plausibility=3.0 PRE-relevant r2=0.246
+  theta=0.4 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.010
+  theta=0.01 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.176
+  theta=0.01 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.006
+  theta=0.01 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.035
+  theta=0.01 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.486
+  theta=0.01 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.007
+  theta=0.7 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.083
+  theta=0.7 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.006
+  theta=0.7 seed=2 split=out: plausibility=3.0 PRE-relevant r2=0.021
+  theta=0.7 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.445
+  theta=0.7 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.025
+  theta=1.0 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.186
+  theta=1.0 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.008
+  theta=1.0 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.028
+  theta=1.0 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.418
+  theta=1.0 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.007
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_inclined_slide_cogvideox.json
+Out-of-range mean plausibility = 1.67/5 (n=15)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for cogvideox/inclined_slide (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+dynamicrafter/projectile: 40/40 rows have a saved video to score.
+  theta=5 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.881
+  theta=5 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.996
+  theta=5 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.570
+  theta=5 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.855
+  theta=5 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.671
+  theta=7 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.740
+  theta=7 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.983
+  theta=7 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.688
+  theta=7 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.943
+  theta=7 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.981
+  theta=9.8 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.915
+  theta=9.8 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.974
+  theta=9.8 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.553
+  theta=9.8 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.947
+  theta=9.8 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.981
+  theta=12 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.562
+  theta=12 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.993
+  theta=12 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.770
+  theta=12 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.896
+  theta=12 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.984
+  theta=15 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.878
+  theta=15 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.995
+  theta=15 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.529
+  theta=15 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.923
+  theta=15 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.972
+  theta=1.6 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.807
+  theta=1.6 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.991
+  theta=1.6 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.534
+  theta=1.6 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.882
+  theta=1.6 seed=4 split=out: plausibility=2.0 PRE-relevant r2=0.993
+  theta=3 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.802
+  theta=3 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.996
+  theta=3 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.215
+  theta=3 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.858
+  theta=3 seed=4 split=out: plausibility=2.0 PRE-relevant r2=0.649
+  theta=20 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.993
+  theta=20 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.936
+  theta=20 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.802
+  theta=20 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.865
+  theta=20 seed=4 split=out: plausibility=2.0 PRE-relevant r2=0.670
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_projectile_dynamicrafter.json
+Out-of-range mean plausibility = 1.60/5 (n=15)
+PRE(out-of-range) = 0.8684 (n_gated=11)
+E3 headline pair (dynamicrafter/projectile): (mean plausibility=1.60, PRE(out)=0.8684)
+Report the actual pair as measured -- do not force the hypothesized reading if the numbers don't support it (this project's standing 'reading outcomes honestly' rule).
+dynamicrafter/pendulum_omega: 30/30 rows have a saved video to score.
+  theta=2 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=2 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.083
+  theta=2 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=2 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=2 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=3 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=3 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.302
+  theta=3 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=3 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.020
+  theta=3 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=4 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=4 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.092
+  theta=4 seed=2 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=4 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=4 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.060
+  theta=5 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=5 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.296
+  theta=5 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=5 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=5 seed=4 split=in: plausibility=3.0 PRE-relevant r2=0.161
+  theta=8 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=8 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=8 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=8 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=8 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.101
+  theta=12 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=12 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.001
+  theta=12 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.014
+  theta=12 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=12 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.191
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_pendulum_omega_dynamicrafter.json
+Out-of-range mean plausibility = 1.80/5 (n=10)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for dynamicrafter/pendulum_omega (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+dynamicrafter/pendulum_zeta: 30/30 rows have a saved video to score.
+  theta=0.02 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.02 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.02 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.02 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.998
+  theta=0.02 seed=4 split=in: plausibility=3.0 PRE-relevant r2=1.000
+  theta=0.05 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.05 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.05 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.05 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.544
+  theta=0.05 seed=4 split=in: plausibility=3.0 PRE-relevant r2=-0.050
+  theta=0.1 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.1 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.1 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.151
+  theta=0.1 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.1 seed=4 split=in: plausibility=3.0 PRE-relevant r2=-0.069
+  theta=0.3 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.3 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.3 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.3 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.847
+  theta=0.3 seed=4 split=out: plausibility=2.0 PRE-relevant r2=0.237
+  theta=0.6 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.6 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.6 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.788
+  theta=0.6 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.161
+  theta=0.9 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.9 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.9 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.9 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.832
+  theta=0.9 seed=4 split=out: plausibility=3.0 PRE-relevant r2=-0.057
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_pendulum_zeta_dynamicrafter.json
+Out-of-range mean plausibility = 2.07/5 (n=15)
+PRE(out-of-range) = 0.2584 (n_gated=2)
+E3 headline pair (dynamicrafter/pendulum_zeta): (mean plausibility=2.07, PRE(out)=0.2584)
+Report the actual pair as measured -- do not force the hypothesized reading if the numbers don't support it (this project's standing 'reading outcomes honestly' rule).
+dynamicrafter/bouncing_ball: 35/35 rows have a saved video to score.
+  theta=0.6 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.6 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.6 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.6 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.505
+  theta=0.6 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.028
+  theta=0.7 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.7 seed=1 split=in: plausibility=1.0 PRE-relevant r2=0.632
+  theta=0.7 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.7 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.721
+  theta=0.7 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.8 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.8 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.8 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.8 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.191
+  theta=0.8 seed=4 split=in: plausibility=1.0 PRE-relevant r2=1.000
+  theta=0.9 seed=0 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.9 seed=1 split=in: plausibility=2.0 PRE-relevant r2=1.000
+  theta=0.9 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.9 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.457
+  theta=0.9 seed=4 split=in: plausibility=1.0 PRE-relevant r2=1.000
+  theta=0.2 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.2 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.293
+  theta=0.2 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=0.2 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.787
+  theta=0.2 seed=4 split=out: plausibility=1.0 PRE-relevant r2=-0.001
+  theta=0.35 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=0.35 seed=1 split=out: plausibility=1.0 PRE-relevant r2=0.873
+  theta=0.35 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.35 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.140
+  theta=0.35 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.97 seed=0 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=0.97 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.677
+  theta=0.97 seed=2 split=out: plausibility=1.0 PRE-relevant r2=1.000
+  theta=0.97 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.645
+  theta=0.97 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.000
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_bouncing_ball_dynamicrafter.json
+Out-of-range mean plausibility = 1.40/5 (n=15)
+PRE(out-of-range) = 0.2187 (n_gated=2)
+E3 headline pair (dynamicrafter/bouncing_ball): (mean plausibility=1.40, PRE(out)=0.2187)
+Report the actual pair as measured -- do not force the hypothesized reading if the numbers don't support it (this project's standing 'reading outcomes honestly' rule).
+dynamicrafter/spring_mass: 40/40 rows have a saved video to score.
+  theta=20 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=20 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=20 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=20 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=20 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=40 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=40 seed=1 split=in: plausibility=3.0 PRE-relevant r2=0.000
+  theta=40 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=40 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.373
+  theta=40 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=60 seed=0 split=in: plausibility=3.0 PRE-relevant r2=0.026
+  theta=60 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=60 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=60 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.032
+  theta=60 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=80 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.038
+  theta=80 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=80 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.000
+  theta=80 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.186
+  theta=80 seed=4 split=in: plausibility=1.0 PRE-relevant r2=0.000
+  theta=5 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.005
+  theta=5 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=5 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=5 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.013
+  theta=5 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=10 seed=0 split=out: plausibility=3.0 PRE-relevant r2=0.023
+  theta=10 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=10 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=10 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.071
+  theta=10 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=200 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=200 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=200 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=200 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.283
+  theta=200 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.000
+  theta=400 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=400 seed=1 split=out: plausibility=3.0 PRE-relevant r2=0.000
+  theta=400 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.000
+  theta=400 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.045
+  theta=400 seed=4 split=out: plausibility=1.0 PRE-relevant r2=0.095
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_spring_mass_dynamicrafter.json
+Out-of-range mean plausibility = 1.80/5 (n=20)
+Too few fit-quality-gated out-of-range points to compute PRE(out) for dynamicrafter/spring_mass (this is the same fit-quality gate used everywhere else, see CLAUDE.md).
+dynamicrafter/inclined_slide: 35/35 rows have a saved video to score.
+  theta=0.1 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.926
+  theta=0.1 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.846
+  theta=0.1 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.426
+  theta=0.1 seed=3 split=in: plausibility=3.0 PRE-relevant r2=1.000
+  theta=0.1 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.961
+  theta=0.2 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.916
+  theta=0.2 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.837
+  theta=0.2 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.859
+  theta=0.2 seed=3 split=in: plausibility=1.0 PRE-relevant r2=1.000
+  theta=0.2 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.962
+  theta=0.3 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.921
+  theta=0.3 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.840
+  theta=0.3 seed=2 split=in: plausibility=1.0 PRE-relevant r2=0.539
+  theta=0.3 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.999
+  theta=0.3 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.955
+  theta=0.4 seed=0 split=in: plausibility=2.0 PRE-relevant r2=0.925
+  theta=0.4 seed=1 split=in: plausibility=2.0 PRE-relevant r2=0.828
+  theta=0.4 seed=2 split=in: plausibility=2.0 PRE-relevant r2=0.401
+  theta=0.4 seed=3 split=in: plausibility=1.0 PRE-relevant r2=0.999
+  theta=0.4 seed=4 split=in: plausibility=2.0 PRE-relevant r2=0.961
+  theta=0.01 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.792
+  theta=0.01 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.955
+  theta=0.01 seed=2 split=out: plausibility=1.0 PRE-relevant r2=1.000
+  theta=0.01 seed=3 split=out: plausibility=3.0 PRE-relevant r2=0.998
+  theta=0.01 seed=4 split=out: plausibility=2.0 PRE-relevant r2=0.986
+  theta=0.7 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.804
+  theta=0.7 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.662
+  theta=0.7 seed=2 split=out: plausibility=2.0 PRE-relevant r2=0.611
+  theta=0.7 seed=3 split=out: plausibility=1.0 PRE-relevant r2=1.000
+  theta=0.7 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.983
+  theta=1.0 seed=0 split=out: plausibility=2.0 PRE-relevant r2=0.790
+  theta=1.0 seed=1 split=out: plausibility=2.0 PRE-relevant r2=0.597
+  theta=1.0 seed=2 split=out: plausibility=1.0 PRE-relevant r2=0.627
+  theta=1.0 seed=3 split=out: plausibility=1.0 PRE-relevant r2=0.996
+  theta=1.0 seed=4 split=out: plausibility=3.0 PRE-relevant r2=0.639
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3_plausibility_default_inclined_slide_dynamicrafter.json
+Out-of-range mean plausibility = 1.93/5 (n=15)
+PRE(out-of-range) = 2.3162 (n_gated=8)
+E3 headline pair (dynamicrafter/inclined_slide): (mean plausibility=1.93, PRE(out)=2.3162)
+Report the actual pair as measured -- do not force the hypothesized reading if the numbers don't support it (this project's standing 'reading outcomes honestly' rule).
+All available E3 scoring done. Result files: results/e3_plausibility_default_{system}_{model}.json

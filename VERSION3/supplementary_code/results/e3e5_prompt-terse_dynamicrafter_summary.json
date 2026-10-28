@@ -1,0 +1,9 @@
+{
+  "projectile": {
+    "n_total": 40,
+    "n_gated": 22,
+    "dropped_rate": 0.44999999999999996,
+    "elapsed_seconds": 3874.4004666805267,
+    "variant": "prompt-terse"
+  }
+}

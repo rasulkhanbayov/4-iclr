@@ -1,0 +1,41 @@
+%
+% --- inline annotations
+%
+\newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\todo}[1]{{\color{red}#1}}
+\newcommand{\TODO}[1]{\textbf{\color{red}[TODO: #1]}}
+% --- disable by uncommenting
+% \renewcommand{\TODO}[1]{}
+% \renewcommand{\todo}[1]{#1}
+
+% ============================================================================
+% PhysWeep-specific additions. wacv.sty already provides: times, xcolor
+% (dvipsnames), graphicx, amsmath, amssymb, booktabs, natbib[numbers,
+% sort&compress], caption, subcaption, url, enumitem[shortlabels,inline] --
+% do NOT reload any of those here (option clashes / wrong citation style).
+% ============================================================================
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,backgrounds,fit,patterns}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pifont}
+
+\newcommand{\cmark}{\textcolor{green!55!black}{\ding{51}}}
+\newcommand{\xmark}{\textcolor{red!70!black}{\ding{55}}}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{assumption}{Assumption}
+
+\newcommand{\torun}[1]{\textcolor{red!70!black}{\textbf{>>> TO RUN:} #1}}
+\newcommand{\resph}[1]{\textcolor{blue!60!black}{[RESULT PLACEHOLDER: #1]}}
+\newcommand{\PRE}{\ensuremath{\mathrm{PRE}}}
+\newcommand{\PRI}{\ensuremath{\mathrm{PRI}}}
+\newcommand{\CBI}{\ensuremath{\mathrm{CBI}}}
+\newcommand{\EG}{\ensuremath{\mathrm{EG}}}
+\newcommand{\thetah}{\ensuremath{\hat{\theta}}}
+
+

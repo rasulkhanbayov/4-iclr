@@ -1,0 +1,169 @@
+{
+ "design": {
+  "n_crossed": 304,
+  "expected": 304,
+  "scene_noise_disjoint": true,
+  "api_noise_unique": true
+ },
+ "conditioning": {
+  "text_same_across_noise": true,
+  "text_differs_across_scene": true,
+  "frame_channel_varies_with_theta": true
+ },
+ "decomposition": {
+  "faithful": {
+   "shares": {
+    "request": 0.9867199265051312,
+    "scene": 0.003015406237580546,
+    "noise": 0.009337340054511459,
+    "residual": 0.0009273272027767732
+   },
+   "corrected": {
+    "request": 0.9866108291871575,
+    "scene": 0.0029608575785936768,
+    "noise": 0.00928279139552459
+   },
+   "true": {
+    "request": 1.0006827639330993,
+    "scene": 0.0,
+    "noise": 0.0
+   },
+   "p_value": {
+    "request": 0.004975124378109453,
+    "scene": 0.9303482587064676,
+    "noise": 0.7562189054726368
+   },
+   "ok": true
+  },
+  "noise_locked": {
+   "shares": {
+    "request": 0.012539099676389552,
+    "scene": 0.006468407516956376,
+    "noise": 0.9734283918983625,
+    "residual": 0.007564100908291516
+   },
+   "corrected": {
+    "request": 0.01171392503184866,
+    "scene": 0.00605582019468593,
+    "noise": 0.973015804576092
+   },
+   "true": {
+    "request": 0.0,
+    "scene": 0.0,
+    "noise": 1.0284219241184989
+   },
+   "p_value": {
+    "request": 0.9701492537313433,
+    "scene": 0.8656716417910447,
+    "noise": 0.004975124378109453
+   },
+   "ok": true
+  },
+  "scene_locked": {
+   "shares": {
+    "request": 0.017237385750039098,
+    "scene": 0.9723565870056056,
+    "noise": 0.000580618382837313,
+    "residual": 0.009825408861517948
+   },
+   "corrected": {
+    "request": 0.016254844863887303,
+    "scene": 0.9718653165625297,
+    "noise": 8.934793976141564e-05
+   },
+   "true": {
+    "request": 0.0,
+    "scene": 0.9928457130330922,
+    "noise": 0.0
+   },
+   "p_value": {
+    "request": 0.8258706467661692,
+    "scene": 0.004975124378109453,
+    "noise": 1.0
+   },
+   "ok": true
+  },
+  "mixed_scene_noise": {
+   "shares": {
+    "request": 0.027749007010997768,
+    "scene": 0.458299967540412,
+    "noise": 0.5106062910306051,
+    "residual": 0.003344734417985218
+   },
+   "corrected": {
+    "request": 0.027370357831603215,
+    "scene": 0.45811064295071474,
+    "noise": 0.5104169664409078
+   },
+   "true": {
+    "request": 0.0,
+    "scene": 0.4163673102708365,
+    "noise": 0.5067673529002147
+   },
+   "p_value": {
+    "request": 0.8059701492537313,
+    "scene": 0.004975124378109453,
+    "noise": 0.004975124378109453
+   },
+   "ok": true
+  },
+  "pure_noise": {
+   "shares": {
+    "request": 0.06676224336129225,
+    "scene": 0.03507239446827413,
+    "noise": 0.043088696420964,
+    "residual": 0.8550766657494695
+   },
+   "corrected": {
+    "request": 0.0,
+    "scene": 0.0,
+    "noise": 0.0
+   },
+   "true": {
+    "request": 0.0,
+    "scene": 0.0,
+    "noise": 0.0
+   },
+   "p_value": {
+    "request": 0.6119402985074627,
+    "scene": 0.48756218905472637,
+    "noise": 0.39800995024875624
+   },
+   "ok": true
+  },
+  "global_default": {
+   "shares": {
+    "request": 0.14944083049155743,
+    "scene": 0.041822779970214,
+    "noise": 0.049006197663337796,
+    "residual": 0.759730191874891
+   },
+   "corrected": {
+    "request": 0.07084805202174112,
+    "scene": 0.0025263907353058404,
+    "noise": 0.00970980842842964
+   },
+   "true": {
+    "request": 0.0,
+    "scene": 0.0,
+    "noise": 0.0
+   },
+   "p_value": {
+    "request": 0.11940298507462686,
+    "scene": 0.36318407960199006,
+    "noise": 0.3283582089552239
+   },
+   "ok": true
+  }
+ },
+ "coupled_v1_design": {
+  "confounded": true,
+  "shares": {
+   "request": 0.00454600507176491,
+   "scene": 0.49132593733352375,
+   "noise": 0.49132593733352375,
+   "residual": 0.012802120261187766
+  }
+ },
+ "all_ok": true
+}

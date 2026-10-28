@@ -1,0 +1,59 @@
+% fig_sdi_bars.tex -- results example: horizontal bar chart of the 8
+% adjudicated pairs' SDI (Seed Determination Index), the same 8 values
+% published in Table 3 (tab:e2) of main.tex. Colored by the EXPERIMENTS.md
+% pre-committed reading: SDI>=0.6 decisive, 0.3-0.6 soft, <0.3 not
+% established. Draft only, not wired into main.tex -- a compact
+% alternative/companion to the table for a talk or a supplementary figure.
+%
+% Real values (main.tex Table 3, SDI column):
+% LTX/projectile 0.995, LTX/bouncing-ball 0.985, LTX/inclined-slide 0.511,
+% CogVideoX/projectile 0.919, CogVideoX/bouncing-ball 0.997,
+% DynamiCrafter/projectile 0.343, DynamiCrafter/bouncing-ball 0.997,
+% DynamiCrafter/inclined-slide 0.176
+
+\begin{tikzpicture}[
+  font=\small,
+  bar/.style={line width=7pt, line cap=butt},
+  hi/.style={bar, RoyalBlue!70!black},
+  mid/.style={bar, BurntOrange!80!black},
+  lo/.style={bar, black!45},
+]
+
+% x-axis 0 to 1, gridlines at 0.3 and 0.6 (the reading thresholds)
+\draw[black!25, dashed, line width=0.7pt] (3.0,-0.6) -- (3.0,8.6);
+\draw[black!25, dashed, line width=0.7pt] (6.0,-0.6) -- (6.0,8.6);
+\node[font=\scriptsize,black!45] at (3.0,8.9) {$0.3$};
+\node[font=\scriptsize,black!45] at (6.0,8.9) {$0.6$};
+\draw[->,thick,black!70] (0,-0.6) -- (10.3,-0.6);
+\foreach \v in {0,0.2,...,1.0}{
+  \node[font=\scriptsize,black!55,anchor=north] at ({\v*10},-0.75) {\v};
+}
+\node[font=\scriptsize,black!55,anchor=north] at (5.15,-1.15) {Seed Determination Index (SDI)};
+
+% rows, top to bottom, sorted descending by SDI (matches how a reader scans)
+\def\rows{%
+  {CogVideoX / bouncing ball}{0.997}{hi}/
+  {DynamiCrafter / bouncing ball}{0.997}{hi}/
+  {LTX-Video / projectile}{0.995}{hi}/
+  {LTX-Video / bouncing ball}{0.985}{hi}/
+  {CogVideoX / projectile}{0.919}{hi}/
+  {LTX-Video / inclined slide}{0.511}{mid}/
+  {DynamiCrafter / projectile}{0.343}{mid}/
+  {DynamiCrafter / inclined slide}{0.176}{lo}%
+}
+
+\foreach [count=\i] \name/\val/\style in \rows {
+  \pgfmathsetmacro{\y}{8.0 - \i*0.95}
+  \draw[\style] (0,\y) -- ({\val*10},\y);
+  \node[font=\scriptsize,anchor=east] at (-0.25,\y) {\name};
+  \node[font=\scriptsize,anchor=west] at ({\val*10+0.15},\y) {\val};
+}
+
+% legend
+\node[draw=black!25,fill=white,rounded corners=2pt,inner sep=4pt,
+      font=\scriptsize,align=left,anchor=north west] at (0.2,-1.9)
+  {\textcolor{RoyalBlue!70!black}{\rule{7pt}{4pt}} $\ge 0.6$: decisively seed-locked (5 of 8 pairs) \quad
+   \textcolor{BurntOrange!80!black}{\rule{7pt}{4pt}} $0.3$--$0.6$: softened \quad
+   \textcolor{black!45}{\rule{7pt}{4pt}} $<0.3$: not established};
+
+\end{tikzpicture}

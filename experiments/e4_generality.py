@@ -14,8 +14,17 @@ Usage:
   python3 experiments/e4_generality.py --model ltx
   python3 experiments/e4_generality.py --model cogvideox
 
+  # Add more OUT-OF-RANGE seeds on top of an existing 0..4 run, to clear
+  # E2's select_mechanism() >=4-gated-out-of-range-points minimum without
+  # re-spending GPU time on in-range clips that already have enough data
+  # (see CLAUDE.md's E2 gap analysis for which model-system pairs need this):
+  python3 experiments/e4_generality.py --model ltx --systems inclined_slide \
+      --seeds-in 0 --seeds-out 5 --start-seed 5 --merge
+
 Writes results/e4_{system}_{model}.json per system, plus a combined
-results/e4_generality_{model}.json summary.
+results/e4_generality_{model}.json summary. --merge folds new rows into an
+existing per-system JSON (de-duped on theta/split/seed) instead of
+overwriting it.
 """
 from __future__ import annotations
 import sys, os, json, time, argparse
@@ -104,7 +113,7 @@ def run_pendulum_omega(pipe, generate_fn, cfg, n_seeds):
     rows = []
     for theta_set, label in [(sysc["in_range"], "in"), (sysc["out_of_range"], "out")]:
         for om_true in theta_set:
-            for seed in range(n_seeds):
+            for seed in n_seeds[label]:
                 frames_gt, bx_true, t_gt = simulate_damped_pendulum(
                     omega=om_true, zeta=zeta, seed=seed, n_frames=n_frames)
                 first_frame = Image.fromarray(frames_gt[0]).convert("RGB")
@@ -127,7 +136,7 @@ def run_pendulum_zeta(pipe, generate_fn, cfg, n_seeds):
     rows = []
     for theta_set, label in [(sysc["in_range"], "in"), (sysc["out_of_range"], "out")]:
         for zeta_true in theta_set:
-            for seed in range(n_seeds):
+            for seed in n_seeds[label]:
                 frames_gt, bx_true, t_gt = simulate_damped_pendulum(
                     omega=omega, zeta=zeta_true, seed=seed, n_frames=n_frames)
                 first_frame = Image.fromarray(frames_gt[0]).convert("RGB")
@@ -153,7 +162,7 @@ def run_bouncing_ball(pipe, generate_fn, cfg, n_seeds):
     rows = []
     for theta_set, label in [(sysc["in_range"], "in"), (sysc["out_of_range"], "out")]:
         for e_true in theta_set:
-            for seed in range(n_seeds):
+            for seed in n_seeds[label]:
                 frames_gt, ys_true, t_gt, peaks_true = simulate_bouncing_ball(e=e_true, seed=seed, n_frames=n_frames)
                 first_frame = Image.fromarray(frames_gt[0]).convert("RGB")
                 prompt = bouncing_ball_prompt(e_true)
@@ -188,7 +197,7 @@ def run_spring_mass(pipe, generate_fn, cfg, n_seeds):
     rows = []
     for theta_set, label in [(sysc["in_range"], "in"), (sysc["out_of_range"], "out")]:
         for k_true in theta_set:
-            for seed in range(n_seeds):
+            for seed in n_seeds[label]:
                 frames_gt, xs_true, t_gt = simulate_spring_mass(k=k_true, seed=seed, n_frames=n_frames, mass_kg=mass)
                 first_frame = Image.fromarray(frames_gt[0]).convert("RGB")
                 prompt = spring_mass_prompt(k_true)
@@ -213,7 +222,7 @@ def run_inclined_slide(pipe, generate_fn, cfg, n_seeds):
     rows = []
     for theta_set, label in [(sysc["in_range"], "in"), (sysc["out_of_range"], "out")]:
         for mu_true in theta_set:
-            for seed in range(n_seeds):
+            for seed in n_seeds[label]:
                 frames_gt, s_true, t_gt = simulate_inclined_slide(mu=mu_true, seed=seed, incline_deg=incline_deg)
                 first_frame = Image.fromarray(frames_gt[0]).convert("RGB")
                 prompt = inclined_slide_prompt(mu_true)
@@ -244,7 +253,14 @@ def summarize(rows):
     dropped_rate = 1.0 - len(gated) / max(len(rows), 1)
     theta_in = np.array([r["theta"] for r in gated if r["split"] == "in"])
     hat_in = np.array([r["theta_hat"] for r in gated if r["split"] == "in"])
-    out = {"n_total": len(rows), "n_gated_in": len(theta_in), "fit_quality_dropped_rate": dropped_rate}
+    n_gated_out = sum(1 for r in gated if r["split"] == "out")
+    # >=4 gated out-of-range points is select_mechanism()'s own minimum
+    # (see physweep_metrics.py / experiments/e2_extrapolation.py) -- surfaced
+    # here so a SLURM job's stdout says directly whether this run cleared
+    # the bar E2 needs, without having to re-open the JSON to check.
+    out = {"n_total": len(rows), "n_gated_in": len(theta_in), "n_gated_out": n_gated_out,
+           "fit_quality_dropped_rate": dropped_rate,
+           "e2_adjudicable": n_gated_out >= 4}
     if len(theta_in) >= 4:
         slope, slo, shi = bootstrap_ci(faithfulness_slope, theta_in, hat_in, n_boot=2000)
         p, plo, phi = bootstrap_ci(pre, theta_in, hat_in, n_boot=2000)
@@ -316,10 +332,35 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", choices=["ltx", "cogvideox", "dynamicrafter"], required=True)
     parser.add_argument("--systems", nargs="*", default=list(SYSTEMS.keys()))
+    # E2 (extrapolation/mechanism adjudication) needs >=4 gated out-of-range
+    # points per model-system pair to run select_mechanism(); the original E4
+    # runs (5 seeds in and out) left most systems well short of that after
+    # the fit-quality gate (see CLAUDE.md's E2 gap analysis). These two flags
+    # let a re-run add MORE seeds to the out-of-range grid specifically,
+    # without re-spending GPU time re-generating in-range clips that already
+    # have enough gated data.
+    parser.add_argument("--seeds-in", type=int, default=None,
+                        help="override in-range seed count (default: systems.yaml's seeds_per_point)")
+    parser.add_argument("--seeds-out", type=int, default=None,
+                        help="override out-of-range seed count (default: systems.yaml's seeds_per_point)")
+    parser.add_argument("--start-seed", type=int, default=0,
+                        help="first seed index (use e.g. 5 to ADD seeds 5..N on top of an existing "
+                             "0..4 run instead of regenerating/duplicating them; combine with --merge)")
+    parser.add_argument("--merge", action="store_true",
+                        help="merge new rows into the existing results/e4_{system}_{model}.json "
+                             "instead of overwriting it (use with --start-seed to extend past runs)")
     args = parser.parse_args()
 
     cfg = load_config()
-    n_seeds = cfg["render"]["seeds_per_point"]
+    base_seeds = cfg["render"]["seeds_per_point"]
+    seeds_in = args.seeds_in if args.seeds_in is not None else base_seeds
+    seeds_out = args.seeds_out if args.seeds_out is not None else base_seeds
+    # n_seeds["in"/"out"] are the ACTUAL seed index lists each runner iterates
+    # over (not a count) -- this is what lets --start-seed add NEW seeds on
+    # top of an existing 0..4 run rather than regenerating/duplicating them.
+    n_seeds = {"in": list(range(args.start_seed, args.start_seed + seeds_in)),
+              "out": list(range(args.start_seed, args.start_seed + seeds_out))}
+    print(f"seeds: in-range={n_seeds['in']}, out-of-range={n_seeds['out']}")
 
     pipe = None
     if args.model == "ltx":
@@ -346,8 +387,26 @@ def main():
     for sys_name in args.systems:
         print(f"\n{'='*70}\n{sys_name} ({model_tag})\n{'='*70}")
         t0 = time.time()
-        rows = SYSTEMS[sys_name](pipe, generate_fn, cfg, n_seeds)
+        new_rows = SYSTEMS[sys_name](pipe, generate_fn, cfg, n_seeds)
         elapsed = time.time() - t0
+
+        out_path = os.path.join(RESULTS_DIR, f"e4_{sys_name}_{model_tag}.json")
+        if args.merge and os.path.exists(out_path):
+            with open(out_path) as f:
+                existing_rows = json.load(f)["rows"]
+            # De-dup on (theta, split, seed): a re-run with an overlapping
+            # seed range replaces that row rather than duplicating it, so
+            # --merge is safe to re-run if a job is resubmitted after a
+            # partial failure.
+            by_key = {(r["theta"], r["split"], r["seed"]): r for r in existing_rows}
+            for r in new_rows:
+                by_key[(r["theta"], r["split"], r["seed"])] = r
+            rows = list(by_key.values())
+            print(f"Merged {len(new_rows)} new rows into {len(existing_rows)} existing "
+                 f"-> {len(rows)} total (after de-dup on theta/split/seed)")
+        else:
+            rows = new_rows
+
         summary = summarize(rows)
         summary["elapsed_seconds"] = elapsed
         all_summaries[sys_name] = summary
@@ -357,7 +416,6 @@ def main():
             s = summary["slope_beta_in"]
             print(f"  slope beta (in) = {s[0]:.4f}  95% CI [{s[1]:.4f}, {s[2]:.4f}]")
 
-        out_path = os.path.join(RESULTS_DIR, f"e4_{sys_name}_{model_tag}.json")
         with open(out_path, "w") as f:
             json.dump({"rows": rows, "summary": summary}, f, indent=2,
                      default=lambda o: None if isinstance(o, float) and np.isnan(o) else o)

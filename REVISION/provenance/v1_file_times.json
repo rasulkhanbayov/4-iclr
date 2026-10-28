@@ -1,0 +1,22 @@
+{
+ "_about": "File modification times frozen on 2026-10-28 from REVISION/results_v1 (copies preserve the original mtimes; identical to 4-ICLR/results). Needed because mtimes do not survive an archive round trip. Used by reproduce_numbers.py:vlm_hours().",
+ "e3_plausibility_default": {
+  "n_files": 18,
+  "first_file": "e3_plausibility_default_projectile_ltx.json",
+  "last_file": "e3_plausibility_default_inclined_slide_dynamicrafter.json",
+  "first_write_epoch": 1787493555.594245,
+  "last_write_epoch": 1787494176.772819,
+  "first_write": "2026-08-23T16:59:15.594245+03:00",
+  "last_write": "2026-08-23T17:09:36.772819+03:00"
+ },
+ "slurm_logs": {
+  "e3_score_380931.out": {
+   "mtime_epoch": 1787494178.470714,
+   "mtime": "2026-08-23T17:09:38.470714+03:00"
+  },
+  "e3_score_380931.err": {
+   "mtime_epoch": 1787493522.358476,
+   "mtime": "2026-08-23T16:58:42.358476+03:00"
+  }
+ }
+}

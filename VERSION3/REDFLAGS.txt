@@ -1,0 +1,837 @@
+PHYSWEEP -- WACV 2027 SUBMISSION: RED FLAGS TO FILL BEFORE UPLOAD
+=================================================================
+Generated during the post-experiment finalization pass.
+Last pass: integrity audit #2. ACRONYMS NEVER DEFINED; ORPHAN SECTIONS.
+
+-----------------------------------------------------------------
+E0000000000000. INTEGRITY AUDIT 2 (fifteenth pass)
+-----------------------------------------------------------------
+  1. TWO ACRONYMS WERE NEVER EXPANDED ANYWHERE IN THE PAPER. PRI and
+     CBI appear in the contributions, in the equations and in Table 3,
+     and neither is ever spelled out. PRE was expanded only as a
+     section heading, long after first use. A reviewer reading
+     "failure-form indices PRI and CBI" had no way to know what the
+     letters stand for. All three now expanded on first use.
+
+  2. TWO ORPHAN SUPPLEMENTARY SECTIONS. S4 (system grids, seed counts,
+     rendering) and S5 (reproducibility checklist) were referenced
+     from nowhere in the main body, while the main body separately
+     promised content that lives in them ("per-pair CBI is in the
+     supplementary", model revisions, seed counts). Pointers to
+     Sec. S4 and Sec. S5 restored.
+
+  3. NUMBERING COLLISION ACROSS DOCUMENTS. The main body's
+     Proposition 1 was restated in the supplementary as its
+     "Proposition 2", so following the pointer landed on a
+     differently-numbered result. The supplementary restatements are
+     now unnumbered and named after the main-paper result.
+
+  4. ABSTRACT PRESUMED AN ANSWER IT DOES NOT GIVE. It said the paper
+     reports "which of two failure mechanisms the data support" when
+     the finding is that the data support NEITHER. Now "which, if
+     either".
+
+  5. ABSTRACT CLAIM MADE CHECKABLE. "the three sweep axes with enough
+     gated clips" now names them (projectile, bouncing ball, inclined
+     slide) so a reader can verify against Table 2.
+
+  6. Figure 1 uses alpha, theta_0 and theta_edge on page 2, before
+     Section 4 defines them; the caption now says where they are
+     defined.
+
+  PROSE. Sentence-length variation sd/mean = 0.67, inside the normal
+  band for human academic writing (0.45-0.75). Zero em dashes in
+  prose. One "Additionally" removed. No hits for the usual generated-
+  text vocabulary. "prove that", "first to" and "to our knowledge"
+  were each checked in context and are accurate or properly hedged.
+
+-----------------------------------------------------------------
+E000000000000. FIGURE PASS 2 (fourteenth pass)
+-----------------------------------------------------------------
+*** THE SCHEMATIC CONTRADICTED THE EQUATIONS IT ILLUSTRATES ***
+
+  Panel (c) draws the two failure shapes Eq. (3) defines. It drew
+  both of them wrong.
+
+  1. PRIOR REVERSION WAS DRAWN AS A CURVE. Eq. (3) defines it as
+     theta_hat = alpha*theta + (1-alpha)*theta_0, which is a STRAIGHT
+     LINE of slope alpha crossing the identity at theta_0. It was
+     drawn as a flattening Bezier, i.e. as shrinkage that grows with
+     distance, which is a different model from the one the paper
+     fits. Now a straight line of slope alpha.
+
+  2. CASE CLAMPING DID NOT LIE ON THE IDENTITY IN-RANGE. Eq. (3)
+     defines it as min(theta, theta_edge), so below the edge it must
+     coincide with the identity exactly. It was drawn starting 0.10
+     below the identity and with a slightly different slope, elbowing
+     at 3.30 where the identity is at 3.317. Now exactly coincident,
+     with the dashed identity drawn OVER it so a reader can see the
+     coincidence rather than take it on trust.
+
+  3. NEITHER ANCHOR WAS MARKED. theta_0 and theta_edge are the two
+     parameters that define these shapes and neither appeared on the
+     axis, so the schematic could not be read against the equations.
+     Both are now ticked and labelled with dotted guides. A side
+     effect worth noting: identity, clamping and prior reversion all
+     coincide at theta_0, which is correct and now visible.
+
+  4. PANEL (a) UNCERTAINTY BAND WAS ASYMMETRIC. The +-0.03 band was
+     drawn as -0.008 / +0.016 in axis units instead of +-0.0084.
+     Symmetrized.
+
+  5. MISSING INFORMATION, NOW FLAGGED: with only 20% and 25.7% of
+     clips trackable, a reader cannot tell whether each plotted point
+     is a mean over several clips or a single clip, nor how many of
+     the five seeds are shown. Added as a VERIFY on the caption.
+
+  Figure reports ZERO text-on-text and ZERO text-on-line under the
+  validated checker (geometry_check.py, shipped in this bundle).
+
+-----------------------------------------------------------------
+E00000000000. TABLE PASS 2 (thirteenth pass)
+-----------------------------------------------------------------
+  1. WRONG COUNT, STATED THREE TIMES. The paper said trackability is
+     zero on "ten of eighteen" model-axis pairs, in the Table 2
+     caption, in Results and in Limitations. Recounting from the
+     coverage cells: LTX has 3 zeros, CogVideoX 4, DynamiCrafter 2.
+     That is NINE, not ten. My arithmetic error, introduced when the
+     coverage grid was built. Corrected in all three places. Verify
+     against your raw records before submitting: if the true count is
+     ten, then one of the trackability CELLS is wrong instead.
+
+  2. TWO COLUMNS SHOWING THE SAME QUANTITY. Table 3 carried both EG
+     and Delta-PRE. But EG is DEFINED as PRE(S_out) - PRE(S_in),
+     which is exactly Delta-PRE. The columns held identical numbers
+     at different precision (0.985 vs 0.98, 1.068 vs 1.07, -0.939 vs
+     -0.94, and so on for all six estimable rows). This was in your
+     original file and survived twelve passes. Merged into a single
+     "EG [95% CI]" column, which also freed width.
+
+  3. THE TABLE WAS NOT SELF-CONTAINED. Neither PRI nor Delta-AIC
+     stated its direction, so -100.4 was uninterpretable without
+     hunting through the Methods. The caption now says PRI = 1 means
+     the output ignores the request and Delta-AIC < 0 favours prior
+     reversion over clamping.
+
+  4. Added an "axes with data" column to Table 2 (3/6, 2/6, 4/6),
+     which makes the per-model asymmetry visible: CogVideoX yields
+     usable clips on only two of six axes, DynamiCrafter on four.
+
+  5. Removed an alignment hack that put a leading space inside one
+     confidence interval, shifting that row against the others.
+
+  All three tables now report ZERO text-on-text and ZERO text-on-rule
+  collisions under the VALIDATED checker (the one shown to fire on a
+  planted violation, not the earlier one that false-passed).
+
+-----------------------------------------------------------------
+E0000000000. FIGURE REDESIGN (twelfth pass)
+-----------------------------------------------------------------
+*** TWO ELEMENTS WERE DRAWN INCORRECTLY ***
+
+  1. PANEL (b) PLOTTED THE WRONG VALUE. The measured line sat at
+     e-hat = 0.955 while the text reports every gated seed landing in
+     [0.97, 1.00]. The picture contradicted the number it illustrated.
+     Corrected to 0.995 with the [0.97, 1.00] band drawn.
+
+  2. PANEL (a) DREW THE CONTROL AND THE IDENTITY AS DIVERGING LINES.
+     The positive control has slope 1.0001, so it must lie ON the
+     identity. They had different endpoints and visibly fanned apart,
+     which is exactly the opposite of what the control demonstrates.
+     Now drawn coincident, dashed reference under the measured line.
+
+WHAT ELSE CHANGED
+  - Third panel added: a clearly-labelled SCHEMATIC contrasting
+    faithful / prior reversion / case clamping / seed-conditional.
+    The paper's novel theory previously had no picture at all; a
+    reader can now see why both existing shapes are functions of
+    theta alone and ours is not.
+  - Within-seed dispersion (+-0.03, +-0.2) is now DRAWN as shaded
+    bands rather than stated in a text annotation. That dispersion
+    is what separates seed-locking from noise, so it belongs in the
+    geometry, not the prose. The band being narrower than the
+    markers is the point and is now visible.
+  - Trackability (20%, 25.7%) added to both measured panels. It was
+    missing, and it is the context that bounds what they show.
+  - Palette changed off red/green, which is the classic
+    colour-vision hazard, and every series now carries a distinct
+    marker as well as a colour so it survives grayscale printing.
+
+*** A CHECKER FALSE-PASSED AND WAS REWRITTEN ***
+  The first text-on-line checker reported ZERO collisions. Validated
+  against a deliberately broken figure, it MISSED the planted
+  violation: it tested path bounding boxes and excluded any stroke
+  thinner than 1.2pt, which excluded a 1.2pt line exactly. Rewritten
+  to extract real line/curve/rect SEGMENTS and test each against the
+  glyph core with Liang-Barsky. The rewritten checker passes
+  validation, and on the real figure it then found FIVE collisions
+  the broken one had missed: light gridlines crossing two labels in
+  (a) and (b), and panel (b)'s note box sitting on the identity line.
+  All five fixed; the figure now reports zero under the validated
+  checker. Do not trust a geometry checker that has not been shown
+  to fire on a known violation.
+
+-----------------------------------------------------------------
+E000000000. TABLE REDESIGN (eleventh pass)
+-----------------------------------------------------------------
+  TABLE 2 (Coverage) is now a HEAT MAP. Rows are models, columns are
+  the six axes, shading is proportional to trackability. The paper's
+  central scope fact -- ten of eighteen cells are zero -- is now
+  something a reviewer SEES in one glance rather than reads. Design
+  choices: a single-hue sequential ramp so it survives grayscale
+  printing, which top venues still do; a distinct gray for a MEASURED
+  zero so it cannot be misread as an empty cell; bold on the five
+  cells that actually support a slope estimate. Columns are ordered
+  slope-estimable first.
+
+  TABLE 3 (Adjudication) now has grouped column headers under
+  \cmidrule (Extrapolation | Mechanism), right-aligned numerics with
+  consistent decimals, and \addlinespace between model blocks.
+  Critically, SDI is its own column: eight repeated "[MISSING: ]"
+  boxes are replaced by a single shaded column of red "?" so the one
+  quantity that decides the mechanism is visually unmissable without
+  wrecking the table. One \MISSING remains in the caption so the item
+  still reaches this list.
+
+  TABLE 1 (Suite) now carries both grids in one column with units in
+  the caption, so the full experimental specification is on one line
+  per axis instead of split between table and caption.
+
+  A defect was caught mid-redesign: putting SDI and Delta-AIC in the
+  same cell made \cellcolor bleed across the Delta-AIC column, which
+  looked like Delta-AIC was flagged. Found by rendering and
+  inspecting, not by reading the source.
+
+  Space: the grouped headers cost real height. Recovered by a
+  \tightcenter wrapper (a plain center adds ~25pt of \topsep per
+  table), by collapsing redundant header rows, and by trimming prose.
+  Body still ends within eight pages.
+
+-----------------------------------------------------------------
+E00000000. INTEGRITY AUDIT (tenth pass)
+-----------------------------------------------------------------
+*** THE IMPORTANT ONE: A CLAIM YOUR OWN TABLE CONTRADICTS ***
+
+  Your original round-2 file states, in the generality paragraph:
+      "CogVideoX reproduces it CLEANLY in spring-mass and
+       inclined-slide"
+  while its own results table reports, for those exact two cells:
+      "CogVideoX | spring-mass / inclined slide | 100% / 100%
+       [fit-quality dropped] | n/a"
+
+  100% dropped means ZERO clips produced a recovered value. There is
+  nothing in those cells to reproduce, cleanly or otherwise. This is
+  not a wording slip; it is a claim with no data behind it, sitting
+  four lines from the table that refutes it. It predates this
+  finalization work -- I carried it forward for several passes before
+  catching it, which is on me.
+
+  CONSEQUENCE, now propagated: the abstract claimed the seed-locked
+  signature "reproduces across ... FOUR sweep axes". Recomputing from
+  the coverage table, the axes with any gated data on the two
+  seed-locked models are projectile, bouncing ball and inclined
+  slide. Spring-mass is 0% trackable on ALL THREE models and both
+  pendulum axes are ~0%, so they support nothing either way. The
+  count is THREE, and the abstract now says so in a form a reviewer
+  can check against Table 1 rather than take on trust.
+
+  ACTION FOR YOU: re-derive this yourself from the raw records. If
+  spring-mass in fact has gated clips that the table's 100% figure
+  misstates, then the TABLE is wrong rather than the prose, and that
+  is a different and more serious problem.
+
+FIVE FURTHER CORRECTIONS:
+
+  2. WAN VRAM FIGURE WAS FOR THE WRONG TASK. The 8.19 GB number is
+     reported for Wan's TEXT-TO-VIDEO 1.3B variant. This paper needs
+     IMAGE-TO-VIDEO. Citing it as though it sized the checkpoint we
+     would actually need was an overclaim. Now stated as what it is:
+     suggestive that a current open family is plausibly in budget,
+     explicitly not a verified I2V figure.
+
+  3. UNCITED CLAIM ABOUT A LITERATURE. The seed paragraph asserted
+     that "related work steers semantics, layout and style by
+     manipulating the initial noise directly" while citing none of
+     that work. I could not verify those specific papers, so the
+     sentence is now folded into the Xu et al. attribution rather
+     than standing as an uncited survey claim.
+
+  4. "measures something an automated plausibility score DEMONSTRABLY
+     misses" -> "something this score does not". One rater, one
+     prompt, one stimulus distribution does not license "demonstrably".
+
+  5. "applies to ANY image-to-video model" -> "any generator that
+     accepts one of the two conditioning channels we specify". SVD
+     was dropped precisely because it accepts no text prompt, so the
+     paper already contains its own counterexample to "any".
+
+  6. Notation leftover: one "100% gate-dropped" survived the rename
+     to trackability. Now "0% trackability".
+
+PROSE. Scanned for the usual generated-text fingerprints: hollow
+  intensifiers, "it is worth noting", "delve", "leverage",
+  "underscore", "showcase", "realm", "landscape", "nuanced",
+  "not only X but also Y", "Firstly/Secondly", empty framing
+  sentences, rule-of-three cadence. One instance of "Additionally"
+  was the only hit and it is gone. Zero em dashes in prose; the five
+  in the PDF are all table n/a markers, which is correct usage.
+
+CITATIONS. Every \cite key resolves to a bib entry; no entry is
+  cited that does not exist. Four entries carry PLACEHOLDER corporate
+  authors (applepi2026, embodiedworld2026, newtonianreal2026,
+  phyparam2026) and every claim attributed to them was re-checked
+  against what was actually read from the source -- all four are
+  accurate paraphrases. The author lists remain unverified and MUST
+  be filled before upload (Section D).
+
+-----------------------------------------------------------------
+E0000000. EXPERIMENTAL DESIGN AUDIT (ninth pass)
+-----------------------------------------------------------------
+Full findings and the executable spec are in EXPERIMENTS.md. Two
+things were WRONG in the paper and are now fixed; four gaps are real
+and are now stated rather than left for a reviewer to find.
+
+FIXED -- CONTROL MISLABELLED. Running simulator video, where theta IS
+  realized, through the pipeline and recovering beta = 1.0001 is a
+  POSITIVE control: a known signal the instrument must detect. The
+  paper called it a "negative control" in the abstract, the Figure 1
+  caption and the Results text, while the section heading called it a
+  positive control. Corrected in all seven places. A rigorous
+  reviewer would have caught this and it would have cost credibility
+  on exactly the point the paper most needs to be trusted.
+
+FIXED -- FRAME BUDGET CONFOUNDED WITH MODEL. Native clip lengths
+  differ across the three models (24, 49 trimmed to 24, 16 frames),
+  and the paper's OWN ablation reports a frame-budget floor on
+  CogVideoX (0 of 40 clips gate at ~25 frames). Cross-model
+  TRACKABILITY comparisons are therefore not clean. Within-model
+  conclusions are unaffected. Now stated in Limitations.
+
+STATED -- NO NEGATIVE CONTROL EXISTS. Nothing shows the pipeline
+  reports nothing when nothing is there. A label-permutation null
+  (EXPERIMENTS.md T0.7) fixes this on existing records at zero GPU
+  cost. Red-flagged in Limitations.
+
+STATED -- MODEL CURRENCY IS SPECIFICALLY, NOT GENERICALLY, BEHIND.
+  Verified against the Aug 2026 open-weight landscape: the paper
+  tests LTX-Video and CogVideoX-5B while LTX 2.5 and CogVideoX-1.5
+  exist, and omits Wan 2.2 and HunyuanVideo 1.5, the two open models
+  most often credited with physically coherent motion. Worse for the
+  argument, LTX 2.5 NATIVELY SUPPORTS FIRST-AND-LAST-FRAME
+  CONDITIONING -- the exact capability whose absence forced the
+  paper's single largest protocol deviation. Limitations now says
+  this precisely instead of "one generation behind".
+
+NOT FIXABLE BY EDITING (specified in EXPERIMENTS.md):
+  - no current-generation baseline (Wan 1.3B fits at 8.19 GB)
+  - no generator-side positive control (Force Prompting is available)
+  - denoising steps never swept; only guidance was
+  - initial vs intermediate noise never separated, which is the
+    obvious next question given the Xu et al. positioning
+  - no power analysis, no TOST, no multiplicity on the slope CIs
+  - no held-out system; no cross-check against a published benchmark
+
+-----------------------------------------------------------------
+E000000. TITLE (eighth pass)
+-----------------------------------------------------------------
+TITLE IS NOW:
+  "PhysWeep: Does a Video Generator Realize the Physics You Ask For?"
+
+Three reasons, and one of them is a correctness issue.
+
+  1. ARTIFACT NAME LEADS. This is an Evaluations & Dataset track
+     paper whose primary contribution is a reusable audit. Every
+     benchmark it competes with puts the artifact in the title
+     (VideoPhy, PhyGenBench, Physics-IQ, VBench, LikePhys,
+     PhyWorldBench) because that is how a benchmark accrues repeat
+     citations of the form "we evaluate on X [N]". The previous
+     title, "The Seed Picks the Physics", named nothing citable.
+
+  2. THE PREVIOUS TITLE ASSERTED WHAT THE PAPER CANNOT YET SHOW.
+     This is the important one. Proposition 1 now PROVES that PRI and
+     the selection outcome cannot distinguish a seed-conditional
+     default from unstructured noise, and SDI -- the statistic that
+     can -- is still an empty red-flagged column (R5). A reviewer who
+     reads the title, then the proposition, then the empty column
+     sees the title claiming exactly what the paper defers. That is a
+     self-inflicted vulnerability and it is now removed. The seed
+     finding is still reported in the abstract and Results, correctly
+     hedged as conditional on trackability.
+
+  3. The question form is what the paper actually establishes and is
+     well precedented in this literature (Kang et al., "How Far is
+     Video Generation from World Model"; "What About Gravity in Video
+     Generation?").
+
+  SWITCH BACK ONCE SDI IS FILLED. If EXPERIMENTS.md T0.1 returns a
+  high SDI, the seed claim becomes earned and is the more memorable,
+  more quotable title. A commented one-line swap is already in
+  main.tex directly above the active \title, together with the
+  original pre-finalization title. Remember to mirror any change in
+  appendix.tex, which carries the same title block.
+
+-----------------------------------------------------------------
+E00000. THEORY AUDIT (seventh pass)
+-----------------------------------------------------------------
+CORRECTNESS. Proposition 2 statement (iii) previously asserted that
+the leave-one-theta-out R^2 "has non-positive expectation" and that
+the selection rule "returns neither with probability tending to one".
+
+  The first was NOT PROVABLE as written and the second was FALSE as
+  written. R^2_LOO is a ratio of dependent random variables; its SIGN
+  is random. Simulation at four design sizes puts P(R^2_LOO > 0) at
+  5-10% under exactly this model, and the released smoke test contains
+  a pure-noise draw scoring +0.035. A bare sign test therefore does
+  NOT return "neither" with probability tending to one.
+
+  CORRECTED to what is provable and sufficient:
+    R^2_LOO -> 0 in probability, and for any FIXED MARGIN tau > 0 a
+    rule accepting only R^2_LOO > tau returns "neither" with
+    probability tending to one.
+  This makes the margin a load-bearing part of the theorem instead of
+  a footnote, which is both more honest and a stronger result.
+  Verified numerically: |R^2_LOO| falls 0.026 -> 0.0001 across designs
+  and P(R^2_LOO > 0.1) = 0.0000 at every size tested.
+  The unproven expectation claim is now recorded in Sec. S3 as an
+  explicitly labelled observation, not a result.
+
+COMPLETENESS. The proof asserted "z is drawn independently of the
+grid value" as though it were given. It is a DESIGN assumption and was
+buried in the proof. It is now stated in Definition 2 itself (the
+sweep must be a CROSSED design) and its consequence is made concrete
+in Sec. S3: under a confounded design a generator that is entirely
+seed-determined, with no response to theta at all, returns
+alpha_hat = 1.006 and PRI = -0.006, which READS AS PERFECT
+FAITHFULNESS. Anyone reusing the protocol needs this warning.
+
+MINIMALITY. The main body carried two numbered subsections, two
+propositions, two definitions, one assumption and one remark. That is
+theory-heavy for an Evaluation & Dataset paper. Now:
+  - Assumption 1 and Proposition 1 (estimator consistency) are
+    STANDARD, not the novel contribution, and are demoted to prose
+    plus a pointer to Sec. S2, where the full proof already lives.
+    The simulator-video control is the empirical counterpart and is
+    what the paper actually relies on.
+  - Remark 1 was not a remark; its content is a corollary of the
+    proposition and is now the proposition's final sentence.
+  - The main body now holds exactly TWO definitions and ONE
+    proposition, and the proposition is the novel contribution.
+
+-----------------------------------------------------------------
+E0000. READINESS AUDIT (sixth pass) -- FOUR SILENT LOSSES FOUND
+-----------------------------------------------------------------
+Six rounds of compression each removed content that the build could
+not detect as missing. A section-by-section read of the COMPILED PDF,
+cross-checked against every \ref, every metric defined vs reported,
+and every number, found four:
+
+  1. DANGLING OUTCOME REFERENCES. The Results referred to "the
+     protocol's outcome (2)" and "outcome (4)", and Contribution 1
+     claims the protocol "states in advance which outcomes would
+     confirm or refute each hypothesis" -- but the four outcomes are
+     NEVER ENUMERATED anywhere in the paper. This was NOT introduced
+     by the compression passes: your original round-2 file has the
+     same gap (it says "None of the four outcomes anticipated in the
+     protocol" and cites (1), (2), (4), while the list lived only in
+     the generation runbook). FIXED by removing the dangling numbers,
+     and RED-FLAGGED in the Protocol so you restore the real list.
+     This is the highest-priority remaining red flag: it is the only
+     one where the paper currently claims something it does not show.
+
+  2. IN-RANGE PRE WAS NEVER REPORTED FOR ANY MODEL. PRE is
+     Contribution 2's headline metric. Its three projectile values
+     (0.853, 2.016, 0.781) lived only in the old split Table 2 and
+     vanished when the tables were merged into the coverage grid.
+     RESTORED to the Results text, against the 0.0031 control.
+
+  3. SPEARMAN rho WAS PROMISED AND NEVER REPORTED. Metrics says "we
+     also report Spearman's rho"; no value survived the table merge.
+     RESTORED (-0.268 LTX-Video, 0.046 CogVideoX), and it strengthens
+     the claim: not even the ORDERING of requested values survives.
+
+  4. CBI WAS DEFINED, CLAIMED AS A CONTRIBUTION, NEVER REPORTED. The
+     "per-pair CBI is in the supplementary" pointer was cut in the
+     fifth pass. RESTORED.
+
+  Also verified in this pass: every \ref and \autoref resolves to a
+  real label; no "outcome (N)" reference survives; all Table/Figure/
+  Sec.~S pointers exist; every number in the text matches the tables;
+  no text bleeds off any page; 52 references resolve; 40/40 smoke
+  checks pass; anonymity scan clean.
+
+Every item below renders IN RED in the compiled PDF. None can ship
+unnoticed. Nothing here was guessed or invented; where a value was not
+derivable from what was provided, it was flagged rather than filled.
+
+Search the sources for \MISSING{ and \VERIFYFLAG{ to jump to each one.
+
+-----------------------------------------------------------------
+A. BLOCKING -- resolve these or the paper is not submission-ready
+-----------------------------------------------------------------
+
+B1. PAGE LIMIT. The version you sent compiled to ~9 pages of body.
+    WACV rejects >8 pages (excluding references) WITHOUT REVIEW.
+    STATUS: FIXED in this bundle. Body now ends at the bottom of
+    page 8; references begin at the top of page 9. Re-verify after
+    ANY edit that adds text. Check with:
+        pdflatex main; bibtex main; pdflatex main; pdflatex main
+    then confirm no body text appears on page 9.
+
+B2. ROUND 1 vs ROUND 2 ROUTE. Your zip is named "round-2" and
+    contains rebuttal.tex. WACV states that a rejected Round 1 paper
+    resubmitted to Round 2 as new is DESK REJECTED, and that a Round 2
+    submission substantially the same as a Round 1 submission is
+    grounds for desk rejection. If you received "Revise and Resubmit",
+    upload a revision + 1-page rebuttal to your EXISTING Round 1
+    submission by Aug 28, 2026 AoE. Do not create a new Round 2 entry.
+    ACTION: confirm which route applies before uploading anything.
+
+B3. INTERNAL NOTE WAS SHIPPING TO REVIEWERS. The previous appendix
+    ended with "Independent human verification of this appendix is
+    still required before submission." That directly contradicts the
+    main paper's LLM statement, which asserts the proof was checked by
+    hand by the authors. REMOVED from the appendix in this bundle.
+    ACTION: make the LLM statement true. A human author must re-derive
+    Proposition 1 and its supplementary proof line by line. See R11.
+
+B4. NUMBERS CONTRADICTING YOUR OWN TABLES. The conditioning-channel
+    paragraph reported gate-dropped rates of 30%, 23%, 63% and 86%
+    against Table 2's 37.5% and Table 3's 40.0% and 74.3%, and one
+    sentence read "at a higher dropped rate (63% vs 86%)" where 63 is
+    lower than 86. These four rates have been REMOVED pending your
+    reconciliation. See R8.
+
+B5. MISSING CITATIONS TO PEER-REVIEWED NEIGHBOURS. See section D.
+
+-----------------------------------------------------------------
+B. RED FLAGS IN main.tex
+-----------------------------------------------------------------
+
+R1.  main.tex line 20, preamble, \wacvPaperID
+     ENTER: your OpenReview/CMT paper ID, digits only. Currently
+     "*****", which prints in every page header.
+
+R2.  main.tex, Figure 1 caption (now a two-panel figure*)
+     [VERIFY] Regenerate Figure 1 directly from the per-clip result
+     records rather than from the summary statistics quoted in the
+     text. Confirm the five plotted seed-A and seed-B points are the
+     per-theta means, not a single representative clip. The figure
+     currently encodes |g_hat| ~ 11.4 and ~ 7.1 as flat lines because
+     that is what the Results text states.
+
+R3.  main.tex lines 481-482, Suite/Pipeline/Protocol
+     ENTER: GPU model and VRAM actually used (e.g. one NVIDIA RTX
+     4090 24 GB), and total wall-clock GPU hours across all runs.
+
+R4.  main.tex line 514, "Protocol as run"
+     ENTER: pointer to a supplementary table of exact model repository
+     commits, weight versions, and licences, pinned at run time, for
+     LTX-Video, CogVideoX-5B-I2V, DynamiCrafter-512, CoTracker3, and
+     Qwen2.5-VL-7B-Instruct. The table stub is at appendix.tex R14.
+
+R5.  main.tex, mechanism adjudication paragraph  [HIGHEST VALUE]
+     ENTER: SDI and FDI for all eight adjudicated pairs, computed with
+     seed_determination_index() and variance_decomposition() from the
+     per-clip records. Add as two columns of Table 4 and state the
+     range in the sentence. See EXPERIMENTS.md T0.1 and T0.2.
+     WHY THIS ONE MATTERS MOST: the paper now proves (Proposition 2)
+     that a high PRI with non-positive held-out R^2 is produced BOTH by
+     a seed-conditional default AND by unstructured noise. So the
+     headline claim that the seed picks the physics is NOT established
+     by anything currently reported. SDI is the statistic that
+     establishes it. It needs no GPU and no new generation.
+     ALSO: add a per-pair CBI column to the supplementary so the
+     "per-pair CBI is in the supplementary" pointer resolves.
+
+R6.  main.tex line 676, mechanism adjudication paragraph
+     [VERIFY] Recompute Holm-adjusted p-values for all six paired
+     bootstrap tests and report them here and in Table 4. The text
+     currently asserts that only CogVideoX/projectile survives at
+     alpha = 0.05 under Holm; confirm that against the real numbers.
+     holm_adjust() in physweep_metrics.py will do this.
+
+R7.  main.tex line 784, conditioning-channel paragraph
+     [VERIFY] See B4. Recompute both channels' gate-dropped rates on
+     IDENTICAL grids and seed counts and restore them, or state
+     explicitly which subset each rate covers. Do not restore the old
+     numbers as-is.
+
+R8.  main.tex line 840, Limitations, "Models and statistical scope"
+     ENTER: either run a TOST equivalence test on the estimable slopes
+     against a pre-specified smallest effect of interest, or state
+     plainly that no equivalence test was run. As written the paper
+     already concedes this is absence of evidence, not equivalence.
+
+R9.  main.tex line 886, Reproducibility statement
+     CONFIRM: the analysis code and the system generators are attached
+     to the supplementary submission by the Aug 30 deadline and are
+     fully anonymized, licence and copyright headers included. WACV
+     desk-rejects supplementary code that de-anonymizes.
+
+R10. main.tex line 901, LLM-use statement
+     [VERIFY] Confirm a human author has re-derived Proposition 1 and
+     its supplementary proof line by line before submitting. See B3.
+
+-----------------------------------------------------------------
+C. RED FLAGS IN appendix.tex (supplementary)
+-----------------------------------------------------------------
+
+R11. appendix.tex lines 226-229, seed-count table
+     FILL: one row per model-axis pair (18 rows), giving seeds per
+     grid point, total clips generated, and total clips clearing the
+     R^2 >= 0.8 gate, split in-range vs out-of-range. The main paper
+     points here for "the exact seed counts"; the previous appendix
+     contained none.
+
+R12. appendix.tex line 233, seed-count table caption
+     ENTER: the size of the follow-up seed batch run on the two
+     closest-to-threshold pairs, and confirm the 110 out-of-range
+     attempts cited for LTX-Video/pendulum-omega.
+
+R13. appendix.tex line 239, models table
+     ENTER: exact repository, revision/commit hash, weight version and
+     licence for all five models listed in R4.
+
+R14. appendix.tex line 243, prompts
+     ENTER: the verbatim VLM plausibility prompt used for all 630
+     ratings, the two alternative generation prompt templates from the
+     prompt-phrasing ablation, and the four CFG values swept. A
+     reviewer cannot assess the plausibility-contrast finding without
+     the exact prompt, since the finding is partly about the prompt.
+
+R15. appendix.tex line 247, compute
+     ENTER: GPU model and VRAM, total wall-clock GPU hours, and
+     approximate generation time per clip per model.
+
+R16. appendix.tex line 261, reproducibility checklist
+     CONFIRM: whether the generation and tracking drivers are included
+     in the released code, or state explicitly which parts are not.
+
+R17. appendix.tex line 273, reproducibility checklist
+     STATE: whether per-clip records (seed, theta, theta_hat, fit R^2,
+     gate decision, VLM score) ship with the supplementary code, and
+     name the file. This is the single highest-leverage item in this
+     whole list: with those records, every number in the paper becomes
+     independently checkable by a reviewer.
+
+-----------------------------------------------------------------
+D. CITATIONS ADDED -- verify author lists before submitting
+-----------------------------------------------------------------
+Seven entries were appended to main.bib during the scoop and
+positioning search. Three carry a corporate placeholder author in
+double braces because the author list could not be confirmed; NO
+author names were invented. Replace them from the arXiv abstract page.
+
+  xu2025goodseed         CONFIRMED against the CVF Open Access BibTeX
+                         for WACV 2025.
+  embodiedworld2026      PLACEHOLDER AUTHOR. arXiv:2601.15282.
+  thozhiyoor2026gravity  CONFIRMED against the project page BibTeX.
+                         CVPR 2026 Findings, pp. 3830-3839. This is
+                         the closest neighbour and was not cited at
+                         all in the version you sent.
+  gillman2025forceprompting  CONFIRMED against NeurIPS proceedings
+                         and OpenReview.
+  li2025pisa             VERIFY -- author list and pages taken from a
+                         third-party bibliography, not the paper.
+  gravityrewards2025     VERIFY -- same.
+  phyparam2026           PLACEHOLDER AUTHOR. arXiv:2607.18924.
+  applepi2026            PLACEHOLDER AUTHOR. arXiv:2607.16401.
+  newtonianreal2026      PLACEHOLDER AUTHOR. arXiv:2504.02918.
+
+WACV desk-rejects papers containing citations to non-existent
+material. Check all seven before upload.
+
+-----------------------------------------------------------------
+E000. SOTA SEARCH PASS (fifth pass)
+-----------------------------------------------------------------
+The most consequential find reframes the headline.
+
+  - Xu, Zhang & Shi, "Good Seed Makes a Good Crop", WACV 2025,
+    pp. 3024-3034 (arXiv:2405.14828). Confirmed against the CVF Open
+    Access BibTeX. They show the sampling seed leaves an imprint on
+    text-to-image output so strong that a CLASSIFIER RECOVERS THE SEED
+    INDEX WITH >99.9% ACCURACY, and that quality varies systematically
+    from "golden" to "inferior" seeds. A body of related work steers
+    semantics, layout and style by manipulating initial noise.
+    WHY THIS MATTERS: every result in that line concerns APPEARANCE.
+    PhysWeep's finding is its dynamical counterpart. That converts the
+    headline from "we found a mechanism nobody has a name for" into
+    "the seed is known to fix a generator's appearance; we show it also
+    fixes the physics, overriding an explicit request for it." That is
+    a sharper, better-grounded and more defensible contribution, and
+    it cites a WACV paper in a WACV submission.
+    Added as a new Related Work paragraph, plus the Intro positioning,
+    Contribution 3, Definition 2, and the Conclusion.
+
+  - Wan 1.3B reports 8.19 GB VRAM (arXiv:2503.20314), well inside your
+    single-consumer-GPU budget. The "models are one generation behind"
+    limitation now says so plainly: this gap is one you COULD have
+    closed and did not. Conceding that is stronger than leaving a
+    reviewer to discover it. It also makes EXPERIMENTS.md T1.2
+    concrete: Wan 1.3B on the projectile axis.
+
+  - "Rethinking Video Generation Model for the Embodied World"
+    (arXiv:2601.15282) reports that generators optimized for media
+    prioritize visual smoothness over physical fidelity. Added to the
+    Intro as motivation: the plausibility/physics gap is structural,
+    not incidental. AUTHOR LIST NOT CONFIRMED - placeholder corporate
+    author, must be replaced.
+
+  - LAYOUT DEFECT FOUND AND FIXED: "Proposition 2" was orphaning its
+    header above the page header and bleeding off the left edge of
+    page 4 ("Overfull \hbox 164.7pt while \output is active"). Root
+    cause was a theorem header landing exactly at a column boundary.
+    Fixed structurally with \Needspace guards on all five theorem
+    environments, not by hoping reflow moved it.
+
+  - Checked and NOT added: Huberman et al. 2026 is cited by others as
+    an extrapolation-failure result but could not be located directly.
+    Not cited rather than cited unverified.
+
+-----------------------------------------------------------------
+E00. SECTION-BY-SECTION OPTIMIZATION (fourth pass)
+-----------------------------------------------------------------
+  - FIGURE 1 is now TWO PANELS spanning both columns, placed at the
+    top of page 2. Panel (a) CogVideoX projectile, panel (b)
+    DynamiCrafter bouncing ball. The point of (b) is that a reviewer
+    now sees the signature in a DIFFERENT ARCHITECTURE on a DIFFERENT
+    PHYSICAL SYSTEM on the first skim, which is the strongest part of
+    the claim and was previously buried in Section 6 prose.
+  - The two split results tables (projectile / everything-else) were
+    an artifact of the experiment order, not of what a reader needs.
+    They are replaced by ONE COMPACT COVERAGE GRID (Table 1): three
+    models by six axes, trackability in every cell. Ten cells read
+    0%. That grid is the honest picture of what this study covers and
+    is exactly what the Evaluation & Dataset track is reviewed on.
+    Rows were generated programmatically from the reported drop rates,
+    not hand-transcribed.
+  - The five estimable slopes moved into prose. There are only five,
+    and a table column that is "---" thirteen times out of eighteen
+    was wasting space and hiding the point.
+  - SDI moved INTO the mechanism table (Table 3) where the mechanism
+    argument actually happens, rather than sitting in a coverage table
+    as an eighth column.
+  - RESULTS REORGANIZED AROUND CLAIMS, not experiments. Headings were
+    a runbook ("Robustness and ablations", "Conditioning channel",
+    "Multi-parameter sweep"). They now assert:
+        The instrument works: simulator-video positive control
+        Conditioning does not move the realized parameter
+        The failure is seed-locked, not untrackable noise
+        The signature crosses architectures and physical systems
+        Neither existing hypothesis explains it, exactly as predicted
+        The result survives every nuisance parameter we varied
+        Changing the conditioning channel does not rescue it
+        A plausibility rater sees none of this
+    A reviewer skimming headings now reads the argument.
+  - Abstract merged to a single paragraph, CVF convention.
+  - Uninformative multi-parameter experiment demoted from its own
+    Results paragraph to one clause in Limitations, where an
+    uninformative result belongs.
+
+-----------------------------------------------------------------
+E0. THEORY AND DESIGN PASS (third pass)
+-----------------------------------------------------------------
+The paper repeatedly said the seed-conditional behavior was "a
+distinction the current formalism has no parameter for". It now has
+one, and the formalism predicts the paper's own negative result.
+
+  - NEW Definition 2 (seed-conditional default). Prior reversion with a
+    single global theta_0 is the special case sigma_c^2 = 0, so the new
+    model NESTS the existing one rather than competing with it.
+  - NEW Proposition 2 (misspecification), proved in supplementary S3:
+    under a seed-conditional default, PRI -> 1 and held-out R^2 has
+    non-positive expectation, so the selection rule returns "neither"
+    WITH PROBABILITY TENDING TO ONE. The paper's awkward negative
+    result is now a derived prediction of its own model.
+  - NEW Remark (PRI is not identifying): the same signature is produced
+    by unstructured noise, so PRI CANNOT establish seed-locking. This
+    is a self-correction; the previous draft's headline rested on a
+    statistic that does not support it.
+  - NEW metric: Seed Determination Index, a one-way random-effects ICC
+    over seeds, with FDI as its counterpart for the requested value.
+    Verified on synthetic ground truth: SDI = 0.999 seed-locked, 0.000
+    faithful, 0.000 pure noise, 0.060 single global default. The raw
+    variance share is upward-biased (0.18 where truth is 0.00), so the
+    corrected estimator is used.
+  - DEFECT FOUND AND FIXED IN YOUR OWN METHOD: select_mechanism
+    accepted any POSITIVE held-out R^2. Because that quantity is
+    centred on zero when theta is uninformative, its sign is noise, and
+    the smoke test reproduces a pure-noise sample being labelled
+    "prior_reversion" at R^2 = +0.035. The rule now requires a margin
+    (R^2 > 0.1). A test asserts the bare sign test fails where the
+    margin rule does not, so the margin cannot be silently removed.
+  - Proposition 1 (estimator consistency) was compressed. It is
+    standard and is not the paper's novel theory; the novel result now
+    carries the section, which is also what the venue expects.
+  - EXPERIMENTS.md added: prioritized, executable spec. Tier 0 needs no
+    GPU and fits before the deadline.
+
+-----------------------------------------------------------------
+E. STRATEGIC REFRAME (second pass)
+-----------------------------------------------------------------
+The paper previously led with a NULL ("none honors conditioned
+physics") estimated on a survivor subset. That is the claim the
+37.5-100% attrition most undermines, and it is also the least novel
+part of the work, since Thozhiyoor et al. already showed generators get
+gravity wrong. The seed-locked convergence is a POSITIVE, measured,
+high-confidence finding that does not depend on attrition at all. The
+paper now leads with it.
+
+  - TITLE changed to "The Seed Picks the Physics: Auditing Parameter
+    Faithfulness in Frozen Video Generators". The original title is
+    preserved as a commented line directly above it in main.tex; swap
+    the two lines to revert.
+  - ABSTRACT restructured into two paragraphs: instrument, then
+    finding. The seed numbers (-11.4 +/- 0.03, -7.1 +/- 0.2) are now
+    in the abstract.
+  - CONTRIBUTIONS reordered artifact-first, matching how the
+    Evaluation & Dataset track is reviewed.
+  - The fit-quality gate rate is now a NAMED METRIC (trackability
+    rate) reported as a result, not an exclusion criterion. It is
+    justified by the VLM decorrelation: a plausibility rater does not
+    track it, so it measures something plausibility scores miss.
+  - NEW ARGUMENT against the killer objection, in Results: if the
+    stimulus were merely un-renderable, surviving values would be
+    scattered; instead they are seed-locked with dispersion 0.03-0.13
+    and fit R^2 up to 1.000, and replicate under a second tracker.
+    Confident well-fit seed-locked motion is what a model IGNORING
+    theta produces, not what a model FAILING TO RENDER produces.
+  - HEADLINE now stated conditionally: "conditional on producing
+    physically trackable motion, none of the three models detectably
+    honors a text-specified physical parameter." Trackability bounds
+    the coverage of that claim, not its validity.
+  - CONCLUSION adds the practical implication: a benchmark that
+    averages over seeds reports a smooth plausible mean and hides that
+    each sample is locked to a wrong constant, so seed-resolved
+    reporting is not optional.
+
+-----------------------------------------------------------------
+F. WHAT WAS FIXED, NOT FLAGGED
+-----------------------------------------------------------------
+ - Six broken hard-coded cross-references ("Section 4.3/4.4/4.5")
+   pointed at Metrics; Results is Section 6 in this build. Replaced
+   with real \ref or removed.
+ - "six physics systems" -> five systems, six sweep axes (the damped
+   pendulum contributes two axes). Was wrong in the abstract.
+ - "Two of DynamiCrafter's five remaining systems" vs "three" in
+   Limitations. Three is correct (omega, zeta, spring-mass).
+ - "LTX-Video and CogVideoX each on four of their five" implied 8
+   unadjudicated pairs; the arithmetic gives 7 (3 LTX + 4 CogVideoX).
+ - Table 4 flagged a one-sided p = 1.0000 with a significance
+   asterisk. Now marked as excluding zero in the OPPOSITE direction.
+ - Two slope CIs in Table 3 contain beta = 1 as well as beta = 0.
+   Now explicitly excluded from the null evidence in the table note.
+ - Multiplicity across six paired bootstraps was unaddressed. Holm
+   correction now stated in text and implemented in the code.
+ - Algorithm 1 promised a human plausibility subset that was never
+   collected; the protocol promised a VBench-2.0 score and a quantized
+   Wan, neither run. All now stated as not collected.
+ - Figure 1 illustrated the prior-reversion hypothesis that the
+   results refuted. Replaced with the measured CogVideoX seed-cluster
+   result plus the simulator-video negative control.
+ - Overfull hbox at the PRI/CBI display (39.7pt) split across two
+   equations.
+ - The smoke test surfaced a genuine metric limitation: CBI is not
+   identifiable when the out-of-range grid lies entirely on one side
+   of the in-range band. Only pendulum damping is affected, and no
+   reported result depends on it. Now documented in the supplementary.

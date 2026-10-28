@@ -1,0 +1,15 @@
+model=cosmos2_2b host=crirdchpxd003 NVIDIA H200, 143771 MiB
+[cosmos2_2b] run=pilot_b shard 0/1: 12 clips in shard, 0 already done, 12 to do
+[cosmos2_2b] loaded in 277s
+[cosmos2_2b] 1/12 bouncing_ball θ=0.6 s=0 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 2/12 bouncing_ball θ=0.6 s=1 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 3/12 bouncing_ball θ=0.9 s=0 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 4/12 bouncing_ball θ=0.9 s=1 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 5/12 inclined_slide θ=0.1 s=0 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 6/12 inclined_slide θ=0.1 s=1 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 7/12 inclined_slide θ=0.4 s=0 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 8/12 inclined_slide θ=0.4 s=1 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 9/12 projectile θ=5 s=0 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 10/12 projectile θ=5 s=1 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 11/12 projectile θ=15 s=0 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'
+[cosmos2_2b] 12/12 projectile θ=15 s=1 z=1000: ERROR AttributeError: 'Cosmos2VideoToWorldPipeline' object has no attribute '_execution_device'

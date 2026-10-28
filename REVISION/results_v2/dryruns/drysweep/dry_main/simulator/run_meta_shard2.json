@@ -1,0 +1,42 @@
+{
+ "model": "simulator",
+ "spec": {
+  "repo": null,
+  "cls": "simulator",
+  "W": 768,
+  "H": 512,
+  "num_frames": 24,
+  "fps": 24,
+  "steps": 0,
+  "guidance": null,
+  "queue": "cpu",
+  "env": "main"
+ },
+ "args": {
+  "model": "simulator",
+  "run": "dry_main",
+  "out_root": "/tmp/claude-1980770492/-export-home-rakh90100-Rasul-research-ideas--2--4-ICLR/1745feb0-7822-4a82-85cc-8cbb922a3acf/scratchpad/drysweep",
+  "systems": [
+   "projectile",
+   "bouncing_ball",
+   "inclined_slide"
+  ],
+  "mode": "crossed",
+  "n_scene": 4,
+  "n_noise": 4,
+  "style": "structured",
+  "channel": "text",
+  "frame_mode": "pair",
+  "prompt_variant": "default",
+  "pilot": false,
+  "limit": null,
+  "shard_index": 2,
+  "shard_count": 3,
+  "no_cotracker": true,
+  "offload": false
+ },
+ "load_seconds": 7.3909759521484375e-06,
+ "host": "crimv3mgpu015",
+ "slurm_job": null,
+ "gpu": null
+}

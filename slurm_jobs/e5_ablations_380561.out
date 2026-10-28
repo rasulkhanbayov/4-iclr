@@ -1,0 +1,1255 @@
+======================================================================
+E5(e) guidance-scale sweep: ltx, projectile
+======================================================================
+--- guidance_scale=1.0 ---
+variant=cfg1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=cfg1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=0.238 r2=0.897
+  g_true=  5.00 seed=2: g_hat=-0.004 r2=0.515
+  g_true=  5.00 seed=3: g_hat=0.234 r2=0.676
+  g_true=  5.00 seed=4: g_hat=10.777 r2=0.852
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=0.251 r2=0.911
+  g_true=  7.00 seed=2: g_hat=-0.051 r2=0.528
+  g_true=  7.00 seed=3: g_hat=0.226 r2=0.741
+  g_true=  7.00 seed=4: g_hat=8.042 r2=0.830
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=0.211 r2=0.923
+  g_true=  9.80 seed=2: g_hat=-0.002 r2=0.526
+  g_true=  9.80 seed=3: g_hat=0.229 r2=0.793
+  g_true=  9.80 seed=4: g_hat=7.623 r2=0.859
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=0.248 r2=0.929
+  g_true= 12.00 seed=2: g_hat=-0.019 r2=0.681
+  g_true= 12.00 seed=3: g_hat=0.242 r2=0.685
+  g_true= 12.00 seed=4: g_hat=10.992 r2=0.852
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=0.252 r2=0.926
+  g_true= 15.00 seed=2: g_hat=-0.028 r2=0.676
+  g_true= 15.00 seed=3: g_hat=0.232 r2=0.687
+  g_true= 15.00 seed=4: g_hat=11.196 r2=0.865
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=0.243 r2=0.940
+  g_true=  1.60 seed=2: g_hat=-0.013 r2=0.556
+  g_true=  1.60 seed=3: g_hat=0.235 r2=0.763
+  g_true=  1.60 seed=4: g_hat=10.746 r2=0.861
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=0.208 r2=0.918
+  g_true=  3.00 seed=2: g_hat=-0.010 r2=0.613
+  g_true=  3.00 seed=3: g_hat=0.240 r2=0.721
+  g_true=  3.00 seed=4: g_hat=10.709 r2=0.858
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-0.113 r2=0.522
+  g_true= 20.00 seed=2: g_hat=-0.004 r2=0.617
+  g_true= 20.00 seed=3: g_hat=0.040 r2=0.992
+  g_true= 20.00 seed=4: g_hat=7.868 r2=0.791
+projectile: n_gated=15/40 dropped_rate=62.50% elapsed=59s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.0_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.0_ltx_summary.json
+--- guidance_scale=1.5 ---
+variant=cfg1.5  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=cfg1.5)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=0.268 r2=0.918
+  g_true=  5.00 seed=2: g_hat=-0.043 r2=0.777
+  g_true=  5.00 seed=3: g_hat=0.287 r2=0.469
+  g_true=  5.00 seed=4: g_hat=nan r2=0.000
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=0.226 r2=0.900
+  g_true=  7.00 seed=2: g_hat=-0.062 r2=0.564
+  g_true=  7.00 seed=3: g_hat=0.218 r2=0.607
+  g_true=  7.00 seed=4: g_hat=nan r2=0.000
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=0.231 r2=0.926
+  g_true=  9.80 seed=2: g_hat=-0.007 r2=0.528
+  g_true=  9.80 seed=3: g_hat=0.252 r2=0.709
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=0.262 r2=0.909
+  g_true= 12.00 seed=2: g_hat=-0.035 r2=0.727
+  g_true= 12.00 seed=3: g_hat=0.241 r2=0.559
+  g_true= 12.00 seed=4: g_hat=13.623 r2=0.978
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=nan r2=0.000
+  g_true= 15.00 seed=2: g_hat=-0.054 r2=0.526
+  g_true= 15.00 seed=3: g_hat=0.242 r2=0.506
+  g_true= 15.00 seed=4: g_hat=14.164 r2=0.982
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=0.313 r2=0.877
+  g_true=  1.60 seed=2: g_hat=-0.040 r2=0.777
+  g_true=  1.60 seed=3: g_hat=0.287 r2=0.597
+  g_true=  1.60 seed=4: g_hat=nan r2=0.000
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=0.247 r2=0.927
+  g_true=  3.00 seed=2: g_hat=-0.032 r2=0.803
+  g_true=  3.00 seed=3: g_hat=0.279 r2=0.508
+  g_true=  3.00 seed=4: g_hat=nan r2=0.000
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-0.289 r2=0.283
+  g_true= 20.00 seed=2: g_hat=0.000 r2=0.678
+  g_true= 20.00 seed=3: g_hat=-0.232 r2=0.999
+  g_true= 20.00 seed=4: g_hat=8.648 r2=0.835
+projectile: n_gated=11/40 dropped_rate=72.50% elapsed=100s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.5_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.5_ltx_summary.json
+--- guidance_scale=4.5 ---
+variant=cfg4.5  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=cfg4.5)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=6.336 r2=0.858
+  g_true=  5.00 seed=1: g_hat=-1.189 r2=0.701
+  g_true=  5.00 seed=2: g_hat=nan r2=0.000
+  g_true=  5.00 seed=3: g_hat=-0.055 r2=0.990
+  g_true=  5.00 seed=4: g_hat=nan r2=0.000
+  g_true=  7.00 seed=0: g_hat=6.241 r2=0.846
+  g_true=  7.00 seed=1: g_hat=-0.116 r2=0.937
+  g_true=  7.00 seed=2: g_hat=-0.797 r2=0.988
+  g_true=  7.00 seed=3: g_hat=-0.162 r2=0.994
+  g_true=  7.00 seed=4: g_hat=nan r2=0.000
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=-0.235 r2=0.561
+  g_true=  9.80 seed=2: g_hat=-0.234 r2=0.026
+  g_true=  9.80 seed=3: g_hat=-0.223 r2=0.993
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=-0.174 r2=0.947
+  g_true= 12.00 seed=2: g_hat=0.796 r2=0.999
+  g_true= 12.00 seed=3: g_hat=-0.141 r2=0.994
+  g_true= 12.00 seed=4: g_hat=nan r2=0.000
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=-6.030 r2=0.707
+  g_true= 15.00 seed=2: g_hat=0.817 r2=1.000
+  g_true= 15.00 seed=3: g_hat=-0.094 r2=0.996
+  g_true= 15.00 seed=4: g_hat=nan r2=0.000
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-0.132 r2=0.975
+  g_true=  1.60 seed=2: g_hat=nan r2=0.000
+  g_true=  1.60 seed=3: g_hat=-0.212 r2=0.996
+  g_true=  1.60 seed=4: g_hat=nan r2=0.000
+  g_true=  3.00 seed=0: g_hat=6.345 r2=0.855
+  g_true=  3.00 seed=1: g_hat=-1.090 r2=0.734
+  g_true=  3.00 seed=2: g_hat=0.649 r2=1.000
+  g_true=  3.00 seed=3: g_hat=-0.081 r2=0.992
+  g_true=  3.00 seed=4: g_hat=nan r2=0.000
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-0.177 r2=0.985
+  g_true= 20.00 seed=2: g_hat=0.027 r2=0.569
+  g_true= 20.00 seed=3: g_hat=-0.617 r2=0.998
+  g_true= 20.00 seed=4: g_hat=24.120 r2=0.916
+projectile: n_gated=20/40 dropped_rate=50.00% elapsed=99s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg4.5_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg4.5_ltx_summary.json
+--- guidance_scale=9.0 ---
+variant=cfg9.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=cfg9.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-0.085 r2=0.963
+  g_true=  5.00 seed=2: g_hat=nan r2=0.000
+  g_true=  5.00 seed=3: g_hat=nan r2=0.000
+  g_true=  5.00 seed=4: g_hat=2.549 r2=0.970
+  g_true=  7.00 seed=0: g_hat=6.723 r2=0.887
+  g_true=  7.00 seed=1: g_hat=nan r2=0.000
+  g_true=  7.00 seed=2: g_hat=-0.825 r2=0.985
+  g_true=  7.00 seed=3: g_hat=0.151 r2=0.972
+  g_true=  7.00 seed=4: g_hat=nan r2=0.000
+  g_true=  9.80 seed=0: g_hat=5.719 r2=0.846
+  g_true=  9.80 seed=1: g_hat=-2.472 r2=0.479
+  g_true=  9.80 seed=2: g_hat=nan r2=0.000
+  g_true=  9.80 seed=3: g_hat=-0.065 r2=0.991
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=6.460 r2=0.878
+  g_true= 12.00 seed=1: g_hat=-5.920 r2=0.687
+  g_true= 12.00 seed=2: g_hat=2.329 r2=0.983
+  g_true= 12.00 seed=3: g_hat=0.120 r2=0.983
+  g_true= 12.00 seed=4: g_hat=2.862 r2=0.913
+  g_true= 15.00 seed=0: g_hat=6.806 r2=0.893
+  g_true= 15.00 seed=1: g_hat=-5.883 r2=0.674
+  g_true= 15.00 seed=2: g_hat=-0.731 r2=0.991
+  g_true= 15.00 seed=3: g_hat=0.275 r2=0.977
+  g_true= 15.00 seed=4: g_hat=5.204 r2=0.894
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-0.081 r2=0.973
+  g_true=  1.60 seed=2: g_hat=-1.148 r2=0.987
+  g_true=  1.60 seed=3: g_hat=-0.018 r2=0.975
+  g_true=  1.60 seed=4: g_hat=nan r2=0.000
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-0.036 r2=0.973
+  g_true=  3.00 seed=2: g_hat=-1.014 r2=0.989
+  g_true=  3.00 seed=3: g_hat=0.222 r2=0.961
+  g_true=  3.00 seed=4: g_hat=0.410 r2=0.897
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=0.145 r2=0.978
+  g_true= 20.00 seed=2: g_hat=-0.846 r2=0.994
+  g_true= 20.00 seed=3: g_hat=-0.502 r2=0.875
+  g_true= 20.00 seed=4: g_hat=nan r2=0.000
+projectile: n_gated=25/40 dropped_rate=37.50% elapsed=99s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg9.0_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg9.0_ltx_summary.json
+======================================================================
+E5(f) prompt-phrasing variants: ltx, projectile
+======================================================================
+--- prompt-variant=terse ---
+variant=prompt-terse  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=prompt-terse)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=0.006 r2=0.852
+  g_true=  5.00 seed=1: g_hat=0.131 r2=0.895
+  g_true=  5.00 seed=2: g_hat=-0.001 r2=0.217
+  g_true=  5.00 seed=3: g_hat=0.014 r2=0.423
+  g_true=  5.00 seed=4: g_hat=2.043 r2=0.843
+  g_true=  7.00 seed=0: g_hat=-0.056 r2=0.998
+  g_true=  7.00 seed=1: g_hat=0.383 r2=0.881
+  g_true=  7.00 seed=2: g_hat=0.002 r2=0.724
+  g_true=  7.00 seed=3: g_hat=0.002 r2=0.149
+  g_true=  7.00 seed=4: g_hat=nan r2=0.000
+  g_true=  9.80 seed=0: g_hat=0.188 r2=0.828
+  g_true=  9.80 seed=1: g_hat=0.165 r2=0.851
+  g_true=  9.80 seed=2: g_hat=0.001 r2=0.298
+  g_true=  9.80 seed=3: g_hat=-0.010 r2=0.245
+  g_true=  9.80 seed=4: g_hat=0.073 r2=0.955
+  g_true= 12.00 seed=0: g_hat=-0.033 r2=0.998
+  g_true= 12.00 seed=1: g_hat=0.329 r2=0.902
+  g_true= 12.00 seed=2: g_hat=-0.000 r2=0.131
+  g_true= 12.00 seed=3: g_hat=0.003 r2=0.217
+  g_true= 12.00 seed=4: g_hat=nan r2=0.000
+  g_true= 15.00 seed=0: g_hat=-0.050 r2=0.998
+  g_true= 15.00 seed=1: g_hat=0.111 r2=0.940
+  g_true= 15.00 seed=2: g_hat=0.002 r2=0.648
+  g_true= 15.00 seed=3: g_hat=0.001 r2=0.100
+  g_true= 15.00 seed=4: g_hat=nan r2=0.000
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=0.169 r2=0.859
+  g_true=  1.60 seed=2: g_hat=-0.000 r2=0.483
+  g_true=  1.60 seed=3: g_hat=0.176 r2=0.991
+  g_true=  1.60 seed=4: g_hat=14.558 r2=0.957
+  g_true=  3.00 seed=0: g_hat=0.002 r2=0.856
+  g_true=  3.00 seed=1: g_hat=0.125 r2=0.929
+  g_true=  3.00 seed=2: g_hat=0.001 r2=0.129
+  g_true=  3.00 seed=3: g_hat=-0.004 r2=0.116
+  g_true=  3.00 seed=4: g_hat=nan r2=0.000
+  g_true= 20.00 seed=0: g_hat=-0.003 r2=0.997
+  g_true= 20.00 seed=1: g_hat=0.154 r2=0.885
+  g_true= 20.00 seed=2: g_hat=0.000 r2=1.000
+  g_true= 20.00 seed=3: g_hat=0.007 r2=0.086
+  g_true= 20.00 seed=4: g_hat=nan r2=0.000
+projectile: n_gated=20/40 dropped_rate=50.00% elapsed=99s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-terse_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-terse_ltx_summary.json
+--- prompt-variant=verbose ---
+variant=prompt-verbose  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=prompt-verbose)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-6.671 r2=0.746
+  g_true=  5.00 seed=2: g_hat=nan r2=0.000
+  g_true=  5.00 seed=3: g_hat=-0.264 r2=0.996
+  g_true=  5.00 seed=4: g_hat=1.471 r2=0.872
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=0.638 r2=0.853
+  g_true=  7.00 seed=2: g_hat=nan r2=0.000
+  g_true=  7.00 seed=3: g_hat=-0.316 r2=0.994
+  g_true=  7.00 seed=4: g_hat=nan r2=0.000
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=-0.310 r2=0.890
+  g_true=  9.80 seed=2: g_hat=0.446 r2=1.000
+  g_true=  9.80 seed=3: g_hat=-0.303 r2=0.997
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=-6.807 r2=0.717
+  g_true= 12.00 seed=2: g_hat=0.540 r2=1.000
+  g_true= 12.00 seed=3: g_hat=-0.308 r2=0.997
+  g_true= 12.00 seed=4: g_hat=1.408 r2=0.890
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=-6.802 r2=0.713
+  g_true= 15.00 seed=2: g_hat=0.504 r2=1.000
+  g_true= 15.00 seed=3: g_hat=-0.283 r2=0.997
+  g_true= 15.00 seed=4: g_hat=1.296 r2=0.893
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-0.051 r2=0.550
+  g_true=  1.60 seed=2: g_hat=nan r2=0.000
+  g_true=  1.60 seed=3: g_hat=-0.305 r2=0.997
+  g_true=  1.60 seed=4: g_hat=nan r2=0.000
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-6.691 r2=0.758
+  g_true=  3.00 seed=2: g_hat=nan r2=0.000
+  g_true=  3.00 seed=3: g_hat=-0.297 r2=0.996
+  g_true=  3.00 seed=4: g_hat=1.677 r2=0.881
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-6.225 r2=0.691
+  g_true= 20.00 seed=2: g_hat=-0.975 r2=0.996
+  g_true= 20.00 seed=3: g_hat=0.071 r2=0.990
+  g_true= 20.00 seed=4: g_hat=11.897 r2=0.967
+projectile: n_gated=19/40 dropped_rate=52.50% elapsed=102s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-verbose_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-verbose_ltx_summary.json
+======================================================================
+E5(b) scale-invariance: ltx, projectile
+======================================================================
+--- disk_scale=0.5 ---
+variant=scale0.5x1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=scale0.5x1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=nan r2=0.000
+  g_true=  5.00 seed=2: g_hat=-0.012 r2=0.393
+  g_true=  5.00 seed=3: g_hat=nan r2=0.000
+  g_true=  5.00 seed=4: g_hat=nan r2=0.000
+  g_true=  7.00 seed=0: g_hat=-0.297 r2=0.453
+  g_true=  7.00 seed=1: g_hat=nan r2=0.000
+  g_true=  7.00 seed=2: g_hat=0.021 r2=0.080
+  g_true=  7.00 seed=3: g_hat=nan r2=0.000
+  g_true=  7.00 seed=4: g_hat=nan r2=0.000
+  g_true=  9.80 seed=0: g_hat=-0.156 r2=0.533
+  g_true=  9.80 seed=1: g_hat=nan r2=0.000
+  g_true=  9.80 seed=2: g_hat=-0.011 r2=0.162
+  g_true=  9.80 seed=3: g_hat=nan r2=0.000
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=nan r2=0.000
+  g_true= 12.00 seed=2: g_hat=0.002 r2=0.042
+  g_true= 12.00 seed=3: g_hat=0.588 r2=0.819
+  g_true= 12.00 seed=4: g_hat=0.747 r2=0.919
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=nan r2=0.000
+  g_true= 15.00 seed=2: g_hat=0.011 r2=0.285
+  g_true= 15.00 seed=3: g_hat=0.514 r2=0.798
+  g_true= 15.00 seed=4: g_hat=0.413 r2=0.916
+  g_true=  1.60 seed=0: g_hat=-0.091 r2=0.552
+  g_true=  1.60 seed=1: g_hat=nan r2=0.000
+  g_true=  1.60 seed=2: g_hat=0.014 r2=0.332
+  g_true=  1.60 seed=3: g_hat=nan r2=0.000
+  g_true=  1.60 seed=4: g_hat=4.338 r2=0.538
+  g_true=  3.00 seed=0: g_hat=-0.312 r2=0.329
+  g_true=  3.00 seed=1: g_hat=nan r2=0.000
+  g_true=  3.00 seed=2: g_hat=-0.002 r2=0.364
+  g_true=  3.00 seed=3: g_hat=nan r2=0.000
+  g_true=  3.00 seed=4: g_hat=nan r2=0.000
+  g_true= 20.00 seed=0: g_hat=-0.111 r2=0.574
+  g_true= 20.00 seed=1: g_hat=-0.453 r2=0.918
+  g_true= 20.00 seed=2: g_hat=0.007 r2=0.259
+  g_true= 20.00 seed=3: g_hat=-0.301 r2=0.982
+  g_true= 20.00 seed=4: g_hat=0.808 r2=0.945
+projectile: n_gated=6/40 dropped_rate=85.00% elapsed=99s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale0.5x1.0_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale0.5x1.0_ltx_summary.json
+--- disk_scale=1.5 ---
+variant=scale1.5x1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=scale1.5x1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-0.280 r2=0.288
+  g_true=  5.00 seed=2: g_hat=0.512 r2=1.000
+  g_true=  5.00 seed=3: g_hat=0.200 r2=0.071
+  g_true=  5.00 seed=4: g_hat=1.292 r2=0.893
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=-0.221 r2=0.280
+  g_true=  7.00 seed=2: g_hat=0.536 r2=1.000
+  g_true=  7.00 seed=3: g_hat=0.130 r2=0.058
+  g_true=  7.00 seed=4: g_hat=1.845 r2=0.891
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=-0.261 r2=0.315
+  g_true=  9.80 seed=2: g_hat=0.233 r2=1.000
+  g_true=  9.80 seed=3: g_hat=0.133 r2=0.064
+  g_true=  9.80 seed=4: g_hat=1.064 r2=0.875
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=-0.313 r2=0.313
+  g_true= 12.00 seed=2: g_hat=0.573 r2=1.000
+  g_true= 12.00 seed=3: g_hat=0.148 r2=0.066
+  g_true= 12.00 seed=4: g_hat=1.168 r2=0.881
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=-0.348 r2=0.352
+  g_true= 15.00 seed=2: g_hat=0.637 r2=1.000
+  g_true= 15.00 seed=3: g_hat=0.155 r2=0.060
+  g_true= 15.00 seed=4: g_hat=1.008 r2=0.885
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-0.200 r2=0.296
+  g_true=  1.60 seed=2: g_hat=0.476 r2=1.000
+  g_true=  1.60 seed=3: g_hat=0.079 r2=0.059
+  g_true=  1.60 seed=4: g_hat=1.825 r2=0.895
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-0.250 r2=0.254
+  g_true=  3.00 seed=2: g_hat=0.537 r2=1.000
+  g_true=  3.00 seed=3: g_hat=0.172 r2=0.082
+  g_true=  3.00 seed=4: g_hat=1.453 r2=0.895
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-1.339 r2=0.639
+  g_true= 20.00 seed=2: g_hat=-0.846 r2=0.994
+  g_true= 20.00 seed=3: g_hat=-0.171 r2=0.999
+  g_true= 20.00 seed=4: g_hat=13.170 r2=0.974
+projectile: n_gated=17/40 dropped_rate=57.50% elapsed=100s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.5x1.0_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.5x1.0_ltx_summary.json
+--- disk_scale=2.0 ---
+variant=scale2.0x1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=scale2.0x1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-2.198 r2=0.552
+  g_true=  5.00 seed=2: g_hat=-0.635 r2=0.993
+  g_true=  5.00 seed=3: g_hat=-0.052 r2=0.997
+  g_true=  5.00 seed=4: g_hat=1.536 r2=0.884
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=-0.167 r2=0.773
+  g_true=  7.00 seed=2: g_hat=-0.624 r2=0.367
+  g_true=  7.00 seed=3: g_hat=-0.085 r2=0.996
+  g_true=  7.00 seed=4: g_hat=1.883 r2=0.892
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=-0.210 r2=0.690
+  g_true=  9.80 seed=2: g_hat=0.267 r2=0.910
+  g_true=  9.80 seed=3: g_hat=-0.086 r2=0.998
+  g_true=  9.80 seed=4: g_hat=2.132 r2=0.888
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=-0.588 r2=0.187
+  g_true= 12.00 seed=2: g_hat=-0.644 r2=0.989
+  g_true= 12.00 seed=3: g_hat=-0.078 r2=0.995
+  g_true= 12.00 seed=4: g_hat=1.816 r2=0.891
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=-3.069 r2=0.621
+  g_true= 15.00 seed=2: g_hat=-0.525 r2=0.987
+  g_true= 15.00 seed=3: g_hat=-0.067 r2=0.996
+  g_true= 15.00 seed=4: g_hat=1.965 r2=0.896
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-1.325 r2=0.785
+  g_true=  1.60 seed=2: g_hat=0.238 r2=0.985
+  g_true=  1.60 seed=3: g_hat=-0.044 r2=0.997
+  g_true=  1.60 seed=4: g_hat=1.666 r2=0.892
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-2.138 r2=0.881
+  g_true=  3.00 seed=2: g_hat=nan r2=0.000
+  g_true=  3.00 seed=3: g_hat=-0.072 r2=0.998
+  g_true=  3.00 seed=4: g_hat=1.706 r2=0.885
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-1.121 r2=0.624
+  g_true= 20.00 seed=2: g_hat=0.101 r2=0.990
+  g_true= 20.00 seed=3: g_hat=-0.064 r2=0.996
+  g_true= 20.00 seed=4: g_hat=14.888 r2=0.984
+projectile: n_gated=23/40 dropped_rate=42.50% elapsed=100s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale2.0x1.0_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale2.0x1.0_ltx_summary.json
+--- fps_scale=0.5 ---
+variant=scale1.0x0.5  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=scale1.0x0.5)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-1.807 r2=0.889
+  g_true=  5.00 seed=2: g_hat=-1.522 r2=0.044
+  g_true=  5.00 seed=3: g_hat=-1.006 r2=0.992
+  g_true=  5.00 seed=4: g_hat=2.154 r2=0.889
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=-0.781 r2=0.715
+  g_true=  7.00 seed=2: g_hat=-0.833 r2=0.024
+  g_true=  7.00 seed=3: g_hat=-1.120 r2=0.986
+  g_true=  7.00 seed=4: g_hat=2.932 r2=0.890
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=0.797 r2=0.902
+  g_true=  9.80 seed=2: g_hat=0.044 r2=0.376
+  g_true=  9.80 seed=3: g_hat=1.072 r2=0.270
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=-2.469 r2=0.472
+  g_true= 12.00 seed=2: g_hat=2.875 r2=0.999
+  g_true= 12.00 seed=3: g_hat=-1.045 r2=0.986
+  g_true= 12.00 seed=4: g_hat=12.169 r2=0.880
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=-24.941 r2=0.719
+  g_true= 15.00 seed=2: g_hat=nan r2=0.000
+  g_true= 15.00 seed=3: g_hat=-0.759 r2=0.990
+  g_true= 15.00 seed=4: g_hat=25.578 r2=0.889
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-1.502 r2=0.929
+  g_true=  1.60 seed=2: g_hat=nan r2=0.000
+  g_true=  1.60 seed=3: g_hat=-1.159 r2=0.996
+  g_true=  1.60 seed=4: g_hat=5.043 r2=0.879
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-1.264 r2=0.890
+  g_true=  3.00 seed=2: g_hat=-1.013 r2=0.082
+  g_true=  3.00 seed=3: g_hat=-1.096 r2=0.988
+  g_true=  3.00 seed=4: g_hat=nan r2=0.000
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-1.533 r2=0.942
+  g_true= 20.00 seed=2: g_hat=0.001 r2=0.732
+  g_true= 20.00 seed=3: g_hat=-2.075 r2=0.999
+  g_true= 20.00 seed=4: g_hat=56.979 r2=0.960
+projectile: n_gated=19/40 dropped_rate=52.50% elapsed=99s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x0.5_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x0.5_ltx_summary.json
+--- fps_scale=2.0 ---
+variant=scale1.0x2.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=scale1.0x2.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-0.113 r2=0.889
+  g_true=  5.00 seed=2: g_hat=-0.095 r2=0.044
+  g_true=  5.00 seed=3: g_hat=-0.063 r2=0.992
+  g_true=  5.00 seed=4: g_hat=0.135 r2=0.889
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=-0.049 r2=0.715
+  g_true=  7.00 seed=2: g_hat=-0.052 r2=0.024
+  g_true=  7.00 seed=3: g_hat=-0.070 r2=0.986
+  g_true=  7.00 seed=4: g_hat=0.183 r2=0.890
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=0.050 r2=0.902
+  g_true=  9.80 seed=2: g_hat=0.003 r2=0.376
+  g_true=  9.80 seed=3: g_hat=0.067 r2=0.270
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=-0.154 r2=0.472
+  g_true= 12.00 seed=2: g_hat=0.180 r2=0.999
+  g_true= 12.00 seed=3: g_hat=-0.065 r2=0.986
+  g_true= 12.00 seed=4: g_hat=0.761 r2=0.880
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=-1.559 r2=0.719
+  g_true= 15.00 seed=2: g_hat=nan r2=0.000
+  g_true= 15.00 seed=3: g_hat=-0.047 r2=0.990
+  g_true= 15.00 seed=4: g_hat=1.599 r2=0.889
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-0.094 r2=0.929
+  g_true=  1.60 seed=2: g_hat=nan r2=0.000
+  g_true=  1.60 seed=3: g_hat=-0.072 r2=0.996
+  g_true=  1.60 seed=4: g_hat=0.315 r2=0.879
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-0.079 r2=0.890
+  g_true=  3.00 seed=2: g_hat=-0.063 r2=0.082
+  g_true=  3.00 seed=3: g_hat=-0.069 r2=0.988
+  g_true=  3.00 seed=4: g_hat=nan r2=0.000
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-0.096 r2=0.942
+  g_true= 20.00 seed=2: g_hat=0.000 r2=0.732
+  g_true= 20.00 seed=3: g_hat=-0.130 r2=0.999
+  g_true= 20.00 seed=4: g_hat=3.561 r2=0.960
+projectile: n_gated=19/40 dropped_rate=52.50% elapsed=100s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x2.0_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x2.0_ltx_summary.json
+======================================================================
+E5(d) conditioning resolution: ltx, projectile
+======================================================================
+--- cond_resolution=256 ---
+variant=res256  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=res256)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-0.073 r2=0.829
+  g_true=  5.00 seed=2: g_hat=0.041 r2=0.827
+  g_true=  5.00 seed=3: g_hat=nan r2=0.000
+  g_true=  5.00 seed=4: g_hat=0.370 r2=0.990
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=nan r2=0.000
+  g_true=  7.00 seed=2: g_hat=0.099 r2=0.772
+  g_true=  7.00 seed=3: g_hat=nan r2=0.000
+  g_true=  7.00 seed=4: g_hat=0.308 r2=0.961
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=0.032 r2=0.455
+  g_true=  9.80 seed=2: g_hat=0.142 r2=0.901
+  g_true=  9.80 seed=3: g_hat=-4.476 r2=0.982
+  g_true=  9.80 seed=4: g_hat=0.255 r2=0.987
+  g_true= 12.00 seed=0: g_hat=-10.442 r2=0.900
+  g_true= 12.00 seed=1: g_hat=2.837 r2=0.847
+  g_true= 12.00 seed=2: g_hat=0.063 r2=0.730
+  g_true= 12.00 seed=3: g_hat=nan r2=0.000
+  g_true= 12.00 seed=4: g_hat=0.365 r2=0.980
+  g_true= 15.00 seed=0: g_hat=-9.414 r2=0.431
+  g_true= 15.00 seed=1: g_hat=0.948 r2=0.787
+  g_true= 15.00 seed=2: g_hat=0.083 r2=0.744
+  g_true= 15.00 seed=3: g_hat=-4.037 r2=0.955
+  g_true= 15.00 seed=4: g_hat=0.401 r2=0.951
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=2.667 r2=0.833
+  g_true=  1.60 seed=2: g_hat=0.123 r2=0.897
+  g_true=  1.60 seed=3: g_hat=0.452 r2=0.997
+  g_true=  1.60 seed=4: g_hat=0.254 r2=0.993
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-2.398 r2=0.988
+  g_true=  3.00 seed=2: g_hat=-0.008 r2=0.789
+  g_true=  3.00 seed=3: g_hat=nan r2=0.000
+  g_true=  3.00 seed=4: g_hat=0.363 r2=0.990
+  g_true= 20.00 seed=0: g_hat=-10.365 r2=0.891
+  g_true= 20.00 seed=1: g_hat=nan r2=0.000
+  g_true= 20.00 seed=2: g_hat=0.126 r2=0.859
+  g_true= 20.00 seed=3: g_hat=-0.105 r2=0.992
+  g_true= 20.00 seed=4: g_hat=0.120 r2=0.994
+projectile: n_gated=22/40 dropped_rate=45.00% elapsed=50s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_res256_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_res256_ltx_summary.json
+--- cond_resolution=384 ---
+variant=res384  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=res384)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=0.053 r2=0.991
+  g_true=  5.00 seed=2: g_hat=-0.379 r2=0.455
+  g_true=  5.00 seed=3: g_hat=0.380 r2=0.465
+  g_true=  5.00 seed=4: g_hat=-2.997 r2=0.756
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=0.027 r2=0.994
+  g_true=  7.00 seed=2: g_hat=-0.135 r2=0.396
+  g_true=  7.00 seed=3: g_hat=0.397 r2=0.520
+  g_true=  7.00 seed=4: g_hat=-2.606 r2=0.625
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=0.058 r2=0.993
+  g_true=  9.80 seed=2: g_hat=-0.119 r2=0.381
+  g_true=  9.80 seed=3: g_hat=0.341 r2=0.629
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=0.045 r2=0.994
+  g_true= 12.00 seed=2: g_hat=-0.324 r2=0.470
+  g_true= 12.00 seed=3: g_hat=0.310 r2=0.501
+  g_true= 12.00 seed=4: g_hat=-2.851 r2=0.684
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=0.092 r2=0.986
+  g_true= 15.00 seed=2: g_hat=-0.313 r2=0.537
+  g_true= 15.00 seed=3: g_hat=0.355 r2=0.433
+  g_true= 15.00 seed=4: g_hat=-2.978 r2=0.718
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=0.064 r2=0.987
+  g_true=  1.60 seed=2: g_hat=-0.554 r2=0.501
+  g_true=  1.60 seed=3: g_hat=0.335 r2=0.525
+  g_true=  1.60 seed=4: g_hat=-2.614 r2=0.638
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=0.071 r2=0.989
+  g_true=  3.00 seed=2: g_hat=-0.383 r2=0.395
+  g_true=  3.00 seed=3: g_hat=0.311 r2=0.467
+  g_true=  3.00 seed=4: g_hat=-2.988 r2=0.732
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-0.036 r2=0.998
+  g_true= 20.00 seed=2: g_hat=-0.211 r2=0.578
+  g_true= 20.00 seed=3: g_hat=0.362 r2=0.525
+  g_true= 20.00 seed=4: g_hat=-0.099 r2=0.653
+projectile: n_gated=8/40 dropped_rate=80.00% elapsed=59s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_res384_projectile_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_res384_ltx_summary.json
+======================================================================
+E5(e) guidance-scale sweep: cogvideox, projectile
+======================================================================
+--- guidance_scale=1.0 ---
+variant=cfg1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=cfg1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=0.942 r2=0.077
+  g_true=  5.00 seed=1: g_hat=-0.573 r2=0.017
+  g_true=  5.00 seed=2: g_hat=1.916 r2=0.341
+  g_true=  5.00 seed=3: g_hat=0.189 r2=0.002
+  g_true=  5.00 seed=4: g_hat=1.992 r2=0.393
+  g_true=  7.00 seed=0: g_hat=1.137 r2=0.137
+  g_true=  7.00 seed=1: g_hat=-0.557 r2=0.016
+  g_true=  7.00 seed=2: g_hat=1.757 r2=0.353
+  g_true=  7.00 seed=3: g_hat=0.382 r2=0.008
+  g_true=  7.00 seed=4: g_hat=1.977 r2=0.397
+  g_true=  9.80 seed=0: g_hat=1.031 r2=0.103
+  g_true=  9.80 seed=1: g_hat=-0.653 r2=0.021
+  g_true=  9.80 seed=2: g_hat=1.868 r2=0.346
+  g_true=  9.80 seed=3: g_hat=0.118 r2=0.001
+  g_true=  9.80 seed=4: g_hat=1.924 r2=0.372
+  g_true= 12.00 seed=0: g_hat=1.077 r2=0.112
+  g_true= 12.00 seed=1: g_hat=-0.734 r2=0.025
+  g_true= 12.00 seed=2: g_hat=1.930 r2=0.340
+  g_true= 12.00 seed=3: g_hat=-0.014 r2=0.002
+  g_true= 12.00 seed=4: g_hat=1.879 r2=0.370
+  g_true= 15.00 seed=0: g_hat=1.116 r2=0.127
+  g_true= 15.00 seed=1: g_hat=-0.621 r2=0.021
+  g_true= 15.00 seed=2: g_hat=1.802 r2=0.356
+  g_true= 15.00 seed=3: g_hat=0.138 r2=0.001
+  g_true= 15.00 seed=4: g_hat=2.027 r2=0.398
+  g_true=  1.60 seed=0: g_hat=1.124 r2=0.139
+  g_true=  1.60 seed=1: g_hat=-0.549 r2=0.017
+  g_true=  1.60 seed=2: g_hat=1.854 r2=0.337
+  g_true=  1.60 seed=3: g_hat=0.248 r2=0.003
+  g_true=  1.60 seed=4: g_hat=2.061 r2=0.434
+  g_true=  3.00 seed=0: g_hat=1.001 r2=0.092
+  g_true=  3.00 seed=1: g_hat=-0.670 r2=0.022
+  g_true=  3.00 seed=2: g_hat=2.001 r2=0.329
+  g_true=  3.00 seed=3: g_hat=0.017 r2=0.002
+  g_true=  3.00 seed=4: g_hat=1.920 r2=0.378
+  g_true= 20.00 seed=0: g_hat=0.853 r2=0.055
+  g_true= 20.00 seed=1: g_hat=-0.695 r2=0.024
+  g_true= 20.00 seed=2: g_hat=1.769 r2=0.360
+  g_true= 20.00 seed=3: g_hat=0.021 r2=0.002
+  g_true= 20.00 seed=4: g_hat=1.999 r2=0.385
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=1353s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.0_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.0_cogvideox_summary.json
+--- guidance_scale=1.5 ---
+variant=cfg1.5  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=cfg1.5)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=0.980 r2=0.086
+  g_true=  5.00 seed=1: g_hat=-0.553 r2=0.018
+  g_true=  5.00 seed=2: g_hat=1.857 r2=0.339
+  g_true=  5.00 seed=3: g_hat=0.289 r2=0.005
+  g_true=  5.00 seed=4: g_hat=1.964 r2=0.407
+  g_true=  7.00 seed=0: g_hat=1.131 r2=0.133
+  g_true=  7.00 seed=1: g_hat=-0.478 r2=0.013
+  g_true=  7.00 seed=2: g_hat=1.696 r2=0.361
+  g_true=  7.00 seed=3: g_hat=0.575 r2=0.030
+  g_true=  7.00 seed=4: g_hat=1.881 r2=0.392
+  g_true=  9.80 seed=0: g_hat=0.896 r2=0.068
+  g_true=  9.80 seed=1: g_hat=-0.631 r2=0.020
+  g_true=  9.80 seed=2: g_hat=1.938 r2=0.344
+  g_true=  9.80 seed=3: g_hat=0.254 r2=0.003
+  g_true=  9.80 seed=4: g_hat=1.820 r2=0.359
+  g_true= 12.00 seed=0: g_hat=0.958 r2=0.079
+  g_true= 12.00 seed=1: g_hat=-0.750 r2=0.026
+  g_true= 12.00 seed=2: g_hat=1.937 r2=0.339
+  g_true= 12.00 seed=3: g_hat=0.176 r2=0.001
+  g_true= 12.00 seed=4: g_hat=1.854 r2=0.367
+  g_true= 15.00 seed=0: g_hat=1.215 r2=0.153
+  g_true= 15.00 seed=1: g_hat=-0.523 r2=0.016
+  g_true= 15.00 seed=2: g_hat=1.715 r2=0.361
+  g_true= 15.00 seed=3: g_hat=0.361 r2=0.007
+  g_true= 15.00 seed=4: g_hat=1.910 r2=0.397
+  g_true=  1.60 seed=0: g_hat=1.118 r2=0.138
+  g_true=  1.60 seed=1: g_hat=-0.461 r2=0.014
+  g_true=  1.60 seed=2: g_hat=1.804 r2=0.334
+  g_true=  1.60 seed=3: g_hat=0.524 r2=0.024
+  g_true=  1.60 seed=4: g_hat=2.022 r2=0.433
+  g_true=  3.00 seed=0: g_hat=0.867 r2=0.059
+  g_true=  3.00 seed=1: g_hat=-0.637 r2=0.021
+  g_true=  3.00 seed=2: g_hat=2.101 r2=0.326
+  g_true=  3.00 seed=3: g_hat=0.055 r2=0.001
+  g_true=  3.00 seed=4: g_hat=1.825 r2=0.381
+  g_true= 20.00 seed=0: g_hat=0.730 r2=0.037
+  g_true= 20.00 seed=1: g_hat=-0.669 r2=0.023
+  g_true= 20.00 seed=2: g_hat=1.620 r2=0.366
+  g_true= 20.00 seed=3: g_hat=0.169 r2=0.001
+  g_true= 20.00 seed=4: g_hat=1.815 r2=0.370
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2537s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.5_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg1.5_cogvideox_summary.json
+--- guidance_scale=4.5 ---
+variant=cfg4.5  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=cfg4.5)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=1.260 r2=0.135
+  g_true=  5.00 seed=1: g_hat=0.497 r2=0.031
+  g_true=  5.00 seed=2: g_hat=1.425 r2=0.494
+  g_true=  5.00 seed=3: g_hat=0.994 r2=0.203
+  g_true=  5.00 seed=4: g_hat=1.718 r2=0.421
+  g_true=  7.00 seed=0: g_hat=1.770 r2=0.253
+  g_true=  7.00 seed=1: g_hat=0.018 r2=0.000
+  g_true=  7.00 seed=2: g_hat=1.257 r2=0.489
+  g_true=  7.00 seed=3: g_hat=1.616 r2=0.407
+  g_true=  7.00 seed=4: g_hat=1.482 r2=0.288
+  g_true=  9.80 seed=0: g_hat=1.324 r2=0.141
+  g_true=  9.80 seed=1: g_hat=-0.280 r2=0.004
+  g_true=  9.80 seed=2: g_hat=1.461 r2=0.511
+  g_true=  9.80 seed=3: g_hat=1.104 r2=0.206
+  g_true=  9.80 seed=4: g_hat=1.596 r2=0.321
+  g_true= 12.00 seed=0: g_hat=1.146 r2=0.092
+  g_true= 12.00 seed=1: g_hat=-0.174 r2=0.002
+  g_true= 12.00 seed=2: g_hat=1.627 r2=0.473
+  g_true= 12.00 seed=3: g_hat=0.632 r2=0.069
+  g_true= 12.00 seed=4: g_hat=1.391 r2=0.269
+  g_true= 15.00 seed=0: g_hat=1.534 r2=0.219
+  g_true= 15.00 seed=1: g_hat=0.129 r2=0.001
+  g_true= 15.00 seed=2: g_hat=1.046 r2=0.474
+  g_true= 15.00 seed=3: g_hat=0.982 r2=0.196
+  g_true= 15.00 seed=4: g_hat=1.531 r2=0.328
+  g_true=  1.60 seed=0: g_hat=1.411 r2=0.179
+  g_true=  1.60 seed=1: g_hat=0.594 r2=0.039
+  g_true=  1.60 seed=2: g_hat=1.565 r2=0.452
+  g_true=  1.60 seed=3: g_hat=1.055 r2=0.203
+  g_true=  1.60 seed=4: g_hat=1.923 r2=0.471
+  g_true=  3.00 seed=0: g_hat=1.034 r2=0.074
+  g_true=  3.00 seed=1: g_hat=0.450 r2=0.029
+  g_true=  3.00 seed=2: g_hat=1.927 r2=0.402
+  g_true=  3.00 seed=3: g_hat=0.466 r2=0.038
+  g_true=  3.00 seed=4: g_hat=1.829 r2=0.462
+  g_true= 20.00 seed=0: g_hat=0.898 r2=0.058
+  g_true= 20.00 seed=1: g_hat=-0.241 r2=0.004
+  g_true= 20.00 seed=2: g_hat=0.825 r2=0.383
+  g_true= 20.00 seed=3: g_hat=0.859 r2=0.124
+  g_true= 20.00 seed=4: g_hat=1.359 r2=0.210
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2538s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg4.5_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg4.5_cogvideox_summary.json
+--- guidance_scale=9.0 ---
+variant=cfg9.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=cfg9.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=2.080 r2=0.399
+  g_true=  5.00 seed=1: g_hat=1.209 r2=0.121
+  g_true=  5.00 seed=2: g_hat=1.639 r2=0.520
+  g_true=  5.00 seed=3: g_hat=1.430 r2=0.204
+  g_true=  5.00 seed=4: g_hat=2.570 r2=0.462
+  g_true=  7.00 seed=0: g_hat=2.564 r2=0.454
+  g_true=  7.00 seed=1: g_hat=0.582 r2=0.012
+  g_true=  7.00 seed=2: g_hat=1.203 r2=0.239
+  g_true=  7.00 seed=3: g_hat=2.396 r2=0.451
+  g_true=  7.00 seed=4: g_hat=2.850 r2=0.473
+  g_true=  9.80 seed=0: g_hat=2.367 r2=0.349
+  g_true=  9.80 seed=1: g_hat=0.522 r2=0.011
+  g_true=  9.80 seed=2: g_hat=1.313 r2=0.407
+  g_true=  9.80 seed=3: g_hat=1.309 r2=0.107
+  g_true=  9.80 seed=4: g_hat=2.950 r2=0.497
+  g_true= 12.00 seed=0: g_hat=1.876 r2=0.262
+  g_true= 12.00 seed=1: g_hat=0.636 r2=0.024
+  g_true= 12.00 seed=2: g_hat=1.195 r2=0.397
+  g_true= 12.00 seed=3: g_hat=0.656 r2=0.025
+  g_true= 12.00 seed=4: g_hat=1.628 r2=0.325
+  g_true= 15.00 seed=0: g_hat=2.599 r2=0.500
+  g_true= 15.00 seed=1: g_hat=1.000 r2=0.083
+  g_true= 15.00 seed=2: g_hat=1.341 r2=0.462
+  g_true= 15.00 seed=3: g_hat=1.702 r2=0.346
+  g_true= 15.00 seed=4: g_hat=2.400 r2=0.462
+  g_true=  1.60 seed=0: g_hat=2.350 r2=0.432
+  g_true=  1.60 seed=1: g_hat=1.721 r2=0.280
+  g_true=  1.60 seed=2: g_hat=1.702 r2=0.486
+  g_true=  1.60 seed=3: g_hat=1.288 r2=0.210
+  g_true=  1.60 seed=4: g_hat=3.463 r2=0.450
+  g_true=  3.00 seed=0: g_hat=2.246 r2=0.357
+  g_true=  3.00 seed=1: g_hat=1.219 r2=0.170
+  g_true=  3.00 seed=2: g_hat=1.908 r2=0.548
+  g_true=  3.00 seed=3: g_hat=1.485 r2=0.250
+  g_true=  3.00 seed=4: g_hat=2.787 r2=0.480
+  g_true= 20.00 seed=0: g_hat=2.023 r2=0.351
+  g_true= 20.00 seed=1: g_hat=0.622 r2=0.023
+  g_true= 20.00 seed=2: g_hat=0.915 r2=0.202
+  g_true= 20.00 seed=3: g_hat=1.529 r2=0.182
+  g_true= 20.00 seed=4: g_hat=1.942 r2=0.307
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2538s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg9.0_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_cfg9.0_cogvideox_summary.json
+======================================================================
+E5(f) prompt-phrasing variants: cogvideox, projectile
+======================================================================
+--- prompt-variant=terse ---
+variant=prompt-terse  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=prompt-terse)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=1.193 r2=0.167
+  g_true=  5.00 seed=1: g_hat=0.014 r2=0.000
+  g_true=  5.00 seed=2: g_hat=0.558 r2=0.121
+  g_true=  5.00 seed=3: g_hat=1.437 r2=0.272
+  g_true=  5.00 seed=4: g_hat=1.783 r2=0.387
+  g_true=  7.00 seed=0: g_hat=0.683 r2=0.034
+  g_true=  7.00 seed=1: g_hat=0.131 r2=0.001
+  g_true=  7.00 seed=2: g_hat=0.186 r2=0.011
+  g_true=  7.00 seed=3: g_hat=0.544 r2=0.018
+  g_true=  7.00 seed=4: g_hat=1.666 r2=0.342
+  g_true=  9.80 seed=0: g_hat=0.735 r2=0.074
+  g_true=  9.80 seed=1: g_hat=0.229 r2=0.005
+  g_true=  9.80 seed=2: g_hat=0.752 r2=0.408
+  g_true=  9.80 seed=3: g_hat=1.204 r2=0.190
+  g_true=  9.80 seed=4: g_hat=1.887 r2=0.425
+  g_true= 12.00 seed=0: g_hat=0.852 r2=0.077
+  g_true= 12.00 seed=1: g_hat=0.207 r2=0.003
+  g_true= 12.00 seed=2: g_hat=0.409 r2=0.067
+  g_true= 12.00 seed=3: g_hat=1.017 r2=0.084
+  g_true= 12.00 seed=4: g_hat=1.786 r2=0.352
+  g_true= 15.00 seed=0: g_hat=0.104 r2=0.003
+  g_true= 15.00 seed=1: g_hat=-0.118 r2=0.001
+  g_true= 15.00 seed=2: g_hat=-0.026 r2=0.000
+  g_true= 15.00 seed=3: g_hat=0.629 r2=0.023
+  g_true= 15.00 seed=4: g_hat=1.384 r2=0.214
+  g_true=  1.60 seed=0: g_hat=0.481 r2=0.023
+  g_true=  1.60 seed=1: g_hat=-0.374 r2=0.008
+  g_true=  1.60 seed=2: g_hat=0.604 r2=0.270
+  g_true=  1.60 seed=3: g_hat=0.788 r2=0.061
+  g_true=  1.60 seed=4: g_hat=1.795 r2=0.422
+  g_true=  3.00 seed=0: g_hat=0.156 r2=0.004
+  g_true=  3.00 seed=1: g_hat=-0.140 r2=0.001
+  g_true=  3.00 seed=2: g_hat=0.102 r2=0.004
+  g_true=  3.00 seed=3: g_hat=0.573 r2=0.022
+  g_true=  3.00 seed=4: g_hat=1.760 r2=0.353
+  g_true= 20.00 seed=0: g_hat=0.218 r2=0.003
+  g_true= 20.00 seed=1: g_hat=-0.189 r2=0.002
+  g_true= 20.00 seed=2: g_hat=0.233 r2=0.030
+  g_true= 20.00 seed=3: g_hat=0.665 r2=0.034
+  g_true= 20.00 seed=4: g_hat=1.421 r2=0.269
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2538s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-terse_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-terse_cogvideox_summary.json
+--- prompt-variant=verbose ---
+variant=prompt-verbose  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=prompt-verbose)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=1.297 r2=0.161
+  g_true=  5.00 seed=1: g_hat=0.069 r2=0.000
+  g_true=  5.00 seed=2: g_hat=1.744 r2=0.502
+  g_true=  5.00 seed=3: g_hat=-0.126 r2=0.001
+  g_true=  5.00 seed=4: g_hat=1.607 r2=0.354
+  g_true=  7.00 seed=0: g_hat=0.825 r2=0.046
+  g_true=  7.00 seed=1: g_hat=-0.448 r2=0.010
+  g_true=  7.00 seed=2: g_hat=1.262 r2=0.587
+  g_true=  7.00 seed=3: g_hat=-0.450 r2=0.009
+  g_true=  7.00 seed=4: g_hat=1.644 r2=0.383
+  g_true=  9.80 seed=0: g_hat=0.734 r2=0.041
+  g_true=  9.80 seed=1: g_hat=-0.289 r2=0.005
+  g_true=  9.80 seed=2: g_hat=0.809 r2=0.385
+  g_true=  9.80 seed=3: g_hat=0.490 r2=0.022
+  g_true=  9.80 seed=4: g_hat=1.199 r2=0.200
+  g_true= 12.00 seed=0: g_hat=0.525 r2=0.017
+  g_true= 12.00 seed=1: g_hat=-0.486 r2=0.011
+  g_true= 12.00 seed=2: g_hat=0.983 r2=0.538
+  g_true= 12.00 seed=3: g_hat=-0.457 r2=0.011
+  g_true= 12.00 seed=4: g_hat=0.885 r2=0.085
+  g_true= 15.00 seed=0: g_hat=1.360 r2=0.148
+  g_true= 15.00 seed=1: g_hat=-0.223 r2=0.004
+  g_true= 15.00 seed=2: g_hat=1.034 r2=0.447
+  g_true= 15.00 seed=3: g_hat=0.244 r2=0.003
+  g_true= 15.00 seed=4: g_hat=1.600 r2=0.358
+  g_true=  1.60 seed=0: g_hat=1.239 r2=0.190
+  g_true=  1.60 seed=1: g_hat=0.136 r2=0.001
+  g_true=  1.60 seed=2: g_hat=2.006 r2=0.494
+  g_true=  1.60 seed=3: g_hat=0.375 r2=0.010
+  g_true=  1.60 seed=4: g_hat=2.012 r2=0.496
+  g_true=  3.00 seed=0: g_hat=1.366 r2=0.209
+  g_true=  3.00 seed=1: g_hat=0.096 r2=0.000
+  g_true=  3.00 seed=2: g_hat=1.741 r2=0.537
+  g_true=  3.00 seed=3: g_hat=0.262 r2=0.003
+  g_true=  3.00 seed=4: g_hat=1.390 r2=0.247
+  g_true= 20.00 seed=0: g_hat=0.853 r2=0.069
+  g_true= 20.00 seed=1: g_hat=-0.527 r2=0.014
+  g_true= 20.00 seed=2: g_hat=0.415 r2=0.176
+  g_true= 20.00 seed=3: g_hat=1.041 r2=0.151
+  g_true= 20.00 seed=4: g_hat=0.852 r2=0.085
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2538s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-verbose_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_prompt-verbose_cogvideox_summary.json
+======================================================================
+E5(b) scale-invariance: cogvideox, projectile
+======================================================================
+--- disk_scale=0.5 ---
+variant=scale0.5x1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=scale0.5x1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=3.873 r2=0.299
+  g_true=  5.00 seed=1: g_hat=3.125 r2=0.208
+  g_true=  5.00 seed=2: g_hat=4.143 r2=0.433
+  g_true=  5.00 seed=3: g_hat=3.785 r2=0.310
+  g_true=  5.00 seed=4: g_hat=4.257 r2=0.357
+  g_true=  7.00 seed=0: g_hat=4.782 r2=0.367
+  g_true=  7.00 seed=1: g_hat=2.741 r2=0.125
+  g_true=  7.00 seed=2: g_hat=3.856 r2=0.328
+  g_true=  7.00 seed=3: g_hat=4.869 r2=0.436
+  g_true=  7.00 seed=4: g_hat=3.926 r2=0.293
+  g_true=  9.80 seed=0: g_hat=4.079 r2=0.269
+  g_true=  9.80 seed=1: g_hat=2.537 r2=0.112
+  g_true=  9.80 seed=2: g_hat=3.962 r2=0.381
+  g_true=  9.80 seed=3: g_hat=4.234 r2=0.350
+  g_true=  9.80 seed=4: g_hat=4.203 r2=0.326
+  g_true= 12.00 seed=0: g_hat=3.653 r2=0.242
+  g_true= 12.00 seed=1: g_hat=2.370 r2=0.106
+  g_true= 12.00 seed=2: g_hat=4.184 r2=0.414
+  g_true= 12.00 seed=3: g_hat=3.816 r2=0.299
+  g_true= 12.00 seed=4: g_hat=4.048 r2=0.322
+  g_true= 15.00 seed=0: g_hat=4.228 r2=0.326
+  g_true= 15.00 seed=1: g_hat=2.847 r2=0.166
+  g_true= 15.00 seed=2: g_hat=3.576 r2=0.323
+  g_true= 15.00 seed=3: g_hat=3.900 r2=0.321
+  g_true= 15.00 seed=4: g_hat=3.906 r2=0.317
+  g_true=  1.60 seed=0: g_hat=4.180 r2=0.306
+  g_true=  1.60 seed=1: g_hat=3.355 r2=0.237
+  g_true=  1.60 seed=2: g_hat=4.369 r2=0.424
+  g_true=  1.60 seed=3: g_hat=4.093 r2=0.356
+  g_true=  1.60 seed=4: g_hat=4.421 r2=0.403
+  g_true=  3.00 seed=0: g_hat=3.940 r2=0.262
+  g_true=  3.00 seed=1: g_hat=3.114 r2=0.216
+  g_true=  3.00 seed=2: g_hat=4.512 r2=0.465
+  g_true=  3.00 seed=3: g_hat=3.704 r2=0.302
+  g_true=  3.00 seed=4: g_hat=4.416 r2=0.399
+  g_true= 20.00 seed=0: g_hat=3.866 r2=0.278
+  g_true= 20.00 seed=1: g_hat=2.357 r2=0.103
+  g_true= 20.00 seed=2: g_hat=3.282 r2=0.277
+  g_true= 20.00 seed=3: g_hat=4.283 r2=0.365
+  g_true= 20.00 seed=4: g_hat=3.836 r2=0.265
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2540s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale0.5x1.0_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale0.5x1.0_cogvideox_summary.json
+--- disk_scale=1.5 ---
+variant=scale1.5x1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=scale1.5x1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=0.674 r2=0.204
+  g_true=  5.00 seed=1: g_hat=0.083 r2=0.039
+  g_true=  5.00 seed=2: g_hat=0.934 r2=0.307
+  g_true=  5.00 seed=3: g_hat=0.208 r2=0.185
+  g_true=  5.00 seed=4: g_hat=1.033 r2=0.498
+  g_true=  7.00 seed=0: g_hat=1.443 r2=0.467
+  g_true=  7.00 seed=1: g_hat=-0.622 r2=0.036
+  g_true=  7.00 seed=2: g_hat=0.602 r2=0.574
+  g_true=  7.00 seed=3: g_hat=0.916 r2=0.452
+  g_true=  7.00 seed=4: g_hat=0.803 r2=0.309
+  g_true=  9.80 seed=0: g_hat=1.086 r2=0.336
+  g_true=  9.80 seed=1: g_hat=-0.524 r2=0.029
+  g_true=  9.80 seed=2: g_hat=0.816 r2=0.394
+  g_true=  9.80 seed=3: g_hat=0.466 r2=0.268
+  g_true=  9.80 seed=4: g_hat=0.847 r2=0.443
+  g_true= 12.00 seed=0: g_hat=0.613 r2=0.109
+  g_true= 12.00 seed=1: g_hat=-0.490 r2=0.033
+  g_true= 12.00 seed=2: g_hat=0.945 r2=0.293
+  g_true= 12.00 seed=3: g_hat=-0.204 r2=0.009
+  g_true= 12.00 seed=4: g_hat=0.681 r2=0.365
+  g_true= 15.00 seed=0: g_hat=1.214 r2=0.451
+  g_true= 15.00 seed=1: g_hat=-0.109 r2=0.005
+  g_true= 15.00 seed=2: g_hat=0.924 r2=0.308
+  g_true= 15.00 seed=3: g_hat=0.105 r2=0.075
+  g_true= 15.00 seed=4: g_hat=0.655 r2=0.337
+  g_true=  1.60 seed=0: g_hat=0.921 r2=0.370
+  g_true=  1.60 seed=1: g_hat=0.076 r2=0.021
+  g_true=  1.60 seed=2: g_hat=0.850 r2=0.318
+  g_true=  1.60 seed=3: g_hat=-0.283 r2=0.014
+  g_true=  1.60 seed=4: g_hat=1.218 r2=0.472
+  g_true=  3.00 seed=0: g_hat=0.790 r2=0.222
+  g_true=  3.00 seed=1: g_hat=-0.035 r2=0.025
+  g_true=  3.00 seed=2: g_hat=1.513 r2=0.251
+  g_true=  3.00 seed=3: g_hat=-0.339 r2=0.021
+  g_true=  3.00 seed=4: g_hat=1.348 r2=0.482
+  g_true= 20.00 seed=0: g_hat=0.648 r2=0.177
+  g_true= 20.00 seed=1: g_hat=-1.031 r2=0.083
+  g_true= 20.00 seed=2: g_hat=-0.272 r2=0.061
+  g_true= 20.00 seed=3: g_hat=0.112 r2=0.059
+  g_true= 20.00 seed=4: g_hat=0.357 r2=0.046
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2539s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.5x1.0_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.5x1.0_cogvideox_summary.json
+--- disk_scale=2.0 ---
+variant=scale2.0x1.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=scale2.0x1.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=0.043 r2=0.072
+  g_true=  5.00 seed=1: g_hat=-0.513 r2=0.122
+  g_true=  5.00 seed=2: g_hat=1.286 r2=0.173
+  g_true=  5.00 seed=3: g_hat=-0.617 r2=0.193
+  g_true=  5.00 seed=4: g_hat=0.655 r2=0.400
+  g_true=  7.00 seed=0: g_hat=0.885 r2=0.440
+  g_true=  7.00 seed=1: g_hat=-1.401 r2=0.149
+  g_true=  7.00 seed=2: g_hat=1.360 r2=0.217
+  g_true=  7.00 seed=3: g_hat=0.245 r2=0.265
+  g_true=  7.00 seed=4: g_hat=0.425 r2=0.321
+  g_true=  9.80 seed=0: g_hat=0.428 r2=0.154
+  g_true=  9.80 seed=1: g_hat=-1.240 r2=0.140
+  g_true=  9.80 seed=2: g_hat=1.253 r2=0.203
+  g_true=  9.80 seed=3: g_hat=-0.246 r2=0.099
+  g_true=  9.80 seed=4: g_hat=0.455 r2=0.465
+  g_true= 12.00 seed=0: g_hat=0.059 r2=0.055
+  g_true= 12.00 seed=1: g_hat=-1.283 r2=0.175
+  g_true= 12.00 seed=2: g_hat=1.017 r2=0.169
+  g_true= 12.00 seed=3: g_hat=-0.762 r2=0.166
+  g_true= 12.00 seed=4: g_hat=0.239 r2=0.333
+  g_true= 15.00 seed=0: g_hat=0.609 r2=0.385
+  g_true= 15.00 seed=1: g_hat=-0.737 r2=0.173
+  g_true= 15.00 seed=2: g_hat=1.305 r2=0.168
+  g_true= 15.00 seed=3: g_hat=-0.431 r2=0.293
+  g_true= 15.00 seed=4: g_hat=0.264 r2=0.277
+  g_true=  1.60 seed=0: g_hat=0.346 r2=0.194
+  g_true=  1.60 seed=1: g_hat=-0.421 r2=0.100
+  g_true=  1.60 seed=2: g_hat=0.659 r2=0.179
+  g_true=  1.60 seed=3: g_hat=-0.641 r2=0.212
+  g_true=  1.60 seed=4: g_hat=0.718 r2=0.311
+  g_true=  3.00 seed=0: g_hat=0.030 r2=0.062
+  g_true=  3.00 seed=1: g_hat=-0.614 r2=0.169
+  g_true=  3.00 seed=2: g_hat=1.607 r2=0.171
+  g_true=  3.00 seed=3: g_hat=-0.796 r2=0.242
+  g_true=  3.00 seed=4: g_hat=0.910 r2=0.338
+  g_true= 20.00 seed=0: g_hat=0.148 r2=0.037
+  g_true= 20.00 seed=1: g_hat=-1.618 r2=0.175
+  g_true= 20.00 seed=2: g_hat=-0.469 r2=0.391
+  g_true= 20.00 seed=3: g_hat=-0.338 r2=0.151
+  g_true= 20.00 seed=4: g_hat=-0.145 r2=0.032
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2538s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale2.0x1.0_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale2.0x1.0_cogvideox_summary.json
+--- fps_scale=0.5 ---
+variant=scale1.0x0.5  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=scale1.0x0.5)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=6.792 r2=0.323
+  g_true=  5.00 seed=1: g_hat=3.330 r2=0.076
+  g_true=  5.00 seed=2: g_hat=6.134 r2=0.558
+  g_true=  5.00 seed=3: g_hat=4.673 r2=0.220
+  g_true=  5.00 seed=4: g_hat=7.279 r2=0.416
+  g_true=  7.00 seed=0: g_hat=9.523 r2=0.409
+  g_true=  7.00 seed=1: g_hat=1.460 r2=0.007
+  g_true=  7.00 seed=2: g_hat=4.393 r2=0.323
+  g_true=  7.00 seed=3: g_hat=8.093 r2=0.469
+  g_true=  7.00 seed=4: g_hat=6.526 r2=0.303
+  g_true=  9.80 seed=0: g_hat=7.589 r2=0.301
+  g_true=  9.80 seed=1: g_hat=0.848 r2=0.002
+  g_true=  9.80 seed=2: g_hat=5.249 r2=0.534
+  g_true=  9.80 seed=3: g_hat=6.001 r2=0.255
+  g_true=  9.80 seed=4: g_hat=6.931 r2=0.371
+  g_true= 12.00 seed=0: g_hat=6.174 r2=0.232
+  g_true= 12.00 seed=1: g_hat=0.937 r2=0.004
+  g_true= 12.00 seed=2: g_hat=5.700 r2=0.543
+  g_true= 12.00 seed=3: g_hat=3.132 r2=0.069
+  g_true= 12.00 seed=4: g_hat=6.179 r2=0.325
+  g_true= 15.00 seed=0: g_hat=8.590 r2=0.442
+  g_true= 15.00 seed=1: g_hat=2.297 r2=0.034
+  g_true= 15.00 seed=2: g_hat=4.153 r2=0.441
+  g_true= 15.00 seed=3: g_hat=4.819 r2=0.230
+  g_true= 15.00 seed=4: g_hat=6.469 r2=0.330
+  g_true=  1.60 seed=0: g_hat=8.075 r2=0.346
+  g_true=  1.60 seed=1: g_hat=3.761 r2=0.090
+  g_true=  1.60 seed=2: g_hat=6.586 r2=0.528
+  g_true=  1.60 seed=3: g_hat=4.466 r2=0.198
+  g_true=  1.60 seed=4: g_hat=8.374 r2=0.488
+  g_true=  3.00 seed=0: g_hat=7.059 r2=0.282
+  g_true=  3.00 seed=1: g_hat=3.402 r2=0.098
+  g_true=  3.00 seed=2: g_hat=8.090 r2=0.482
+  g_true=  3.00 seed=3: g_hat=3.104 r2=0.072
+  g_true=  3.00 seed=4: g_hat=7.872 r2=0.478
+  g_true= 20.00 seed=0: g_hat=5.672 r2=0.215
+  g_true= 20.00 seed=1: g_hat=-0.035 r2=0.000
+  g_true= 20.00 seed=2: g_hat=2.337 r2=0.171
+  g_true= 20.00 seed=3: g_hat=4.592 r2=0.204
+  g_true= 20.00 seed=4: g_hat=4.900 r2=0.162
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2538s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x0.5_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x0.5_cogvideox_summary.json
+--- fps_scale=2.0 ---
+variant=scale1.0x2.0  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=scale1.0x2.0)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=0.424 r2=0.323
+  g_true=  5.00 seed=1: g_hat=0.208 r2=0.076
+  g_true=  5.00 seed=2: g_hat=0.383 r2=0.558
+  g_true=  5.00 seed=3: g_hat=0.292 r2=0.220
+  g_true=  5.00 seed=4: g_hat=0.455 r2=0.416
+  g_true=  7.00 seed=0: g_hat=0.595 r2=0.409
+  g_true=  7.00 seed=1: g_hat=0.091 r2=0.007
+  g_true=  7.00 seed=2: g_hat=0.275 r2=0.323
+  g_true=  7.00 seed=3: g_hat=0.506 r2=0.469
+  g_true=  7.00 seed=4: g_hat=0.408 r2=0.303
+  g_true=  9.80 seed=0: g_hat=0.474 r2=0.301
+  g_true=  9.80 seed=1: g_hat=0.053 r2=0.002
+  g_true=  9.80 seed=2: g_hat=0.328 r2=0.534
+  g_true=  9.80 seed=3: g_hat=0.375 r2=0.255
+  g_true=  9.80 seed=4: g_hat=0.433 r2=0.371
+  g_true= 12.00 seed=0: g_hat=0.386 r2=0.232
+  g_true= 12.00 seed=1: g_hat=0.059 r2=0.004
+  g_true= 12.00 seed=2: g_hat=0.356 r2=0.543
+  g_true= 12.00 seed=3: g_hat=0.196 r2=0.069
+  g_true= 12.00 seed=4: g_hat=0.386 r2=0.325
+  g_true= 15.00 seed=0: g_hat=0.537 r2=0.442
+  g_true= 15.00 seed=1: g_hat=0.144 r2=0.034
+  g_true= 15.00 seed=2: g_hat=0.260 r2=0.441
+  g_true= 15.00 seed=3: g_hat=0.301 r2=0.230
+  g_true= 15.00 seed=4: g_hat=0.404 r2=0.330
+  g_true=  1.60 seed=0: g_hat=0.505 r2=0.346
+  g_true=  1.60 seed=1: g_hat=0.235 r2=0.090
+  g_true=  1.60 seed=2: g_hat=0.412 r2=0.528
+  g_true=  1.60 seed=3: g_hat=0.279 r2=0.198
+  g_true=  1.60 seed=4: g_hat=0.523 r2=0.488
+  g_true=  3.00 seed=0: g_hat=0.441 r2=0.282
+  g_true=  3.00 seed=1: g_hat=0.213 r2=0.098
+  g_true=  3.00 seed=2: g_hat=0.506 r2=0.482
+  g_true=  3.00 seed=3: g_hat=0.194 r2=0.072
+  g_true=  3.00 seed=4: g_hat=0.492 r2=0.478
+  g_true= 20.00 seed=0: g_hat=0.354 r2=0.215
+  g_true= 20.00 seed=1: g_hat=-0.002 r2=0.000
+  g_true= 20.00 seed=2: g_hat=0.146 r2=0.171
+  g_true= 20.00 seed=3: g_hat=0.287 r2=0.204
+  g_true= 20.00 seed=4: g_hat=0.306 r2=0.162
+projectile: n_gated=0/40 dropped_rate=100.00% elapsed=2538s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x2.0_projectile_cogvideox.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_scale1.0x2.0_cogvideox_summary.json
+======================================================================
+E5(d) conditioning resolution: cogvideox, projectile
+======================================================================
+--- cond_resolution=256 ---
+variant=res256  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading CogVideoX-5B-I2V...
+
+======================================================================
+projectile (cogvideox, variant=res256)
+======================================================================

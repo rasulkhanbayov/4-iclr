@@ -1,0 +1,17 @@
+model=hunyuan15_i2v host=crirdchpxd004 NVIDIA H200, 143771 MiB
+[hunyuan15_i2v] run=pilot shard 1/1: 12 clips in shard, 0 already done, 12 to do
+[hunyuan15_i2v] loaded in 7355s
+Downloading: "https://github.com/facebookresearch/co-tracker/zipball/main" to /export/hbku-research/rakh90100/physweep_revision/torch_home/hub/main.zip
+Downloading: "https://huggingface.co/facebook/cotracker3/resolve/main/scaled_online.pth" to /export/hbku-research/rakh90100/physweep_revision/torch_home/hub/checkpoints/scaled_online.pth
+[hunyuan15_i2v] 1/12 bouncing_ball θ=0.6 s=0 z=1000: θ̂=1.0041360470318743 R²=0.744 invalid_fit/None 1228s
+[hunyuan15_i2v] 2/12 bouncing_ball θ=0.6 s=1 z=1000: θ̂=0.9983028098337631 R²=0.395 invalid_fit/None 1198s
+[hunyuan15_i2v] 3/12 bouncing_ball θ=0.9 s=0 z=1000: θ̂=1.0338792097322003 R²=0.645 invalid_fit/None 1204s
+[hunyuan15_i2v] 4/12 bouncing_ball θ=0.9 s=1 z=1000: θ̂=0.9131455673369752 R²=0.442 invalid_fit/None 1206s
+[hunyuan15_i2v] 5/12 inclined_slide θ=0.1 s=0 z=1000: θ̂=1.6363579219727984 R²=0.995 valid/confirmed 1203s
+[hunyuan15_i2v] 6/12 inclined_slide θ=0.1 s=1 z=1000: θ̂=1.5753301270506392 R²=0.993 valid/confirmed 1198s
+[hunyuan15_i2v] 7/12 inclined_slide θ=0.4 s=0 z=1000: θ̂=1.6377085991947813 R²=0.995 valid/confirmed 1200s
+[hunyuan15_i2v] 8/12 inclined_slide θ=0.4 s=1 z=1000: θ̂=1.585981336225612 R²=0.994 valid/confirmed 1210s
+[hunyuan15_i2v] 9/12 projectile θ=5 s=0 z=1000: θ̂=0.026219019108381918 R²=0.104 invalid_fit/None 1198s
+[hunyuan15_i2v] 10/12 projectile θ=5 s=1 z=1000: θ̂=0.9836730281453674 R²=0.879 valid/confirmed 1199s
+[hunyuan15_i2v] 11/12 projectile θ=15 s=0 z=1000: θ̂=0.1472306711532899 R²=0.116 invalid_fit/None 1198s
+[hunyuan15_i2v] 12/12 projectile θ=15 s=1 z=1000: θ̂=0.13908334217698456 R²=0.115 invalid_fit/None 1198s

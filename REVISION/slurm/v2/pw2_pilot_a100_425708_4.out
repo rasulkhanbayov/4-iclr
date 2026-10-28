@@ -1,0 +1,15 @@
+model=cogvideox15_i2v host=crirdcmgpu006 NVIDIA A100 80GB PCIe, 81920 MiB
+[cogvideox15_i2v] run=pilot shard 4/1: 12 clips in shard, 0 already done, 12 to do
+[cogvideox15_i2v] loaded in 338s
+[cogvideox15_i2v] 1/12 bouncing_ball θ=0.6 s=0 z=1000: θ̂=1.0218119626969155 R²=0.027 invalid_fit/None 1024s
+[cogvideox15_i2v] 2/12 bouncing_ball θ=0.6 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 1027s
+[cogvideox15_i2v] 3/12 bouncing_ball θ=0.9 s=0 z=1000: θ̂=1.0217257776387332 R²=0.049 invalid_fit/None 1021s
+[cogvideox15_i2v] 4/12 bouncing_ball θ=0.9 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 1027s
+[cogvideox15_i2v] 5/12 inclined_slide θ=0.1 s=0 z=1000: θ̂=1.6854908519221639 R²=1.000 valid/confirmed 1021s
+[cogvideox15_i2v] 6/12 inclined_slide θ=0.1 s=1 z=1000: θ̂=1.6867481396213089 R²=1.000 valid/confirmed 1022s
+[cogvideox15_i2v] 7/12 inclined_slide θ=0.4 s=0 z=1000: θ̂=1.6854529417886197 R²=1.000 valid/confirmed 1021s
+[cogvideox15_i2v] 8/12 inclined_slide θ=0.4 s=1 z=1000: θ̂=1.686695267193986 R²=1.000 valid/confirmed 1021s
+[cogvideox15_i2v] 9/12 projectile θ=5 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1021s
+[cogvideox15_i2v] 10/12 projectile θ=5 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 1021s
+[cogvideox15_i2v] 11/12 projectile θ=15 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 1020s
+[cogvideox15_i2v] 12/12 projectile θ=15 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 1020s

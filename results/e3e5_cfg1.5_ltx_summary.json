@@ -1,0 +1,9 @@
+{
+  "projectile": {
+    "n_total": 40,
+    "n_gated": 11,
+    "dropped_rate": 0.725,
+    "elapsed_seconds": 100.45307421684265,
+    "variant": "cfg1.5"
+  }
+}

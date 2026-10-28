@@ -1,0 +1,4 @@
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/physweep/track.py:37: RuntimeWarning: invalid value encountered in cast
+  mask = np.abs(frames[i].astype(int) - disk_value) <= tol
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/physweep/track.py:37: RuntimeWarning: invalid value encountered in cast
+  mask = np.abs(frames[i].astype(int) - disk_value) <= tol

@@ -1,0 +1,64 @@
+% fig_failure_taxonomy.tex -- creative/compact summary: the three failure
+% modes actually found, one icon+label per mode, meant for a talk slide or
+% as a small compact companion figure near the abstract/teaser. Draft only.
+
+\begin{tikzpicture}[
+  font=\small,
+  card/.style={draw=black!25, rounded corners=4pt, minimum width=3.9cm,
+               minimum height=3.6cm, fill=white, line width=0.9pt, align=center},
+  ttl/.style={font=\bfseries\small, align=center},
+  body/.style={font=\scriptsize, black!60, align=center}
+]
+
+% ---- Card 1: near-total inertia (LTX-Video) ----
+\node[card, draw=BurntOrange!55!black] (c1) at (0,0) {};
+\node[ttl] at (c1.north){\vphantom{X}};
+\node[anchor=north,font=\bfseries\small,text width=3.4cm,align=center] at ([yshift=-0.25cm]c1.north)
+  {Near-total inertia};
+% icon: a disk that barely moves, ghost trail collapsed to almost one point
+\begin{scope}[shift={($(c1)+(0,0.3)$)}]
+  \draw[black!30,line width=0.8pt] (-1.1,-0.7) -- (1.1,-0.7);
+  \fill[BurntOrange!30] (-0.08,-0.55) circle (5pt);
+  \fill[BurntOrange!55] (0,-0.6) circle (5pt);
+  \fill[BurntOrange!85!black] (0.08,-0.65) circle (5pt);
+\end{scope}
+\node[body,text width=3.3cm] at ([yshift=-1.15cm]c1.center)
+  {conditioned disk stays near its start regardless of the requested
+  parameter or prompt};
+\node[font=\scriptsize\itshape,black!45] at ([yshift=-1.55cm]c1.south) {LTX-Video, most axes};
+
+% ---- Card 2: seed-locked convergence (CogVideoX, DynamiCrafter) ----
+\node[card, draw=RoyalBlue!55!black] (c2) at (4.6,0) {};
+\node[anchor=north,font=\bfseries\small,text width=3.4cm,align=center] at ([yshift=-0.25cm]c2.north)
+  {Seed-locked convergence};
+\begin{scope}[shift={($(c2)+(0,0.3)$)}]
+  \draw[black!30,line width=0.8pt] (-1.1,-0.7) -- (1.1,-0.7);
+  \draw[RoyalBlue!75!black,line width=1.4pt] (-1.0,-0.1) -- (1.0,-0.1);
+  \draw[BurntOrange!85!black,line width=1.4pt] (-1.0,-0.45) -- (1.0,-0.45);
+  \node[font=\tiny,RoyalBlue!65!black,anchor=west] at (1.05,-0.1) {seed A};
+  \node[font=\tiny,BurntOrange!70!black,anchor=west] at (1.05,-0.45) {seed B};
+\end{scope}
+\node[body,text width=3.3cm] at ([yshift=-1.15cm]c2.center)
+  {confident, well-fit motion converges to one of a few fixed values,
+  set by the seed, flat in the request};
+\node[font=\scriptsize\itshape,black!45] at ([yshift=-1.55cm]c2.south) {CogVideoX, DynamiCrafter};
+
+% ---- Card 3: split default ----
+\node[card, draw=Plum!65!black] (c3) at (9.2,0) {};
+\node[anchor=north,font=\bfseries\small,text width=3.4cm,align=center] at ([yshift=-0.25cm]c3.north)
+  {Split default};
+\begin{scope}[shift={($(c3)+(0,0.3)$)}]
+  \draw[black!30,line width=0.8pt] (-1.1,-0.7) -- (1.1,-0.7);
+  \draw[Plum!75!black,line width=1.4pt] (-1.0,-0.25) -- (0,-0.25);
+  \draw[Plum!75!black,line width=1.4pt,densely dotted] (0,-0.25) -- (1.0,-0.55);
+  \draw[Plum!40!black,line width=1.4pt] (0,-0.55) -- (1.0,-0.55);
+  \node[circle,fill=Plum!75!black,inner sep=1.4pt] at (0,-0.25) {};
+  \node[font=\tiny,black!45] at (-0.5,0.05) {in-range};
+  \node[font=\tiny,black!45] at (0.55,0.05) {out-of-range};
+\end{scope}
+\node[body,text width=3.3cm] at ([yshift=-1.15cm]c3.center)
+  {one seed shows two distinct tight clusters, one in-range, a different
+  one out-of-range};
+\node[font=\scriptsize\itshape,black!45] at ([yshift=-1.55cm]c3.south) {DynamiCrafter, inclined slide};
+
+\end{tikzpicture}

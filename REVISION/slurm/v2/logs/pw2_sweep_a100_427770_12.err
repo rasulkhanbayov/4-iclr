@@ -1,0 +1,4 @@
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]Loading pipeline components...:  20%|██        | 1/5 [00:00<00:00,  6.59it/s]Loading pipeline components...:  40%|████      | 2/5 [00:01<00:02,  1.38it/s]Loading pipeline components...:  80%|████████  | 4/5 [00:01<00:00,  2.67it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][ALoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 45.62it/s]
+Loading pipeline components...: 100%|██████████| 5/5 [00:01<00:00,  3.39it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:01<00:00,  2.90it/s]
+Using cache found in /export/hbku-research/rakh90100/physweep_revision/torch_home/hub/facebookresearch_co-tracker_main

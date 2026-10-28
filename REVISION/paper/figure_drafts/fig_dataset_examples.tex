@@ -1,0 +1,97 @@
+% fig_dataset_examples.tex -- dataset examples: one schematic frame-strip
+% per system, showing what a conditioning sequence + swept theta produces.
+% Draft only. Real grids/units taken from main.tex's Table (tab:suite).
+%
+% Each row: a short strip of 4 schematic frames (ball/disk on plain
+% background against ground/pivot/wall as appropriate) at increasing time,
+% with theta and its true grid values annotated. This is meant to show a
+% reader concretely what "the PhysWeep suite" renders, since the paper's
+% own suite table (tab:suite) is text-only.
+%
+% REQUIRES: \usetikzlibrary{decorations.pathmorphing} (for the spring
+% coil in the spring-mass row) -- not loaded by main.tex's preamble.tex,
+% add it if copying this figure in.
+
+\begin{tikzpicture}[
+  font=\small,
+  framebox/.style={draw=black!40, fill=black!3, minimum width=1.55cm,
+                    minimum height=1.55cm, line width=0.6pt},
+  disk/.style={fill=RoyalBlue!75!black, draw=none},
+  ground/.style={black!55, line width=1.0pt},
+  rowlbl/.style={font=\bfseries\small, anchor=east},
+  gridlbl/.style={font=\scriptsize, black!55, anchor=west, align=left}
+]
+
+% column x-centers for the 4-frame strip
+\def\colx{0,1.75,3.5,5.25}
+\def\rowlabelx{-2.6}
+\def\stripstartx{-1.0}
+
+% ============ ROW 1: projectile ============
+\node[rowlbl] at (\rowlabelx,0) {Projectile};
+\foreach \i/\x in {1/0,2/1.75,3/3.5,4/5.25}{
+  \node[framebox] (p\i) at (\x,0) {};
+}
+\draw[ground] ([yshift=-0.7cm]p1.south west) -- ([yshift=-0.7cm]p4.south east);
+% falling arc across 4 frames, y decreasing then bottoming out
+\fill[disk] (p1.center)+(0,0.55) circle (2.6pt);
+\fill[disk] (p2.center)+(0,0.15) circle (2.6pt);
+\fill[disk] (p3.center)+(0,-0.35) circle (2.6pt);
+\fill[disk] (p4.center)+(0,-0.6) circle (2.6pt);
+\node[gridlbl] at (6.3,0) {$\theta{=}g$: in $\{5,7,9.8,12,15\}$\\out $\{1.6,3,20,25\}$ m/s$^2$};
+
+% ============ ROW 2: damped pendulum ============
+\node[rowlbl] at (\rowlabelx,-2.0) {Damped pendulum};
+\foreach \i/\x in {1/0,2/1.75,3/3.5,4/5.25}{
+  \node[framebox] (d\i) at (\x,-2.0) {};
+}
+\foreach \i/\x/\ang in {1/0/35,2/1.75/15,3/3.5/-20,4/5.25/-8}{
+  \fill[black!55] ([yshift=0.72cm]d\i.center) circle (1.0pt);
+  \draw[black!65,line width=0.9pt] ([yshift=0.72cm]d\i.center) -- ++({-90+\ang}:0.62cm);
+  \fill[disk] ([yshift=0.72cm]d\i.center) ++({-90+\ang}:0.62cm) circle (2.4pt);
+}
+\node[gridlbl] at (6.3,-2.0) {$\theta{=}\omega$: in $\{2,3,4,5\}$\\out $\{0.5,1,8,12\}$ rad/s\\(2nd axis: $\zeta$, envelope decay)};
+
+% ============ ROW 3: bouncing ball ============
+\node[rowlbl] at (\rowlabelx,-4.0) {Bouncing ball};
+\foreach \i/\x in {1/0,2/1.75,3/3.5,4/5.25}{
+  \node[framebox] (b\i) at (\x,-4.0) {};
+}
+\draw[ground] ([yshift=-0.7cm]b1.south west) -- ([yshift=-0.7cm]b4.south east);
+\fill[disk] (b1.center)+(0,0.6) circle (2.6pt);
+\fill[disk] (b2.center)+(0,-0.68) circle (2.6pt);
+\fill[disk] (b3.center)+(0,0.25) circle (2.6pt);
+\fill[disk] (b4.center)+(0,-0.68) circle (2.6pt);
+\node[gridlbl] at (6.3,-4.0) {$\theta{=}e$: in $\{.6,.7,.8,.9\}$\\out $\{.2,.35,.97\}$ (dimensionless)};
+
+% ============ ROW 4: spring-mass ============
+\node[rowlbl] at (\rowlabelx,-6.0) {Spring--mass};
+\foreach \i/\x in {1/0,2/1.75,3/3.5,4/5.25}{
+  \node[framebox] (s\i) at (\x,-6.0) {};
+}
+\foreach \i/\x/\yy in {1/0/0.55,2/1.75/-0.15,3/3.5/-0.55,4/5.25/0.05}{
+  \draw[black!50,decorate,decoration={coil,aspect=0.35,segment length=2.2pt,amplitude=2.2pt}]
+    ([yshift=0.75cm]s\i.center) -- ([yshift=0.75cm]s\i.center |- {0,\yy});
+  \fill[disk] ([yshift=0.75cm]s\i.center |- {0,\yy}) circle (2.6pt);
+}
+\node[gridlbl] at (6.3,-6.0) {$\theta{=}k$: in $\{20,40,60,80\}$\\out $\{5,10,200,400\}$ N/m};
+
+% ============ ROW 5: inclined slide ============
+\node[rowlbl] at (\rowlabelx,-8.0) {Inclined slide};
+\foreach \i/\x in {1/0,2/1.75,3/3.5,4/5.25}{
+  \node[framebox] (i\i) at (\x,-8.0) {};
+}
+\foreach \i in {1,2,3,4}{
+  \draw[black!55,line width=1.0pt] ([xshift=-0.7cm,yshift=-0.55cm]i\i.center) -- ([xshift=0.7cm,yshift=0.55cm]i\i.center);
+}
+\fill[disk] ([xshift=-0.55cm,yshift=-0.43cm]i1.center) circle (2.4pt);
+\fill[disk] ([xshift=-0.1cm,yshift=-0.08cm]i2.center) circle (2.4pt);
+\fill[disk] ([xshift=0.35cm,yshift=0.27cm]i3.center) circle (2.4pt);
+\fill[disk] ([xshift=0.6cm,yshift=0.47cm]i4.center) circle (2.4pt);
+\node[gridlbl] at (6.3,-8.0) {$\theta{=}\mu$: in $\{.1,.2,.3,.4\}$\\out $\{.01,.7,1.0\}$ (dimensionless)};
+
+% time axis label under the whole strip
+\node[font=\scriptsize,black!45] at (2.6,-9.05) {four representative frames, $t=0 \to$ end of clip};
+\draw[-{Stealth[length=1.6mm]},black!35] (-0.75,-8.85) -- (5.9,-8.85);
+
+\end{tikzpicture}

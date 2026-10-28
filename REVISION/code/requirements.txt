@@ -1,0 +1,45 @@
+# PhysWeep environment — pinned 2026-07-04 on an A100-SXM4-40GB (CUDA 12.8, driver 570.133.20).
+#
+# Install:
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+#   pip install -r requirements.txt
+#
+# torch is installed separately from the cu128 index (not PyPI default) to match
+# this GPU's CUDA 12.8 / compute capability 8.0. Do not pin an older cu11x/cu124
+# index — see CLAUDE.md Section 6.
+
+torch==2.11.0+cu128        # install via the cu128 index command above, not from this file directly
+numpy==2.2.6               # NOT 2.5.x -- numpy>=2.3 requires Python>=3.12; this env is 3.10 (Panther conda env), see CLAUDE.md Section 6
+scipy==1.15.3              # NOT 1.18.x -- scipy>=1.16 requires Python>=3.12, same reason
+pyyaml==6.0.3              # `import yaml` -- was missing from this file entirely (2026-08-07 Panther job crash), needed by every experiments/*.py that reads physweep/configs/systems.yaml
+opencv-python-headless==5.0.0.93
+pillow==12.3.0
+imageio==2.37.3
+imageio-ffmpeg==0.6.0
+
+diffusers==0.39.0
+transformers==4.57.6      # NOT 5.x -- 5.x cannot load LTX-Video's T5 tokenizer, see CLAUDE.md Section 6
+tiktoken                  # transformers imports this lazily; errors without it even though unused directly
+accelerate==1.14.0
+safetensors==0.8.0
+sentencepiece==0.2.1
+huggingface_hub==0.36.2    # NOT 1.x -- transformers==4.57.6 requires huggingface-hub<1.0,>=0.34.0 (2026-08-07 Panther resolver conflict); 0.36.2 is the newest 0.x release and still satisfies diffusers'/accelerate's own floors
+
+# E3 plausibility-gap VLM rater (Qwen2.5-VL-7B-Instruct). Verified 2026-08-2x:
+# Qwen2.5-VL support landed in transformers==4.49.0, well below our 4.57.6
+# pin above, and qwen-vl-utils declares NO transformers constraint at all --
+# zero conflict with the existing pin.
+qwen-vl-utils[decord]==0.0.14
+torchvision==0.26.0+cu128  # install via the cu128 index command above (with torch itself, same
+                           # pip call), not from this file directly -- REQUIRED by transformers'
+                           # AutoVideoProcessor (Qwen2.5-VL's video path, used by E3's plausibility
+                           # rater); missing entirely caused job 380915's ImportError. NOT
+                           # previously needed by LTX-Video/CogVideoX's diffusers pipelines, so
+                           # this went unnoticed until the E3 VLM-scoring script actually ran.
+                           # 0.26.0 is the officially paired torchvision release for torch==2.11.0
+                           # -- do not let this line resolve from plain PyPI (no +cu128 build
+                           # there), which would install a mismatched/CPU-only build instead.
+
+# Full transitive freeze (torch/CUDA deps, etc.) captured for exact reproduction
+# if needed: see git history of this file / re-run `pip freeze` in .venv.

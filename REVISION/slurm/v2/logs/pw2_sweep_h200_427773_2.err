@@ -1,0 +1,12 @@
+Loading pipeline components...:   0%|          | 0/8 [00:00<?, ?it/s]Loading pipeline components...:  12%|█▎        | 1/8 [00:02<00:17,  2.56s/it]
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s][A
+Loading checkpoint shards:  12%|█▎        | 1/8 [00:03<00:26,  3.76s/it][A
+Loading checkpoint shards:  25%|██▌       | 2/8 [00:07<00:22,  3.68s/it][A
+Loading checkpoint shards:  38%|███▊      | 3/8 [00:11<00:18,  3.80s/it][A
+Loading checkpoint shards:  50%|█████     | 4/8 [00:14<00:14,  3.68s/it][A
+Loading checkpoint shards:  62%|██████▎   | 5/8 [00:18<00:11,  3.80s/it][A
+Loading checkpoint shards:  75%|███████▌  | 6/8 [00:22<00:07,  3.78s/it][A
+Loading checkpoint shards:  88%|████████▊ | 7/8 [00:25<00:03,  3.65s/it][A
+Loading checkpoint shards: 100%|██████████| 8/8 [00:28<00:00,  3.21s/it][ALoading checkpoint shards: 100%|██████████| 8/8 [00:28<00:00,  3.53s/it]
+Loading pipeline components...:  25%|██▌       | 2/8 [00:31<01:48, 18.09s/it]Loading pipeline components...:  38%|███▊      | 3/8 [00:32<00:51, 10.27s/it]Loading pipeline components...:  50%|█████     | 4/8 [00:33<00:25,  6.49s/it]Loading pipeline components...:  75%|███████▌  | 6/8 [00:34<00:06,  3.42s/it]Loading pipeline components...:  88%|████████▊ | 7/8 [00:36<00:02,  2.96s/it]Loading pipeline components...: 100%|██████████| 8/8 [06:43<00:00, 105.49s/it]Loading pipeline components...: 100%|██████████| 8/8 [06:43<00:00, 50.40s/it] 
+Using cache found in /export/hbku-research/rakh90100/physweep_revision/torch_home/hub/facebookresearch_co-tracker_main

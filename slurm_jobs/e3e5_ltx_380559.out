@@ -1,0 +1,250 @@
+variant=default  seeds: in=[0, 1, 2, 3, 4] out=[0, 1, 2, 3, 4]
+Loading LTX-Video...
+
+======================================================================
+projectile (ltx, variant=default)
+======================================================================
+  g_true=  5.00 seed=0: g_hat=nan r2=0.000
+  g_true=  5.00 seed=1: g_hat=-0.452 r2=0.889
+  g_true=  5.00 seed=2: g_hat=-0.381 r2=0.044
+  g_true=  5.00 seed=3: g_hat=-0.252 r2=0.992
+  g_true=  5.00 seed=4: g_hat=0.539 r2=0.889
+  g_true=  7.00 seed=0: g_hat=nan r2=0.000
+  g_true=  7.00 seed=1: g_hat=-0.195 r2=0.715
+  g_true=  7.00 seed=2: g_hat=-0.208 r2=0.024
+  g_true=  7.00 seed=3: g_hat=-0.280 r2=0.986
+  g_true=  7.00 seed=4: g_hat=0.733 r2=0.890
+  g_true=  9.80 seed=0: g_hat=nan r2=0.000
+  g_true=  9.80 seed=1: g_hat=0.199 r2=0.902
+  g_true=  9.80 seed=2: g_hat=0.011 r2=0.376
+  g_true=  9.80 seed=3: g_hat=0.268 r2=0.270
+  g_true=  9.80 seed=4: g_hat=nan r2=0.000
+  g_true= 12.00 seed=0: g_hat=nan r2=0.000
+  g_true= 12.00 seed=1: g_hat=-0.617 r2=0.472
+  g_true= 12.00 seed=2: g_hat=0.719 r2=0.999
+  g_true= 12.00 seed=3: g_hat=-0.261 r2=0.986
+  g_true= 12.00 seed=4: g_hat=3.042 r2=0.880
+  g_true= 15.00 seed=0: g_hat=nan r2=0.000
+  g_true= 15.00 seed=1: g_hat=-6.235 r2=0.719
+  g_true= 15.00 seed=2: g_hat=nan r2=0.000
+  g_true= 15.00 seed=3: g_hat=-0.190 r2=0.990
+  g_true= 15.00 seed=4: g_hat=6.395 r2=0.889
+  g_true=  1.60 seed=0: g_hat=nan r2=0.000
+  g_true=  1.60 seed=1: g_hat=-0.376 r2=0.929
+  g_true=  1.60 seed=2: g_hat=nan r2=0.000
+  g_true=  1.60 seed=3: g_hat=-0.290 r2=0.996
+  g_true=  1.60 seed=4: g_hat=1.261 r2=0.879
+  g_true=  3.00 seed=0: g_hat=nan r2=0.000
+  g_true=  3.00 seed=1: g_hat=-0.316 r2=0.890
+  g_true=  3.00 seed=2: g_hat=-0.253 r2=0.082
+  g_true=  3.00 seed=3: g_hat=-0.274 r2=0.988
+  g_true=  3.00 seed=4: g_hat=nan r2=0.000
+  g_true= 20.00 seed=0: g_hat=nan r2=0.000
+  g_true= 20.00 seed=1: g_hat=-0.383 r2=0.942
+  g_true= 20.00 seed=2: g_hat=0.000 r2=0.732
+  g_true= 20.00 seed=3: g_hat=-0.519 r2=0.999
+  g_true= 20.00 seed=4: g_hat=14.245 r2=0.960
+projectile: n_gated=19/40 dropped_rate=52.50% elapsed=132s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_projectile_ltx.json
+
+======================================================================
+pendulum_omega (ltx, variant=default)
+======================================================================
+  omega_true=  2.00 seed=0: omega_hat=nan r2=0.000
+  omega_true=  2.00 seed=1: omega_hat=nan r2=0.000
+  omega_true=  2.00 seed=2: omega_hat=7.880 r2=0.014
+  omega_true=  2.00 seed=3: omega_hat=nan r2=0.000
+  omega_true=  2.00 seed=4: omega_hat=nan r2=0.000
+  omega_true=  3.00 seed=0: omega_hat=nan r2=0.000
+  omega_true=  3.00 seed=1: omega_hat=nan r2=0.000
+  omega_true=  3.00 seed=2: omega_hat=nan r2=0.000
+  omega_true=  3.00 seed=3: omega_hat=nan r2=0.000
+  omega_true=  3.00 seed=4: omega_hat=nan r2=0.000
+  omega_true=  4.00 seed=0: omega_hat=nan r2=0.000
+  omega_true=  4.00 seed=1: omega_hat=nan r2=0.000
+  omega_true=  4.00 seed=2: omega_hat=6.830 r2=0.072
+  omega_true=  4.00 seed=3: omega_hat=nan r2=0.000
+  omega_true=  4.00 seed=4: omega_hat=13.753 r2=0.004
+  omega_true=  5.00 seed=0: omega_hat=9.248 r2=0.019
+  omega_true=  5.00 seed=1: omega_hat=nan r2=0.000
+  omega_true=  5.00 seed=2: omega_hat=nan r2=0.000
+  omega_true=  5.00 seed=3: omega_hat=nan r2=0.000
+  omega_true=  5.00 seed=4: omega_hat=13.257 r2=0.018
+  omega_true=  8.00 seed=0: omega_hat=nan r2=0.000
+  omega_true=  8.00 seed=1: omega_hat=nan r2=0.000
+  omega_true=  8.00 seed=2: omega_hat=12.153 r2=0.028
+  omega_true=  8.00 seed=3: omega_hat=nan r2=0.000
+  omega_true=  8.00 seed=4: omega_hat=nan r2=0.000
+  omega_true= 12.00 seed=0: omega_hat=3.127 r2=0.040
+  omega_true= 12.00 seed=1: omega_hat=nan r2=0.000
+  omega_true= 12.00 seed=2: omega_hat=nan r2=0.000
+  omega_true= 12.00 seed=3: omega_hat=nan r2=0.000
+  omega_true= 12.00 seed=4: omega_hat=nan r2=0.000
+pendulum_omega: n_gated=0/30 dropped_rate=100.00% elapsed=320s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_pendulum_omega_ltx.json
+
+======================================================================
+pendulum_zeta (ltx, variant=default)
+======================================================================
+  zeta_true=  0.02 seed=0: zeta_hat=nan r2=0.000
+  zeta_true=  0.02 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.02 seed=2: zeta_hat=nan r2=0.000
+  zeta_true=  0.02 seed=3: zeta_hat=nan r2=0.000
+  zeta_true=  0.02 seed=4: zeta_hat=nan r2=0.000
+  zeta_true=  0.05 seed=0: zeta_hat=nan r2=0.000
+  zeta_true=  0.05 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.05 seed=2: zeta_hat=0.000 r2=0.023
+  zeta_true=  0.05 seed=3: zeta_hat=nan r2=0.000
+  zeta_true=  0.05 seed=4: zeta_hat=nan r2=0.000
+  zeta_true=  0.10 seed=0: zeta_hat=nan r2=0.000
+  zeta_true=  0.10 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.10 seed=2: zeta_hat=0.000 r2=0.140
+  zeta_true=  0.10 seed=3: zeta_hat=nan r2=0.000
+  zeta_true=  0.10 seed=4: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=0: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=2: zeta_hat=0.000 r2=0.301
+  zeta_true=  0.30 seed=3: zeta_hat=nan r2=0.000
+  zeta_true=  0.30 seed=4: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=0: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=2: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=3: zeta_hat=nan r2=0.000
+  zeta_true=  0.60 seed=4: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=0: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=1: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=2: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=3: zeta_hat=nan r2=0.000
+  zeta_true=  0.90 seed=4: zeta_hat=nan r2=0.000
+pendulum_zeta: n_gated=0/30 dropped_rate=100.00% elapsed=319s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_pendulum_zeta_ltx.json
+
+======================================================================
+bouncing_ball (ltx, variant=default)
+======================================================================
+  e_true=  0.60 seed=0: e_hat=nan r2=0.000
+  e_true=  0.60 seed=1: e_hat=0.797 r2=0.773
+  e_true=  0.60 seed=2: e_hat=nan r2=0.000
+  e_true=  0.60 seed=3: e_hat=nan r2=0.000
+  e_true=  0.60 seed=4: e_hat=nan r2=0.000
+  e_true=  0.70 seed=0: e_hat=nan r2=0.000
+  e_true=  0.70 seed=1: e_hat=0.737 r2=0.861
+  e_true=  0.70 seed=2: e_hat=nan r2=0.000
+  e_true=  0.70 seed=3: e_hat=nan r2=0.000
+  e_true=  0.70 seed=4: e_hat=nan r2=0.000
+  e_true=  0.80 seed=0: e_hat=nan r2=0.000
+  e_true=  0.80 seed=1: e_hat=0.791 r2=0.777
+  e_true=  0.80 seed=2: e_hat=nan r2=0.000
+  e_true=  0.80 seed=3: e_hat=nan r2=0.000
+  e_true=  0.80 seed=4: e_hat=nan r2=0.000
+  e_true=  0.90 seed=0: e_hat=nan r2=0.000
+  e_true=  0.90 seed=1: e_hat=1.265 r2=0.714
+  e_true=  0.90 seed=2: e_hat=nan r2=0.000
+  e_true=  0.90 seed=3: e_hat=nan r2=0.000
+  e_true=  0.90 seed=4: e_hat=nan r2=0.000
+  e_true=  0.20 seed=0: e_hat=nan r2=0.000
+  e_true=  0.20 seed=1: e_hat=0.942 r2=0.414
+  e_true=  0.20 seed=2: e_hat=nan r2=0.000
+  e_true=  0.20 seed=3: e_hat=nan r2=0.000
+  e_true=  0.20 seed=4: e_hat=0.946 r2=0.151
+  e_true=  0.35 seed=0: e_hat=nan r2=0.000
+  e_true=  0.35 seed=1: e_hat=0.933 r2=0.506
+  e_true=  0.35 seed=2: e_hat=nan r2=0.000
+  e_true=  0.35 seed=3: e_hat=nan r2=0.000
+  e_true=  0.35 seed=4: e_hat=0.813 r2=1.000
+  e_true=  0.97 seed=0: e_hat=nan r2=0.000
+  e_true=  0.97 seed=1: e_hat=1.477 r2=0.346
+  e_true=  0.97 seed=2: e_hat=nan r2=0.000
+  e_true=  0.97 seed=3: e_hat=2.593 r2=0.732
+  e_true=  0.97 seed=4: e_hat=0.985 r2=0.276
+bouncing_ball: n_gated=2/35 dropped_rate=94.29% elapsed=109s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_bouncing_ball_ltx.json
+
+======================================================================
+spring_mass (ltx, variant=default)
+======================================================================
+  k_true=  20.0 seed=0: k_hat=nan r2=0.000
+  k_true=  20.0 seed=1: k_hat=nan r2=0.000
+  k_true=  20.0 seed=2: k_hat=nan r2=0.000
+  k_true=  20.0 seed=3: k_hat=nan r2=0.000
+  k_true=  20.0 seed=4: k_hat=19.726 r2=0.120
+  k_true=  40.0 seed=0: k_hat=nan r2=0.000
+  k_true=  40.0 seed=1: k_hat=40.114 r2=0.087
+  k_true=  40.0 seed=2: k_hat=nan r2=0.000
+  k_true=  40.0 seed=3: k_hat=nan r2=0.000
+  k_true=  40.0 seed=4: k_hat=19.830 r2=0.117
+  k_true=  60.0 seed=0: k_hat=nan r2=0.000
+  k_true=  60.0 seed=1: k_hat=nan r2=0.000
+  k_true=  60.0 seed=2: k_hat=nan r2=0.000
+  k_true=  60.0 seed=3: k_hat=nan r2=0.000
+  k_true=  60.0 seed=4: k_hat=19.732 r2=0.126
+  k_true=  80.0 seed=0: k_hat=nan r2=0.000
+  k_true=  80.0 seed=1: k_hat=nan r2=0.000
+  k_true=  80.0 seed=2: k_hat=nan r2=0.000
+  k_true=  80.0 seed=3: k_hat=nan r2=0.000
+  k_true=  80.0 seed=4: k_hat=20.245 r2=0.100
+  k_true=   5.0 seed=0: k_hat=nan r2=0.000
+  k_true=   5.0 seed=1: k_hat=9.938 r2=0.262
+  k_true=   5.0 seed=2: k_hat=nan r2=0.000
+  k_true=   5.0 seed=3: k_hat=nan r2=0.000
+  k_true=   5.0 seed=4: k_hat=119.999 r2=0.031
+  k_true=  10.0 seed=0: k_hat=102.916 r2=0.016
+  k_true=  10.0 seed=1: k_hat=9.796 r2=0.254
+  k_true=  10.0 seed=2: k_hat=nan r2=0.000
+  k_true=  10.0 seed=3: k_hat=nan r2=0.000
+  k_true=  10.0 seed=4: k_hat=212.748 r2=0.018
+  k_true= 200.0 seed=0: k_hat=nan r2=0.000
+  k_true= 200.0 seed=1: k_hat=9.802 r2=0.286
+  k_true= 200.0 seed=2: k_hat=nan r2=0.000
+  k_true= 200.0 seed=3: k_hat=nan r2=0.000
+  k_true= 200.0 seed=4: k_hat=13.007 r2=0.120
+  k_true= 400.0 seed=0: k_hat=3903.157 r2=0.000
+  k_true= 400.0 seed=1: k_hat=9.766 r2=0.292
+  k_true= 400.0 seed=2: k_hat=nan r2=0.000
+  k_true= 400.0 seed=3: k_hat=nan r2=0.000
+  k_true= 400.0 seed=4: k_hat=12.889 r2=0.103
+spring_mass: n_gated=0/40 dropped_rate=100.00% elapsed=427s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_spring_mass_ltx.json
+
+======================================================================
+inclined_slide (ltx, variant=default)
+======================================================================
+  mu_true=  0.10 seed=0: mu_hat=nan r2=0.000
+  mu_true=  0.10 seed=1: mu_hat=nan r2=0.000
+  mu_true=  0.10 seed=2: mu_hat=nan r2=0.000
+  mu_true=  0.10 seed=3: mu_hat=nan r2=0.000
+  mu_true=  0.10 seed=4: mu_hat=2.107 r2=0.977
+  mu_true=  0.20 seed=0: mu_hat=nan r2=0.000
+  mu_true=  0.20 seed=1: mu_hat=1.753 r2=0.940
+  mu_true=  0.20 seed=2: mu_hat=nan r2=0.000
+  mu_true=  0.20 seed=3: mu_hat=nan r2=0.000
+  mu_true=  0.20 seed=4: mu_hat=2.122 r2=0.981
+  mu_true=  0.30 seed=0: mu_hat=nan r2=0.000
+  mu_true=  0.30 seed=1: mu_hat=1.763 r2=0.959
+  mu_true=  0.30 seed=2: mu_hat=nan r2=0.000
+  mu_true=  0.30 seed=3: mu_hat=nan r2=0.000
+  mu_true=  0.30 seed=4: mu_hat=2.120 r2=0.979
+  mu_true=  0.40 seed=0: mu_hat=nan r2=0.000
+  mu_true=  0.40 seed=1: mu_hat=1.736 r2=0.865
+  mu_true=  0.40 seed=2: mu_hat=nan r2=0.000
+  mu_true=  0.40 seed=3: mu_hat=nan r2=0.000
+  mu_true=  0.40 seed=4: mu_hat=2.095 r2=0.977
+  mu_true=  0.01 seed=0: mu_hat=1.822 r2=0.095
+  mu_true=  0.01 seed=1: mu_hat=2.525 r2=0.953
+  mu_true=  0.01 seed=2: mu_hat=nan r2=0.000
+  mu_true=  0.01 seed=3: mu_hat=nan r2=0.000
+  mu_true=  0.01 seed=4: mu_hat=2.154 r2=0.983
+  mu_true=  0.70 seed=0: mu_hat=nan r2=0.000
+  mu_true=  0.70 seed=1: mu_hat=3.385 r2=0.766
+  mu_true=  0.70 seed=2: mu_hat=1.706 r2=0.008
+  mu_true=  0.70 seed=3: mu_hat=nan r2=0.000
+  mu_true=  0.70 seed=4: mu_hat=nan r2=0.000
+  mu_true=  1.00 seed=0: mu_hat=nan r2=0.000
+  mu_true=  1.00 seed=1: mu_hat=3.446 r2=0.924
+  mu_true=  1.00 seed=2: mu_hat=1.635 r2=0.011
+  mu_true=  1.00 seed=3: mu_hat=nan r2=0.000
+  mu_true=  1.00 seed=4: mu_hat=2.195 r2=0.970
+inclined_slide: n_gated=11/35 dropped_rate=68.57% elapsed=108s
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_inclined_slide_ltx.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e3e5_default_ltx_summary.json

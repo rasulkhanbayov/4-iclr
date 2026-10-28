@@ -1,0 +1,15 @@
+model=ltx2 host=crirdchpxd006 NVIDIA H200, 143771 MiB
+[ltx2] run=pilot shard 2/1: 12 clips in shard, 0 already done, 12 to do
+[ltx2] loaded in 7838s
+[ltx2] 1/12 bouncing_ball θ=0.6 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 55s
+[ltx2] 2/12 bouncing_ball θ=0.6 s=1 z=1000: θ̂=1.08854677227078 R²=-0.069 invalid_fit/None 20s
+[ltx2] 3/12 bouncing_ball θ=0.9 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 19s
+[ltx2] 4/12 bouncing_ball θ=0.9 s=1 z=1000: θ̂=1.093108256299119 R²=-0.067 invalid_fit/None 19s
+[ltx2] 5/12 inclined_slide θ=0.1 s=0 z=1000: θ̂=1.617449401182339 R²=0.997 valid/confirmed 19s
+[ltx2] 6/12 inclined_slide θ=0.1 s=1 z=1000: θ̂=1.5981379967617975 R²=0.997 valid/confirmed 19s
+[ltx2] 7/12 inclined_slide θ=0.4 s=0 z=1000: θ̂=1.6177190661732026 R²=0.997 valid/confirmed 19s
+[ltx2] 8/12 inclined_slide θ=0.4 s=1 z=1000: θ̂=1.59977604462156 R²=0.997 valid/confirmed 19s
+[ltx2] 9/12 projectile θ=5 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 19s
+[ltx2] 10/12 projectile θ=5 s=1 z=1000: θ̂=-0.027582389857534216 R²=1.000 valid/confirmed 19s
+[ltx2] 11/12 projectile θ=15 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 19s
+[ltx2] 12/12 projectile θ=15 s=1 z=1000: θ̂=-0.0280954497044492 R²=1.000 valid/confirmed 19s

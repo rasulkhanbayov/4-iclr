@@ -1,0 +1,15 @@
+PhysWeep tracker smoke test (render -> track -> fit, ground truth path)
+g_true=  1.60  g_hat=  1.600  rel_err=0.0001  R2=0.9998  max_track_px_err=0.06
+g_true=  5.00  g_hat=  4.999  rel_err=0.0001  R2=1.0000  max_track_px_err=0.09
+g_true=  9.80  g_hat=  9.814  rel_err=0.0014  R2=1.0000  max_track_px_err=0.09
+g_true= 15.00  g_hat= 15.007  rel_err=0.0005  R2=1.0000  max_track_px_err=0.10
+g_true= 25.00  g_hat= 24.993  rel_err=0.0003  R2=1.0000  max_track_px_err=0.07
+PASS: tracker + unit conversion + fitter recover g correctly, all signs consistent.
+
+PhysWeep CoTracker3 smoke test (render -> cotracker_track -> fit, ground truth path)
+g_true=  1.60  g_hat=  1.605  rel_err=0.0034  R2=0.9989  max_track_px_err=0.22
+g_true=  5.00  g_hat=  5.030  rel_err=0.0061  R2=0.9998  max_track_px_err=0.34
+g_true=  9.80  g_hat=  9.848  rel_err=0.0049  R2=1.0000  max_track_px_err=0.35
+g_true= 15.00  g_hat= 15.016  rel_err=0.0011  R2=1.0000  max_track_px_err=0.45
+g_true= 25.00  g_hat= 25.014  rel_err=0.0006  R2=1.0000  max_track_px_err=0.35
+Compare these rel_err/R2 numbers directly against _smoke_test()'s blob-centroid numbers above -- E5(a)'s claim is that they agree, not that either is perfect in isolation.

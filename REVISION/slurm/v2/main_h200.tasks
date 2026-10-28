@@ -1,0 +1,10 @@
+# run        model            mode     n_noise shard count
+main_text    wan22_i2v_a14b   crossed  4       0     2
+main_text    wan22_i2v_a14b   crossed  4       1     2
+main_text    hunyuan15_i2v    crossed  4       0     2
+main_text    hunyuan15_i2v    crossed  4       1     2
+main_text    ltx2             crossed  4       0     1
+main_text    cosmos2_2b       crossed  4       0     4
+main_text    cosmos2_2b       crossed  4       1     4
+main_text    cosmos2_2b       crossed  4       2     4
+main_text    cosmos2_2b       crossed  4       3     4

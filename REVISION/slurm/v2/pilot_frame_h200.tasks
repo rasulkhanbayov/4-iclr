@@ -1,0 +1,3 @@
+pilot_frame  wan22_i2v_a14b   crossed  4       0     1    --channel frame --pilot
+pilot_frame  ltx2             crossed  4       0     1    --channel frame --pilot
+pilot_frame  cosmos2_2b       crossed  4       0     1    --channel frame --pilot

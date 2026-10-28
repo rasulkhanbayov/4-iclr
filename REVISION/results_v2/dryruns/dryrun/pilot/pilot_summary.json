@@ -1,0 +1,14 @@
+{
+ "simulator": {
+  "done": 12,
+  "errors": 0,
+  "median_seconds": 0.15532708168029785,
+  "peak_vram_gb": 0,
+  "labels": {
+   "valid": 12
+  },
+  "confirmed": 0,
+  "projected_sweep_gpu_hours": 0.013116509119669596,
+  "first_error": null
+ }
+}

@@ -1,0 +1,352 @@
+{
+  "ltx": {
+    "default": {
+      "n_total_in": 25,
+      "n_gated_in": 11,
+      "dropped_rate_in": 0.56,
+      "slope_in": 0.2770119860844537,
+      "pre_in": 0.8270031972683185,
+      "mean_within_seed_std": 0.9069416859594144,
+      "overall_std": 1.9664261569834913
+    },
+    "scale0.5x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 3,
+      "dropped_rate_in": 0.88,
+      "slope_in": -0.08464984678218362,
+      "pre_in": 0.8850466738072943,
+      "mean_within_seed_std": 0.16654144758702497,
+      "overall_std": 0.1360364596397999,
+      "family": "E5b scale",
+      "label": "0.5x size, 1.0x fps"
+    },
+    "scale1.5x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 10,
+      "dropped_rate_in": 0.6,
+      "slope_in": -0.020660322319223625,
+      "pre_in": 0.7997366326344676,
+      "mean_within_seed_std": 0.21996217694572928,
+      "overall_std": 0.4538696233638478,
+      "family": "E5b scale",
+      "label": "1.5x size, 1.0x fps"
+    },
+    "scale2.0x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 14,
+      "dropped_rate_in": 0.43999999999999995,
+      "slope_in": -0.004047231108501304,
+      "pre_in": 0.8431171913045626,
+      "mean_within_seed_std": 0.1959577991914878,
+      "overall_std": 1.0303120285889875,
+      "family": "E5b scale",
+      "label": "2.0x size, 1.0x fps"
+    },
+    "scale1.0x0.5": {
+      "n_total_in": 25,
+      "n_gated_in": 11,
+      "dropped_rate_in": 0.56,
+      "slope_in": 1.1080479443378148,
+      "pre_in": 0.7574018938902018,
+      "mean_within_seed_std": 3.627766743837657,
+      "overall_std": 7.865704627933963,
+      "family": "E5b scale",
+      "label": "1.0x size, 0.5x fps"
+    },
+    "scale1.0x2.0": {
+      "n_total_in": 25,
+      "n_gated_in": 11,
+      "dropped_rate_in": 0.56,
+      "slope_in": 0.0692529965211136,
+      "pre_in": 0.8750443113605919,
+      "mean_within_seed_std": 0.22673542148985393,
+      "overall_std": 0.4916065392458729,
+      "family": "E5b scale",
+      "label": "1.0x size, 2.0x fps"
+    },
+    "res256": {
+      "n_total_in": 25,
+      "n_gated_in": 12,
+      "dropped_rate_in": 0.52,
+      "slope_in": -0.2580416331504678,
+      "pre_in": 0.9840391041435548,
+      "mean_within_seed_std": 0.4440687348399589,
+      "overall_std": 3.3784440300482794,
+      "family": "E5d cond-resolution",
+      "label": "256px conditioning"
+    },
+    "res384": {
+      "n_total_in": 25,
+      "n_gated_in": 5,
+      "dropped_rate_in": 0.8,
+      "slope_in": 0.004092612951574817,
+      "pre_in": 0.8898978268657244,
+      "mean_within_seed_std": 0.02118145408875898,
+      "overall_std": 0.02118145408875898,
+      "family": "E5d cond-resolution",
+      "label": "384px conditioning"
+    },
+    "cfg1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 10,
+      "dropped_rate_in": 0.6,
+      "slope_in": 0.08089721852075471,
+      "pre_in": 0.5960739584549981,
+      "mean_within_seed_std": 0.7861398723883363,
+      "overall_std": 4.8690458196708635,
+      "family": "E5e guidance-scale",
+      "label": "cfg=1.0"
+    },
+    "cfg1.5": {
+      "n_total_in": 25,
+      "n_gated_in": 6,
+      "dropped_rate_in": 0.76,
+      "slope_in": 1.3848595936516301,
+      "pre_in": 0.6002566065208087,
+      "mean_within_seed_std": 0.1444251000521318,
+      "overall_std": 6.435275526713178,
+      "family": "E5e guidance-scale",
+      "label": "cfg=1.5"
+    },
+    "cfg4.5": {
+      "n_total_in": 25,
+      "n_gated_in": 12,
+      "dropped_rate_in": 0.52,
+      "slope_in": -0.24754322512103505,
+      "pre_in": 0.7841168181609826,
+      "mean_within_seed_std": 0.22241900000034387,
+      "overall_std": 2.3857190224509384,
+      "family": "E5e guidance-scale",
+      "label": "cfg=4.5"
+    },
+    "cfg9.0": {
+      "n_total_in": 25,
+      "n_gated_in": 15,
+      "dropped_rate_in": 0.4,
+      "slope_in": 0.149970368028686,
+      "pre_in": 0.6820598830154487,
+      "mean_within_seed_std": 0.7999025003239716,
+      "overall_std": 2.8376492949454146,
+      "family": "E5e guidance-scale",
+      "label": "cfg=9.0"
+    },
+    "prompt-terse": {
+      "n_total_in": 25,
+      "n_gated_in": 12,
+      "dropped_rate_in": 0.52,
+      "slope_in": -0.061394829720949624,
+      "pre_in": 0.8519451748937478,
+      "mean_within_seed_std": 0.39540437667157863,
+      "overall_std": 0.5499670387177321,
+      "family": "E5f prompt-phrasing",
+      "label": "terse prompt"
+    },
+    "prompt-verbose": {
+      "n_total_in": 25,
+      "n_gated_in": 13,
+      "dropped_rate_in": 0.48,
+      "slope_in": 0.015399777338762171,
+      "pre_in": 0.8672023208156558,
+      "mean_within_seed_std": 0.15093460347167856,
+      "overall_std": 0.675890498473871,
+      "family": "E5f prompt-phrasing",
+      "label": "verbose prompt"
+    }
+  },
+  "cogvideox": {
+    "default": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null
+    },
+    "scale0.5x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5b scale",
+      "label": "0.5x size, 1.0x fps"
+    },
+    "scale1.5x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5b scale",
+      "label": "1.5x size, 1.0x fps"
+    },
+    "scale2.0x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5b scale",
+      "label": "2.0x size, 1.0x fps"
+    },
+    "scale1.0x0.5": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5b scale",
+      "label": "1.0x size, 0.5x fps"
+    },
+    "scale1.0x2.0": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5b scale",
+      "label": "1.0x size, 2.0x fps"
+    },
+    "cfg1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5e guidance-scale",
+      "label": "cfg=1.0"
+    },
+    "cfg1.5": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5e guidance-scale",
+      "label": "cfg=1.5"
+    },
+    "cfg4.5": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5e guidance-scale",
+      "label": "cfg=4.5"
+    },
+    "cfg9.0": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5e guidance-scale",
+      "label": "cfg=9.0"
+    },
+    "prompt-terse": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5f prompt-phrasing",
+      "label": "terse prompt"
+    },
+    "prompt-verbose": {
+      "n_total_in": 25,
+      "n_gated_in": 0,
+      "dropped_rate_in": 1.0,
+      "slope_in": null,
+      "pre_in": null,
+      "family": "E5f prompt-phrasing",
+      "label": "verbose prompt"
+    }
+  },
+  "dynamicrafter": {
+    "default": {
+      "n_total_in": 25,
+      "n_gated_in": 17,
+      "dropped_rate_in": 0.31999999999999995,
+      "slope_in": -0.06276584155371745,
+      "pre_in": 0.8021666445044777,
+      "mean_within_seed_std": 0.3975468060616768,
+      "overall_std": 3.1428508663576613
+    },
+    "scale0.5x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 13,
+      "dropped_rate_in": 0.48,
+      "slope_in": -0.15164535651588762,
+      "pre_in": 0.8355686755300192,
+      "mean_within_seed_std": 0.8064270269883727,
+      "overall_std": 2.2400136959701458,
+      "family": "E5b scale",
+      "label": "0.5x size, 1.0x fps"
+    },
+    "scale1.5x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 13,
+      "dropped_rate_in": 0.48,
+      "slope_in": -0.15217818775644157,
+      "pre_in": 0.8689903618523402,
+      "mean_within_seed_std": 0.9890861237515504,
+      "overall_std": 4.346598020260524,
+      "family": "E5b scale",
+      "label": "1.5x size, 1.0x fps"
+    },
+    "scale2.0x1.0": {
+      "n_total_in": 25,
+      "n_gated_in": 16,
+      "dropped_rate_in": 0.36,
+      "slope_in": 0.006378200554873768,
+      "pre_in": 0.9959141669784587,
+      "mean_within_seed_std": 0.16014037893807642,
+      "overall_std": 1.535043157371478,
+      "family": "E5b scale",
+      "label": "2.0x size, 1.0x fps"
+    },
+    "scale1.0x0.5": {
+      "n_total_in": 25,
+      "n_gated_in": 17,
+      "dropped_rate_in": 0.31999999999999995,
+      "slope_in": -0.25106336621486985,
+      "pre_in": 1.2538736053516555,
+      "mean_within_seed_std": 1.5901872242467077,
+      "overall_std": 12.571403465430647,
+      "family": "E5b scale",
+      "label": "1.0x size, 0.5x fps"
+    },
+    "scale1.0x2.0": {
+      "n_total_in": 25,
+      "n_gated_in": 17,
+      "dropped_rate_in": 0.31999999999999995,
+      "slope_in": -0.01569146038842932,
+      "pre_in": 0.8695074391677116,
+      "mean_within_seed_std": 0.09938670151542,
+      "overall_std": 0.7857127165894157,
+      "family": "E5b scale",
+      "label": "1.0x size, 2.0x fps"
+    },
+    "prompt-terse": {
+      "n_total_in": 25,
+      "n_gated_in": 13,
+      "dropped_rate_in": 0.48,
+      "slope_in": 0.11720186839149323,
+      "pre_in": 0.6973996170557213,
+      "mean_within_seed_std": 0.6454323277859935,
+      "overall_std": 4.013574571474139,
+      "family": "E5f prompt-phrasing",
+      "label": "terse prompt"
+    },
+    "prompt-verbose": {
+      "n_total_in": 25,
+      "n_gated_in": 21,
+      "dropped_rate_in": 0.16000000000000003,
+      "slope_in": 0.02268392433145723,
+      "pre_in": 0.7362911692434692,
+      "mean_within_seed_std": 0.17347535001780431,
+      "overall_std": 2.8141461792830182,
+      "family": "E5f prompt-phrasing",
+      "label": "verbose prompt"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "pendulum_omega": {
+    "n_total": 130,
+    "n_gated_in": 0,
+    "n_gated_out": 1,
+    "fit_quality_dropped_rate": 0.9923076923076923,
+    "e2_adjudicable": false,
+    "elapsed_seconds": 735.7537236213684
+  }
+}

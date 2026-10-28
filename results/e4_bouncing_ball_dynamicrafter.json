@@ -244,22 +244,129 @@
       "r2": 0.0,
       "split": "out",
       "seed": 4
+    },
+    {
+      "theta": 0.2,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 5
+    },
+    {
+      "theta": 0.2,
+      "theta_hat": 2.941620091680917,
+      "r2": 0.022272102329507937,
+      "split": "out",
+      "seed": 6
+    },
+    {
+      "theta": 0.2,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 7
+    },
+    {
+      "theta": 0.2,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 8
+    },
+    {
+      "theta": 0.2,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 9
+    },
+    {
+      "theta": 0.35,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 5
+    },
+    {
+      "theta": 0.35,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 6
+    },
+    {
+      "theta": 0.35,
+      "theta_hat": 0.9931750509843367,
+      "r2": 0.9999999999999759,
+      "split": "out",
+      "seed": 7
+    },
+    {
+      "theta": 0.35,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 8
+    },
+    {
+      "theta": 0.35,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 9
+    },
+    {
+      "theta": 0.97,
+      "theta_hat": 2.3099227984587767,
+      "r2": 0.9999999999999986,
+      "split": "out",
+      "seed": 5
+    },
+    {
+      "theta": 0.97,
+      "theta_hat": 3.192419650618489,
+      "r2": 0.6728938474722304,
+      "split": "out",
+      "seed": 6
+    },
+    {
+      "theta": 0.97,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 7
+    },
+    {
+      "theta": 0.97,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 8
+    },
+    {
+      "theta": 0.97,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 9
     }
   ],
   "summary": {
-    "n_total": 35,
+    "n_total": 50,
     "n_gated_in": 5,
-    "fit_quality_dropped_rate": 0.7428571428571429,
+    "n_gated_out": 6,
+    "fit_quality_dropped_rate": 0.78,
+    "e2_adjudicable": true,
     "slope_beta_in": [
-      16.348855645564473,
-      -0.07467670412206441,
-      53.06770444042047
+      16.348855645564456,
+      -0.07467670412206434,
+      53.06770444042048
     ],
     "PRE_in": [
       1.1024110088089103,
       0.09454015061160315,
       3.0180519939919574
     ],
-    "elapsed_seconds": 2750.5996837615967
+    "elapsed_seconds": 1061.095743894577
   }
 }

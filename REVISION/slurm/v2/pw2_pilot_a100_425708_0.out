@@ -1,0 +1,15 @@
+model=ltx host=crimv3mgpu018 NVIDIA A100 80GB PCIe, 81920 MiB
+[ltx] run=pilot shard 0/1: 12 clips in shard, 0 already done, 12 to do
+[ltx] loaded in 324s
+[ltx] 1/12 bouncing_ball θ=0.6 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 20s
+[ltx] 2/12 bouncing_ball θ=0.6 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 4s
+[ltx] 3/12 bouncing_ball θ=0.9 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 4s
+[ltx] 4/12 bouncing_ball θ=0.9 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 4s
+[ltx] 5/12 inclined_slide θ=0.1 s=0 z=1000: θ̂=2.4953021064356826 R²=0.989 valid/confirmed 4s
+[ltx] 6/12 inclined_slide θ=0.1 s=1 z=1000: θ̂=1.684817134678624 R²=0.999 valid/confirmed 4s
+[ltx] 7/12 inclined_slide θ=0.4 s=0 z=1000: θ̂=2.0737598158693182 R²=0.976 invalid_shape/None 4s
+[ltx] 8/12 inclined_slide θ=0.4 s=1 z=1000: θ̂=1.6866798857396816 R²=0.999 valid/confirmed 4s
+[ltx] 9/12 projectile θ=5 s=0 z=1000: θ̂=13.569577694848846 R²=0.687 invalid_fit/None 4s
+[ltx] 10/12 projectile θ=5 s=1 z=1000: θ̂=12.168269890263648 R²=0.718 invalid_fit/None 4s
+[ltx] 11/12 projectile θ=15 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 4s
+[ltx] 12/12 projectile θ=15 s=1 z=1000: θ̂=13.983993982632684 R²=0.696 invalid_fit/None 4s

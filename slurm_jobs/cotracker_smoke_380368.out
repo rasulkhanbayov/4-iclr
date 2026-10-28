@@ -1,0 +1,12 @@
+PhysWeep tracker smoke test (render -> track -> fit, ground truth path)
+g_true=  1.60  g_hat=  1.600  rel_err=0.0001  R2=0.9998  max_track_px_err=0.06
+g_true=  5.00  g_hat=  4.999  rel_err=0.0001  R2=1.0000  max_track_px_err=0.09
+g_true=  9.80  g_hat=  9.814  rel_err=0.0014  R2=1.0000  max_track_px_err=0.09
+g_true= 15.00  g_hat= 15.007  rel_err=0.0005  R2=1.0000  max_track_px_err=0.10
+g_true= 25.00  g_hat= 24.993  rel_err=0.0003  R2=1.0000  max_track_px_err=0.07
+PASS: tracker + unit conversion + fitter recover g correctly, all signs consistent.
+
+PhysWeep CoTracker3 smoke test (render -> cotracker_track -> fit, ground truth path)
+Downloading: "https://github.com/facebookresearch/co-tracker/zipball/main" to /export/home/rakh90100/.cache/torch/hub/main.zip
+Downloading: "https://huggingface.co/facebook/cotracker3/resolve/main/scaled_online.pth" to /export/home/rakh90100/.cache/torch/hub/checkpoints/scaled_online.pth
+CoTracker3 smoke test skipped/failed (Online mode: video chunk must be <= window size.) -- expected on a machine without GPU/torch/network access; run this file on Panther to actually validate the E5(a) tracker before use.

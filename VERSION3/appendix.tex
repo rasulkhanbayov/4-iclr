@@ -1,0 +1,542 @@
+% WACV 2027 -- PhysWeep supplementary material.
+% Standalone document: compiles on its own into a separate PDF. Shares
+% preamble.tex with main.tex so notation matches exactly.
+%
+% Section numbering here is S1, S2, ... because main.tex refers to
+% "Sec. S1/S2/S3" by name (the two documents cannot share \label/\ref).
+% If you renumber or reorder anything here, update those pointers in main.tex.
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+% \usepackage[review,algorithms]{wacv}
+% \usepackage[review,applications]{wacv}
+\usepackage[review,datasets]{wacv}
+% \usepackage{wacv}
+
+\input{preamble}
+
+\definecolor{wacvblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=wacvblue]{hyperref}
+
+\def\wacvPaperID{2935} % must match main.tex
+\def\confName{WACV}
+\def\confYear{2027}
+
+% Must match main.tex.
+\title{\textbf{\textsc{PhysWeep}: Does a Video Generator Realize\\[2pt]
+the Physics You Ask For?}}
+\author{Anonymous Authors\\ Under double-blind review at WACV 2027}
+
+\renewcommand{\thesection}{S\arabic{section}}
+
+\begin{document}
+\maketitlesupplementary
+
+% ---------------------------------------------------------------------------
+\section{Measurement pipeline and failure-form estimation}
+\label{app:pipeline}
+% ---------------------------------------------------------------------------
+
+Algorithm~\ref{alg:pipeline} gives the full measurement loop referenced from
+the main paper's Suite, Pipeline, and Protocol section.
+
+\begin{algorithm}[H]
+\caption{\textsc{PhysWeep} measurement, one system and one model}
+\label{alg:pipeline}
+\begin{algorithmic}[1]
+\Require frozen generator $G$; sweep grid $\{\theta_i\}$; seeds $\{z_j\}$;
+         law $f$; tracker $T$; fit-quality gate $\rho$; VLM rater $P$
+\For{each $\theta_i$ and seed $z_j$}
+  \State $c_{ij}\gets \textsc{Render}(s_0(z_j),\theta_i)$
+  \State $v_{ij}\gets G(c_{ij})$ \Comment{inference only, weights frozen}
+  \State $o_{ij}\gets T(v_{ij})$ \Comment{blob centroid or CoTracker3}
+  \State $(\thetah_{ij}, R^2_{ij})\gets \textsc{Fit}(f, o_{ij})$
+  \If{$R^2_{ij}<\rho$}
+    \State mark $v_{ij}$ \textbf{non-physical}; exclude from \PRE
+  \EndIf
+  \State $p_{ij}\gets P(v_{ij})$ \Comment{plausibility contrast}
+\EndFor
+\State compute \PRE, slope $\beta$, Spearman $\rho_s$, \EG, \PRI, \CBI
+\State bootstrap $95\%$ CIs over $(\theta_i,\text{seed})$ pairs
+\State \Return metrics, gate-dropped rate, plausibility pairs
+\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Prior reversion (shrinkage, \PRI).}
+Given pairs $(\theta_i,\thetah_{ij})$, fit
+$\thetah=\alpha\theta+(1-\alpha)\theta_0$ by least squares with $\theta_0$
+either fixed to the physically typical value or estimated jointly;
+$\PRI=1-\hat\alpha$, clipped to $[0,1]$.
+
+\paragraph{Case clamping (\CBI).}
+Fit $\thetah=\min(\theta,\theta_{\text{edge}})$ with $\theta_{\text{edge}}$
+at the in-range boundary or estimated;
+$\CBI=1-\mathrm{RSS}_{\text{clamp}}/\mathrm{RSS}_{\text{null}}$.
+
+\paragraph{Selection.}
+Compare prior reversion and case clamping by leave-one-$\theta$-out $R^2$ and by $\Delta$AIC. A
+hypothesis is selected only if its held-out $R^2$ is positive; if both fail
+that test the pair is reported as \emph{neither} and the observed behavior is
+described without forcing a label. This is what happens on all eight
+adjudicated pairs in the main paper, for the reason given there. All
+confidence intervals use the paired bootstrap over $(\theta_i,\text{seed})$.
+
+\paragraph{When \CBI\ is not identifiable.}
+The released smoke test records a limitation of \CBI\ as defined. If an
+out-of-range grid lies entirely on one side of the in-range band, the clamp
+prediction $\min(\theta,\theta_{\text{edge}})$ is constant across
+$S_\text{out}$ and is therefore indistinguishable from the null mean model,
+so $\CBI\approx0$ and clamping cannot be adjudicated at any sample size.
+Pendulum damping is the axis where this specific degeneracy applies: its
+out-of-range grid $\{0.3,0.6,0.9\}$ lies entirely above the in-range grid;
+no result in the main paper depends on this, because every pendulum row is
+gate-dropped at $96.7$--$100\%$ and carries no adjudication. A two-sided
+damping grid would be needed to test clamping on that axis.
+Separately, \texttt{select\_mechanism}'s default edge
+($\theta_{\text{edge}}=\min(S_\text{out})$) is a crude choice even on our
+two-sided axes: on data whose recovered values are seed-clustered rather
+than clamped, this default can still fit only slightly worse than the null
+mean and clip to $\CBI\approx0$ rather than surface the (often more
+negative) fit quality a properly chosen edge would show. This does not
+change any adjudication in the main paper, since clamping is rejected on
+every pair either way (its held-out $R^2$ is non-positive throughout, on
+all eight adjudicated pairs in the main paper's mechanism-adjudication
+table), but it means a near-zero \CBI\ on our data should be read as
+``clamping does not fit,'' not as evidence the edge choice was
+well-identified.
+
+% ---------------------------------------------------------------------------
+\section{Consistency of the recovery estimator: full statement and proof}
+\label{app:proof}
+% ---------------------------------------------------------------------------
+We restate the main paper's consistency proposition with explicit regularity
+conditions and give the argument in full. The claim concerns only the
+estimator $R$, not the generator $G$.
+
+\paragraph{Setup.}
+Fix a system with law $f$ and scalar parameter $\theta\in\Theta$, with
+$\Theta$ a compact interval. A clip of $T$ frames at a given resolution
+yields a tracked observable $o\in\mathbb{R}^{d}$ (object centers, angles, or
+contact times). Write the population fitting statistic as
+$\mathcal{T}(\theta)\in\mathbb{R}^{k}$: for the projectile, the quadratic
+coefficient of height against time; for the pendulum, the mean zero-crossing
+interval; for the bouncing ball, the successive height ratio. The estimator
+forms an empirical statistic $\hat{\mathcal{T}}$ from $o$ and returns
+$\thetah=g(\hat{\mathcal{T}})$, where $g=\mathcal{T}^{-1}$ on the range of
+$\mathcal{T}$.
+
+\paragraph{Assumptions.}
+\textbf{(Trackability)} the tracker returns
+$\hat o = o^\star + \varepsilon$ with $\mathbb{E}[\varepsilon]=0$ and
+$\operatorname{Var}(\varepsilon)=\sigma^2\Sigma$ for a fixed positive-definite
+$\Sigma$, and $\sigma^2\to 0$ as $T$ and the resolution grow.
+\textbf{(Identifiability)} $\mathcal{T}:\Theta\to\mathcal{T}(\Theta)$ is
+injective and continuously differentiable with
+$\|\mathcal{T}'(\theta)\|\ge c>0$ on $\Theta$.
+\textbf{(Regularity)} the empirical statistic is a continuous functional
+$\hat{\mathcal{T}}=\Phi(\hat o)$ with $\Phi$ continuous at $o^\star$ and
+$\Phi(o^\star)=\mathcal{T}(\theta)$.
+
+\begin{propositionstar}[Consistency of $R$, restating the main paper]
+\label{prop:consistency-restated}
+Under trackability, identifiability, and regularity,
+$\thetah=g(\Phi(\hat o)) \xrightarrow{p} \theta$ as $\sigma^2\to 0$.
+\end{propositionstar}
+
+\begin{proof}
+By identifiability, $\mathcal{T}$ is a continuous injection on the compact set $\Theta$,
+so its inverse $g=\mathcal{T}^{-1}$ is continuous on $\mathcal{T}(\Theta)$: a
+continuous bijection from a compact space to a Hausdorff space is a
+homeomorphism. By trackability, $\operatorname{Var}(\hat o)=\sigma^2\Sigma\to 0$ with
+mean $o^\star$, so $\hat o\to o^\star$ in mean square and hence in
+probability. By regularity, $\Phi$ is continuous at $o^\star$, so the continuous
+mapping theorem gives
+$\hat{\mathcal{T}}=\Phi(\hat o)\xrightarrow{p}\Phi(o^\star)=\mathcal{T}(\theta)$.
+Applying the continuous mapping theorem again with the continuous $g$ yields
+$\thetah=g(\hat{\mathcal{T}})\xrightarrow{p} g(\mathcal{T}(\theta))=\theta$.
+\end{proof}
+
+\paragraph{Per-system check of identifiability and regularity.}
+\emph{Projectile.} $\mathcal{T}(\theta)=-\theta/2$ is linear, hence injective
+with $\mathcal{T}'=-1/2$, and $\Phi$ is ordinary least squares on a quadratic
+basis, continuous in the data.
+
+\emph{Pendulum, and a bias this exposes.} For the undamped case $\zeta=0$,
+$\mathcal{T}(\omega)=2\pi/\omega$ on $\omega>0$ is strictly monotone with
+nonvanishing derivative on any $\Theta$ bounded away from $0$, and
+zero-crossing interpolation is continuous where crossings are simple. Our
+pendulum is damped ($\zeta>0$ throughout,
+Section~\ref{app:systems}), so the statistic realized by zero-crossing
+spacing is $\mathcal{T}(\omega,\zeta)=2\pi/(\omega\sqrt{1-\zeta^2})$, the
+\emph{damped} frequency $\omega_d$, not the natural frequency $\omega$. The
+map remains injective in $\omega$ for fixed $\zeta$, so
+Proposition~\ref{prop:consistency-restated} still guarantees consistent
+recovery of $\omega_d$; the reported $\hat\omega$ is therefore a slightly
+biased estimate of $\omega$ whenever $\zeta>0$. Verified numerically, the
+bias is $<1.3\%$ at the in-range $\zeta$ grid $\{0.02,0.05,0.1\}$, grows with
+$\zeta$, and is materially larger at the out-of-range grid
+$\{0.3,0.6,0.9\}$. We did not correct for it post hoc, since doing so would
+change every already-reported $\hat\omega$; we state it so the recovery is
+not mistaken for exact, and note it compounds with the heavily-damped,
+few-peaks low-fidelity regime for this axis. In practice this caveat has
+little effect on the reported results, because every pendulum row in the main
+paper is gate-dropped at $96.7$--$100\%$ and carries no slope estimate.
+
+\emph{Bouncing ball.} The map $e\mapsto e^2$ from restitution to successive
+height ratio is injective and smooth on $(0,1]$.
+
+The fit-quality gate ($R^2<\rho$) excludes generations on which $\Phi$ is
+ill-posed, for example when the object morphs or vanishes, so regularity
+is enforced operationally rather than assumed.
+
+% ---------------------------------------------------------------------------
+\section{Seed-conditional defaults: full statement and proof}
+\label{app:seed}
+
+This section proves the main paper's Proposition on misspecification and
+records the estimator for the Seed Determination Index.
+
+\textbf{Model.} The sweep is a \emph{crossed} design: every grid value
+$\theta_i$ is run with every seed $z_j$, so the seed is independent of
+$\theta$ by construction. Under a seed-conditional default,
+$\thetah_{ij}=c(z_j)+\varepsilon_{ij}$ with $\mathbb{E}[\varepsilon]=0$,
+$\operatorname{Var}(\varepsilon)=\sigma_\varepsilon^2$,
+$\varepsilon\perp(\theta,z)$, and
+$\sigma_c^2=\operatorname{Var}_z[c(z)]>0$. The crossing assumption is load
+bearing and we flag it for anyone reusing the protocol. If seeds were
+confounded with grid position, so that $c$ varied systematically with
+$\theta$, statement (i) fails and the failure is not subtle: in simulation a
+generator whose output is entirely seed-determined, with no response to
+$\theta$ whatsoever, returns $\hat\alpha=1.006$ and $\PRI=-0.006$ under a
+confounded design, which reads as \emph{perfect faithfulness}. Crossing seeds
+with grid values is therefore a correctness requirement of the measurement,
+not a convenience.
+
+\begin{propositionstar}[Restating Proposition~1 of the main paper]
+Under this model: (i) the pooled OLS fit of $\thetah=\alpha\theta+b$
+satisfies $\hat\alpha\xrightarrow{p}0$, so $\PRI\to1$; (ii)
+$\hat b\xrightarrow{p}\mathbb{E}_z[c(z)]$ and the implied
+$\hat\theta_0=\hat b/(1-\hat\alpha)\xrightarrow{p}\mathbb{E}_z[c(z)]$; (iii)
+any measurable $h(\theta)$ has population $R^2=0$ for predicting $\thetah$,
+its leave-one-$\theta$-out estimate satisfies
+$R^2_{\mathrm{LOO}}\xrightarrow{p}0$, and for any fixed $\tau>0$ a rule
+accepting only $R^2_{\mathrm{LOO}}>\tau$ returns \emph{neither} with
+probability tending to one. None of (i)--(iii) uses $\sigma_c^2>0$, so all
+three hold verbatim when $\sigma_c^2=0$ and $\sigma_\varepsilon^2$ is large.
+\end{propositionstar}
+
+\begin{proof}
+(i) $\operatorname{Cov}(\theta,\thetah)=\operatorname{Cov}(\theta,c(z))
++\operatorname{Cov}(\theta,\varepsilon)=0$: the first term vanishes because
+the crossed design makes $z$ independent of $\theta$, the second because
+$\varepsilon\perp\theta$. The OLS slope is
+$\widehat{\operatorname{Cov}}(\theta,\thetah)/\widehat{\operatorname{Var}}(\theta)$,
+which converges in probability to $0/\operatorname{Var}(\theta)=0$ by the
+weak law, with $\operatorname{Var}(\theta)>0$ since the grid is
+non-degenerate. Hence $\PRI=1-\hat\alpha\to1$.
+
+(ii) $\hat b=\overline{\thetah}-\hat\alpha\bar\theta\xrightarrow{p}
+\mathbb{E}[\thetah]=\mathbb{E}_z[c(z)]$, and dividing by $1-\hat\alpha\to1$
+gives the same limit. This limit is a population average: when $c$ takes two
+well-separated values it need not lie near either, so the fitted ``default''
+describes no individual generation.
+
+(iii) For any measurable $h$,
+$\mathbb{E}[(\thetah-h(\theta))^2]
+=\operatorname{Var}(\thetah)
++\mathbb{E}[(\mathbb{E}[\thetah]-h(\theta))^2]$,
+the cross term vanishing by $\thetah\perp\theta$. This is minimized at
+$h\equiv\mathbb{E}[\thetah]$ with value $\operatorname{Var}(\thetah)$, so the
+population $R^2$ is $0$. The leave-one-$\theta$-out numerator and denominator
+are averages of i.i.d.\ terms converging in probability to
+$\operatorname{Var}(\thetah)>0$, so their ratio converges to $1$ and
+$R^2_{\mathrm{LOO}}\xrightarrow{p}0$ by the continuous mapping theorem.
+Consequently $\Pr[R^2_{\mathrm{LOO}}>\tau]\to0$ for any fixed $\tau>0$, which
+is the claim. Finally, no step above invokes $\sigma_c^2>0$; the argument
+uses only $\thetah\perp\theta$, which also holds when $c$ is constant and the
+variance is carried entirely by $\varepsilon$.
+\end{proof}
+
+\begin{remark}[What is deliberately not claimed]
+We do \emph{not} claim $\mathbb{E}[R^2_{\mathrm{LOO}}]<0$. Simulation under
+this model gives a mean of $-0.024$ at a $5\times5$ design shrinking to
+$-0.001$ at $20\times20$, so the expectation does appear non-positive and to
+vanish with sample size, but $R^2_{\mathrm{LOO}}$ is a ratio of dependent
+random variables and we have not discharged the argument rigorously. Nothing
+in the paper depends on it: convergence in probability to $0$, together with
+the fixed margin, is what statement (iii) and the released selection rule
+actually use. We record it here as an observation rather than a result.
+\end{remark}
+
+\begin{remark}[Why a margin is required in the selection rule]
+Because $R^2_{\text{LOO}}$ is centred on zero under this model, its
+\emph{sign} is noise. An acceptance test of the form $R^2_{\text{LOO}}>0$
+therefore labels unstructured data as prior reversion with probability
+approaching $1/2$. The released \texttt{select\_mechanism} requires
+$R^2_{\text{LOO}}>0.1$; the smoke test contains a synthetic sample on which
+the bare sign test returns \texttt{prior\_reversion} ($R^2_{\text{LOO}}=0.035$)
+while the margin rule correctly returns \texttt{neither}, and asserts both, so
+the margin cannot be removed silently.
+\end{remark}
+
+\paragraph{Estimating \texorpdfstring{$\mathrm{SDI}$}{SDI}.}
+With $k$ seeds, $N$ gated clips and mean group size $n_0=N/k$, let
+$\mathrm{MS}_b$ and $\mathrm{MS}_w$ be the between- and within-seed mean
+squares of $\thetah$. We report the one-way random-effects estimate
+\begin{equation*}
+\mathrm{SDI}=\frac{\mathrm{MS}_b-\mathrm{MS}_w}
+                  {\mathrm{MS}_b+(n_0-1)\,\mathrm{MS}_w},
+\end{equation*}
+clipped to $[0,1]$, which is consistent for
+$\sigma_c^2/(\sigma_c^2+\sigma_\varepsilon^2)$. The uncorrected variance
+share is strongly upward-biased at this design size, returning about $0.18$
+in simulation where the truth is $0$, which is precisely the regime in which
+a false positive would be most damaging; the corrected estimate returns
+about $0.07$ there. $\mathrm{FDI}$ is the analogous share for the grid factor.
+Both return \texttt{NaN}, never a number, when fewer than two seeds are
+present, when $\thetah$ is constant, or when there is no within-seed
+replication.
+
+\section{System grids, seed counts, and rendering}
+\label{app:systems}
+% ---------------------------------------------------------------------------
+All scenes are rendered by a seeded deterministic 2D engine at
+$256\times256$ over $T{=}24$ frames at $24$\,fps, with a single high-contrast
+disk (radius $8$\,px) on a plain background and a fixed ground line. Only the
+swept parameter and the seeded initial condition vary within a system.
+Spatial and temporal scales are held fixed within a clip and all metrics use
+the ratio $\thetah/\theta$, so the result is invariant to a common
+rescaling. The in-range split is centered on values common in natural video;
+the out-of-range split probes rare or absent values. These are the grids
+fixed in the released config and used for every reported result.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.05}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{System} & \textbf{$\theta$} & \textbf{In-range grid} & \textbf{Out-of-range grid} \\
+\midrule
+Projectile      & $g$        & $\{5,7,9.8,12,15\}$         & $\{1.6,\,3,\,20,\,25\}$ \\
+Damped pendulum & $\omega$   & $\{2,3,4,5\}$ rad/s         & $\{0.5,\,1,\,8,\,12\}$ \\
+                & $\zeta$    & $\{0.02,0.05,0.1\}$         & $\{0.3,\,0.6,\,0.9\}$ \\
+Bouncing ball   & $e$        & $\{0.6,0.7,0.8,0.9\}$       & $\{0.2,\,0.35,\,0.97\}$ \\
+Spring--mass    & $k$        & $\{20,40,60,80\}$ N/m       & $\{5,\,10,\,200,\,400\}$ \\
+Inclined slide  & $\mu$      & $\{0.1,0.2,0.3,0.4\}$       & $\{0.01,\,0.7,\,1.0\}$ \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{Sweep grids per system. Each row has one swept axis;
+$m\ge5$ seeded initial conditions per grid point.}
+\label{tab:grids}
+\end{center}
+
+\paragraph{Seed counts.}
+The main paper refers to this section for the exact seed counts behind each
+reported cell, including the targeted follow-up batch run on the two
+model-axis pairs closest to \texttt{select\_mechanism}'s four-point
+leave-one-out threshold.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.05}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Model} & \textbf{Axis} & \textbf{seeds/pt (in/out)} & \textbf{clips gen.} & \textbf{clips gated} \\
+\midrule
+LTX-Video & projectile & $5/10$ & $55$ & $12$ \\
+LTX-Video & pendulum $\omega$ & $5/55$ & $130$ & $1$ \\
+LTX-Video & pendulum $\zeta$ & $5/15$ & $60$ & $0$ \\
+LTX-Video & bouncing ball & $5/15$ & $65$ & $5$ \\
+LTX-Video & spring-mass & $5/15$ & $80$ & $0$ \\
+LTX-Video & inclined slide & $5/5$ & $35$ & $11$ \\
+\addlinespace[2pt]
+CogVideoX & projectile & $5/5$ & $40$ & $32$ \\
+CogVideoX & pendulum $\omega$ & $5/13$ & $46$ & $0$ \\
+CogVideoX & pendulum $\zeta$ & $5/13$ & $54$ & $0$ \\
+CogVideoX & bouncing ball & $5/33$ & $119$ & $10$ \\
+CogVideoX & spring-mass & $5/13$ & $72$ & $0$ \\
+CogVideoX & inclined slide & $5/13$ & $59$ & $0$ \\
+\addlinespace[2pt]
+DynamiCrafter & projectile & $5/10$ & $55$ & $33$ \\
+DynamiCrafter & pendulum $\omega$ & $5/5$ & $30$ & $0$ \\
+DynamiCrafter & pendulum $\zeta$ & $5/5$ & $30$ & $1$ \\
+DynamiCrafter & bouncing ball & $5/10$ & $50$ & $11$ \\
+DynamiCrafter & spring-mass & $5/5$ & $40$ & $0$ \\
+DynamiCrafter & inclined slide & $5/10$ & $50$ & $36$ \\
+\bottomrule
+\end{tabular}}
+\captionof{table}{Seed counts and clip yields per model-axis pair. ``seeds/pt
+(in/out)'' is the number of seeds run at each in-range and out-of-range grid
+value respectively; most pairs use the base $5$ seeds on both splits, but
+pairs close to \texttt{select\_mechanism}'s four-gated-point leave-one-out
+threshold received a larger targeted follow-up batch on the out-of-range
+split only (LTX-Video/pendulum-$\omega$: extended to $55$ seeds/point,
+i.e.\ $110$ out-of-range attempts across its two out-of-range grid values,
+still yielding only $1$ gated clip; CogVideoX/bouncing-ball: extended to
+$33$ seeds/point). No in-range seed count was extended beyond the base
+$5$, since the out-of-range split is what \texttt{select\_mechanism}'s
+adjudication gate requires.}
+\end{center}
+
+\paragraph{Models, prompts, and compute.}
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Model} & \textbf{Repository} & \textbf{Licence} & \textbf{Loaded via} \\
+\midrule
+LTX-Video & \texttt{Lightricks/LTX-Video} & LTX-Video Open Weights (custom) & \texttt{diffusers==0.39.0} \\
+CogVideoX-5B-I2V & \texttt{zai-org/CogVideoX-5b-I2V} & CogVideoX custom licence\textsuperscript{a} & \texttt{diffusers==0.39.0} \\
+DynamiCrafter\textsubscript{512} & \texttt{Doubiiu/DynamiCrafter\_512} & weights: research/non-commercial\textsuperscript{b} & standalone repo, subprocess \\
+Qwen2.5-VL-7B-Instruct & \texttt{Qwen/Qwen2.5-VL-7B-Instruct} & Apache 2.0 & \texttt{transformers==4.57.6} \\
+CoTracker3 & \texttt{facebookresearch/co-tracker} & CC-BY-NC 4.0\textsuperscript{c} & \texttt{torch.hub.load} \\
+\bottomrule
+\end{tabular}}
+\caption{Every model used, all frozen and inference-only, loaded with no
+explicit commit/revision pin -- each resolved to that repository's
+default-branch head at run time, a gap against bit-for-bit
+reproducibility we disclose rather than paper over.
+\textsuperscript{a}Free for academic/research use; commercial use needs
+separate registration. \textsuperscript{b}Weights are
+research/non-commercial; the companion code repo is separately
+Apache-2.0 (inference here uses the weights). \textsuperscript{c}Non-commercial;
+some unused sub-components carry MIT or Apache 2.0 instead.}
+\end{table*}
+
+\paragraph{Plausibility prompt (verbatim, identical for all $630$ ratings).}
+\begin{quote}\small
+``You are watching a short video clip of a physics simulation (a ball or
+similar object moving under some physical process such as falling,
+swinging, bouncing, or sliding). Rate how PHYSICALLY PLAUSIBLE the motion
+looks, on a scale from 1 to 5, where 1 means the motion looks clearly
+unnatural, broken, or impossible (e.g. teleporting, morphing, floating
+with no cause), and 5 means the motion looks completely natural and
+physically believable, like something you could film in the real world.
+Respond with ONLY a single digit from 1 to 5, nothing else.''
+\end{quote}
+
+\paragraph{Prompt-phrasing ablation templates.} Both variants are
+per-system, per-$\theta$ templates (not a single fixed string), evaluated
+against the same default template used for every other result. The
+\emph{terse} variant states only the parameter name and numeric value with
+no qualitative anchor phrase, e.g. for projectile: ``a dark ball,
+acceleration \{$\theta$:.2f\} meters per second squared''. The
+\emph{verbose} variant appends redundant physical-accuracy framing to the
+default prompt: ``\{default prompt\}, precise physically accurate
+simulation, exact numerical value, photorealistic rendering, laboratory
+measurement setup''.
+
+\paragraph{Classifier-free guidance values swept.} $1.0$, $1.5$, $4.5$,
+$9.0$, on the projectile system, for LTX-Video and CogVideoX; skipped for
+DynamiCrafter, whose guidance scale is hardcoded inside its own inference
+subprocess call and not exposed as a pass-through parameter.
+
+\paragraph{Compute.} All generation and analysis ran on NVIDIA A100-SXM4
+GPUs (40\,GB) on a shared cluster, inference-only throughout (no training
+or fine-tuning at any point). Peak VRAM at load: LTX-Video $14.25$\,GB
+(fits a 24\,GB consumer card); CogVideoX-5B-I2V $25.3$\,GB with VAE tiling
+enabled (does not). Approximate wall-clock generation time per clip:
+LTX-Video $\sim\!2$--$6$\,s; CogVideoX $\sim\!2.3$--$5.9$\,min, varying
+with clip length across systems; DynamiCrafter $\sim\!70$--$85$\,s (a
+fresh subprocess per clip, so this is dominated by per-call checkpoint
+load, not sampling time alone).
+
+\textbf{Total wall-clock GPU-hours: $\sim\!57$ (estimated, not a full
+audit).} $54.4$\,h is a direct sum over the $69$ of $\sim\!134$ result
+files that log their own \texttt{elapsed\_seconds} per run, covering the
+large majority of clips generated across the project. The remaining
+$\sim\!95$ clips (the CogVideoX and DynamiCrafter projectile pilots,
+which predate this project's practice of logging per-job timing) are
+estimated at $\sim\!2.6$\,h by applying each model's own measured
+mean seconds-per-clip (from the $69$ logged files: LTX $3.96$\,s/clip,
+CogVideoX $122.45$\,s/clip, DynamiCrafter $79.19$\,s/clip) to the
+un-logged clip counts. The VLM plausibility-scoring pass ($630$ clips
+scored in one job) is estimated separately at $\sim\!0.3$\,h from that
+job's own log-file timestamps (start to last output write, since it did
+not log \texttt{elapsed\_seconds} either). This total does not include
+retry/gap-fill overhead from failed job attempts (several jobs across the
+project failed on environment or timeout bugs before a working
+configuration was found, and were re-run) -- those wasted GPU-hours are
+not reconstructable from the final result files, which only reflect the
+successful run.
+
+% ---------------------------------------------------------------------------
+\section{Reproducibility checklist}
+\label{app:checklist}
+% ---------------------------------------------------------------------------
+WACV's author guide points to the Reproducibility Checklist as a guide rather
+than a mandated form, and encourages voluntary code submission. We record the
+substantive items here.
+
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt,topsep=2pt]
+\item \textbf{Code.} Metrics, bootstrap CIs, mechanism selection, and the
+synthetic smoke test (\texttt{physweep\_metrics.py}), the system
+generators (\texttt{physweep/render.py}), the tracker
+(\texttt{physweep/track.py}, both blob-centroid and the CoTracker3
+wrapper), and every experiment driver script (\texttt{experiments/*.py},
+one per experiment plus the consolidated plausibility-and-robustness
+harness) exist in the project repository, are anonymizable, and will be
+released in full upon acceptance.
+\item \textbf{Data.} Fully procedural, no external assets, no human
+annotation, seeded and deterministic.
+\item \textbf{Models.} All public, all frozen, inference only. No training or
+fine-tuning was performed at any point.
+\item \textbf{Randomness.} Every generation is keyed to an explicit integer
+seed; $m\ge5$ seeds per grid point; seeds are recorded per clip.
+\item \textbf{Statistics.} All intervals are $95\%$ paired bootstraps over
+$(\theta_i,\text{seed})$; effect sizes are reported alongside $p$-values;
+multiplicity across the six paired-bootstrap extrapolation tests is handled
+by a Holm correction.
+\item \textbf{Raw outputs.} Per-clip records (model, system, seed, $\theta$,
+$\thetah$, fit $R^2$, in/out-of-range split, and, for the plausibility
+pass, the VLM score) exist as JSON files in the project's \texttt{results/}
+directory, one file per model-system pair plus the plausibility-scored
+variants -- every number in this paper and its supplementary tables was
+recomputed directly from these files during finalization, not carried
+forward from memory. These files will be released in full upon
+acceptance, consolidated into a single per-clip CSV.
+\end{itemize}
+
+% ---------------------------------------------------------------------------
+\section{Extended related work}
+\label{app:related}
+% ---------------------------------------------------------------------------
+This section extends the main paper's Related Work with material not
+central enough to the paper's own contribution to justify main-text space,
+but relevant to situating it.
+
+\paragraph{Mechanism and memorization.} \citet{kang2025howfar} find
+in-distribution success with out-of-distribution case-based behavior
+(the source of the case-clamping hypothesis we test), and the
+memorization literature links such collapse to overestimated training
+modes amplified by classifier-free guidance \citep{diffmemorize2025}; we
+turn these into a testable dichotomy (the main paper's Problem section)
+and a guidance-scale ablation (the main paper's Results section).
+
+\paragraph{Adjacent but distinct measurement approaches.}
+Property-readout work recovers physical quantities from \emph{input}
+videos via internal features \citep{inferring2025dynamic} or probes
+diffusion states \citep{invisiblehand2026}, characterizing the
+\emph{encoder} where we measure generation without weights or
+activations. VLMs are separately used to plan plausible generation
+\citep{vlipp2025} and judge implausibility \citep{travl2025}, and recent
+analyses question whether they reason about physical transformations at
+all \citep{vlmcannotreason2026} -- consistent with our own finding (the
+main paper's Results section) that a VLM plausibility rater does not
+track physical coherence on our stimuli. Classic benchmarks
+\citep{bear2021physion,bakhtin2019phyre} evaluate prediction or planning
+rather than generation, and quality metrics
+\citep{unterthiner2018fvd,huang2024vbench} are orthogonal to all of the
+above: they score visual fidelity, not parameter faithfulness.
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+\end{document}

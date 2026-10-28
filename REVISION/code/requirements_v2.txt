@@ -1,0 +1,21 @@
+# PhysWeep v2, main environment (all models except Cosmos). Created 2026-10-15.
+# Same pins as v1 (requirements.txt; reasons documented there), plus ftfy for Wan.
+# Install torch/torchvision first, together, from the cu128 index:
+#   pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
+numpy==2.2.6
+scipy==1.15.3
+pyyaml==6.0.3
+opencv-python-headless==5.0.0.93
+pillow==12.3.0
+imageio==2.37.3
+imageio-ffmpeg==0.6.0
+av==17.1.0
+diffusers==0.39.0
+transformers==4.57.6      # NOT 5.x: breaks LTX-Video's T5 tokenizer (v1 finding)
+tiktoken
+accelerate==1.14.0
+safetensors==0.8.0
+sentencepiece==0.2.1
+huggingface_hub==0.36.2   # transformers 4.57.6 requires <1.0
+ftfy==6.3.1               # required by diffusers' Wan pipelines for prompt cleaning
+qwen-vl-utils[decord]==0.0.14

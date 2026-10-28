@@ -1,0 +1,23 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/experiments/e3_plausibility_gap.py", line 191, in <module>
+    main()
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/experiments/e3_plausibility_gap.py", line 179, in main
+    rater = QwenPlausibilityRater()
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/experiments/e3_plausibility_gap.py", line 68, in __init__
+    self.processor = AutoProcessor.from_pretrained(VLM_MODEL_ID)
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/site-packages/transformers/models/auto/processing_auto.py", line 396, in from_pretrained
+    return processor_class.from_pretrained(
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/site-packages/transformers/processing_utils.py", line 1394, in from_pretrained
+    args = cls._get_arguments_from_pretrained(pretrained_model_name_or_path, **kwargs)
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/site-packages/transformers/processing_utils.py", line 1453, in _get_arguments_from_pretrained
+    args.append(attribute_class.from_pretrained(pretrained_model_name_or_path, **kwargs))
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/site-packages/transformers/utils/import_utils.py", line 2157, in __getattribute__
+    requires_backends(cls, cls._backends)
+  File "/export/home/rakh90100/miniconda3/envs/physweep/lib/python3.10/site-packages/transformers/utils/import_utils.py", line 2143, in requires_backends
+    raise ImportError("".join(failed))
+ImportError: 
+AutoVideoProcessor requires the Torchvision library but it was not found in your environment. Check out the instructions on the
+installation page: https://pytorch.org/get-started/locally/ and follow the ones that match your environment.
+Please note that you may need to restart your runtime after installation.
+

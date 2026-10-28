@@ -1,0 +1,20 @@
+{
+  "inclined_slide": {
+    "n_total": 50,
+    "n_gated_in": 16,
+    "n_gated_out": 20,
+    "fit_quality_dropped_rate": 0.28,
+    "e2_adjudicable": true,
+    "slope_beta_in": [
+      0.5209126077203028,
+      -6.1853616093401085,
+      6.8499135444354255
+    ],
+    "PRE_in": [
+      1.7417704946019965,
+      1.2514949009457497,
+      2.346168585241422
+    ],
+    "elapsed_seconds": 1060.7302005290985
+  }
+}

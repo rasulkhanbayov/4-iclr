@@ -1,0 +1,357 @@
+\begin{thebibliography}{47}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agarwal et~al.(2025)Agarwal, Ali, Bala, Balaji, Barker, Cai,
+  et~al.]{agarwal2025cosmos}
+Niket Agarwal, Arslan Ali, Maciej Bala, Yogesh Balaji, Erik Barker, Tiffany
+  Cai, et~al.
+\newblock Cosmos world foundation model platform for physical ai, 2025.
+
+\bibitem[{Authors of arXiv:2504.02918}(2026)]{newtonianreal2026}
+{Authors of arXiv:2504.02918}.
+\newblock Evaluating newtonian mechanics in video generative models with real
+  physical systems, 2026.
+
+\bibitem[{Authors of arXiv:2601.15282}(2026)]{embodiedworld2026}
+{Authors of arXiv:2601.15282}.
+\newblock Rethinking video generation model for the embodied world, 2026.
+
+\bibitem[{Authors of arXiv:2607.16401}(2026)]{applepi2026}
+{Authors of arXiv:2607.16401}.
+\newblock Apple-$\pi$: Benchmarking thinking with video towards law-grounded
+  physical intelligence, 2026.
+
+\bibitem[{Authors of arXiv:2607.18924}(2026)]{phyparam2026}
+{Authors of arXiv:2607.18924}.
+\newblock Learning explicit physical parameter control and benchmarking for
+  video generation, 2026.
+
+\bibitem[Bai et~al.(2025)Bai, Chen, Liu, Wang, Ge, Song, Dang, Wang, Wang,
+  Tang, Zhong, Zhu, Yang, Li, Wan, Wang, Ding, Fu, Xu, Ye, Zhang, Xie, Cheng,
+  Zhang, Yang, Xu, and Lin]{qwen25vl}
+Shuai Bai, Keqin Chen, Xuejing Liu, Jialin Wang, Wenbin Ge, Sibo Song, Kai
+  Dang, Peng Wang, Shijie Wang, Jun Tang, Humen Zhong, Yuanzhi Zhu, Mingkun
+  Yang, Zhaohai Li, Jianqiang Wan, Pengfei Wang, Wei Ding, Zheren Fu, Yiheng
+  Xu, Jiabo Ye, Xi Zhang, Tianbao Xie, Zesen Cheng, Hang Zhang, Zhibo Yang,
+  Haiyang Xu, and Junyang Lin.
+\newblock Qwen2.5-vl technical report, 2025.
+
+\bibitem[Bakhtin et~al.(2019)Bakhtin, van~der Maaten, Johnson, Gustafson, and
+  Girshick]{bakhtin2019phyre}
+Anton Bakhtin, Laurens van~der Maaten, Justin Johnson, Laura Gustafson, and
+  Ross Girshick.
+\newblock Phyre: A new benchmark for physical reasoning.
+\newblock \emph{Advances in Neural Information Processing Systems}, 32, 2019.
+
+\bibitem[Bansal et~al.(2025)Bansal, Lin, Xie, Zong, Yarom, Bitton, Jiang, Sun,
+  Chang, and Grover]{bansal2024videophy}
+Hritik Bansal, Zongyu Lin, Tianyi Xie, Zeshun Zong, Michal Yarom, Yonatan
+  Bitton, Chenfanfu Jiang, Yizhou Sun, Kai-Wei Chang, and Aditya Grover.
+\newblock Videophy: Evaluating physical commonsense for video generation.
+\newblock In \emph{International Conference on Learning Representations}, pages
+  102075--102121, 2025.
+
+\bibitem[Bansal et~al.(2026)Bansal, Peng, Bitton, Goldenberg, Grover, and
+  Chang]{bansal2025videophy2}
+Hritik Bansal, Clark Peng, Yonatan Bitton, Roman Goldenberg, Aditya Grover, and
+  Kai-Wei Chang.
+\newblock Videophy-2: A challenging action-centric physical commonsense
+  evaluation in video generation.
+\newblock In \emph{International Conference on Learning Representations}, pages
+  118456--118470, 2026.
+
+\bibitem[Bear et~al.(2022)Bear, Wang, Mrowca, Binder, Tung, Pramod, Holdaway,
+  Tao, Smith, Sun, Fei-Fei, Kanwisher, Tenenbaum, Yamins, and
+  Fan]{bear2021physion}
+Daniel~M. Bear, Elias Wang, Damian Mrowca, Felix~J. Binder, Hsiao-Yu~Fish Tung,
+  R.~T. Pramod, Cameron Holdaway, Sirui Tao, Kevin Smith, Fan-Yun Sun, Li
+  Fei-Fei, Nancy Kanwisher, Joshua~B. Tenenbaum, Daniel L.~K. Yamins, and
+  Judith~E. Fan.
+\newblock Physion: Evaluating physical prediction from vision in humans and
+  machines, 2022.
+
+\bibitem[Blattmann et~al.(2023)Blattmann, Dockhorn, Kulal, Mendelevitch,
+  Kilian, Lorenz, Levi, English, Voleti, Letts, Jampani, and
+  Rombach]{blattmann2023svd}
+Andreas Blattmann, Tim Dockhorn, Sumith Kulal, Daniel Mendelevitch, Maciej
+  Kilian, Dominik Lorenz, Yam Levi, Zion English, Vikram Voleti, Adam Letts,
+  Varun Jampani, and Robin Rombach.
+\newblock Stable video diffusion: Scaling latent video diffusion models to
+  large datasets, 2023.
+
+\bibitem[Brooks et~al.(2024)Brooks, Peebles, Holmes, DePue, Guo, Jing, Schnurr,
+  Taylor, Luhman, Luhman, Ng, Wang, and Ramesh]{brooks2024sora}
+Tim Brooks, Bill Peebles, Connor Holmes, Will DePue, Yufei Guo, Li Jing, David
+  Schnurr, Joe Taylor, Troy Luhman, Eric Luhman, Clarence Ng, Ricky Wang, and
+  Aditya Ramesh.
+\newblock Video generation models as world simulators.
+\newblock OpenAI technical report, 2024.
+
+\bibitem[Esmati et~al.(2026)Esmati, Nath, Hofmann, Nowrouzezahrai, Kahou, and
+  Mirmehdi]{invisiblehand2026}
+Parsa Esmati, Somjit Nath, Katja Hofmann, Derek Nowrouzezahrai, Samira~Ebrahimi
+  Kahou, and Majid Mirmehdi.
+\newblock The invisible hand of physics: When video diffusion models know more
+  than they show.
+\newblock \emph{arXiv preprint arXiv:2606.05328}, 2026.
+
+\bibitem[Gillman et~al.(2025)Gillman, Herrmann, Freeman, Aggarwal, Luo, Sun,
+  and Sun]{gillman2025forceprompting}
+Nate Gillman, Charles Herrmann, Michael Freeman, Daksh Aggarwal, Evan Luo,
+  Deqing Sun, and Chen Sun.
+\newblock Force prompting: Video generation models can learn and generalize
+  physics-based control signals.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2025.
+
+\bibitem[Gu et~al.(2026)Gu, Liu, Zeng, Nagarajan, Zhu, Hong, Fan, Yan, Zhou,
+  Liu, et~al.]{phyworldbench2025}
+Jing Gu, Xian Liu, Yu Zeng, Ashwin Nagarajan, Fangrui Zhu, Daniel Hong, Yue
+  Fan, Qianqi Yan, Kaiwen Zhou, Ming-Yu Liu, et~al.
+\newblock $ phyworldbench $: A comprehensive evaluation of physical realism in
+  text-to-video models.
+\newblock In \emph{International Conference on Learning Representations}, pages
+  75130--75164, 2026.
+
+\bibitem[Guo et~al.(2025)Guo, Huo, Shi, Song, Zhang, and
+  Zhao]{t2vphysbench2025}
+Xuyang Guo, Jiayan Huo, Zhenmei Shi, Zhao Song, Jiahao Zhang, and Jiale Zhao.
+\newblock T2vphysbench: A first-principles benchmark for physical consistency
+  in text-to-video generation.
+\newblock \emph{arXiv preprint arXiv:2505.00337}, 2025.
+
+\bibitem[HaCohen et~al.(2024)HaCohen, Chiprut, Brazowski, Shalem, Moshe,
+  Richardson, Levin, Shiran, Zabari, Gordon, Panet, Weissbuch, Kulikov,
+  Bitterman, Melumian, and Bibi]{hacohen2024ltxvideo}
+Yoav HaCohen, Nisan Chiprut, Benny Brazowski, Daniel Shalem, Dudu Moshe, Eitan
+  Richardson, Eran Levin, Guy Shiran, Nir Zabari, Ori Gordon, Poriya Panet,
+  Sapir Weissbuch, Victor Kulikov, Yaki Bitterman, Zeev Melumian, and Ofir
+  Bibi.
+\newblock Ltx-video: Realtime video latent diffusion, 2024.
+
+\bibitem[Hu et~al.(2026)Hu, Zhang, Huang, Yi, Su, Weng, Xue, Ma, Yang, and
+  Tao]{evolution2026videogen}
+Teng Hu, Jiangning Zhang, Hongrui Huang, Ran Yi, Zihan Su, Jieyu Weng, Zhucun
+  Xue, Lizhuang Ma, Ming-Hsuan Yang, and Dacheng Tao.
+\newblock Evolution of video generative foundations.
+\newblock \emph{arXiv preprint arXiv:2604.06339}, 2026.
+
+\bibitem[Huang et~al.(2024)Huang, He, Yu, Zhang, Si, Jiang, Zhang, Wu, Jin,
+  Chanpaisit, et~al.]{huang2024vbench}
+Ziqi Huang, Yinan He, Jiashuo Yu, Fan Zhang, Chenyang Si, Yuming Jiang, Yuanhan
+  Zhang, Tianxing Wu, Qingyang Jin, Nattapol Chanpaisit, et~al.
+\newblock Vbench: Comprehensive benchmark suite for video generative models.
+\newblock In \emph{2024 IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, pages 21807--21818. IEEE, 2024.
+
+\bibitem[Kang et~al.(2024)Kang, Yue, Lu, Lin, Zhao, Wang, Huang, and
+  Feng]{kang2025howfar}
+Bingyi Kang, Yang Yue, Rui Lu, Zhijie Lin, Yang Zhao, Kaixin Wang, Gao Huang,
+  and Jiashi Feng.
+\newblock How far is video generation from world model: A physical law
+  perspective.
+\newblock \emph{arXiv preprint arXiv:2411.02385}, 2024.
+
+\bibitem[Karaev et~al.(2024)Karaev, Rocco, Graham, Neverova, Vedaldi, and
+  Rupprecht]{karaev2023cotracker}
+Nikita Karaev, Ignacio Rocco, Benjamin Graham, Natalia Neverova, Andrea
+  Vedaldi, and Christian Rupprecht.
+\newblock Cotracker: It is better to track together, 2024.
+
+\bibitem[Kim et~al.(2025)Kim, Kim, and Lee]{diffmemorize2025}
+Juyeop Kim, Songkuk Kim, and Jong-Seok Lee.
+\newblock How diffusion models memorize, 2025.
+
+\bibitem[Le et~al.(2025)Le, Zhu, Kalogeiton, and Samaras]{gravityrewards2025}
+Minh-Quan Le, Yuanzhi Zhu, Vicky Kalogeiton, and Dimitris Samaras.
+\newblock What about gravity in video generation? post-training newton's laws
+  with verifiable rewards, 2025.
+
+\bibitem[Li et~al.(2025)Li, Michel, Pan, Liu, Roberts, and Xie]{li2025pisa}
+Chenyu Li, Oscar Michel, Xichen Pan, Sainan Liu, Mike Roberts, and Saining Xie.
+\newblock {PISA} experiments: Exploring physics post-training for video
+  diffusion models by watching stuff drop.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  35685--35709, 2025.
+
+\bibitem[Lin et~al.(2026)Lin, Akbari, He, Zhao, Zhang, Akbari, Xu, Lu, Nan,
+  Deng, et~al.]{phyground2026}
+Juyi Lin, Arash Akbari, Yumei He, Lin Zhao, Haichao Zhang, Arman Akbari,
+  Xingchen Xu, Zoe~Y Lu, Enfu Nan, Hokin Deng, et~al.
+\newblock Phyground: Benchmarking physical reasoning in generative world
+  models.
+\newblock \emph{arXiv preprint arXiv:2605.10806}, 2026.
+
+\bibitem[Luo et~al.(2026)Luo, Li, Wang, Zhao, Wang, Wang, Feng,
+  Rahmanzadehgervi, Ma, and Deng]{vlmcannotreason2026}
+Dezhi Luo, Yijiang Li, Maijunxian Wang, Tianwei Zhao, Bingyang Wang, Siheng
+  Wang, Pinyuan Feng, Pooyan Rahmanzadehgervi, Ziqiao Ma, and Hokin Deng.
+\newblock Vision language models cannot reason about physical transformation,
+  2026.
+
+\bibitem[Meng et~al.(2024)Meng, Liao, Tan, Shao, Lu, Zhang, Cheng, Li, Qiao,
+  and Luo]{meng2024phygenbench}
+Fanqing Meng, Jiaqi Liao, Xinyu Tan, Wenqi Shao, Quanfeng Lu, Kaipeng Zhang, Yu
+  Cheng, Dianqi Li, Yu Qiao, and Ping Luo.
+\newblock Towards world simulator: Crafting physical commonsense-based
+  benchmark for video generation.
+\newblock \emph{arXiv preprint arXiv:2410.05363}, 2024.
+
+\bibitem[Motamed et~al.(2025)Motamed, Chen, Van~Gool, and Laina]{travl2025}
+Saman Motamed, Minghao Chen, Luc Van~Gool, and Iro Laina.
+\newblock Travl: A recipe for making video-language models better judges of
+  physics implausibility.
+\newblock \emph{arXiv preprint arXiv:2510.07550}, 2025.
+
+\bibitem[Motamed et~al.(2026)Motamed, Culp, Swersky, Jaini, and
+  Geirhos]{motamed2025physicsiq}
+Saman Motamed, Laura Culp, Kevin Swersky, Priyank Jaini, and Robert Geirhos.
+\newblock Do generative video models understand physical principles?
+\newblock In \emph{2026 IEEE/CVF Winter Conference on Applications of Computer
+  Vision (WACV)}, pages 948--958. IEEE, 2026.
+
+\bibitem[Narayanan et~al.(2026)Narayanan, Jiang, Narasimhan, and
+  Chandraker]{phyco2026}
+Sriram Narayanan, Ziyu Jiang, Srinivasa Narasimhan, and Manmohan Chandraker.
+\newblock Phyco: Learning controllable physical priors for generative motion.
+\newblock \emph{arXiv preprint arXiv:2604.28169}, 2026.
+
+\bibitem[Shen et~al.(2026)Shen, Xiong, Yu, and Lourentzou]{phantom2026}
+Ying Shen, Jerry Xiong, Tianjiao Yu, and Ismini Lourentzou.
+\newblock Phantom: Physics-infused video generation via joint modeling of
+  visual and latent physical dynamics.
+\newblock \emph{arXiv preprint arXiv:2604.08503}, 2026.
+
+\bibitem[Thozhiyoor et~al.(2026)Thozhiyoor, Tripathi, Radhakrishnan, and
+  Bhattad]{thozhiyoor2026gravity}
+Varun~Varma Thozhiyoor, Shivam Tripathi, Venkatesh~Babu Radhakrishnan, and
+  Anand Bhattad.
+\newblock Objects in generated videos are slower than they appear: Models
+  suffer sub-earth gravity and don't know galileo's principle...for now.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR) Findings}, pages 3830--3839, 2026.
+
+\bibitem[Unterthiner et~al.(2018)Unterthiner, Van~Steenkiste, Kurach, Marinier,
+  Michalski, and Gelly]{unterthiner2018fvd}
+Thomas Unterthiner, Sjoerd Van~Steenkiste, Karol Kurach, Raphael Marinier,
+  Marcin Michalski, and Sylvain Gelly.
+\newblock Towards accurate generative models of video: A new metric \&
+  challenges.
+\newblock \emph{arXiv preprint arXiv:1812.01717}, 2018.
+
+\bibitem[Wan et~al.(2025)Wan, Wang, Ai, Wen, Mao, Xie, Chen, Yu, Zhao, Yang,
+  Zeng, Wang, Zhang, Zhou, Wang, Chen, Zhu, Zhao, Yan, Huang, Feng, Zhang, Li,
+  Wu, Chu, Feng, Zhang, Sun, Fang, Wang, Gui, Weng, Shen, Lin, Wang, Wang,
+  Zhou, Wang, Shen, Yu, Shi, Huang, Xu, Kou, Lv, Li, Liu, Wang, Zhang, Huang,
+  Li, Wu, Liu, Pan, Zheng, Hong, Shi, Feng, Jiang, Han, Wu, and Liu]{wan2025}
+Team Wan, Ang Wang, Baole Ai, Bin Wen, Chaojie Mao, Chen-Wei Xie, Di Chen,
+  Feiwu Yu, Haiming Zhao, Jianxiao Yang, Jianyuan Zeng, Jiayu Wang, Jingfeng
+  Zhang, Jingren Zhou, Jinkai Wang, Jixuan Chen, Kai Zhu, Kang Zhao, Keyu Yan,
+  Lianghua Huang, Mengyang Feng, Ningyi Zhang, Pandeng Li, Pingyu Wu, Ruihang
+  Chu, Ruili Feng, Shiwei Zhang, Siyang Sun, Tao Fang, Tianxing Wang, Tianyi
+  Gui, Tingyu Weng, Tong Shen, Wei Lin, Wei Wang, Wei Wang, Wenmeng Zhou, Wente
+  Wang, Wenting Shen, Wenyuan Yu, Xianzhong Shi, Xiaoming Huang, Xin Xu, Yan
+  Kou, Yangyu Lv, Yifei Li, Yijing Liu, Yiming Wang, Yingya Zhang, Yitong
+  Huang, Yong Li, You Wu, Yu Liu, Yulin Pan, Yun Zheng, Yuntao Hong, Yupeng
+  Shi, Yutong Feng, Zeyinzi Jiang, Zhen Han, Zhi-Fan Wu, and Ziyu Liu.
+\newblock Wan: Open and advanced large-scale video generative models, 2025.
+
+\bibitem[Wang et~al.(2026)Wang, Zhu, Tang, Luo, Jin, Chen, and
+  Chen]{physvideo2026}
+Cong Wang, Hanxin Zhu, Xiao Tang, Jiayi Luo, Xin Jin, Long Chen, and Zhibo
+  Chen.
+\newblock Orthophys: Physically plausible video generation with orthogonal-view
+  geometry guidance.
+\newblock \emph{arXiv preprint arXiv:2603.18639}, 2026.
+
+\bibitem[Xing et~al.(2023)Xing, Xia, Zhang, Chen, Yu, Liu, Wang, Wong, and
+  Shan]{xing2024dynamicrafter}
+Jinbo Xing, Menghan Xia, Yong Zhang, Haoxin Chen, Wangbo Yu, Hanyuan Liu,
+  Xintao Wang, Tien-Tsin Wong, and Ying Shan.
+\newblock Dynamicrafter: Animating open-domain images with video diffusion
+  priors, 2023.
+
+\bibitem[Xu et~al.(2025)Xu, Zhang, and Shi]{xu2025goodseed}
+Katherine Xu, Lingzhi Zhang, and Jianbo Shi.
+\newblock Good seed makes a good crop: Discovering secret seeds in
+  text-to-image diffusion models.
+\newblock In \emph{Proceedings of the Winter Conference on Applications of
+  Computer Vision (WACV)}, pages 3024--3034, 2025.
+
+\bibitem[Xu et~al.(2026)Xu, Chen, Wu, Lu, and Chen]{motionforcing2026}
+Tianshuo Xu, Zhifei Chen, Leyi Wu, Hao Lu, and Ying-cong Chen.
+\newblock Motion forcing: A decoupled framework for robust video generation in
+  motion dynamics.
+\newblock \emph{arXiv preprint arXiv:2603.10408}, 2026.
+
+\bibitem[Yang et~al.(2025{\natexlab{a}})Yang, Li, Zhang, Yin, Bai, Ma, Wang,
+  Cai, Wong, Lu, and Jia]{vlipp2025}
+Xindi Yang, Baolu Li, Yiming Zhang, Zhenfei Yin, Lei Bai, Liqian Ma, Zhiyong
+  Wang, Jianfei Cai, Tien-Tsin Wong, Huchuan Lu, and Xu Jia.
+\newblock Vlipp: Towards physically plausible video generation with vision and
+  language informed physical prior, 2025{\natexlab{a}}.
+
+\bibitem[Yang et~al.(2025{\natexlab{b}})Yang, Teng, Zheng, Ding, Huang, Xu,
+  Yang, Hong, Zhang, Feng, Yin, Zhang, Wang, Cheng, Xu, Gu, Dong, and
+  Tang]{yang2024cogvideox}
+Zhuoyi Yang, Jiayan Teng, Wendi Zheng, Ming Ding, Shiyu Huang, Jiazheng Xu,
+  Yuanming Yang, Wenyi Hong, Xiaohan Zhang, Guanyu Feng, Da Yin, Yuxuan Zhang,
+  Weihan Wang, Yean Cheng, Bin Xu, Xiaotao Gu, Yuxiao Dong, and Jie Tang.
+\newblock Cogvideox: Text-to-video diffusion models with an expert transformer,
+  2025{\natexlab{b}}.
+
+\bibitem[Yang et~al.(2026)Yang, Bin, Yang, and Chen]{lapg2026}
+Zhongxin Yang, Yuanwei Bin, Xiang I.~A. Yang, and Shiyi Chen.
+\newblock Least-action-guided diffusion for physical extrapolation, 2026.
+
+\bibitem[Yuan et~al.(2026)Yuan, Pizzati, Pinto, Kunze, Laptev, Newman, Torr,
+  and De~Martini]{likephys2025}
+Jianhao Yuan, Fabio Pizzati, Francesco Pinto, Lars Kunze, Ivan Laptev, Paul
+  Newman, Philip Torr, and Daniele De~Martini.
+\newblock Likephys: Evaluating intuitive physics understanding in video
+  diffusion models via likelihood preference.
+\newblock In \emph{International Conference on Learning Representations}, pages
+  129700--129722, 2026.
+
+\bibitem[Yue et~al.(2025)Yue, Huang, Chen, Wang, Wan, and
+  Liu]{roadmap2025visualworld}
+Jingtong Yue, Ziqi Huang, Zhaoxi Chen, Xintao Wang, Pengfei Wan, and Ziwei Liu.
+\newblock Simulating the visual world with artificial intelligence: A roadmap.
+\newblock \emph{arXiv preprint arXiv:2511.08585}, 2025.
+
+\bibitem[Zhan et~al.(2026)Zhan, Ma, Xie, and Zisserman]{inferring2025dynamic}
+Guanqi Zhan, Xianzheng Ma, Weidi Xie, and Andrew Zisserman.
+\newblock Inferring dynamic physical properties from video foundation models.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pages 5214--5224, 2026.
+
+\bibitem[Zhang et~al.(2025{\natexlab{a}})Zhang, Cherniavskii, Tragoudaras,
+  Vozikis, Nijdam, Prinzhorn, Bodracska, Sebe, Zadaianchuk, and
+  Gavves]{zhang2025morpheus}
+Chenyu Zhang, Daniil Cherniavskii, Antonios Tragoudaras, Antonios Vozikis,
+  Thijmen Nijdam, Derck~WE Prinzhorn, Mark Bodracska, Nicu Sebe, Andrii
+  Zadaianchuk, and Efstratios Gavves.
+\newblock Morpheus: Benchmarking physical reasoning of video generative models
+  with real physical experiments.
+\newblock arXiv preprint, 2025{\natexlab{a}}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})Zhang, Huang, Wan, Jin, Zhang, Li, and
+  Zuo]{physchoreo2025}
+Haoze Zhang, Tianyu Huang, Zichen Wan, Xiaowei Jin, Hongzhi Zhang, Hui Li, and
+  Wangmeng Zuo.
+\newblock Physchoreo: Physics-controllable video generation with part-aware
+  semantic grounding.
+\newblock \emph{arXiv preprint arXiv:2511.20562}, 2025{\natexlab{b}}.
+
+\bibitem[Zheng et~al.(2025)Zheng, Huang, Liu, Zou, He, Zhang, Gu, Zhang, He,
+  Zheng, et~al.]{vbench2_2025}
+Dian Zheng, Ziqi Huang, Hongbo Liu, Kai Zou, Yinan He, Fan Zhang, Lulu Gu,
+  Yuanhan Zhang, Jingwen He, Wei-Shi Zheng, et~al.
+\newblock Vbench-2.0: Advancing video generation benchmark suite for intrinsic
+  faithfulness.
+\newblock \emph{arXiv preprint arXiv:2503.21755}, 2025.
+
+\end{thebibliography}

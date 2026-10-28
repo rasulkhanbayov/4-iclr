@@ -1,0 +1,14 @@
+host=crirdchpxd004 NVIDIA H200, 143771 MiB
+[cosmos2_2b] run=pilot_b shard 0/1: 12 clips in shard, 1 already done, 11 to do
+[cosmos2_2b] loaded in 244s
+[cosmos2_2b] 1/11 bouncing_ball θ=0.6 s=1 z=1000: θ̂=1.4728564087008311 R²=-0.159 invalid_fit/None 318s
+[cosmos2_2b] 2/11 bouncing_ball θ=0.9 s=0 z=1000: θ̂=1.307889203823727 R²=0.155 invalid_fit/None 286s
+[cosmos2_2b] 3/11 bouncing_ball θ=0.9 s=1 z=1000: θ̂=1.034836923569591 R²=0.087 invalid_fit/None 302s
+[cosmos2_2b] 4/11 inclined_slide θ=0.1 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 309s
+[cosmos2_2b] 5/11 inclined_slide θ=0.1 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 309s
+[cosmos2_2b] 6/11 inclined_slide θ=0.4 s=0 z=1000: θ̂=None R²=0.000 invalid_fit/None 282s
+[cosmos2_2b] 7/11 inclined_slide θ=0.4 s=1 z=1000: θ̂=None R²=0.000 invalid_fit/None 282s
+[cosmos2_2b] 8/11 projectile θ=5 s=0 z=1000: θ̂=-0.003346360207792952 R²=0.027 invalid_fit/None 284s
+[cosmos2_2b] 9/11 projectile θ=5 s=1 z=1000: θ̂=-0.03335382872402905 R²=0.344 invalid_fit/None 282s
+[cosmos2_2b] 10/11 projectile θ=15 s=0 z=1000: θ̂=-0.036665847235261735 R²=0.142 invalid_fit/None 282s
+[cosmos2_2b] 11/11 projectile θ=15 s=1 z=1000: θ̂=-0.03705019288089476 R²=0.358 invalid_fit/None 283s

@@ -1,0 +1,76 @@
+% ============================================================================
+% PhysWeep preamble (shared by main.tex and appendix.tex).
+% wacv.sty already provides: times, xcolor (dvipsnames), graphicx, amsmath,
+% amssymb, booktabs, natbib[numbers,sort&compress], caption, subcaption, url,
+% enumitem[shortlabels,inline]. Do NOT reload any of those here.
+% ============================================================================
+
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,backgrounds,fit,patterns}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pifont}
+
+% --- red-flag macros: every item the authors must supply before submission.
+% Search the source for "MISSING" / "VERIFY" to find them all; they render in
+% red in the PDF so none can ship unnoticed.
+\newcommand{\MISSING}[1]{\textcolor{red}{[MISSING: #1]}}
+\newcommand{\VERIFYFLAG}[1]{\textcolor{red}{[VERIFY: #1]}}
+
+\newcommand{\cmark}{\textcolor{green!55!black}{\ding{51}}}
+\newcommand{\xmark}{\textcolor{red!70!black}{\ding{55}}}
+
+% Keep theorem statements from orphaning their header across a column break.
+% Without this, a Proposition whose header lands exactly at a column boundary
+% is shipped out above the running header and bleeds off the page edge
+% (observed as "Overfull \hbox ... while \output is active").
+\usepackage{needspace}
+\usepackage{colortbl}   % \cellcolor for the coverage heat map
+\usepackage{multirow}
+
+% --- coverage heat map -----------------------------------------------------
+% Single-hue sequential ramp so the table stays legible in grayscale, which
+% top venues still print in. Zero is rendered in gray rather than white so a
+% measured zero is visually distinct from an empty cell.
+\definecolor{trkhi}{RGB}{31,102,160}
+\newcommand{\tzero}{\cellcolor{black!8}\textcolor{black!55}{$0$}}
+\newcommand{\tk}[2]{\cellcolor{trkhi!#1}$#2$}
+\newcommand{\tkb}[2]{\cellcolor{trkhi!#1}$\mathbf{#2}$}
+% compact in-table placeholder for a value the authors must still compute;
+% the matching \MISSING{} lives in the caption so it reaches the red-flag list
+\newcommand{\tbd}{\cellcolor{red!12}\textcolor{red!80!black}{\textbf{?}}}
+
+% Non-floating tables in a plain center environment inherit \topsep and
+% \parskip above and below, which costs roughly 25pt per table. This wrapper
+% keeps the centring and drops the padding.
+\newenvironment{tightcenter}
+  {\setlength{\topsep}{1pt}\setlength{\partopsep}{0pt}%
+   \setlength{\parskip}{0pt}\par\centering}
+  {\par\addvspace{2pt}}
+\newtheorem{proposition}{Proposition}
+% Unnumbered form for restating a main-paper result in the supplementary, so
+% the supplementary does not assign it a second, different number.
+\newtheorem*{propositionstar}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{assumption}{Assumption}
+
+\newcommand{\PRE}{\ensuremath{\mathrm{PRE}}}
+\newcommand{\PRI}{\ensuremath{\mathrm{PRI}}}
+\newcommand{\CBI}{\ensuremath{\mathrm{CBI}}}
+\newcommand{\EG}{\ensuremath{\mathrm{EG}}}
+\newcommand{\thetah}{\ensuremath{\hat{\theta}}}
+
+% --- line-number overlap fix (applies only if wacv.sty loaded lineno)
+\makeatletter
+\AtBeginDocument{\@ifpackageloaded{lineno}{%
+  \setlength{\linenumbersep}{6pt}%
+  \renewcommand\linenumberfont{\normalfont\scriptsize\color{gray}}%
+  % Consecutive line numbers can stack on top of each other where a
+  % display or a centered block compresses baseline spacing. Setting a
+  % minimum inter-number distance stops that without touching text layout.
+  \setlength{\linenumberwidth}{18pt}%
+  \leftlinenumbers}{}}
+\makeatother

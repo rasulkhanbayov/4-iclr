@@ -1,0 +1,10 @@
+{
+  "bouncing_ball": {
+    "n_total": 119,
+    "n_gated_in": 1,
+    "n_gated_out": 9,
+    "fit_quality_dropped_rate": 0.9159663865546218,
+    "e2_adjudicable": true,
+    "elapsed_seconds": 3850.0644924640656
+  }
+}

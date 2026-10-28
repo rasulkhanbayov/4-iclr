@@ -1,0 +1,1064 @@
+=== projectile: +5 out-of-range seeds (5-9) ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9]
+  (DynamiCrafter subprocess took 301s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:46, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  1.60 seed=5: GENERATION FAILED
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  1.60 seed=6: GENERATION FAILED
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  1.60 seed=7: GENERATION FAILED
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  1.60 seed=8: GENERATION FAILED
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  1.60 seed=9: GENERATION FAILED
+  (DynamiCrafter subprocess took 90s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  3.00 seed=5: GENERATION FAILED
+  (DynamiCrafter subprocess took 91s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  3.00 seed=6: GENERATION FAILED
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  3.00 seed=7: GENERATION FAILED
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  3.00 seed=8: GENERATION FAILED
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true=  3.00 seed=9: GENERATION FAILED
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true= 20.00 seed=5: GENERATION FAILED
+  (DynamiCrafter subprocess took 91s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true= 20.00 seed=6: GENERATION FAILED
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true= 20.00 seed=7: GENERATION FAILED
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true= 20.00 seed=8: GENERATION FAILED
+  (DynamiCrafter subprocess took 91s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+g_true= 20.00 seed=9: GENERATION FAILED
+
+Total time: 1592.8s for 15 clips
+Merged into existing file -> 55 total rows (de-duped on g_true/split/seed)
+Fit-quality dropped rate: 54.55% (30/55)
+
+slope(in) = -0.0250  95% CI [-0.4656, 0.4798]
+PRE(in)   = 0.7810  95% CI [0.6375, 0.9144]
+
+============================================================
+E0 DECISION (DynamiCrafter): beta CI includes 0 -> conditioning NOT detectably honored.
+============================================================
+
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e0_pilot_dynamicrafter.json
+=== bouncing_ball: +5 out-of-range seeds (5-9), tightens the borderline n=4 case ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9]
+Using DynamiCrafter_512 (subprocess-driven, no in-process pipeline)...
+
+======================================================================
+bouncing_ball (dynamicrafter)
+======================================================================
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.20 seed=5: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 91s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.20 seed=6: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.20 seed=7: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.20 seed=8: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.20 seed=9: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 89s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.35 seed=5: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 95s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.35 seed=6: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.35 seed=7: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.35 seed=8: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 91s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.35 seed=9: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.97 seed=5: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 87s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.97 seed=6: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.97 seed=7: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.97 seed=8: e_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 90s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  e_true=  0.97 seed=9: e_hat=nan r2=0.000
+Merged 15 new rows into 35 existing -> 50 total (after de-dup on theta/split/seed)
+
+bouncing_ball: n_gated_in=5/50 dropped_rate=82.00% elapsed=1379s
+  slope beta (in) = 16.3489  95% CI [-0.0747, 53.0677]
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_bouncing_ball_dynamicrafter.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_generality_dynamicrafter.json
+
+======================================================================
+E4 SUMMARY (dynamicrafter)
+======================================================================
+System               slope (in)               dropped_rate  
+bouncing_ball        16.349 [-0.075,53.068]   82.00%        
+=== inclined_slide: +5 out-of-range seeds (5-9) ===
+seeds: in-range=[], out-of-range=[5, 6, 7, 8, 9]
+Using DynamiCrafter_512 (subprocess-driven, no in-process pipeline)...
+
+======================================================================
+inclined_slide (dynamicrafter)
+======================================================================
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.01 seed=5: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.01 seed=6: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.01 seed=7: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.01 seed=8: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.01 seed=9: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.70 seed=5: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.70 seed=6: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 102s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.70 seed=7: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 94s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.70 seed=8: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 91s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  0.70 seed=9: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 93s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 5
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  1.00 seed=5: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 89s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 6
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:25, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  1.00 seed=6: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 89s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 7
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  1.00 seed=7: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 8
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  1.00 seed=8: mu_hat=nan r2=0.000
+  (DynamiCrafter subprocess took 92s)
+DynamiCrafter subprocess FAILED:
+[rank: 0] Seed set to 9
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/dynamicrafter_venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py:297: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+
+Sample Batch: 0it [00:00, ?it/s]
+Sample Batch: 0it [00:24, ?it/s]
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 362, in <module>
+    run_inference(args, gpu_num, rank)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 316, in run_inference
+    save_results_seperate(prompt, samples, filename, fakedir, fps=8, loop=args.loop)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/scripts/evaluation/inference.py", line 157, in save_results_seperate
+    torchvision.io.write_video(path, grid, fps=fps, video_codec='h264', options={'crf': '10'})
+AttributeError: module 'torchvision.io' has no attribute 'write_video'. Did you mean: 'write_file'?
+
+  mu_true=  1.00 seed=9: mu_hat=nan r2=0.000
+Merged 15 new rows into 35 existing -> 50 total (after de-dup on theta/split/seed)
+
+inclined_slide: n_gated_in=16/50 dropped_rate=58.00% elapsed=1393s
+  slope beta (in) = 0.5209  95% CI [-6.1854, 6.8499]
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_inclined_slide_dynamicrafter.json
+
+Wrote combined summary: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e4_generality_dynamicrafter.json
+
+======================================================================
+E4 SUMMARY (dynamicrafter)
+======================================================================
+System               slope (in)               dropped_rate  
+inclined_slide       0.521 [-6.185,6.850]     58.00%        
+=== re-running E2 analysis ===
+ltx            projectile        n_out=  7  EG=0.985  PRI=1.000  dAIC=-4.0  selected=neither
+ltx            pendulum_omega    n_out=  1  INSUFFICIENT (need >=4)
+ltx            pendulum_zeta     n_out=  0  INSUFFICIENT (need >=4)
+ltx            bouncing_ball     n_out=  4  EG=n/a  PRI=1.000  dAIC=-9.8  selected=neither
+ltx            spring_mass       n_out=  0  INSUFFICIENT (need >=4)
+ltx            inclined_slide    n_out=  4  EG=0.264  PRI=0.514  dAIC=-11.3  selected=neither
+cogvideox      projectile        n_out= 12  EG=1.068  PRI=0.974  dAIC=-47.9  selected=neither
+cogvideox      pendulum_omega    n_out=  0  INSUFFICIENT (need >=4)
+cogvideox      pendulum_zeta     n_out=  0  INSUFFICIENT (need >=4)
+cogvideox      bouncing_ball     n_out=  2  INSUFFICIENT (need >=4)
+cogvideox      spring_mass       n_out=  0  INSUFFICIENT (need >=4)
+cogvideox      inclined_slide    n_out=  0  INSUFFICIENT (need >=4)
+dynamicrafter  projectile        n_out=  9  EG=0.056  PRI=0.937  dAIC=-10.3  selected=neither
+dynamicrafter  pendulum_omega    n_out=  0  INSUFFICIENT (need >=4)
+dynamicrafter  pendulum_zeta     n_out=  1  INSUFFICIENT (need >=4)
+dynamicrafter  bouncing_ball     n_out=  4  EG=-0.880  PRI=0.841  dAIC=-1.0  selected=neither
+dynamicrafter  spring_mass       n_out=  0  INSUFFICIENT (need >=4)
+dynamicrafter  inclined_slide    n_out=  5  EG=-0.529  PRI=1.000  dAIC=-0.1  selected=neither
+
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e2_extrapolation.json
+
+7/18 model-system pairs adjudicated this run. See results/e2_extrapolation.json's 'note' field on each 'insufficient_data' entry for exactly what SLURM job would close that gap.

@@ -1,0 +1,23 @@
+{
+  "pendulum_omega": {
+    "n_total": 30,
+    "n_gated": 0,
+    "dropped_rate": 1.0,
+    "elapsed_seconds": 12299.816179037094,
+    "variant": "default"
+  },
+  "pendulum_zeta": {
+    "n_total": 30,
+    "n_gated": 0,
+    "dropped_rate": 1.0,
+    "elapsed_seconds": 12298.707332849503,
+    "variant": "default"
+  },
+  "spring_mass": {
+    "n_total": 40,
+    "n_gated": 0,
+    "dropped_rate": 1.0,
+    "elapsed_seconds": 16398.07810163498,
+    "variant": "default"
+  }
+}

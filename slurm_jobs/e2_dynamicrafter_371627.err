@@ -1,0 +1,2 @@
+ERROR: DynamiCrafter checkpoint not found. Run slurm_jobs/00_setup_env.sh
+on a shared server (10.4.64.27/28) first.

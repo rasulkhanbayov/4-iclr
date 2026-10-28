@@ -1,0 +1,16 @@
+# run        model            mode     n_noise shard count   (main sweep: 304 clips/model, crossed design)
+main_text    ltx              crossed  4       0     1
+main_text    cogvideox        crossed  4       0     2
+main_text    cogvideox        crossed  4       1     2
+main_text    dynamicrafter    crossed  4       0     2
+main_text    dynamicrafter    crossed  4       1     2
+main_text    wan22_ti2v_5b    crossed  4       0     2
+main_text    wan22_ti2v_5b    crossed  4       1     2
+main_text    cogvideox15_i2v  crossed  4       0     8
+main_text    cogvideox15_i2v  crossed  4       1     8
+main_text    cogvideox15_i2v  crossed  4       2     8
+main_text    cogvideox15_i2v  crossed  4       3     8
+main_text    cogvideox15_i2v  crossed  4       4     8
+main_text    cogvideox15_i2v  crossed  4       5     8
+main_text    cogvideox15_i2v  crossed  4       6     8
+main_text    cogvideox15_i2v  crossed  4       7     8

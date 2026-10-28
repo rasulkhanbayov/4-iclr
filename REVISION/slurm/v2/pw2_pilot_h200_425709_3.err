@@ -1,0 +1,56 @@
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]Loading pipeline components...:  20%|██        | 1/5 [00:00<00:02,  1.46it/s]The config attributes {'final_sigmas_type': 'sigma_min', 'sigma_data': 1.0, 'sigma_max': 80.0, 'sigma_min': 0.002} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+Loading pipeline components...:  40%|████      | 2/5 [00:02<00:04,  1.39s/it]Loading pipeline components...:  60%|██████    | 3/5 [00:04<00:02,  1.44s/it]Loading pipeline components...:  80%|████████  | 4/5 [00:05<00:01,  1.45s/it]Loading pipeline components...: 100%|██████████| 5/5 [00:06<00:00,  1.45s/it]Loading pipeline components...: 100%|██████████| 5/5 [00:06<00:00,  1.40s/it]
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://huggingface.co/nvidia/Cosmos-1.0-Guardrail/resolve/cf03c0395fac8c4de386c0bdab12cc4fc8d66362/blocklist/custom/notable'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/REVISION/code/experiments/v2_run.py", line 166, in <module>
+    main()
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/REVISION/code/experiments/v2_run.py", line 104, in main
+    gen = load_generator(args.model, offload=args.offload)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/REVISION/code/physweep/generators.py", line 216, in load_generator
+    return DiffusersGenerator(name, spec, offload=offload)
+  File "/export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/REVISION/code/physweep/generators.py", line 123, in __init__
+    self.pipe = cls.from_pretrained(spec["repo"], **kw)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/diffusers/pipelines/pipeline_utils.py", line 1132, in from_pretrained
+    model = pipeline_class(**init_kwargs)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/diffusers/pipelines/cosmos/pipeline_cosmos2_video2world.py", line 202, in __init__
+    safety_checker = CosmosSafetyChecker()
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/cosmos_guardrail/cosmos_guardrail.py", line 702, in __init__
+    Blocklist(checkpoint_id),
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/cosmos_guardrail/cosmos_guardrail.py", line 270, in __init__
+    checkpoint_dir = snapshot_download(checkpoint_id, allow_patterns=["blocklist/*"])
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 266, in _inner
+    return fn(*args, **kwargs)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/_snapshot_download.py", line 532, in snapshot_download
+    hf_thread_map(
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/utils/tqdm.py", line 441, in hf_thread_map
+    results[future_to_index[future]] = future.result()
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/_snapshot_download.py", line 512, in _inner_hf_hub_download
+    hf_hub_download(  # type: ignore
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 266, in _inner
+    return fn(*args, **kwargs)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1047, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1194, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/export/hbku-research/rakh90100/physweep_revision/envs/physweep2-cosmos/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1953, in _raise_on_head_call_error
+    raise head_call_error
+huggingface_hub.errors.GatedRepoError: 403 Client Error. (Request ID: Root=1-6ad12be8-001b9fb236f5ec8903fd0219;e826a62f-c1aa-4e0b-81b4-55df33f93501)
+
+Cannot access gated repo for url https://huggingface.co/nvidia/Cosmos-1.0-Guardrail/resolve/cf03c0395fac8c4de386c0bdab12cc4fc8d66362/blocklist/custom/notable.
+Access to model nvidia/Cosmos-1.0-Guardrail is restricted and you are not in the authorized list. Visit https://huggingface.co/nvidia/Cosmos-1.0-Guardrail to ask for access.

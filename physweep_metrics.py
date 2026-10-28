@@ -245,7 +245,20 @@ def fit_gravity_from_trajectory(t, y):
 
 def fit_omega_from_crossings(t, x):
     """Angular frequency from mean spacing of upward zero crossings of a
-    (roughly) oscillatory signal x(t). Returns (omega_hat, r2_of_sine_fit)."""
+    (roughly) oscillatory signal x(t). Returns (omega_hat, r2_of_sine_fit).
+
+    CAVEAT (found during independent verification, 2026-08-08): for a
+    DAMPED oscillator (the paper's pendulum/spring-mass systems both are,
+    even "in-range" -- zeta>0 always), zero-crossing spacing measures the
+    damped frequency omega_d = omega*sqrt(1-zeta^2), not the natural
+    frequency omega, so this returns a slightly biased omega whenever
+    zeta>0. Bias is <1.3% at the paper's own in-range zeta grid (0.02-0.1)
+    but grows with zeta (worse out-of-range, 0.3-0.9) -- this compounds
+    with, and is likely part of the cause of, the already-documented
+    heavily-damped/few-peaks low-fidelity regime (see systems.yaml and
+    CLAUDE.md Section 2). Not corrected here (would silently change every
+    already-published omega_hat number); stated explicitly instead so a
+    future reader does not assume exact recovery of the natural frequency."""
     t = np.asarray(t, float); x = np.asarray(x, float)
     xc = x - np.mean(x)
     crossings = []
@@ -337,9 +350,18 @@ def fit_friction_from_slide(t, s):
     return float(a_hat), _r2(s, s_fit)
 
 
-def friction_from_acceleration(a_hat, incline_rad, g=9.81):
-    """mu_hat from a measured along-slope acceleration a_hat (m/s^2), a known
-    incline angle, and standard gravity. See fit_friction_from_slide."""
+def friction_from_acceleration(a_hat, incline_rad, g):
+    """mu_hat from a measured along-slope acceleration a_hat, a known incline
+    angle, and the gravity constant ACTUALLY used by the caller's renderer.
+    See fit_friction_from_slide.
+
+    No default for g: physweep/render.py's simulate_inclined_slide uses an
+    internal rendering-scale g=300.0 (pixels/s^2, not SI 9.81 m/s^2 -- see
+    its own docstring), so a caller that omits g and gets a silent SI
+    default back would recover a nonsense mu (found empirically to be off by
+    orders of magnitude, ~-20 to -48 instead of the true 0.1-1.0, during
+    independent verification 2026-08-08). Every current call site
+    (experiments/e4_generality.py) already passes g=300.0 explicitly."""
     denom = g * np.cos(incline_rad)
     if abs(denom) < EPS:
         return float("nan")

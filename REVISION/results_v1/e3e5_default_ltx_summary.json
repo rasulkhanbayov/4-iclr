@@ -1,0 +1,44 @@
+{
+  "projectile": {
+    "n_total": 40,
+    "n_gated": 19,
+    "dropped_rate": 0.525,
+    "elapsed_seconds": 131.82657647132874,
+    "variant": "default"
+  },
+  "pendulum_omega": {
+    "n_total": 30,
+    "n_gated": 0,
+    "dropped_rate": 1.0,
+    "elapsed_seconds": 319.85855865478516,
+    "variant": "default"
+  },
+  "pendulum_zeta": {
+    "n_total": 30,
+    "n_gated": 0,
+    "dropped_rate": 1.0,
+    "elapsed_seconds": 319.4807143211365,
+    "variant": "default"
+  },
+  "bouncing_ball": {
+    "n_total": 35,
+    "n_gated": 2,
+    "dropped_rate": 0.9428571428571428,
+    "elapsed_seconds": 108.60651540756226,
+    "variant": "default"
+  },
+  "spring_mass": {
+    "n_total": 40,
+    "n_gated": 0,
+    "dropped_rate": 1.0,
+    "elapsed_seconds": 427.2801158428192,
+    "variant": "default"
+  },
+  "inclined_slide": {
+    "n_total": 35,
+    "n_gated": 11,
+    "dropped_rate": 0.6857142857142857,
+    "elapsed_seconds": 107.80602264404297,
+    "variant": "default"
+  }
+}

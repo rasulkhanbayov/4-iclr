@@ -209,12 +209,224 @@
       "r2": 0.0,
       "split": "out",
       "seed": 4
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 5
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 6
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 7
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 8
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": 0.0,
+      "r2": -0.21674774379724693,
+      "split": "out",
+      "seed": 9
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": 0.004153387687451986,
+      "r2": -0.052320244239973945,
+      "split": "out",
+      "seed": 10
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 11
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": 0.0,
+      "r2": 0.025565596950270053,
+      "split": "out",
+      "seed": 12
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 13
+    },
+    {
+      "theta": 0.3,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 14
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": 0.0,
+      "r2": -0.00023224875947147616,
+      "split": "out",
+      "seed": 5
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 6
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 7
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 8
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 9
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": 0.0,
+      "r2": 0.10430360516921355,
+      "split": "out",
+      "seed": 10
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": 0.0031739132124024936,
+      "r2": -0.07505025178295166,
+      "split": "out",
+      "seed": 11
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": 0.0,
+      "r2": -0.09712033020804456,
+      "split": "out",
+      "seed": 12
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 13
+    },
+    {
+      "theta": 0.6,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 14
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": 0.0,
+      "r2": 0.19228595835378426,
+      "split": "out",
+      "seed": 5
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 6
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 7
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 8
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": 0.0021072210776536785,
+      "r2": -0.19765304176448595,
+      "split": "out",
+      "seed": 9
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": 0.0,
+      "r2": 0.2759124755248302,
+      "split": "out",
+      "seed": 10
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": 0.0,
+      "r2": -0.07552196272790734,
+      "split": "out",
+      "seed": 11
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": 0.0,
+      "r2": 0.024456792904168245,
+      "split": "out",
+      "seed": 12
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 13
+    },
+    {
+      "theta": 0.9,
+      "theta_hat": NaN,
+      "r2": 0.0,
+      "split": "out",
+      "seed": 14
     }
   ],
   "summary": {
-    "n_total": 30,
+    "n_total": 60,
     "n_gated_in": 0,
+    "n_gated_out": 0,
     "fit_quality_dropped_rate": 1.0,
-    "elapsed_seconds": 269.3563256263733
+    "e2_adjudicable": false,
+    "elapsed_seconds": 273.3217430114746
   }
 }

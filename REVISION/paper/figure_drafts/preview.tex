@@ -1,0 +1,90 @@
+% preview.tex -- compiles all draft figures onto one multi-page PDF for
+% review. Reuses the paper's own preamble (colors, macros) so what you see
+% here matches how these figures would actually render if copied into
+% main.tex or appendix.tex. Not itself part of the paper.
+%
+%   cd figure_drafts && pdflatex preview.tex
+%
+% (untested in this environment -- no pdflatex was available when authored;
+% check for overlaps/overfull boxes before trusting the layout.)
+
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=1.2cm]{geometry}
+\usepackage{xcolor}
+\input{../preamble}
+\usetikzlibrary{decorations.pathmorphing}  % coil, for the spring-mass sketch
+\usepackage{caption}
+
+\title{PhysWeep -- draft figures (not yet in main.tex)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+\section{Pipeline diagram (creative/explanatory)}
+\begin{figure}[h]\centering
+\resizebox{\textwidth}{!}{\input{fig_pipeline}}
+\caption{The full audit pipeline: ground truth $\theta$ through the
+deterministic renderer, the frozen generator, and back through the
+tracker/fitter to $\hat\theta$ and the metrics. Candidate for the
+Suite/Pipeline section (Section~4 of \texttt{main.tex}).}
+\end{figure}
+
+\clearpage
+\section{Dataset examples}
+\begin{figure}[h]\centering
+\resizebox{0.85\textwidth}{!}{\input{fig_dataset_examples}}
+\caption{Schematic conditioning-sequence examples for all five systems
+(six sweep axes). Candidate for Section~4 (Suite), as a visual companion
+to \texttt{tab:suite}.}
+\end{figure}
+
+\clearpage
+\section{Results example: full seed scatter}
+\begin{figure}[h]\centering
+\resizebox{0.85\textwidth}{!}{\input{fig_seed_scatter}}
+\caption{All five gated seeds for CogVideoX/projectile in-range (Figure~1
+panel~a in \texttt{main.tex} shows only two). Candidate as a supplementary
+figure (Sec.~S4) or a Results-section inset.}
+\end{figure}
+
+\clearpage
+\section{Mechanism shapes (creative/explanatory)}
+\begin{figure}[h]\centering
+\resizebox{\textwidth}{!}{\input{fig_mechanism_shapes}}
+\caption{The three response shapes side by side: faithful, the two
+literature hypotheses, and what PhysWeep actually finds. Candidate for the
+Metrics section (Section~3), as a clearer companion to Eq.~(pri)/(cbi)
+than Figure~1 panel~(c) alone.}
+\end{figure}
+
+\clearpage
+\section{Results example: SDI bar chart}
+\begin{figure}[h]\centering
+\resizebox{0.9\textwidth}{!}{\input{fig_sdi_bars}}
+\caption{The eight adjudicated pairs' SDI values as a bar chart, same
+numbers as \texttt{tab:e2}. Candidate as a talk-slide substitute or a
+supplementary companion figure.}
+\end{figure}
+
+\clearpage
+\section{Results example: coverage heatmap}
+\begin{figure}[h]\centering
+\resizebox{0.75\textwidth}{!}{\input{fig_coverage_heatmap}}
+\caption{The coverage surface (\texttt{tab:coverage}) redrawn as a
+heatmap. Candidate as a faster-to-read alternative or companion to the
+text table.}
+\end{figure}
+
+\clearpage
+\section{Failure taxonomy (creative summary)}
+\begin{figure}[h]\centering
+\resizebox{\textwidth}{!}{\input{fig_failure_taxonomy}}
+\caption{The three failure modes found, as a compact icon summary.
+Candidate for a talk slide or a small inset near the abstract/teaser.}
+\end{figure}
+
+\end{document}

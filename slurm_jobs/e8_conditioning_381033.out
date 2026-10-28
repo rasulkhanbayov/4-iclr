@@ -1,0 +1,348 @@
+
+=== E8 C1 (frame-implied), system=projectile, model=dynamicrafter ===
+  (DynamiCrafter-interp subprocess took 129s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  5.00 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 74s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  5.00 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  5.00 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  5.00 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  5.00 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  7.00 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  7.00 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  7.00 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  7.00 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  7.00 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  9.80 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 76s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  9.80 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 77s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  9.80 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 74s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  9.80 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  9.80 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 12.00 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 74s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 12.00 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 75s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 12.00 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 78s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 12.00 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 12.00 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 15.00 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 15.00 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 76s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 15.00 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 15.00 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 15.00 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  1.60 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  1.60 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 66s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  1.60 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  1.60 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  1.60 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  3.00 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  3.00 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  3.00 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  3.00 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true=  3.00 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 20.00 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 20.00 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 20.00 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 20.00 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_projectile/results/samples_separate/clip_sample0.mp4
+g_true= 20.00 seed=4: GENERATION FAILED
+projectile: {"n_total": 40, "n_gated": 0, "dropped_rate": 1.0, "n_gated_in": 0, "elapsed_seconds": 2912.0493836402893, "channel": "C1"}
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e8_conditioning_channel_projectile_dynamicrafter.json
+
+=== E8 C1 (frame-implied), system=bouncing_ball, model=dynamicrafter ===
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.60 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 68s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.60 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.60 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.60 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.60 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.70 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.70 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.70 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.70 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 68s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.70 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 79s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.80 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.80 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.80 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.80 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 67s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.80 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.90 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.90 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.90 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.90 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.90 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.20 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 74s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.20 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.20 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 75s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.20 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.20 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 75s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.35 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.35 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.35 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 74s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.35 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.35 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 75s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.97 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.97 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.97 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.97 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_bouncing_ball/results/samples_separate/clip_sample0.mp4
+e_true=  0.97 seed=4: GENERATION FAILED
+bouncing_ball: {"n_total": 35, "n_gated": 0, "dropped_rate": 1.0, "n_gated_in": 0, "elapsed_seconds": 2496.6049931049347, "channel": "C1"}
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e8_conditioning_channel_bouncing_ball_dynamicrafter.json
+
+=== E8 C1 (frame-implied), system=inclined_slide, model=dynamicrafter ===
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.10 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.10 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.10 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.10 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 74s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.10 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 74s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.20 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.20 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.20 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.20 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.20 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.30 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.30 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.30 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.30 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.30 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.40 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.40 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.40 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.40 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 78s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.40 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 73s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.01 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 71s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.01 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.01 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.01 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.01 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.70 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 82s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.70 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.70 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.70 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 69s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  0.70 seed=4: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 72s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  1.00 seed=0: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  1.00 seed=1: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  1.00 seed=2: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 78s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  1.00 seed=3: GENERATION FAILED
+  (DynamiCrafter-interp subprocess took 70s)
+Expected output not found: /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/external/DynamiCrafter/e8_run_inclined_slide/results/samples_separate/clip_sample0.mp4
+mu_true=  1.00 seed=4: GENERATION FAILED
+inclined_slide: {"n_total": 35, "n_gated": 0, "dropped_rate": 1.0, "n_gated_in": 0, "elapsed_seconds": 2502.619428396225, "channel": "C1"}
+Wrote /export/home/rakh90100/Rasul_research_ideas (2)/4-ICLR/results/e8_conditioning_channel_inclined_slide_dynamicrafter.json
+
+== E8 generation done. Comparing against the existing C2 (text-specified) ==
+== baseline for the same systems/model ==
+projectile: C1 dropped=100.00% slope_in=None  |  C2 dropped=30.00%
+bouncing_ball: C1 dropped=100.00% slope_in=None  |  C2 dropped=85.71%
+inclined_slide: C1 dropped=100.00% slope_in=None  |  C2 dropped=28.57%
