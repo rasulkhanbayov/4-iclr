@@ -1,0 +1,5 @@
+# Shaded-style ablation (plan step 2; review point T3, out-of-distribution scenes). Text channel, style "shaded",
+# 4 scene x 2 noise seeds x 19 theta = 152 clips per model. Same scene seeds, noise seeds (1000, 1001) and
+# requests as the first half of main_text, so each clip has a structured-style twin; only the style differs.
+# Models: the step-6 set, whose weights are already restored. ~69 s/clip -> ~3 h.
+shaded_text  dynamicrafter    crossed  2       0     1    --style shaded

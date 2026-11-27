@@ -54,3 +54,62 @@ Two bugs were caught by the dry run before any GPU time:
 (Wan2.2-A14B, LTX-2, Cosmos), run with the existing `20_sweep_*.sh`
 workers, which now pass extra arguments (`--channel frame --pilot`) through
 from the task file.
+
+---
+
+# Pilot on the GPU (2026-11-27)
+
+Jobs 482639 (DynamiCrafter, A100) and 482640 (Wan2.2-A14B, LTX-2, Cosmos, H200), run `pilot_frame`: 12
+clips per model (lowest and highest in-range θ, scene seeds 0–1, noise seed 1000), 0 errors. Numbers
+below are from the rescored records (`clips_rescored.jsonl`; no label changed on rescoring).
+
+## Gate 1: does the output reproduce the given frames?
+
+Yes, for every model. Ball-position error at the conditioning frames, median / max over all key frames:
+DynamiCrafter 0.22 / 0.36 px, Wan2.2-A14B 0.20 / 0.50 px, LTX-2 0.12 / 2.18 px (one clip's 9th prefix
+frame), Cosmos 0.22 / 0.33 px. Wan2.2 handles `last_image` correctly even though it was not trained
+specifically for first/last-frame input.
+
+## Gate 2: do the given frames carry θ? (ideal observer, ground-truth inputs, CPU)
+
+| system | pair (first + middle/last frame) | prefix (LTX-2: 9 frames at 24 fps; Cosmos: 5 at 16 fps) |
+|---|---|---|
+| projectile | strong: key-frame rise 23 px (g=5) to 69 px (g=15) | strong: prefix acceleration ∝ g |
+| inclined slide | weak: displacement 112 → 92 px over μ = 0.1 → 0.4 | weak: prefix displacement differs by 2.5 px (LTX-2) / 1.5 px (Cosmos) over the in-range grid |
+| bouncing ball | **none**: first and last frame are the same for e = 0.2–0.8 | partial: the prefix contains the first bounce |
+
+Bouncing ball is therefore left out for the two pair models in the main run (it cannot test anything).
+
+## Pilot results (valid clips; θ̂ per clip)
+
+| model | valid | projectile | inclined slide | bouncing ball |
+|---|---|---|---|---|
+| DynamiCrafter (pair) | 7/12 | g=5: 1.87, 2.93; g=15: 7.20, 14.65 | μ=0.1: 2.87; μ=0.4: 1.42, 1.48 | 0/4 valid |
+| Wan2.2-A14B (pair) | 9/12 | g=5: 92.8, 117.1; g=15: 16.3, 16.1 | μ=0.1: 1.34, 1.49; μ=0.4: 1.67, 1.71 | e=0.9: 0.93 |
+| LTX-2 (prefix) | 8/12 | g=15: 9.13 | μ=0.1: 1.14, 1.16; μ=0.4: 1.13, 1.16 | e=0.6: 0.97; e=0.9: 0.96, 1.10 |
+| Cosmos (prefix) | 2/12 | 0/4 valid | μ=0.1: 1.72; μ=0.4: 1.71 | 0/4 valid |
+
+Readings to test in the main run (12 clips per model is too few for claims):
+- **Pair mode measures the in-between timing, given fixed endpoints.** Two reference points:
+  linear interpolation gives g = 0 and μ = tan 60° = 1.73 (zero acceleration); a physical ease-out gives
+  the true θ. Wan2.2 at g = 15 follows the physical profile (RMS 2.1 px from it vs 14.6 px from linear);
+  on the slide both pair models land much closer to the linear reference than to the true μ (μ̂ 1.34–1.71,
+  one DynamiCrafter clip 2.87, i.e. decelerating). The main analysis
+  should report pair-mode θ̂ against both references, not only against θ.
+- **Wan2.2 at g = 5 meets the apex key frame by inserting a bounce**: the ball falls to the floor, then
+  rises above its start (energy gain). The fit uses only the pre-contact fall, so θ̂ ≈ 93–117 is a correct
+  measurement of the generated fall. This is a failure of the generated motion, not of the measurement;
+  no validity rule was added after seeing the pilot. Count it separately (ground contact before the second
+  key frame: 2/4 Wan2.2 projectile clips, 0/4 DynamiCrafter).
+- **Prefix models continue at their own default.** LTX-2's slide continues with the same deceleration for
+  μ = 0.1 and 0.4 (μ̂ 1.13–1.16), and its ball converges to e ≈ 1, as in the text channel; Cosmos's slide
+  continues at constant speed (μ̂ ≈ 1.71 ≈ tan 60°). The slide signal in a 5–9-frame prefix is weak (gate 2),
+  so the projectile is the decisive system for these two models.
+
+## Main run (submitted after this pilot)
+
+Run `main_frame`, crossed design, 4 scene × 4 noise seeds, full grid (in-range + lowest and highest
+out-of-range θ): `frame_a100.tasks` (DynamiCrafter, projectile + slide, 208 clips, ~6 GPU-h) and
+`frame_h200.tasks` (Wan2.2-A14B 208 clips in 2 shards ~9 GPU-h; LTX-2 304 clips ~2 GPU-h; Cosmos 304 clips
+in 3 shards ~24 GPU-h). Total ≈ 41 GPU-h. Per-clip times from the pilot: DynamiCrafter 107 s, Wan2.2 149 s
+(+33 min load), LTX-2 20 s (+26 min load), Cosmos 282 s.

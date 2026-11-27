@@ -311,6 +311,186 @@
    }
   }
  },
+ "Qwen/Qwen2.5-VL-7B-Instruct": {
+  "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "n_snapshots": 1,
+  "refs_main": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "total_bytes": 16595981281,
+  "files": {
+   ".gitattributes": {
+    "blob": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+    "bytes": 1519
+   },
+   "README.md": {
+    "blob": "5f169031e3f61faa8262272000c36d54bdc9b926",
+    "bytes": 18574
+   },
+   "chat_template.json": {
+    "blob": "732bd68bc5427d1fb6c06a59b3bf2456b2155d24",
+    "bytes": 1050
+   },
+   "config.json": {
+    "blob": "58ee12a9fb3d8708a1e41e49cb9aa5ac5017b6a6",
+    "bytes": 1374
+   },
+   "generation_config.json": {
+    "blob": "1088c9865dbf2e8152485664bb07495e89a14efb",
+    "bytes": 216
+   },
+   "merges.txt": {
+    "blob": "20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0",
+    "bytes": 1671839
+   },
+   "model-00001-of-00005.safetensors": {
+    "blob": "e97b877e47fde53a6c6e77aafb36e58e91ee9d95c4a3eeac6f1b5c0e6a1c986e",
+    "bytes": 3900233256
+   },
+   "model-00002-of-00005.safetensors": {
+    "blob": "a9a300a43b4724eee2abe7c18ceb26768d0ab011eb0cad19d9bfd2476a24d024",
+    "bytes": 3864726320
+   },
+   "model-00003-of-00005.safetensors": {
+    "blob": "111223d173e00bbee81cba1216fad28668df3476706b7fd26f4d5b50f8b3a507",
+    "bytes": 3864726424
+   },
+   "model-00004-of-00005.safetensors": {
+    "blob": "ef47f634fa57d46ee134edcc09f34085a47da1e16c12a2abe0d67118be6d72ed",
+    "bytes": 3864733680
+   },
+   "model-00005-of-00005.safetensors": {
+    "blob": "0c859795ad3a627a9b95bcb762e059d5b768a4a36fdd4affeff269d93fdecc67",
+    "bytes": 1089994880
+   },
+   "model.safetensors.index.json": {
+    "blob": "f0c9e9b8e043f5de0ac99fd8b2ea75515d811e7b",
+    "bytes": 57619
+   },
+   "preprocessor_config.json": {
+    "blob": "7f3b746825e5eef53ed8ed57a91df9e86ee62c0a",
+    "bytes": 350
+   },
+   "tokenizer.json": {
+    "blob": "443909a61d429dff23010e5bddd28ff530edda00",
+    "bytes": 7031645
+   },
+   "tokenizer_config.json": {
+    "blob": "91684ea3dc135a7d815e2c932054ce88c1aab41f",
+    "bytes": 5702
+   },
+   "vocab.json": {
+    "blob": "4783fe10ac3adce15ac8f358ef5462739852c569",
+    "bytes": 2776833
+   }
+  }
+ },
+ "Qwen/Qwen3-VL-30B-A3B-Instruct": {
+  "revision": "9c4b90e1e4ba969fd3b5378b57d966d725f1b86c",
+  "n_snapshots": 1,
+  "refs_main": "9c4b90e1e4ba969fd3b5378b57d966d725f1b86c",
+  "total_bytes": 62153207155,
+  "files": {
+   ".gitattributes": {
+    "blob": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+    "bytes": 1519
+   },
+   "README.md": {
+    "blob": "300bd781003a23869b238fb456afe4843d781616",
+    "bytes": 6730
+   },
+   "chat_template.json": {
+    "blob": "1081bacf1af7c7c6de4a585ce02cd0fd34e382da",
+    "bytes": 5499
+   },
+   "config.json": {
+    "blob": "23665bace1ee31b9894a9a0b588ab924a83875d8",
+    "bytes": 1661
+   },
+   "generation_config.json": {
+    "blob": "7bb37933d2d86e4ceaabcc6540be989658f238e9",
+    "bytes": 269
+   },
+   "merges.txt": {
+    "blob": "20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0",
+    "bytes": 1671839
+   },
+   "model-00001-of-00013.safetensors": {
+    "blob": "6b205ea6332a532e5b97fd6281ac700f125a1a5f9a3457a22b797edfd35a5f67",
+    "bytes": 4399341032
+   },
+   "model-00002-of-00013.safetensors": {
+    "blob": "a739a546e00643e0555bbb6bcd57fa5ba60fb2de24177c8819d2f899f02c2223",
+    "bytes": 4984970880
+   },
+   "model-00003-of-00013.safetensors": {
+    "blob": "c57ec0f3fd06cae62980851f2661bd2b5e9dcdff37b8f9ece0cf44dea645efc3",
+    "bytes": 4984970888
+   },
+   "model-00004-of-00013.safetensors": {
+    "blob": "46b07bc82396976dc62f86bccb51c3c585a616b36b8ad8eef700bde75fedf88b",
+    "bytes": 4984970928
+   },
+   "model-00005-of-00013.safetensors": {
+    "blob": "3fa2fdf4b835d885efcaf0e4f6c7c00905cbaad7e293af988a0cf5408c3078c8",
+    "bytes": 4984970928
+   },
+   "model-00006-of-00013.safetensors": {
+    "blob": "89a762b82ff9db9351cd38794ecd1ee170bbe87d7fa56110ca837c088158ccfb",
+    "bytes": 4984970928
+   },
+   "model-00007-of-00013.safetensors": {
+    "blob": "634e437c0a038d8f447fceb44fb4f5230600af6a71d0fbe112711d9e84d6f07a",
+    "bytes": 4984970928
+   },
+   "model-00008-of-00013.safetensors": {
+    "blob": "4c6f316b27536bd914a6ea09c03ec1b80a9a8d55e3478b1bd5a307f8de8d7fbd",
+    "bytes": 4984970928
+   },
+   "model-00009-of-00013.safetensors": {
+    "blob": "e2e2a338c724ad75aea2b64211472c1037945fab398a879116cbbbc3112391da",
+    "bytes": 4984970928
+   },
+   "model-00010-of-00013.safetensors": {
+    "blob": "adca9184b757627840f7fce81e8e4e1203c7551fa2c1bdb469503dc7dfab0583",
+    "bytes": 4984970928
+   },
+   "model-00011-of-00013.safetensors": {
+    "blob": "71b3d1ff9ddc9358de332aa52b92fc001565edfcfd61f9e3679f96f85c7cbc22",
+    "bytes": 4984970928
+   },
+   "model-00012-of-00013.safetensors": {
+    "blob": "f4b204bedb467a2cea642dc38d30c2cdd29e48fbd2d7d5ee5cc14ba4b786ef6f",
+    "bytes": 4984970928
+   },
+   "model-00013-of-00013.safetensors": {
+    "blob": "e167e2806d63c404660b6d609a7eaef2e82bca478688ba6f83155128d8187539",
+    "bytes": 2907596864
+   },
+   "model.safetensors.index.json": {
+    "blob": "9b96b32843a831504e0e1bd42486ed220e001e59",
+    "bytes": 80743
+   },
+   "preprocessor_config.json": {
+    "blob": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+    "bytes": 390
+   },
+   "tokenizer.json": {
+    "blob": "c6cc1014128b19d1fc46b1d30a23e3b1d35db421",
+    "bytes": 7032403
+   },
+   "tokenizer_config.json": {
+    "blob": "d3d3763207692c78780f4bf42d4dadf49a5c8012",
+    "bytes": 10868
+   },
+   "video_preprocessor_config.json": {
+    "blob": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+    "bytes": 385
+   },
+   "vocab.json": {
+    "blob": "4783fe10ac3adce15ac8f358ef5462739852c569",
+    "bytes": 2776833
+   }
+  }
+ },
  "Qwen/Qwen3Guard-Gen-0.6B": {
   "revision": "fada3b2f655b89601929198343c94cd2f64d93cc",
   "n_snapshots": 1,

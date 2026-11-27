@@ -20,6 +20,7 @@ TASKS="$1"
 read -r RUN MODEL MODE NNOISE SHARD COUNT EXTRA < <(grep -v '^#' "$TASKS" | grep -v '^\s*$' | sed -n "$((SLURM_ARRAY_TASK_ID + 1))p")
 source "$HOME/miniconda3/etc/profile.d/conda.sh"
 conda activate "$(env_for_model "$MODEL")"
+export HF_HUB_OFFLINE=1          # weights are pinned and on disk (restore.sh weights); never resolve a newer commit
 cd "$CODE"
 echo "task $SLURM_ARRAY_TASK_ID: run=$RUN model=$MODEL mode=$MODE n_noise=$NNOISE shard=$SHARD/$COUNT extra=${EXTRA:-none} host=$(hostname) $(nvidia-smi --query-gpu=name --format=csv,noheader)"
 python experiments/v2_run.py --model "$MODEL" --run "$RUN" --mode "$MODE" --n-noise "$NNOISE" \

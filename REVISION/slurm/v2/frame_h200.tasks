@@ -1,0 +1,9 @@
+# Step 6 main frame-channel run, H200 queue. Columns: run model mode n_noise shard count [extra v2_run.py args]
+# Wan2.2-A14B (key-frame pair): bouncing_ball left out as for DynamiCrafter; 208 clips, ~9 GPU-h, 2 shards.
+# LTX-2 and Cosmos (prefix): all three systems, 304 clips; Cosmos ~24 GPU-h, 3 shards of ~8 h.
+main_frame  wan22_i2v_a14b   crossed  4       0     2    --channel frame --systems projectile inclined_slide
+main_frame  wan22_i2v_a14b   crossed  4       1     2    --channel frame --systems projectile inclined_slide
+main_frame  ltx2             crossed  4       0     1    --channel frame
+main_frame  cosmos2_2b       crossed  4       0     3    --channel frame
+main_frame  cosmos2_2b       crossed  4       1     3    --channel frame
+main_frame  cosmos2_2b       crossed  4       2     3    --channel frame

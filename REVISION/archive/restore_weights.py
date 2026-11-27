@@ -59,11 +59,15 @@ MODELS = {
     "hunyuan15_i2v_720p": ["hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-720p_i2v"],   # first pilot only
     "ltx2": ["Lightricks/LTX-2"],
     "cosmos2_2b": ["nvidia/Cosmos-Predict2-2B-Video2World", "nvidia/Cosmos-1.0-Guardrail", "Qwen/Qwen3Guard-Gen-0.6B"],
+    # plausibility raters (step 7), recorded from the Hub with --record before their first download
+    "qwen3vl_30b_a3b": ["Qwen/Qwen3-VL-30B-A3B-Instruct"],
+    "qwen25vl_7b": ["Qwen/Qwen2.5-VL-7B-Instruct"],          # v1's rater, re-run on the v2 clips
 }
 TEXT_SWEEP = ["ltx", "cogvideox", "dynamicrafter", "wan22_ti2v_5b", "cogvideox15_i2v", "wan22_i2v_a14b",
               "hunyuan15_i2v", "ltx2", "cosmos2_2b"]
 STEPS = {
     "step6": ["dynamicrafter", "wan22_i2v_a14b", "ltx2", "cosmos2_2b"],   # frame-channel pilot and sweep
+    "step7": ["qwen3vl_30b_a3b", "qwen25vl_7b"],                          # plausibility raters
     "text_sweep": TEXT_SWEEP,                                             # re-run any part of main_text/api_text
     "analysis": [],                                                       # rescore, analysis, figures, writing
 }
@@ -110,6 +114,28 @@ def fetch_repo(repo, hf_home):
         f.write(rec["revision"])
 
 
+def record_from_hub(repo, revision):
+    """Add repo@revision to env/hf_snapshots.json from the Hub's file list (size, LFS sha256 or git blob id
+    per file), for a model first downloaded after the pause. An existing entry is never changed."""
+    from huggingface_hub import HfApi
+    from huggingface_hub.hf_api import RepoFile
+    if len(revision) != 40:
+        sys.exit("give the full 40-character commit hash")
+    path = os.path.join(ENV, "hf_snapshots.json")
+    snap = json.load(open(path))
+    if repo in snap:
+        sys.exit(f"{repo} is already recorded at {snap[repo]['revision']}")
+    tree = HfApi(token=hf_token()).list_repo_tree(repo, revision=revision, recursive=True)
+    files = {f.path: {"blob": f.lfs.sha256 if f.lfs else f.blob_id, "bytes": f.lfs.size if f.lfs else f.size}
+             for f in tree if isinstance(f, RepoFile)}
+    snap[repo] = {"revision": revision, "n_snapshots": 1, "refs_main": revision,
+                  "total_bytes": sum(v["bytes"] for v in files.values()), "files": files}
+    with open(path + ".tmp", "w") as f:
+        json.dump(dict(sorted(snap.items())), f, indent=1)
+    os.replace(path + ".tmp", path)
+    print(f"recorded {repo}@{revision[:8]}: {len(files)} files, {snap[repo]['total_bytes'] / 1e9:.1f} GB")
+
+
 def restore_dynamicrafter(dc_root, verify_only=False):
     problems = []
     if not verify_only and not os.path.exists(os.path.join(dc_root, "scripts", "evaluation", "inference.py")):
@@ -148,12 +174,16 @@ def main():
     g.add_argument("--step", choices=sorted(STEPS))
     g.add_argument("--all", action="store_true")
     g.add_argument("--list", action="store_true")
+    g.add_argument("--record", metavar="REPO@COMMIT", help="add a new repo at a pinned commit to hf_snapshots.json")
     ap.add_argument("--hf-home", default=os.environ.get("HF_HOME", os.path.join(BASE, "hf_home")))
     ap.add_argument("--dc-root", default=os.environ.get("DC_ROOT", os.path.join(ROOT, "external", "DynamiCrafter")))
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--verify-only", action="store_true")
     ap.add_argument("--deep", action="store_true")
     a = ap.parse_args()
+    if a.record:
+        record_from_hub(*a.record.split("@", 1))
+        return
     if a.list or not (a.models or a.step or a.all):
         print(f"{'model':<20}{'GB':>8}  steps")
         for m in MODELS:

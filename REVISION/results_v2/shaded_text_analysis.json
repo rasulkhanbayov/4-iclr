@@ -1,0 +1,392 @@
+{
+ "run": "shaded_text",
+ "compare": null,
+ "results": {
+  "cosmos2_2b/bouncing_ball": {
+   "labels": {
+    "valid": 0,
+    "invalid_fit": 48,
+    "invalid_shape": 0,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 0,
+   "n_clips": 48,
+   "n_valid": 0,
+   "valid_rate": 0.0
+  },
+  "cosmos2_2b/inclined_slide": {
+   "labels": {
+    "valid": 27,
+    "invalid_fit": 15,
+    "invalid_shape": 6,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 23,
+   "n_clips": 48,
+   "n_valid": 27,
+   "valid_rate": 0.5625,
+   "beta_in": -0.00725847376514092,
+   "beta_in_ci": [
+    -0.07271627779119012,
+    0.05503567522852864
+   ],
+   "pre_in": 1.1713951463350478,
+   "pre_out": 0.6313962059180526,
+   "eg": -0.5399989404169953,
+   "spearman_rho": 0.36697929624659953,
+   "decomposition": {
+    "n": 27,
+    "shares": {
+     "request": 0.598705777207101,
+     "scene": 0.09772647883463517,
+     "noise": 0.07740979308515508,
+     "residual": 0.22615795087310886
+    },
+    "corrected": {
+     "request": 0.5321887328326573,
+     "scene": 0.0578162522099689,
+     "noise": 0.06410638421026632
+    },
+    "p_value": {
+     "request": 0.003992015968063872,
+     "scene": 0.32335329341317365,
+     "noise": 0.06786427145708583
+    },
+    "ci95": {
+     "request": [
+      0.218593095006454,
+      0.8538880637753798
+     ],
+     "scene": [
+      0.029566558332900283,
+      0.388519651062961
+     ],
+     "noise": [
+      0.005776751487757938,
+      0.32181737345625
+     ],
+     "residual": [
+      0.05037932129117792,
+      0.27585343328040524
+     ]
+    },
+    "confounded": false,
+    "total_variance": 0.0005786417749469776
+   }
+  },
+  "cosmos2_2b/projectile": {
+   "labels": {
+    "valid": 2,
+    "invalid_fit": 54,
+    "invalid_shape": 0,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 1,
+   "n_clips": 56,
+   "n_valid": 2,
+   "valid_rate": 0.03571428571428571,
+   "pre_out": 0.9627834455584211
+  },
+  "ltx2/bouncing_ball": {
+   "labels": {
+    "valid": 8,
+    "invalid_fit": 40,
+    "invalid_shape": 0,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 6,
+   "n_clips": 48,
+   "n_valid": 8,
+   "valid_rate": 0.16666666666666666,
+   "beta_in": 0.20604574172118656,
+   "beta_in_ci": [
+    -0.14639252537505276,
+    0.5558057925520969
+   ],
+   "pre_in": 0.15393935111767554,
+   "pre_out": 0.06633870286555253,
+   "eg": -0.087600648252123,
+   "spearman_rho": 0.048795003635521896
+  },
+  "ltx2/inclined_slide": {
+   "labels": {
+    "valid": 45,
+    "invalid_fit": 2,
+    "invalid_shape": 1,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 45,
+   "n_clips": 48,
+   "n_valid": 45,
+   "valid_rate": 0.9375,
+   "beta_in": -0.08253391765602508,
+   "beta_in_ci": [
+    -0.2791867452407757,
+    0.07135531543076942
+   ],
+   "pre_in": 1.1526156413111708,
+   "pre_out": 0.9244471917292774,
+   "eg": -0.22816844958189342,
+   "spearman_rho": 0.015502863669221845,
+   "decomposition": {
+    "n": 45,
+    "shares": {
+     "request": 0.07866419448363669,
+     "scene": 0.24396847247541165,
+     "noise": 0.015607261023398987,
+     "residual": 0.6617600720175523
+    },
+    "corrected": {
+     "request": 0.0,
+     "scene": 0.18724618058819287,
+     "noise": 0.0
+    },
+    "p_value": {
+     "request": 0.6047904191616766,
+     "scene": 0.003992015968063872,
+     "noise": 0.41317365269461076
+    },
+    "ci95": {
+     "request": [
+      0.048781216267486535,
+      0.31904994914635354
+     ],
+     "scene": [
+      0.10790242494718376,
+      0.4589508113749913
+     ],
+     "noise": [
+      0.0009762273867679175,
+      0.14738872576002524
+     ],
+     "residual": [
+      0.30367104961061314,
+      0.7533981057815784
+     ]
+    },
+    "confounded": false,
+    "total_variance": 0.008002459130927586
+   }
+  },
+  "ltx2/projectile": {
+   "labels": {
+    "valid": 31,
+    "invalid_fit": 23,
+    "invalid_shape": 2,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 28,
+   "n_clips": 56,
+   "n_valid": 31,
+   "valid_rate": 0.5535714285714286,
+   "beta_in": -0.6381394902485582,
+   "beta_in_ci": [
+    -1.4906936206275523,
+    0.09208078343617647
+   ],
+   "pre_in": 0.9105846123412213,
+   "pre_out": 0.6806683644622279,
+   "eg": -0.22991624787899345,
+   "spearman_rho": -0.14644343847211597,
+   "decomposition": {
+    "n": 31,
+    "shares": {
+     "request": 0.19785752607371024,
+     "scene": 0.18183011998978366,
+     "noise": 0.3055684224316062,
+     "residual": 0.3147439315048999
+    },
+    "corrected": {
+     "request": 0.10343434662224028,
+     "scene": 0.13461853026404869,
+     "noise": 0.28983122585636123
+    },
+    "p_value": {
+     "request": 0.23353293413173654,
+     "scene": 0.08782435129740519,
+     "noise": 0.001996007984031936
+    },
+    "ci95": {
+     "request": [
+      0.12575245242239078,
+      0.5550194021958106
+     ],
+     "scene": [
+      0.06974733724845965,
+      0.32898925482637753
+     ],
+     "noise": [
+      0.13043324153939148,
+      0.5082161568580839
+     ],
+     "residual": [
+      0.06867346543876168,
+      0.3771205210441497
+     ]
+    },
+    "confounded": false,
+    "total_variance": 28.180098880218605
+   }
+  },
+  "wan22_i2v_a14b/bouncing_ball": {
+   "labels": {
+    "valid": 22,
+    "invalid_fit": 26,
+    "invalid_shape": 0,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 21,
+   "n_clips": 48,
+   "n_valid": 22,
+   "valid_rate": 0.4583333333333333,
+   "beta_in": 0.0017094773253646621,
+   "beta_in_ci": [
+    -0.3623962181675479,
+    0.3859276152765316
+   ],
+   "pre_in": 0.1627899238772292,
+   "pre_out": 0.20412989905733261,
+   "eg": 0.041339975180103405,
+   "spearman_rho": 0.17074294189240605,
+   "decomposition": {
+    "n": 22,
+    "shares": {
+     "request": 0.23666267608301972,
+     "scene": 0.7524152298441791,
+     "noise": 0.001766928270078072,
+     "residual": 0.00915516580272302
+    },
+    "corrected": {
+     "request": 0.23284802366521845,
+     "scene": 0.7501264383934984,
+     "noise": 0.0010039977865178205
+    },
+    "p_value": {
+     "request": 0.1277445109780439,
+     "scene": 0.001996007984031936,
+     "noise": 0.9560878243512974
+    },
+    "ci95": {
+     "request": [
+      0.04095341638784703,
+      0.5458965459489895
+     ],
+     "scene": [
+      0.437233622436431,
+      0.9249489282941156
+     ],
+     "noise": [
+      0.0001893267280504272,
+      0.06197440633946741
+     ],
+     "residual": [
+      7.602007537274024e-05,
+      0.025097274363032607
+     ]
+    },
+    "confounded": false,
+    "total_variance": 0.010231755430739167
+   }
+  },
+  "wan22_i2v_a14b/inclined_slide": {
+   "labels": {
+    "valid": 14,
+    "invalid_fit": 33,
+    "invalid_shape": 1,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 14,
+   "n_clips": 48,
+   "n_valid": 14,
+   "valid_rate": 0.2916666666666667,
+   "beta_in": 0.00867267931157706,
+   "beta_in_ci": [
+    -0.03961073057743087,
+    0.05053652303310503
+   ],
+   "pre_in": 1.1855849930935265,
+   "pre_out": 0.8568406984192907,
+   "eg": -0.3287442946742358,
+   "spearman_rho": 0.033410555585292434
+  },
+  "wan22_i2v_a14b/projectile": {
+   "labels": {
+    "valid": 46,
+    "invalid_fit": 9,
+    "invalid_shape": 1,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 46,
+   "n_clips": 56,
+   "n_valid": 46,
+   "valid_rate": 0.8214285714285714,
+   "beta_in": 0.39333240561230076,
+   "beta_in_ci": [
+    -0.7216156978672442,
+    1.7314027252704576
+   ],
+   "pre_in": 1.064053919990219,
+   "pre_out": 0.666903354042161,
+   "eg": -0.3971505659480581,
+   "spearman_rho": 0.2129111994274128,
+   "decomposition": {
+    "n": 46,
+    "shares": {
+     "request": 0.10018704343767362,
+     "scene": 0.15995246507713998,
+     "noise": 0.08712532831790473,
+     "residual": 0.6527351631672816
+    },
+    "corrected": {
+     "request": 0.0,
+     "scene": 0.10400373680565869,
+     "noise": 0.06847575222741098
+    },
+    "p_value": {
+     "request": 0.590818363273453,
+     "scene": 0.029940119760479042,
+     "noise": 0.017964071856287425
+    },
+    "ci95": {
+     "request": [
+      0.08671846025391917,
+      0.39708175157651576
+     ],
+     "scene": [
+      0.03640124670919436,
+      0.369384936971209
+     ],
+     "noise": [
+      0.0097018238545709,
+      0.19740274705522234
+     ],
+     "residual": [
+      0.31089988040950345,
+      0.7785066478456876
+     ]
+    },
+    "confounded": false,
+    "total_variance": 210.56307361362636
+   }
+  }
+ },
+ "compare_results": {}
+}

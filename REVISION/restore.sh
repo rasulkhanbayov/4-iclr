@@ -5,7 +5,7 @@
 #   bash REVISION/restore.sh data              # archived data from HF -> original paths, sha256-checked
 #   bash REVISION/restore.sh data --sample     # small files + one model's videos (quick check)
 #   bash REVISION/restore.sh envs              # physweep2, physweep2-cosmos, dynamicrafter_venv from lock files
-#   bash REVISION/restore.sh weights step6     # weights for one step (step6 | text_sweep), pinned commits
+#   bash REVISION/restore.sh weights step6     # weights for one step (step6 | step7 | text_sweep), pinned commits
 #   bash REVISION/restore.sh weights ltx2 ...  # or for named models
 #   bash REVISION/restore.sh check             # re-run the number check against the restored data
 #
@@ -19,10 +19,12 @@ LOCK="$HERE/env"
 CU128="https://download.pytorch.org/whl/cu128"
 
 # A Python with huggingface_hub, numpy, pyyaml and pillow, for the restore scripts and the number check.
-# Uses physweep2 if it exists, otherwise builds a small conda env once (the system python3 on the shared
-# servers has no ensurepip, so `python3 -m venv` fails there).
+# Uses physweep2 once it is fully built, otherwise builds a small conda env once (the system python3 on the
+# shared servers has no ensurepip, so `python3 -m venv` fails there).
 helper_python () {
-    if [ -x "$ENV_MAIN/bin/python" ]; then echo "$ENV_MAIN/bin/python"; return; fi
+    if [ -x "$ENV_MAIN/bin/python" ] && "$ENV_MAIN/bin/python" -c "import huggingface_hub, numpy, yaml, PIL" 2>/dev/null; then
+        echo "$ENV_MAIN/bin/python"; return
+    fi
     local v="$BASE/envs/restore_helper"
     if [ ! -x "$v/bin/python" ]; then
         source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -73,7 +75,7 @@ case "${1:-}" in
     ;;
   weights)
     shift; PY="$(helper_python)"
-    if [ "${1:-}" = "step6" ] || [ "${1:-}" = "text_sweep" ]; then
+    if [[ "${1:-}" == step* ]] || [ "${1:-}" = "text_sweep" ]; then
         "$PY" "$HERE/archive/restore_weights.py" --step "$1" "${@:2}"
     else
         "$PY" "$HERE/archive/restore_weights.py" --models "$@"

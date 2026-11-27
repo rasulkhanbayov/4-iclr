@@ -1,0 +1,4 @@
+# Step 6 main frame-channel run, A100 queue. Columns: run model mode n_noise shard count [extra v2_run.py args]
+# DynamiCrafter takes two key frames; for bouncing_ball they carry no restitution information (first and last
+# frame are the same for e = 0.2-0.8, results_v2/STEP6_REPORT.md), so that system is left out: 208 clips, ~6 GPU-h.
+main_frame  dynamicrafter    crossed  4       0     1    --channel frame --systems projectile inclined_slide

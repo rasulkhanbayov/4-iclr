@@ -403,3 +403,60 @@ every deletion group in `STORAGE_PLAN.md`.
   `check_hf.py --no-rehash`: HF dataset private, commit bd83fb66, 5,576/5,576 files match the manifest.
   The user chose to skip the full download test. Added the 429'd partial download (`verify_restore.dl`)
   to group 1 and the staging folder to group 3.
+
+## 2026-11-27: resumed after the CVPR pause
+
+- Restore started on 10.4.64.27 (this is the shared server the envs were first built on; no SLURM here, and
+  panther-login is not reachable over ssh, so GPU jobs are submitted by the user):
+  data from HF (5,572 files), step-6 weights (319 GB), the three conda envs from the lock files, and the
+  step-7 rater weights. Logs: `slurm/v2/logs/restore_*.log`.
+- Fixed while restoring:
+  - `restore_data.py`: snapshot_download(allow_patterns=<4,000 paths>) spent ~10 min per call in fnmatch
+    (22 M pattern tests, Python 3.10 caches only 256 compiled patterns), and again after every 429 pause.
+    Now downloads the exact file list with hf_hub_download, 8 at a time, each waiting out 429s itself.
+  - `restore.sh`: `weights step7` (any step name) is passed as a step; the helper Python is physweep2 only
+    once it can import huggingface_hub (a half-built physweep2 broke the step-7 download).
+  - `20_sweep_a100.sh`, `20_sweep_h200.sh`: `HF_HUB_OFFLINE=1`, as RESTORE.md requires.
+- Step 7 (plausibility rater, plan E-D), new:
+  - Raters pinned and recorded in `env/hf_snapshots.json` with the new `restore_weights.py --record`
+    (existing entries checked byte-identical after the rewrite): Qwen3-VL-30B-A3B-Instruct @ 9c4b90e1
+    (62.2 GB, Apache-2.0) and v1's Qwen2.5-VL-7B-Instruct @ cc594898 (16.6 GB), re-run on the v2 clips for
+    a like-for-like comparison. `restore_weights.py --step step7`.
+  - `experiments/v2_rate_plausibility.py`: v1's prompt verbatim (self-check compares it with
+    e3_plausibility_gap.py); frames decoded from the saved mp4, min(T,32) uniform even indices, long side
+    448 px, real timestamps (Qwen3-VL via video_metadata, Qwen2.5-VL via fps); records the digit, the
+    renormalized probabilities of "1".."5" and their expected value. Checked against the transformers
+    4.57.6 source: Qwen3-VL samples 2 fps by default (4–12 frames for these clips), hence explicit frames.
+  - `experiments/v2_plausibility_analysis.py`: per rater x model histogram, AUROC (valid vs not), rho with
+    fit R^2, rho with relative parameter error on valid clips, rater agreement. Helpers unit-tested.
+  - `slurm/v2/21_rate_a100.sh` (array 0 = Qwen3-VL-30B-A3B, 1 = Qwen2.5-VL-7B).
+- Shaded-style ablation (plan step 2, review T3), new task files `shaded_a100.tasks`, `shaded_h200.tasks`:
+  text channel, style "shaded", 4 scene x 2 noise seeds = 152 clips per model on the step-6 models, each
+  clip paired with its main_text twin (same scene seed, noise seeds 1000/1001, request; checked in
+  design.py). ~22 GPU-h estimated from the main sweep's per-clip times.
+- LaTeX: no TeX on the server; `envs/tex` (conda-forge tectonic 0.17.0, user level) compiles the paper.
+**Not done yet:** step-6 pilot and sweep, shaded ablation, step-7 rating (all wait for the downloads and
+a GPU submission by the user); figures (step 10), dataset release (9), rewrite (11), verification (12).
+
+## 2026-11-27 (evening) — step 7 done, step-6 pilot done, shaded ablation 3/4 models
+
+- **Step 7** (job 482581): both raters scored all 9 × 304 main_text clips, 0 errors. Analysis
+  `results_v2/main_text_plausibility.{json,md}`, write-up `results_v2/STEP7_REPORT.md`. The claim
+  generalizes: Qwen3-VL-30B-A3B does not track parameter error on any of the 9 generators (Qwen2.5-VL-7B:
+  2 weak exceptions), separates valid from invalid clips inconsistently (AUROC 0.31–0.70, below 0.5 for 3
+  generators), and the two raters agree poorly (weighted κ −0.13 to 0.43).
+- **Step-6 pilot** (jobs 482639, 482640), run `pilot_frame`, 12 clips per model, 0 errors, rescored. All
+  four models reproduce the given frames (≤ 0.5 px, one 2.2 px prefix frame). New ideal-observer check on
+  the inputs: the bouncing ball's first/last key frames carry no restitution information, so the ball is
+  left out for the pair models in the main run. Readings and caveats (pair mode measures timing between
+  fixed endpoints; Wan2.2's inserted bounce at g = 5) in `results_v2/STEP6_REPORT.md`, "Pilot on the GPU".
+  Main-run task files written: `slurm/v2/frame_a100.tasks`, `frame_h200.tasks` (run `main_frame`, ≈ 41
+  GPU-h).
+- **Shaded ablation** (job 482644): Wan2.2-A14B, LTX-2, Cosmos done (152 clips each, 0 errors, rescored);
+  the DynamiCrafter job (`shaded_a100.tasks`) has no log yet. New `experiments/v2_style_compare.py` pairs
+  each shaded clip with its structured twin in main_text (McNemar on validity, β per style, θ̂ agreement on
+  pairs valid in both); McNemar and Spearman checked against scipy. Result so far
+  (`results_v2/shaded_text_vs_main_text.md`, `results_v2/shaded_text_analysis.md`): β's CI includes 0 for
+  every model × system in both styles; shading lowers projectile validity for Cosmos (10 → 2 of 56,
+  p = 0.008) and LTX-2 (43 → 31, p = 0.036); on pairs valid in both styles θ̂ stays seed-linked across
+  styles for the projectile (ρ = 0.83 LTX-2, 0.58 Wan2.2).

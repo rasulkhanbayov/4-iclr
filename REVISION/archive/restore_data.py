@@ -42,16 +42,28 @@ def select(manifest, parts, sample):
 
 
 def resolve_revision(repo_id, revision):
-    """The archive's commit hash. With a hash, snapshot_download skips files it already put in local_dir
+    """The archive's commit hash. With a hash, hf_hub_download skips a file it already put in local_dir
     without asking HF, so a retry after a 429 resumes instead of starting over."""
     from huggingface_hub import HfApi
     return hf_retry(HfApi(token=hf_token()).dataset_info, repo_id, revision=revision).sha
 
 
-def fetch_hf(repo_id, revision, download_dir, patterns):
-    from huggingface_hub import snapshot_download
-    return hf_retry(snapshot_download, repo_id=repo_id, repo_type="dataset", revision=revision,
-                    local_dir=download_dir, allow_patterns=patterns, token=hf_token())
+def fetch_hf(repo_id, revision, download_dir, files, workers=8):
+    """Download exactly `files` into download_dir, `workers` at a time; each file waits out HF's rate limit
+    on its own. Not snapshot_download(allow_patterns=files): it tests every pattern against every repo file
+    (~22 million fnmatch calls here, each recompiled since Python 3.10 caches 256 patterns), ~10 min a call."""
+    from concurrent.futures import ThreadPoolExecutor
+    from huggingface_hub import hf_hub_download
+    tok = hf_token()
+
+    def one(path):
+        return hf_retry(hf_hub_download, repo_id=repo_id, repo_type="dataset", revision=revision, filename=path,
+                        local_dir=download_dir, token=tok)
+
+    with ThreadPoolExecutor(workers) as ex:
+        for i, _ in enumerate(ex.map(one, files), 1):
+            if i % 250 == 0 or i == len(files):
+                print(f"  downloaded {i}/{len(files)}", flush=True)
 
 
 def main():

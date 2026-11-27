@@ -10,11 +10,8 @@ comes from, see `PROVENANCE.md`.
 - Steps 1–5 of `02_revision_plan.md` are done (validity layer, structured scenes, decoupled seeds,
   pilots, the main text-channel sweep on 9 models + the API-mode tier). Results are in
   `results_v2/STEP1..5_REPORT.md` and `results_v2/main_text_analysis.md`.
-- Step 6 (frame-implied channel): code written and CPU dry-run tested (`results_v2/STEP6_REPORT.md`). The
-  GPU pilot was **never submitted**; you chose to pause with it unfinished.
-- Not started: step 7 (plausibility rater upgrade, Qwen3-VL-30B-A3B), the shaded-style OOD ablation,
-  step 9 (dataset release), step 10 (figures from real frames; Figure 2 is yours in PaperBanana),
-  step 11 (rewrite in `elsarticle` for IVC), step 12 (final verification).
+- Resumed 2026-11-27 (see `LOG.md`): data, envs and weights restored. Step 7 done (`results_v2/STEP7_REPORT.md`). Step-6 GPU pilot done; main frame-channel run `main_frame` (`slurm/v2/frame_*.tasks`) submitted or to submit (`results_v2/STEP6_REPORT.md`). Shaded ablation: 3 of 4 models done (`results_v2/shaded_text_vs_main_text.md`), DynamiCrafter pending.
+- Not started: step 9 (dataset release), step 10 (figures from real frames; Figure 2 is yours in PaperBanana), step 11 (rewrite in `elsarticle` for IVC), step 12 (final verification).
 - `paper/main.tex` is still the submitted WACV text with v1 numbers; only Table 1's ω grid is fixed.
 
 ## Open items found while archiving (fix during the rewrite)

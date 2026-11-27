@@ -1,0 +1,6 @@
+# Shaded-style ablation, H200 models (see shaded_a100.tasks). Per-clip times from the main sweep:
+# Wan2.2-A14B ~152 s (~6.4 h), LTX-2 ~19 s (~0.8 h), Cosmos ~290 s (~12 h, so two shards).
+shaded_text  wan22_i2v_a14b   crossed  2       0     1    --style shaded
+shaded_text  ltx2             crossed  2       0     1    --style shaded
+shaded_text  cosmos2_2b       crossed  2       0     2    --style shaded
+shaded_text  cosmos2_2b       crossed  2       1     2    --style shaded

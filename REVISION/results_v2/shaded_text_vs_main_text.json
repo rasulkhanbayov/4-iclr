@@ -1,0 +1,191 @@
+{
+ "cosmos2_2b/bouncing_ball": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 2,
+  "valid_shaded": 0,
+  "valid_both": 0,
+  "only_structured": 2,
+  "only_shaded": 0,
+  "mcnemar_p": 0.5,
+  "beta_in_structured": null,
+  "beta_in_structured_ci": null,
+  "beta_in_shaded": null,
+  "beta_in_shaded_ci": null,
+  "rho_theta_hat": null,
+  "median_rel_change": null
+ },
+ "cosmos2_2b/inclined_slide": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 25,
+  "valid_shaded": 27,
+  "valid_both": 19,
+  "only_structured": 6,
+  "only_shaded": 8,
+  "mcnemar_p": 0.79052734375,
+  "beta_in_structured": -0.017873596909294444,
+  "beta_in_structured_ci": [
+   -0.09111011727174348,
+   0.02166862913568771
+  ],
+  "beta_in_shaded": -0.007258473765140093,
+  "beta_in_shaded_ci": [
+   -0.07035597563045438,
+   0.055821154143524294
+  ],
+  "rho_theta_hat": 0.031578947368421054,
+  "median_rel_change": 0.18855900345374618
+ },
+ "cosmos2_2b/projectile": {
+  "n_pairs": 56,
+  "unmatched": 0,
+  "valid_structured": 10,
+  "valid_shaded": 2,
+  "valid_both": 2,
+  "only_structured": 8,
+  "only_shaded": 0,
+  "mcnemar_p": 0.0078125,
+  "beta_in_structured": 0.0002937855098118899,
+  "beta_in_structured_ci": [
+   -2.680499279663802e-05,
+   0.0010215089950168304
+  ],
+  "beta_in_shaded": null,
+  "beta_in_shaded_ci": null,
+  "rho_theta_hat": null,
+  "median_rel_change": 0.0004606811959203611
+ },
+ "ltx2/bouncing_ball": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 4,
+  "valid_shaded": 8,
+  "valid_both": 0,
+  "only_structured": 4,
+  "only_shaded": 8,
+  "mcnemar_p": 0.3876953125,
+  "beta_in_structured": -0.48285705192161643,
+  "beta_in_structured_ci": [
+   -3.6006817005427685,
+   7.311704569631288
+  ],
+  "beta_in_shaded": 0.20604574172118656,
+  "beta_in_shaded_ci": [
+   -0.14639252537505276,
+   0.5558057925520969
+  ],
+  "rho_theta_hat": null,
+  "median_rel_change": null
+ },
+ "ltx2/inclined_slide": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 48,
+  "valid_shaded": 45,
+  "valid_both": 45,
+  "only_structured": 3,
+  "only_shaded": 0,
+  "mcnemar_p": 0.25,
+  "beta_in_structured": -0.008323854617040554,
+  "beta_in_structured_ci": [
+   -0.41263588970338344,
+   0.39430324850820453
+  ],
+  "beta_in_shaded": -0.08253391765602508,
+  "beta_in_shaded_ci": [
+   -0.2791867452407757,
+   0.07135531543076942
+  ],
+  "rho_theta_hat": 0.22015810276679837,
+  "median_rel_change": 0.31243263700643675
+ },
+ "ltx2/projectile": {
+  "n_pairs": 56,
+  "unmatched": 0,
+  "valid_structured": 43,
+  "valid_shaded": 31,
+  "valid_both": 23,
+  "only_structured": 20,
+  "only_shaded": 8,
+  "mcnemar_p": 0.03569813817739487,
+  "beta_in_structured": -0.0005275475179460618,
+  "beta_in_structured_ci": [
+   -0.33174508776755984,
+   0.2655493852071861
+  ],
+  "beta_in_shaded": -0.6381394902485582,
+  "beta_in_shaded_ci": [
+   -1.4906936206275523,
+   0.09208078343617647
+  ],
+  "rho_theta_hat": 0.8280632411067194,
+  "median_rel_change": 0.18549616064923563
+ },
+ "wan22_i2v_a14b/bouncing_ball": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 15,
+  "valid_shaded": 22,
+  "valid_both": 13,
+  "only_structured": 2,
+  "only_shaded": 9,
+  "mcnemar_p": 0.0654296875,
+  "beta_in_structured": 0.15870365771555284,
+  "beta_in_structured_ci": [
+   -0.14804899509048702,
+   0.464974885922057
+  ],
+  "beta_in_shaded": 0.0017094773253646621,
+  "beta_in_shaded_ci": [
+   -0.3623962181675479,
+   0.3859276152765316
+  ],
+  "rho_theta_hat": 0.25274725274725274,
+  "median_rel_change": 0.07957335305897051
+ },
+ "wan22_i2v_a14b/inclined_slide": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 14,
+  "valid_shaded": 14,
+  "valid_both": 11,
+  "only_structured": 3,
+  "only_shaded": 3,
+  "mcnemar_p": 1.0,
+  "beta_in_structured": -0.07883437464569713,
+  "beta_in_structured_ci": [
+   -0.32583950199733,
+   0.09117126870724561
+  ],
+  "beta_in_shaded": 0.00867267931157706,
+  "beta_in_shaded_ci": [
+   -0.03961073057743087,
+   0.05053652303310503
+  ],
+  "rho_theta_hat": 0.11818181818181818,
+  "median_rel_change": 0.15622892550814615
+ },
+ "wan22_i2v_a14b/projectile": {
+  "n_pairs": 56,
+  "unmatched": 0,
+  "valid_structured": 47,
+  "valid_shaded": 46,
+  "valid_both": 37,
+  "only_structured": 10,
+  "only_shaded": 9,
+  "mcnemar_p": 1.0,
+  "beta_in_structured": 0.003621426202171266,
+  "beta_in_structured_ci": [
+   -0.11628743845804003,
+   0.13389224044000797
+  ],
+  "beta_in_shaded": 0.39333240561230076,
+  "beta_in_shaded_ci": [
+   -0.7216156978672442,
+   1.7314027252704576
+  ],
+  "rho_theta_hat": 0.5779990516832622,
+  "median_rel_change": 0.039780278343781665
+ }
+}
