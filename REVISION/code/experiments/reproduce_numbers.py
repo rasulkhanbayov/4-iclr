@@ -1414,6 +1414,120 @@ def build_steps():
 
 
 # =============================================================================
+# Steps 7-10 of the IVC revision (added 2026-11-28)
+# =============================================================================
+PL_RATERS = ("qwen3vl_30b_a3b", "qwen25vl_7b")
+
+
+@functools.lru_cache(None)
+def _plaus():
+    mod = module(os.path.join(CODE_DIR, "experiments", "v2_plausibility_analysis.py"), "v2_plausibility_analysis")
+    return mod.analyze(os.path.join(DATA["runs"], "main_text"), list(PL_RATERS))
+
+
+def plaus():
+    """experiments/v2_plausibility_analysis.analyze on runs/main_text (rating files + rescored labels)."""
+    for m in run_models("main_text"):
+        for rt in PL_RATERS:
+            F("runs", f"main_text/{m}/plausibility_{rt}.jsonl")
+        F("runs", f"main_text/{m}/clips_rescored.jsonl")
+    return _plaus()
+
+
+def rating_rows(rater):
+    out = []
+    for m in run_models("main_text"):
+        with open(F("runs", f"main_text/{m}/plausibility_{rater}.jsonl")) as f:
+            out += [json.loads(x) for x in f if x.strip()]
+    return out
+
+
+def pr(rater):
+    return plaus()["per_rater"][rater]
+
+
+def auroc_side(rater, side):
+    ci = [d["auroc_ci95"] for d in pr(rater).values()]
+    return sum((c[0] > 0.5) if side == "above" else (c[1] < 0.5) for c in ci)
+
+
+def faith_zero(rater):
+    return sum(d["rho_rel_err_pooled_ci95"][0] <= 0 <= d["rho_rel_err_pooled_ci95"][1] for d in pr(rater).values()
+               if d.get("rho_rel_err_pooled_ci95"))
+
+
+def hist_total(rater, k):
+    return sum(d["hist"][str(k)] if str(k) in d["hist"] else d["hist"][k] for d in pr(rater).values())
+
+
+def build_reports_v2():
+    D7 = "results_v2/STEP7_REPORT.md"
+    R3, R2 = PL_RATERS
+    src = "runs/main_text/<model>/plausibility_<rater>.jsonl + clips_rescored.jsonl (labels, theta_hat)"
+    how = "experiments/v2_plausibility_analysis.analyze"
+    a = "9 generators × 304 clips = 2,736 clips per rater, 0"
+    add(D7, a, "9", lambda: len(pr(R3)), src, "models rated", kind="int")
+    add(D7, a, "2,736", lambda: sum(d["n"] for d in pr(R3).values()), src, f"{R3}: rated clips", kind="int")
+    add(D7, a, "2,736", lambda: sum(d["n"] for d in pr(R2).values()), src, f"{R2}: rated clips", kind="int")
+    add(D7, a, "0", lambda: sum("error" in x for rt in PL_RATERS for x in rating_rows(rt)), src,
+        "rating rows with an error field, both raters", kind="int")
+    for rt, repo, sha in [(R3, "Qwen/Qwen3-VL-30B-A3B-Instruct", "9c4b90e1"), (R2, "Qwen/Qwen2.5-VL-7B-Instruct", "cc594898")]:
+        add(D7, f"| `{rt}` | {repo} @ {sha}", sha,
+            lambda repo=repo: J("rev", "env/hf_snapshots.json")[repo]["revision"][:8], "env/hf_snapshots.json",
+            "pinned snapshot revision", kind="str")
+        add(D7, f"| `{rt}` | {repo} @ {sha}", "same revision in every rating row",
+            lambda rt=rt, repo=repo: {x.get("revision", "")[:8] for x in rating_rows(rt)}
+            == {J("rev", "env/hf_snapshots.json")[repo]["revision"][:8]}, src, "revision field of every row", kind="claim")
+    add(D7, "Prompt: v1's verbatim (sha 152c79cfd04b628f", "152c79cfd04b628f",
+        lambda: "/".join(sorted({x.get("prompt_sha") for rt in PL_RATERS for x in rating_rows(rt)})), src,
+        "prompt_sha field of every rating row (both raters)", kind="str")
+    a = "Qwen3-VL-30B: 0.31–0.70 across the nine"
+    add(D7, a, "0.31", lambda: min(d["auroc_valid"] for d in pr(R3).values()), src, how + ": min AUROC (valid vs not)")
+    add(D7, a, "0.70", lambda: max(d["auroc_valid"] for d in pr(R3).values()), src, how + ": max AUROC")
+    a = "generators; the CI lies above 0.5 for 3 generators"
+    add(D7, a, "3", lambda: auroc_side(R3, "above"), src, "AUROC CI lower bound > 0.5", kind="int")
+    add(D7, a, "3", lambda: auroc_side(R3, "below"), src, "AUROC CI upper bound < 0.5", kind="int")
+    for a, m, p in [("(Cosmos 0.31, Hunyuan 0.38,", "cosmos2_2b", "0.31"), ("(Cosmos 0.31, Hunyuan 0.38,", "hunyuan15_i2v", "0.38"),
+                    ("DynamiCrafter 0.40: clips that pass", "dynamicrafter", "0.40")]:
+        add(D7, a, p, lambda m=m: pr(R3)[m]["auroc_valid"], src, f"{R3} AUROC, {m}")
+    a = "0.42–0.83, above 0.5 for 6 generators, below for 1"
+    add(D7, a, "0.42", lambda: min(d["auroc_valid"] for d in pr(R2).values()), src, f"{R2}: min AUROC")
+    add(D7, a, "0.83", lambda: max(d["auroc_valid"] for d in pr(R2).values()), src, f"{R2}: max AUROC")
+    add(D7, a, "6", lambda: auroc_side(R2, "above"), src, "AUROC CI lower bound > 0.5", kind="int")
+    add(D7, a, "1", lambda: auroc_side(R2, "below"), src, "AUROC CI upper bound < 0.5", kind="int")
+    add(D7, "Qwen3-VL-30B: the CI includes 0 for all 9 generators", "9", lambda: faith_zero(R3), src,
+        "pooled Spearman(expected, relative error) on valid clips, ranked within model x system: CI contains 0",
+        kind="int")
+    a = "CI includes 0 for 7 of 9; CogVideoX"
+    add(D7, a, "7", lambda: faith_zero(R2), src, "same, Qwen2.5-VL-7B", kind="int")
+    add(D7, a, "−0.29", lambda: pr(R2)["cogvideox"]["rho_rel_err_pooled"], src, "pooled rho, CogVideoX-5B")
+    add(D7, a, "−0.25", lambda: pr(R2)["ltx2"]["rho_rel_err_pooled"], src, "pooled rho, LTX-2")
+    add(D7, "With 18 tests at the 5% level", "18",
+        lambda: sum(d.get("rho_rel_err_pooled") is not None for rt in PL_RATERS for d in pr(rt).values()), src,
+        "pooled faithfulness tests, both raters", kind="int")
+    a = "Qwen3-VL-30B almost never answers 2 (6 of 2,736)"
+    add(D7, a, "6", lambda: hist_total(R3, 2), src, "greedy score = 2, all clips", kind="int")
+    add(D7, a, "53", lambda: 100 * hist_total(R3, 5) / sum(d["n"] for d in pr(R3).values()), src, "% greedy score = 5")
+    add(D7, "almost never answers 5 (25 of 2,736)", "25", lambda: hist_total(R2, 5), src, f"{R2}: greedy score = 5",
+        kind="int")
+    ag = lambda: plaus()["agreement"]
+    a = "quadratic-weighted κ from −0.13 (Hunyuan) to 0.43 (Cosmos)"
+    add(D7, a, "−0.13", lambda: min(d["kappa_quadratic"] for d in ag().values()), src, how + ": min kappa (quadratic)")
+    add(D7, a, "0.43", lambda: max(d["kappa_quadratic"] for d in ag().values()), src, "max kappa")
+    add(D7, a, "min at Hunyuan, max at Cosmos",
+        lambda: (min(ag(), key=lambda m: ag()[m]["kappa_quadratic"]), max(ag(), key=lambda m: ag()[m]["kappa_quadratic"]))
+        == ("hunyuan15_i2v", "cosmos2_2b"), src, "argmin / argmax", kind="claim")
+    a = "Spearman ρ of expected scores −0.04 to 0.81"
+    add(D7, a, "−0.04", lambda: min(d["rho"] for d in ag().values()), src, "min Spearman between raters")
+    add(D7, a, "0.81", lambda: max(d["rho"] for d in ag().values()), src, "max Spearman between raters")
+    a = "(0/9 and 2/9 weak"
+    add(D7, a, "0/9", lambda: f"{len(pr(R3)) - faith_zero(R3)}/{len(pr(R3))}", src, "CI excludes 0, Qwen3-VL-30B",
+        kind="str")
+    add(D7, a, "2/9", lambda: f"{len(pr(R2)) - faith_zero(R2)}/{len(pr(R2))}", src, "CI excludes 0, Qwen2.5-VL-7B",
+        kind="str")
+
+
+# =============================================================================
 # Runner
 # =============================================================================
 def norm(s):
@@ -1605,6 +1719,7 @@ def main():
     build_main()
     build_appendix()
     build_steps()
+    build_reports_v2()
     ids = [e.id for e in REG]
     assert len(ids) == len(set(ids)), "duplicate entry ids"
     sel = REG

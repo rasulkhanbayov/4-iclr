@@ -113,3 +113,56 @@ out-of-range θ): `frame_a100.tasks` (DynamiCrafter, projectile + slide, 208 cli
 `frame_h200.tasks` (Wan2.2-A14B 208 clips in 2 shards ~9 GPU-h; LTX-2 304 clips ~2 GPU-h; Cosmos 304 clips
 in 3 shards ~24 GPU-h). Total ≈ 41 GPU-h. Per-clip times from the pilot: DynamiCrafter 107 s, Wan2.2 149 s
 (+33 min load), LTX-2 20 s (+26 min load), Cosmos 282 s.
+
+---
+
+# Main run complete (2026-11-28)
+
+Run `main_frame`, jobs 483547 (DynamiCrafter) and 483548 (Wan2.2-A14B, LTX-2, Cosmos): 1,024 clips (Cosmos 304,
+LTX-2 304, Wan2.2 208, DynamiCrafter 208), 0 errors, all rescored. Files: `main_frame_analysis.md`
+(v2_analyze: validity, β, PRE, variance shares), `main_frame_frame.md` (v2_frame_analysis: key frames, frame vs
+text, pair-mode timing, rebounds, sweep-level CIs), `lostframe_check.md`, `window_sensitivity.md`.
+
+**Key frames are reproduced** by all four models: median error 0.12–0.26 px; 3 LTX-2 bouncing-ball clips
+miss a prefix frame by more than 2 px (max 2.24 px).
+
+**In-range slope, frame vs. text channel (valid clips).** A slope is called nonzero only if both the clip-level
+and the sweep-level CI exclude 0.
+
+| model / system | mode | valid frame | β frame [clip CI] (sweep CI) | β text [clip CI] |
+|---|---|---|---|---|
+| LTX-2 / projectile | prefix | 56/112 | **0.92 [0.29, 1.46] (0.23, 1.60)** | −0.05 [−0.26, 0.15] |
+| LTX-2 / slide | prefix | 96/96 | −0.07 [−0.82, 0.65] | −0.03 [−0.78, 0.77] |
+| LTX-2 / ball | prefix | 39/96 | 0.28 [0.02, 0.54] (−0.02, 0.63): not claimed | −0.18 [−1.80, 1.15] |
+| Cosmos / projectile | prefix | 0/112 | – | −0.00 [−0.02, 0.02] |
+| Cosmos / slide | prefix | 10/96 | 0.03 [−0.07, 0.17] | −0.01 [−0.07, 0.06] |
+| DynamiCrafter / projectile | pair | 102/112 | −0.11 [−0.47, 0.29] | 0.01 [−0.02, 0.03] |
+| DynamiCrafter / slide | pair | 85/96 | −0.53 [−1.58, 0.42] | −0.16 [−2.19, 1.78] |
+| Wan2.2 / projectile | pair | 97/112 | −3.05 [−14.43, 10.90] | 0.05 [−0.10, 0.23] |
+| Wan2.2 / slide | pair | 92/96 | **0.27 [0.10, 0.46] (0.10, 0.44)** | −0.05 [−1.05, 0.96] |
+
+**Readings.**
+1. **The frame channel carries θ for one model.** LTX-2 continues a 9-frame projectile prefix with the
+   prefix's acceleration: median ĝ 1.50, 3.84, 5.00, 7.07, 9.71, 14.78, 20.29 for g = 1.6 … 25 (valid clips). The
+   same model ignores g in the text channel. Request share of θ̂ variance 0.19 (p = 0.004).
+2. **Valid rate falls with g for LTX-2** (16/16 clips at g = 1.6; 3–6/16 at g ≥ 9.8). Cause, from the tracks:
+   the ball falls to 10–25 px above the drawn floor line and rebounds without touching it (48/112 clips, 43 of
+   its 52 invalid_fit). The fit window ends only at contact with the drawn floor, so it runs into the
+   rebound. (`early_rebound`, defined after the run; changes no label.)
+3. **Cosmos follows the prefix for about one second, then the object degrades.** Registered: 0/112 projectile
+   clips valid (93-frame, 5.8-s clips; the ball shrinks and fades). Over the scene's own 1 s with the same
+   rules (exploratory, `window_sensitivity.md`): 93/112 valid, β = 0.71 [0.54, 0.89].
+4. **Pair mode interpolates timing, not physics.** Between fixed endpoints, the tracked path is closer to
+   constant-speed motion than to the true motion in most clips: DynamiCrafter projectile 36/102 closer to
+   physics (median RMS 6.1 px physics vs 3.9 px linear), slide 5/85; Wan2.2 projectile 30/97, slide 0/92 (1.0 px
+   from linear). Wan2.2's small positive slide slope: μ̂ rises from 1.59 to 1.71 over the grid, just below
+   tan 60° = 1.73 (constant speed), i.e. a slight acceleration that shrinks as μ grows; its cause is not
+   established. Wan2.2 meets the apex key frame by inserting a bounce in 33/112 projectile clips.
+5. **Sensitivity checks** (both exploratory, defined after seeing the data): the 1-s window gives LTX-2
+   β = 0.71 [0.56, 0.86], ρ = 0.90 on 108/112 clips, and leaves every text-channel slope CI including 0; the
+   lost-frame rule check adds 7 valid frame-channel clips and removes none.
+
+**For the paper:** text-specified θ is ignored by all nine generators; frame-implied θ is followed by LTX-2
+for the projectile (and by Cosmos briefly, before its object degrades); pair-conditioned models interpolate
+between the key frames at nearly constant speed. One model and one system: state it as such. Register every
+number above in `reproduce_numbers.py` before use.

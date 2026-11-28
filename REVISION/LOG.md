@@ -483,3 +483,50 @@ a GPU submission by the user); figures (step 10), dataset release (9), rewrite (
   1,007) where the two trackers disagree, 2 differ only in the frame where floor contact is detected (same
   window: 7.87 vs 7.68, 0.84 vs 0.84), 1 is two near-zero estimates, 2 are bouncing-ball clips with real
   peak-height differences.
+
+## 2026-11-28 (morning) — Cosmos frame run done; frame channel carries θ for LTX-2; two sensitivity checks
+
+- **Cosmos main_frame** shards 1–2 finished (304 clips, 0 errors), rescored (0 label changes). Valid: 10 of
+  304 (all slides); projectile 0 of 112, ball 0 of 96. DynamiCrafter still running (147/208 at 08:57).
+- **Frame channel, registered measurement** (LTX-2 and Wan2.2 complete): LTX-2 projectile (9-frame prefix)
+  β = 0.92, clip CI [0.29, 1.46], sweep CI [0.23, 1.60], ρ = 0.54, on 56 of 112 valid clips; the same model
+  in the text channel: β = −0.05 [−0.26, 0.15]. First cell in the study whose slope CI excludes 0. Valid rate
+  falls with g (16/16 at g = 1.6, 3–6/16 at g ≥ 9.8). Wan2.2 slide (pair) β = 0.27 [0.10, 0.46], small;
+  LTX-2 ball β = 0.28 clip CI [0.02, 0.54] but sweep CI [−0.02, 0.63], so not claimed.
+- New: `v2_frame_analysis.py` reports a sweep-level CI (resampling whole (scene, noise) sweeps) next to the
+  clip-level one; a slope is called nonzero only if both exclude 0. Either can be the wider one.
+- New: `early_rebound` count (rule defined after seeing main_frame; changes no label). Many invalid_fit
+  frame-channel projectile clips fall to 10–25 px above the drawn floor line and rebound without touching
+  it; the fit window ends only at contact with the drawn floor, so it runs into the rebound. LTX-2: 48/112
+  clips (43 of its 52 invalid_fit); Cosmos 77/112; Wan2.2 6/112; DynamiCrafter 0. Text channel: LTX-2 13,
+  Cosmos 16, Wan2.2 8 of 112.
+- **Lost-frame rule check** (`v2_lostframe_check.py`, new). `fit_theta` rejects a track lost in any frame and
+  checks this before cutting at floor contact, so a ball lost after landing (leaves the frame, dips below
+  the floor line) makes a clip invalid_fit although its fitted frames are clean. Restricting the check to
+  the fitted frames, same stored tracks: main_text +4 valid (of 1,007), shaded_text +4 (of 220), none lost;
+  212 and 50 clips move invalid_fit → invalid_shape (the shape check counts the same lost frames). Kept the
+  registered rule; the paper must define invalid_fit as "no fit, R² < 0.8, or the object lost in some frame".
+- **Scene-duration window** (`v2_window_sensitivity.py`, new, exploratory, defined after seeing main_frame):
+  same rules, only frames up to t = 1 s (the rendered scene's length; pair clips: whole clip). Checked: pair
+  clips reproduce the registered labels and θ̂ exactly. Text channel: all 18 main_text and 8 shaded pairs
+  keep a β CI that includes 0, so the text null is not an artefact of long clips. Frame channel (blob-only
+  preview, full run pending): Cosmos's projectile follows the prefix for the first second (median ĝ 0.56 →
+  10.84 for g = 1.6 → 15), then the ball shrinks and fades, so no clip passes the registered checks.
+- STEP7 numbers registered in `reproduce_numbers.py` (`build_reports_v2`).
+
+## 2026-11-28 (midday) — frame run complete; frame figure; figure reference sheet
+
+- DynamiCrafter frame job (483547) finished: `main_frame` complete, 1,024 clips, 0 errors, all rescored
+  (0 label changes for Cosmos and DynamiCrafter). Final analyses written: `main_frame_analysis.md`,
+  `main_frame_frame.md`, `lostframe_check.md`, `window_sensitivity.md` (all three runs). Results and readings
+  in `STEP6_REPORT.md`, "Main run complete". Headline unchanged from the morning: LTX-2 projectile frame
+  β = 0.92, both CIs exclude 0; DynamiCrafter adds no nonzero slope (projectile −0.11, slide −0.53).
+- `figures/fig_frame` built (`v2_figures.py frame`); caption in `STEP10_REPORT.md`.
+- Figure reference sheet (user request): `figure_refs/` (gitignored: PDFs and crops of other authors'
+  figures). 28 papers verified against OpenAlex/arXiv, 462 figures cropped with captions and pages, typed
+  (keyword rules + 197 hand corrections), `figure_refs.pdf` (342 pages), `sources.csv`, `notes.md` (strongest
+  figures per type and how to map them onto ours), rebuild scripts in `figure_refs/tools/`. EatSense (IVC)
+  replaced by FRoundation (IVC 2025): its repository is behind a bot challenge and it has no arXiv copy.
+- Bibliography item for step 11: Morpheus (arXiv 2504.02918) has a new title in its latest version
+  ("Evaluating Newtonian Mechanics in Video Generative Models with Real Physical Systems"); our entry has the
+  v1 title and no arXiv ID.

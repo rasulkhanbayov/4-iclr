@@ -18,6 +18,9 @@ channel has:
    which reference is closer.
 4. Pair-mode projectile: clips whose ball touches the floor before the second key frame (the model meets the
    apex key frame by inserting a bounce). Counted over all clips with a track, not only valid ones.
+5. Projectile, both channels: clips that rebound before touching the drawn floor line (`early_rebound`), which
+   the fit window (ending at floor contact) runs into. Defined after the main run was seen; changes no label.
+6. In-range slope CI resampling whole (scene seed, noise seed) sweeps, next to the clip-level CI.
 
 Usage:  python experiments/v2_frame_analysis.py [--run main_frame --text-run main_text]
 Writes: <REVISION>/results_v2/<run>_frame.json and .md
@@ -26,6 +29,7 @@ Writes: <REVISION>/results_v2/<run>_frame.json and .md
 from __future__ import annotations
 
 import argparse
+import collections
 import json
 import os
 import sys
@@ -42,6 +46,7 @@ from physweep.design import load_cfg
 from physweep.fits import contact_index
 from physweep.runio import load_latest, raw_files
 from physweep.validity import centroid_track_above, shape_stats
+from physweep_metrics import faithfulness_slope
 from v2_analyze import seed_free
 
 RESULTS = os.path.join(os.path.dirname(CODE_DIR), "results_v2")
@@ -97,6 +102,60 @@ def profile(rec):
     return dict(rms_physics=rms(up), rms_linear=rms(ul))
 
 
+def sweep_boot(valid, n=2000, seed=0):
+    """95% CI of the in-range slope, resampling whole sweeps: a (scene seed, noise seed) pair is one pass over
+    the theta grid in the crossed design, so clips sharing it are not independent. The clip-level CI from
+    v2_analyze.seed_free resamples clips; it ignores that dependence but can also draw unbalanced theta sets,
+    so either interval can be the wider one. A slope is reported as nonzero only if both exclude 0."""
+    inn = [r for r in valid if r["split"] == "in"]
+    groups = collections.defaultdict(list)
+    for r in inn:
+        groups[(r["scene_seed"], r["noise_seed"])].append((r["theta"], r["theta_hat"]))
+    keys = list(groups)
+    if len(keys) < 4:
+        return None
+    rng = np.random.default_rng(seed)
+    vals = []
+    for _ in range(n):
+        pts = [p for k in rng.choice(len(keys), len(keys)) for p in groups[keys[k]]]
+        x, y = np.array(pts, float).T
+        if len(np.unique(x)) < 2:
+            continue
+        vals.append(faithfulness_slope(x, y))
+    if len(vals) < n // 2:
+        return None
+    return [float(np.percentile(vals, 2.5)), float(np.percentile(vals, 97.5))]
+
+
+def with_sweep_ci(valid, total):
+    d = seed_free(valid, total)
+    if "beta_in" in d:
+        d["beta_in_ci_sweep"] = sweep_boot(valid)
+    return d
+
+
+def early_rebound(rec):
+    """Projectile: the ball falls by more than one disk diameter to its lowest point and then, before it
+    touches the drawn floor line, rises again by more than one diameter, i.e. it rebounds off nothing. The
+    registered fit window ends only at floor contact, so such a clip is fitted through the rebound (rule
+    defined 2026-11-28, after main_frame was seen, to explain where its invalid_fit clips come from; it
+    changes no label)."""
+    cy = track(rec, "blob_cy")
+    if cy is None:
+        return None
+    cy = cy[rec.get("n_given") or 0:]
+    k = contact_index(cy, rec["ground_row0"])
+    seg = cy[:k]
+    if np.isfinite(seg).sum() < 4:
+        return None
+    lo = int(np.nanargmax(seg))                    # lowest point (largest image row)
+    if lo == 0 or not np.isfinite(seg[:lo]).any():
+        return False                               # no fall into it (e.g. a pair clip that starts at its lowest point)
+    fell = seg[lo] - np.nanmin(seg[:lo])
+    rose = seg[lo] - np.nanmin(seg[lo:])
+    return bool(fell > 2 * R.DISK_RADIUS and rose > 2 * R.DISK_RADIUS)
+
+
 def inserted_bounce(rec):
     cy = track(rec, "blob_cy")
     if cy is None or not np.isfinite(cy).any():
@@ -125,8 +184,20 @@ def analyze(root, run, text_run):
                 frame_mode=ok[0].get("frame_mode") if ok else None, n_clips=len(rs), n_errors=len(rs) - len(ok),
                 key_frame_err_median=float(np.median(kfe)) if kfe else None,
                 key_frame_err_max=float(np.max(kfe)) if kfe else None, clips_missing_a_key_frame=miss,
-                frame=seed_free([r for r in rs if is_valid(r)], len(rs)),
-                text=seed_free([r for r in ts if is_valid(r)], len(ts)) if ts else None)
+                frame=with_sweep_ci([r for r in rs if is_valid(r)], len(rs)),
+                text=with_sweep_ci([r for r in ts if is_valid(r)], len(ts)) if ts else None)
+            if system == "projectile":
+                def reb(pool):
+                    by = collections.defaultdict(lambda: [0, 0])
+                    for r in pool:
+                        x = early_rebound(r)
+                        if x is not None:
+                            by[r["theta"]][0] += x
+                            by[r["theta"]][1] += 1
+                    return dict(n=sum(v[0] for v in by.values()), n_tracked=sum(v[1] for v in by.values()),
+                                invalid_fit=sum(bool(early_rebound(r)) for r in pool if r.get("label") == "invalid_fit"),
+                                by_theta={str(t): v for t, v in sorted(by.items())})
+                entry["early_rebound"] = dict(frame=reb(ok), text=reb([r for r in ts if "error" not in r]))
             if entry["frame_mode"] == "pair":
                 prof = [p for p in (profile(r) for r in rs if is_valid(r)) if p]
                 if prof:
@@ -148,8 +219,9 @@ def f(x, nd=2):
 def beta_str(d):
     if not d or "beta_in" not in d:
         return "–"
-    ci = d.get("beta_in_ci")
-    return f"{d['beta_in']:.2f}" + (f" [{ci[0]:.2f}, {ci[1]:.2f}]" if ci else "")
+    ci, cs = d.get("beta_in_ci"), d.get("beta_in_ci_sweep")
+    return (f"{d['beta_in']:.2f}" + (f" [{ci[0]:.2f}, {ci[1]:.2f}]" if ci else "")
+            + (f" sweep [{cs[0]:.2f}, {cs[1]:.2f}]" if cs else ""))
 
 
 def to_md(run, text_run, res):
@@ -159,7 +231,8 @@ def to_md(run, text_run, res):
            "## Key-frame fidelity and frame vs. text channel", "",
            f"Key-frame error: ball position in the output vs. the given frame (px, analysis frames 256×256); "
            f"'miss' = clips with a key frame off by > {MISS_PX:.0f} px or untracked. Text channel: run `{text_run}`, "
-           "same model and system. β: in-range slope on valid clips [95% bootstrap CI].", "",
+           "same model and system. β: in-range slope on valid clips [95% bootstrap CI over clips] and "
+           "sweep [95% CI resampling whole (scene seed, noise seed) sweeps, which respects seed clustering].", "",
            "| model / system | mode | clips | key-frame err median / max | miss | valid frame | valid text | β frame | β text | ρ frame | ρ text |",
            "|---|---|---|---|---|---|---|---|---|---|---|"]
     for k, d in res.items():
@@ -182,6 +255,20 @@ def to_md(run, text_run, res):
             out.append(f"| {k} | {p.get('n', '–')} | {f(p.get('median_rms_physics'), 1)} | "
                        f"{f(p.get('median_rms_linear'), 1)} | {p.get('closer_to_physics', '–')}/{p.get('n', '–')} | "
                        f"{'–' if not b else str(b['n']) + '/' + str(b['n_tracked'])} |")
+    reb = {k: d["early_rebound"] for k, d in res.items() if d.get("early_rebound")}
+    if reb:
+        out += ["", "## Projectile: rebound before touching the floor line", "",
+                "Clips whose ball falls by more than one disk diameter (16 px) and then, before touching the drawn floor line, rises again by "
+                "more than one diameter. The fit window ends at floor contact, so these are fitted "
+                "through the rebound. Counted over all clips with a track; 'of invalid_fit': how many of them are "
+                "labelled invalid_fit. Rule defined after the main frame run was seen; it changes no label.", "",
+                "| model | frame: rebound / tracked | of invalid_fit | per θ (rebound/tracked) | text: rebound / tracked |",
+                "|---|---|---|---|---|"]
+        for k, d in reb.items():
+            fr, tx = d["frame"], d["text"]
+            out.append(f"| {k.split('/')[0]} | {fr['n']}/{fr['n_tracked']} | {fr['invalid_fit']} | "
+                       + ", ".join(f"{t}: {v[0]}/{v[1]}" for t, v in fr["by_theta"].items())
+                       + f" | {tx['n']}/{tx['n_tracked']} |")
     return "\n".join(out)
 
 

@@ -9,12 +9,15 @@ v1 figures were AI-drawn or unreadable). CPU only; needs matplotlib (envs/fig, s
             motion (what the requested parameter does in the renderer).
   failures  one example per validity failure, with the blob track overlaid.
   trackers  clips on which the blob tracker and CoTracker3 disagree, both tracks overlaid.
+  frame     frame-implied channel (run main_frame): real clips of the most faithful model, median g_hat in the
+            frame vs text channel, pair-mode timing against the true and constant-speed motion, and the
+            scene-duration window (needs results_v2/window_sensitivity_clips.jsonl).
 
 Every clip shown is chosen by a fixed rule (stated in SELECTION below and in each caption), not by eye. The
 chosen clip ids and every number printed on a figure are written to figures/figures_manifest.json, so the
 captions can be checked against the data (and registered in reproduce_numbers.py).
 
-Usage:  python experiments/v2_figures.py [teaser scenes failures trackers]   (default: all)
+Usage:  python experiments/v2_figures.py [teaser scenes failures trackers frame]   (default: all)
 Writes: <REVISION>/figures/fig_<name>.pdf and .png, figures/figures_manifest.json
 """
 
@@ -364,6 +367,133 @@ def fig_trackers(manifest, n_show=6):
     manifest["trackers"] = out
 
 
+FRAME_RUN = "main_frame"
+FRAME_MODELS = ("ltx2", "cosmos2_2b", "dynamicrafter", "wan22_i2v_a14b")
+FRAME_MODE = {"ltx2": "prefix", "cosmos2_2b": "prefix", "dynamicrafter": "pair", "wan22_i2v_a14b": "pair"}
+SELECTION.update({
+    "frame_model": "frame channel: the model with the largest in-range slope on valid projectile clips",
+    "frame_seeds": "as for the teaser: first (scene seed, noise seed) at which g = 1.6, 9.8 and 25 are all valid",
+    "frame_pair": "pair mode: every valid projectile clip at g = 15 (highest in-range g), scene seed 0",
+})
+
+
+def fig_frame(manifest):
+    """Frame-implied channel. (a) real clips of the model whose in-range slope is largest; (b) median g_hat vs g,
+    registered measurement, frame vs text channel; (c, d) pair mode: tracked height between the two key frames vs
+    the true motion and constant-speed motion; (e) the scene-duration window (exploratory)."""
+    sys.path.insert(0, os.path.join(CODE_DIR, "experiments"))
+    from physweep_metrics import faithfulness_slope
+    from v2_frame_analysis import pair_references
+
+    per = {m: [r for r in records(m, FRAME_RUN) if r["system"] == "projectile" and "error" not in r]
+           for m in FRAME_MODELS}
+    txt = {m: [r for r in records(m) if r["system"] == "projectile"] for m in FRAME_MODELS}
+
+    def beta(rs):
+        v = [r for r in rs if is_valid(r) and r["split"] == "in"]
+        return faithfulness_slope([r["theta"] for r in v], [r["theta_hat"] for r in v]) if len(v) >= 3 else -np.inf
+
+    best = max(FRAME_MODELS, key=lambda m: beta(per[m]))
+    ok = {(r["scene_seed"], r["noise_seed"], r["theta"]): r for r in per[best] if is_valid(r)}
+    gs = (1.6, 9.8, 25)
+    seeds = next((s, z) for s in range(4) for z in range(1000, 1004) if all((s, z, g) in ok for g in gs))
+    out = dict(model=best, beta_in=float(beta(per[best])), scene_seed=seeds[0], noise_seed=seeds[1], clips=[])
+
+    short = {"cosmos2_2b": "Cosmos-2B", "wan22_i2v_a14b": "Wan2.2-A14B", "ltx2": "LTX-2", "dynamicrafter": "DynamiCrafter"}
+    fig = plt.figure(figsize=(FULL_W, 4.7))
+    top = fig.add_gridspec(1, 5, width_ratios=[1, 1, 1, 1.32, 0.95], wspace=0.08, left=0.01, right=0.995,
+                           top=0.86, bottom=0.57)
+    bot = fig.add_gridspec(1, 3, wspace=0.38, left=0.075, right=0.985, top=0.40, bottom=0.085)
+    for i, g in enumerate(gs):
+        r = ok[(seeds[0], seeds[1], g)]
+        ax = fig.add_subplot(top[0, i])
+        fr = frames_rgb(r, FRAME_RUN)
+        a, b = fitted_window(r)
+        idx = np.unique(np.linspace(0, b - 1, 8).round().astype(int))
+        ax.imshow(trail(fr, idx))
+        cx, cy = track(r, "blob_cx"), track(r, "blob_cy")
+        ax.plot(cx[:a + 1], cy[:a + 1], color="#1f77b4", lw=1.1)
+        ax.plot(cx[a:b], cy[a:b], color="#d62728", lw=0.9)
+        ax.set_xticks([]), ax.set_yticks([])
+        ax.set_title(f"requested $g$ = {g:g}\nrecovered $\\hat g$ = {r['theta_hat']:.2f}", pad=2)
+        out["clips"].append(dict(clip_id=r["clip_id"], theta=g, theta_hat=r["theta_hat"], r2=r["r2"],
+                                 n_given=a, fit_end=b, frames_shown=idx.tolist()))
+    p0, p2 = fig.axes[0].get_position(), fig.axes[2].get_position()
+    fig.text(p0.x0 + 0.005, 0.99, f"(a) {label_name(best)}, frame channel: {out['clips'][0]['n_given']} given frames "
+             f"(track in blue), generated continuation (red)\nscene seed {seeds[0]}, noise seed {seeds[1]}",
+             ha="left", va="top", linespacing=1.3)
+
+    ax = fig.add_subplot(top[0, 3])
+    pos = ax.get_position()
+    ax.set_position([pos.x0 + 0.05, pos.y0, pos.width - 0.05, pos.height])
+    grid = sorted({r["theta"] for m in per for r in per[m]})
+    ax.axvspan(5, 15, color="0.92", lw=0)
+    ax.plot([0, 26], [0, 26], color="0.4", ls="--", lw=0.8, label="faithful")
+    cmap = plt.get_cmap("tab10")
+    out["medians_frame"], out["medians_text"] = {}, {}
+
+    def med(rs):
+        m = []
+        for g in grid:
+            v = [r["theta_hat"] for r in rs if is_valid(r) and r["theta"] == g]
+            m.append(np.median(v) if len(v) >= 2 else np.nan)
+        return m
+
+    for j, m in enumerate(FRAME_MODELS):
+        mf, mt = med(per[m]), med(txt[m])
+        out["medians_frame"][m] = dict(zip(map(str, grid), [None if not np.isfinite(x) else float(x) for x in mf]))
+        out["medians_text"][m] = dict(zip(map(str, grid), [None if not np.isfinite(x) else float(x) for x in mt]))
+        c = cmap(list(MODEL_NAMES).index(m) % 10)
+        ax.plot(grid, mf, marker="o", ms=2.5, lw=0.9, color=c, label=f"{short[m]} ({FRAME_MODE[m]})")
+        ax.plot(grid, mt, ls=":", lw=0.8, color=c)
+    ax.plot([], [], ls=":", color="0.3", lw=0.8, label="text channel")
+    ax.set_xlim(0, 26), ax.set_ylim(-6, 26)
+    ax.set_xlabel("requested $g$ (m s$^{-2}$)"), ax.set_ylabel("median recovered $\\hat g$")
+    ax.set_title("(b) frame vs text channel", pad=2)
+    lax = fig.add_subplot(top[0, 4])
+    lax.axis("off")
+    lax.legend(*ax.get_legend_handles_labels(), loc="center left", frameon=False, handlelength=1.4,
+               borderaxespad=0, fontsize=6.2)
+
+    out["pair"] = {}
+    for j, m in enumerate(("dynamicrafter", "wan22_i2v_a14b")):
+        ax = fig.add_subplot(bot[0, j])
+        rs = [r for r in per[m] if is_valid(r) and r["theta"] == 15 and r["scene_seed"] == 0]
+        out["pair"][m] = []
+        for r in sorted(rs, key=lambda r: r["noise_seed"]):
+            cx, cy = track(r, "blob_cx"), track(r, "blob_cy")
+            t = np.arange(len(cy)) * r["dt"]
+            (px, py), (lx, ly) = pair_references(r)
+            g0 = r["ground_row0"]
+            ax.plot(t, fit_coordinate("projectile", cx, cy, g0), color=cmap(list(MODEL_NAMES).index(m) % 10), lw=0.8,
+                    alpha=0.8)
+            out["pair"][m].append(dict(clip_id=r["clip_id"], theta_hat=r["theta_hat"], noise_seed=r["noise_seed"]))
+        if rs:
+            ax.plot(t, fit_coordinate("projectile", px, py, g0), color="k", lw=1.2, label="true motion")
+            ax.plot(t, fit_coordinate("projectile", lx, ly, g0), color="k", lw=1.0, ls="--", label="constant speed")
+        ax.set_xlabel("time (s)"), ax.set_ylabel("height (px)")
+        ax.set_title(f"({'cd'[j]}) {short[m]}, pair mode\n$g$ = 15, scene 0, {len(rs)} clips", pad=2)
+        if j == 0:
+            ax.legend(frameon=False, fontsize=6, loc="lower right")
+
+    ax = fig.add_subplot(bot[0, 2])
+    path = os.path.join(REV, "results_v2", "window_sensitivity_clips.jsonl")
+    wc = [json.loads(l) for l in open(path)] if os.path.exists(path) else []
+    wc = [c for c in wc if c.get("run") == FRAME_RUN and c["system"] == "projectile"]
+    ax.axvspan(5, 15, color="0.92", lw=0)
+    ax.plot([0, 26], [0, 26], color="0.4", ls="--", lw=0.8)
+    out["medians_window"] = {}
+    for m in FRAME_MODELS:
+        mw = med([c for c in wc if c["model"] == m])
+        out["medians_window"][m] = dict(zip(map(str, grid), [None if not np.isfinite(x) else float(x) for x in mw]))
+        ax.plot(grid, mw, marker="o", ms=2.5, lw=0.9, color=cmap(list(MODEL_NAMES).index(m) % 10))
+    ax.set_xlim(0, 26), ax.set_ylim(-6, 26)
+    ax.set_xlabel("requested $g$ (m s$^{-2}$)"), ax.set_ylabel("median recovered $\\hat g$")
+    ax.set_title("(e) first second only\n(exploratory, same rules)", pad=2)
+    save(fig, "frame")
+    manifest["frame"] = out
+
+
 def save(fig, name):
     os.makedirs(FIGDIR, exist_ok=True)
     for ext in ("pdf", "png"):
@@ -374,7 +504,7 @@ def save(fig, name):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("figures", nargs="*", default=["teaser", "scenes", "failures", "trackers"])
+    ap.add_argument("figures", nargs="*", default=["teaser", "scenes", "failures", "trackers", "frame"])
     a = ap.parse_args()
     path = os.path.join(FIGDIR, "figures_manifest.json")
     manifest = json.load(open(path)) if os.path.exists(path) else {}

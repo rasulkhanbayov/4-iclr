@@ -1,0 +1,219 @@
+{
+ "per_model": {
+  "main_text/cogvideox": {
+   "n_clips": 304,
+   "valid_stored": 69,
+   "registered_rule_reproduces_stored_label": 302,
+   "to_valid": 1,
+   "from_valid": 0,
+   "fit_to_shape": 51,
+   "changes": {
+    "projectile: invalid_fit -> invalid_shape": 5,
+    "inclined_slide: invalid_fit -> invalid_shape": 46,
+    "inclined_slide: invalid_fit -> valid": 1
+   }
+  },
+  "main_text/cogvideox15_i2v": {
+   "n_clips": 304,
+   "valid_stored": 53,
+   "registered_rule_reproduces_stored_label": 304,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 39,
+   "changes": {
+    "projectile: invalid_fit -> invalid_shape": 18,
+    "inclined_slide: invalid_fit -> invalid_shape": 21
+   }
+  },
+  "main_text/cosmos2_2b": {
+   "n_clips": 304,
+   "valid_stored": 67,
+   "registered_rule_reproduces_stored_label": 304,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 17,
+   "changes": {
+    "inclined_slide: invalid_fit -> invalid_shape": 12,
+    "projectile: invalid_fit -> invalid_shape": 5
+   }
+  },
+  "main_text/dynamicrafter": {
+   "n_clips": 304,
+   "valid_stored": 103,
+   "registered_rule_reproduces_stored_label": 299,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 0,
+   "changes": {}
+  },
+  "main_text/hunyuan15_i2v": {
+   "n_clips": 304,
+   "valid_stored": 161,
+   "registered_rule_reproduces_stored_label": 304,
+   "to_valid": 2,
+   "from_valid": 0,
+   "fit_to_shape": 3,
+   "changes": {
+    "projectile: invalid_fit -> valid": 2,
+    "projectile: invalid_fit -> invalid_shape": 3
+   }
+  },
+  "main_text/ltx": {
+   "n_clips": 304,
+   "valid_stored": 86,
+   "registered_rule_reproduces_stored_label": 304,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 0,
+   "changes": {}
+  },
+  "main_text/ltx2": {
+   "n_clips": 304,
+   "valid_stored": 179,
+   "registered_rule_reproduces_stored_label": 303,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 16,
+   "changes": {
+    "projectile: invalid_fit -> invalid_shape": 16
+   }
+  },
+  "main_text/wan22_i2v_a14b": {
+   "n_clips": 304,
+   "valid_stored": 170,
+   "registered_rule_reproduces_stored_label": 304,
+   "to_valid": 1,
+   "from_valid": 0,
+   "fit_to_shape": 64,
+   "changes": {
+    "projectile: invalid_fit -> invalid_shape": 6,
+    "inclined_slide: invalid_fit -> invalid_shape": 58,
+    "projectile: invalid_fit -> valid": 1
+   }
+  },
+  "main_text/wan22_ti2v_5b": {
+   "n_clips": 304,
+   "valid_stored": 119,
+   "registered_rule_reproduces_stored_label": 303,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 22,
+   "changes": {
+    "projectile: invalid_fit -> invalid_shape": 22
+   }
+  },
+  "shaded_text/cosmos2_2b": {
+   "n_clips": 152,
+   "valid_stored": 29,
+   "registered_rule_reproduces_stored_label": 152,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 15,
+   "changes": {
+    "projectile: invalid_fit -> invalid_shape": 12,
+    "inclined_slide: invalid_fit -> invalid_shape": 3
+   }
+  },
+  "shaded_text/dynamicrafter": {
+   "n_clips": 152,
+   "valid_stored": 25,
+   "registered_rule_reproduces_stored_label": 151,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 0,
+   "changes": {}
+  },
+  "shaded_text/ltx2": {
+   "n_clips": 152,
+   "valid_stored": 84,
+   "registered_rule_reproduces_stored_label": 152,
+   "to_valid": 4,
+   "from_valid": 0,
+   "fit_to_shape": 2,
+   "changes": {
+    "projectile: invalid_fit -> valid": 2,
+    "projectile: invalid_fit -> invalid_shape": 2,
+    "inclined_slide: invalid_fit -> valid": 2
+   }
+  },
+  "shaded_text/wan22_i2v_a14b": {
+   "n_clips": 152,
+   "valid_stored": 82,
+   "registered_rule_reproduces_stored_label": 152,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 33,
+   "changes": {
+    "inclined_slide: invalid_fit -> invalid_shape": 33
+   }
+  },
+  "main_frame/cosmos2_2b": {
+   "n_clips": 304,
+   "valid_stored": 10,
+   "registered_rule_reproduces_stored_label": 304,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 24,
+   "changes": {
+    "projectile: invalid_fit -> invalid_shape": 12,
+    "inclined_slide: invalid_fit -> invalid_shape": 12
+   }
+  },
+  "main_frame/dynamicrafter": {
+   "n_clips": 208,
+   "valid_stored": 187,
+   "registered_rule_reproduces_stored_label": 208,
+   "to_valid": 0,
+   "from_valid": 0,
+   "fit_to_shape": 0,
+   "changes": {}
+  },
+  "main_frame/ltx2": {
+   "n_clips": 304,
+   "valid_stored": 191,
+   "registered_rule_reproduces_stored_label": 304,
+   "to_valid": 4,
+   "from_valid": 0,
+   "fit_to_shape": 4,
+   "changes": {
+    "projectile: invalid_fit -> valid": 4,
+    "projectile: invalid_fit -> invalid_shape": 4
+   }
+  },
+  "main_frame/wan22_i2v_a14b": {
+   "n_clips": 208,
+   "valid_stored": 189,
+   "registered_rule_reproduces_stored_label": 208,
+   "to_valid": 3,
+   "from_valid": 0,
+   "fit_to_shape": 1,
+   "changes": {
+    "projectile: invalid_fit -> valid": 3,
+    "projectile: invalid_fit -> invalid_shape": 1
+   }
+  }
+ },
+ "totals": {
+  "main_text": {
+   "n_clips": 2736,
+   "valid_stored": 1007,
+   "to_valid": 4,
+   "from_valid": 0,
+   "fit_to_shape": 212
+  },
+  "shaded_text": {
+   "n_clips": 608,
+   "valid_stored": 220,
+   "to_valid": 4,
+   "from_valid": 0,
+   "fit_to_shape": 50
+  },
+  "main_frame": {
+   "n_clips": 1024,
+   "valid_stored": 577,
+   "to_valid": 7,
+   "from_valid": 0,
+   "fit_to_shape": 29
+  }
+ }
+}

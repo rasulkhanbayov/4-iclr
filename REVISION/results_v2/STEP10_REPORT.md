@@ -50,8 +50,15 @@ tracking differences, because restitution is read from bounce-peak heights a few
 Same-window estimates are computed by `same_window_estimates()` in the figure script and stored in the
 manifest (`trackers.shown[*].same_window_*`).
 
+**Frame channel** (`fig_frame`, added 2026-11-28). (a) LTX-2, frame channel: nine given frames (blue track)
+and the generated continuation (red), scene seed 0, noise seed 1002 (rule: the frame-channel model with the
+largest in-range slope; first seed pair valid at g = 1.6, 9.8 and 25); recovered ĝ = 1.47, 9.58, 23.77.
+(b) Median recovered ĝ vs requested g, valid clips, frame channel (solid) and the same model in the text
+channel (dotted). (c, d) Pair mode, g = 15, scene seed 0: tracked height between the two key frames against
+the true motion (solid) and constant-speed motion (dashed). (e) The same medians over the scene's first second
+only, same validity rules (exploratory; `window_sensitivity.md`).
+
 ## Still to do for step 10
 
-- A frame-channel figure once `main_frame` is complete (pair mode: tracked coordinate against the physics
-  and linear references; prefix mode: given frames vs. continuation).
-- Figure 2: yours.
+- Figure 2: yours. Layout references for it (and for every figure above) are in `figure_refs/notes.md`
+  (local only, not in git).
