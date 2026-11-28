@@ -1,0 +1,19 @@
+contourpy==1.3.2
+cycler==0.12.1
+fonttools==4.65.0
+ImageIO==2.37.3
+imageio-ffmpeg==0.8.2
+kiwisolver==1.5.1
+matplotlib==3.10.3
+numpy==2.2.6
+packaging==26.3
+pillow==12.3.0
+pip @ file:///home/task_179258895095150/croot/pip_1792588990593/work
+pyparsing==3.3.3
+python-dateutil==3.0.0
+PyYAML==6.0.3
+scipy==1.15.3
+setuptools==84.2.1
+six==1.17.0
+tzdata==2026.6
+wheel==0.48.0

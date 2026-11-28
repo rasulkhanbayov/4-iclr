@@ -460,3 +460,26 @@ a GPU submission by the user); figures (step 10), dataset release (9), rewrite (
   every model × system in both styles; shading lowers projectile validity for Cosmos (10 → 2 of 56,
   p = 0.008) and LTX-2 (43 → 31, p = 0.036); on pairs valid in both styles θ̂ stays seed-linked across
   styles for the projectile (ρ = 0.83 LTX-2, 0.58 Wan2.2).
+
+## 2026-11-28 — shaded ablation complete, main frame run mostly done, step-10 figures
+
+- Duplicate shaded DynamiCrafter job: 482641 and 483549 both ran `shaded_a100.tasks`; 483549 cancelled
+  before it started (no log). 482641 finished, 152 clips, 0 errors.
+- **Shaded ablation complete** (4 models; `results_v2/shaded_text_vs_main_text.md`, `shaded_text_analysis.md`):
+  β's CI includes 0 for every model × system in both styles. Shading lowers validity in 4 of 12 cells,
+  most for DynamiCrafter (slide 25 → 7 of 48, p < 0.001; projectile 28 → 15, p = 0.024), and for the
+  Cosmos (10 → 2) and LTX-2 (43 → 31) projectile.
+- **main_frame** (jobs 483547, 483548): Wan2.2 (208), LTX-2 (304) and Cosmos shard 0 done, 0 errors;
+  Cosmos shards 1–2 and DynamiCrafter still running. Wan2.2 and LTX-2 rescored.
+- New `experiments/v2_frame_analysis.py`: key-frame fidelity, frame vs. text channel (valid rate, β, ρ),
+  pair-mode timing against physics and linear references along the fitted coordinate (height; distance
+  along the slope), inserted bounces. Checked on the CPU dry run (simulator output: 0.2–0.6 px from the
+  physics reference). First version compared 2-D positions; the model's horizontal motion (which carries no
+  θ) then hid the comparison, so it now uses only the fitted coordinate.
+- **Step 10 figures** (`results_v2/STEP10_REPORT.md`): `experiments/v2_figures.py` → `figures/fig_teaser`,
+  `fig_scenes`, `fig_failures`, `fig_trackers` (.pdf/.png) and `figures/figures_manifest.json` (selection
+  rules, clip ids, every printed number). New env `envs/fig` (matplotlib; lock in `env/fig.*`), so the
+  pinned physweep2 env is unchanged. Finding while building the tracker figure: of the 5 valid clips (of
+  1,007) where the two trackers disagree, 2 differ only in the frame where floor contact is detected (same
+  window: 7.87 vs 7.68, 0.84 vs 0.84), 1 is two near-zero estimates, 2 are bouncing-ball clips with real
+  peak-height differences.

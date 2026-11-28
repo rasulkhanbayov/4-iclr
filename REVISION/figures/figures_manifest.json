@@ -1,0 +1,320 @@
+{
+ "selection_rules": {
+  "teaser_model": "the model with the most valid projectile clips in main_text",
+  "teaser_seeds": "the first (scene seed, noise seed), in seed order, at which g = 1.6, 9.8 and 25 are all valid",
+  "multiple_objects": "invalid_shape with a multiple/missing-object failure: most components in a frame",
+  "unstable_size": "invalid_shape with only a size failure: largest area ratio to frame 0",
+  "camera": "invalid_camera: largest floor-line shift",
+  "static": "invalid_static: smallest maximum displacement",
+  "fit": "invalid_fit with a clean single object of stable size, tracked in >= 95% of frames: lowest R^2",
+  "trackers": "all valid clips whose second tracker disagrees, ordered by relative difference of the two estimates"
+ },
+ "teaser": {
+  "model": "wan22_i2v_a14b",
+  "scene_seed": 0,
+  "noise_seed": 1000,
+  "clips": [
+   {
+    "clip_id": "fdc0d36c4ab4",
+    "theta": 1.6,
+    "theta_hat": -0.053225167935217435,
+    "r2": 0.9986813878883136,
+    "frames_shown": [
+     0,
+     4,
+     8,
+     12,
+     16,
+     20,
+     24,
+     28
+    ]
+   },
+   {
+    "clip_id": "f9d09202297a",
+    "theta": 9.8,
+    "theta_hat": 0.335217970056742,
+    "r2": 0.999200547335578,
+    "frames_shown": [
+     0,
+     3,
+     5,
+     8,
+     11,
+     14,
+     16,
+     19
+    ]
+   },
+   {
+    "clip_id": "765150c12cf2",
+    "theta": 25,
+    "theta_hat": 0.16601775212343364,
+    "r2": 0.9989309748718614,
+    "frames_shown": [
+     0,
+     3,
+     6,
+     9,
+     11,
+     14,
+     17,
+     20
+    ]
+   }
+  ],
+  "medians": {
+   "cogvideox": {
+    "1.6": -0.37630380223009674,
+    "5": -1.056399399052745,
+    "7": -0.4335200411595198,
+    "9.8": -0.612724877529497,
+    "12": -0.7883032961843823,
+    "15": -1.011020731852758,
+    "25": -0.05942805672190881
+   },
+   "cogvideox15_i2v": {
+    "1.6": 0.013609370234476205,
+    "5": -0.06632304096289927,
+    "7": 0.007939998478280263,
+    "9.8": null,
+    "12": null,
+    "15": null,
+    "25": 0.03628553344260086
+   },
+   "cosmos2_2b": {
+    "1.6": -0.03750304436351275,
+    "5": -0.13304571324913494,
+    "7": -0.03651807221133281,
+    "9.8": -0.03380427290300596,
+    "12": -0.0780693738367317,
+    "15": -0.07801815099359362,
+    "25": -0.028991164995428982
+   },
+   "dynamicrafter": {
+    "1.6": 0.14381069107133243,
+    "5": 0.13045569230239773,
+    "7": 0.19074489169280529,
+    "9.8": 0.1516990363666927,
+    "12": 0.14463944942358034,
+    "15": 0.19752905938635218,
+    "25": 0.08734131036189238
+   },
+   "hunyuan15_i2v": {
+    "1.6": 1.0850106679183185,
+    "5": 7.460386882619833,
+    "7": 5.668074418773069,
+    "9.8": 6.1404225432983495,
+    "12": 9.379920032857637,
+    "15": 9.456035361808745,
+    "25": 3.6477858302770425
+   },
+   "ltx": {
+    "1.6": 0.16979352814621174,
+    "5": -0.3578570057198788,
+    "7": 0.5388791435677789,
+    "9.8": 0.5251124978954907,
+    "12": -0.46842547987975036,
+    "15": 0.2845330857240466,
+    "25": null
+   },
+   "ltx2": {
+    "1.6": 0.17728890028145342,
+    "5": 0.8840373522448096,
+    "7": 0.2920843088350201,
+    "9.8": 0.06548110941407115,
+    "12": 0.08645707606449464,
+    "15": 0.4862260740664792,
+    "25": 0.19689041066641394
+   },
+   "wan22_i2v_a14b": {
+    "1.6": 0.09529536313365808,
+    "5": 0.6269992986230999,
+    "7": 0.6184507916169879,
+    "9.8": 0.4617296749536369,
+    "12": 0.7718660755752669,
+    "15": 0.36134984524278746,
+    "25": 0.3843083537779634
+   },
+   "wan22_ti2v_5b": {
+    "1.6": -0.00748484023166861,
+    "5": 0.007135958401207388,
+    "7": 0.0036271674423437525,
+    "9.8": 0.014675151995611589,
+    "12": -0.031473781252861495,
+    "15": -0.0018430943400897567,
+    "25": 0.0004865561125123735
+   }
+  }
+ },
+ "scenes": {
+  "scene_seed": 0,
+  "thetas": {
+   "projectile": [
+    1.6,
+    9.8,
+    25
+   ],
+   "bouncing_ball": [
+    0.35,
+    0.6,
+    0.9
+   ],
+   "inclined_slide": [
+    0.1,
+    0.4,
+    1.0
+   ]
+  },
+  "frame_rate": 24,
+  "note": "right column: blob track of the simulator's own clip, 24 frames, 1 s"
+ },
+ "failures": {
+  "multiple_objects": {
+   "clip_id": "8f9edba002f9",
+   "model": "hunyuan15_i2v",
+   "system": "projectile",
+   "theta": 15,
+   "label": "invalid_shape",
+   "rule": "invalid_shape with a multiple/missing-object failure: most components in a frame",
+   "shown": "up to 7 objects in a frame",
+   "frames_shown": [
+    0,
+    11,
+    21,
+    32
+   ]
+  },
+  "unstable_size": {
+   "clip_id": "0101df20e26e",
+   "model": "dynamicrafter",
+   "system": "projectile",
+   "theta": 25,
+   "label": "invalid_shape",
+   "rule": "invalid_shape with only a size failure: largest area ratio to frame 0",
+   "shown": "object area up to 78.9x frame 0",
+   "frames_shown": [
+    0,
+    5,
+    10,
+    15
+   ]
+  },
+  "camera": {
+   "clip_id": "e2d38e53e4b4",
+   "model": "cogvideox",
+   "system": "projectile",
+   "theta": 12,
+   "label": "invalid_camera",
+   "rule": "invalid_camera: largest floor-line shift",
+   "shown": "floor line moves 8 px",
+   "frames_shown": [
+    0,
+    16,
+    32,
+    48
+   ]
+  },
+  "static": {
+   "clip_id": "38e0469a8d5f",
+   "model": "dynamicrafter",
+   "system": "bouncing_ball",
+   "theta": 0.8,
+   "label": "invalid_static",
+   "rule": "invalid_static: smallest maximum displacement",
+   "shown": "ball moves at most 0.1 px",
+   "frames_shown": [
+    0,
+    5,
+    10,
+    15
+   ]
+  },
+  "fit": {
+   "clip_id": "626eafdd3b25",
+   "model": "cosmos2_2b",
+   "system": "bouncing_ball",
+   "theta": 0.6,
+   "label": "invalid_fit",
+   "rule": "invalid_fit with a clean single object of stable size, tracked in >= 95% of frames: lowest R^2",
+   "shown": "fit R$^2$ = -1.46",
+   "frames_shown": [
+    0,
+    31,
+    61,
+    92
+   ]
+  }
+ },
+ "trackers": {
+  "n_disagree": 5,
+  "n_valid": 1007,
+  "shown": [
+   {
+    "clip_id": "ab8fda76ccdd",
+    "model": "dynamicrafter",
+    "system": "inclined_slide",
+    "theta": 0.4,
+    "theta_hat_blob": -0.10700575444883344,
+    "theta_hat_cotracker": 0.025615068631541546,
+    "fit_end_frame_blob": 16,
+    "fit_end_frame_cotracker": 16,
+    "n_frames": 16,
+    "same_window_blob": -0.1067828989037222,
+    "same_window_cotracker": 0.025615068631541546
+   },
+   {
+    "clip_id": "a54663bd789e",
+    "model": "ltx",
+    "system": "bouncing_ball",
+    "theta": 0.6,
+    "theta_hat_blob": 0.439298789527399,
+    "theta_hat_cotracker": 0.9303726418135169,
+    "fit_end_frame_blob": 25,
+    "fit_end_frame_cotracker": 25,
+    "n_frames": 25,
+    "same_window_blob": 0.43930435219381486,
+    "same_window_cotracker": 0.9303726418135169
+   },
+   {
+    "clip_id": "e8d6f58a4531",
+    "model": "wan22_i2v_a14b",
+    "system": "projectile",
+    "theta": 7,
+    "theta_hat_blob": 3.823954329075277,
+    "theta_hat_cotracker": 7.6784702845982125,
+    "fit_end_frame_blob": 8,
+    "fit_end_frame_cotracker": 7,
+    "n_frames": 49,
+    "same_window_blob": 7.8704761904762055,
+    "same_window_cotracker": 7.6784702845982125
+   },
+   {
+    "clip_id": "c692f1cdc560",
+    "model": "ltx2",
+    "system": "inclined_slide",
+    "theta": 0.01,
+    "theta_hat_blob": 1.248680013584245,
+    "theta_hat_cotracker": 0.8432366459425127,
+    "fit_end_frame_blob": 37,
+    "fit_end_frame_cotracker": 32,
+    "n_frames": 49,
+    "same_window_blob": 0.8357202177820343,
+    "same_window_cotracker": 0.8432366459425127
+   },
+   {
+    "clip_id": "a54663bd789e",
+    "model": "hunyuan15_i2v",
+    "system": "bouncing_ball",
+    "theta": 0.6,
+    "theta_hat_blob": 4.756943958531397,
+    "theta_hat_cotracker": 3.4575327094905983,
+    "fit_end_frame_blob": 33,
+    "fit_end_frame_cotracker": 33,
+    "n_frames": 33,
+    "same_window_blob": 4.7547523191559895,
+    "same_window_cotracker": 3.4575327094905983
+   }
+  ]
+ }
+}

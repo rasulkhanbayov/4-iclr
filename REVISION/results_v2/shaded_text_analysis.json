@@ -93,6 +93,106 @@
    "valid_rate": 0.03571428571428571,
    "pre_out": 0.9627834455584211
   },
+  "dynamicrafter/bouncing_ball": {
+   "labels": {
+    "valid": 3,
+    "invalid_fit": 42,
+    "invalid_shape": 3,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 0,
+   "n_clips": 48,
+   "n_valid": 3,
+   "valid_rate": 0.0625,
+   "pre_out": 0.6162580758316644
+  },
+  "dynamicrafter/inclined_slide": {
+   "labels": {
+    "valid": 7,
+    "invalid_fit": 23,
+    "invalid_shape": 18,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 7,
+   "n_clips": 48,
+   "n_valid": 7,
+   "valid_rate": 0.14583333333333334,
+   "beta_in": 0.3169400165158899,
+   "beta_in_ci": [
+    -1.1613474418846996,
+    1.700351580308962
+   ],
+   "pre_in": 0.6294677957524151,
+   "pre_out": 0.4130956119434451,
+   "eg": -0.21637218380897,
+   "spearman_rho": 0.5765999759173656
+  },
+  "dynamicrafter/projectile": {
+   "labels": {
+    "valid": 15,
+    "invalid_fit": 4,
+    "invalid_shape": 37,
+    "invalid_camera": 0,
+    "invalid_static": 0,
+    "error": 0
+   },
+   "confirmed": 10,
+   "n_clips": 56,
+   "n_valid": 15,
+   "valid_rate": 0.26785714285714285,
+   "beta_in": 0.0029240780185237885,
+   "beta_in_ci": [
+    -0.07337399799830406,
+    0.0465545359511131
+   ],
+   "pre_in": 0.8628776180450486,
+   "pre_out": 0.6899955604144786,
+   "eg": -0.17288205763056996,
+   "spearman_rho": -0.20254787340940733,
+   "decomposition": {
+    "n": 15,
+    "shares": {
+     "request": 0.21462399844230368,
+     "scene": 0.6146947867375827,
+     "noise": 0.1144349039832245,
+     "residual": 0.056246310836889024
+    },
+    "corrected": {
+     "request": 0.13025453218697014,
+     "scene": 0.5725100536099159,
+     "noise": 0.10037332627400225
+    },
+    "p_value": {
+     "request": 0.5828343313373253,
+     "scene": 0.001996007984031936,
+     "noise": 0.033932135728542916
+    },
+    "ci95": {
+     "request": [
+      0.15449760010323085,
+      0.6947649400487337
+     ],
+     "scene": [
+      0.17229865185297485,
+      0.7216472120912163
+     ],
+     "noise": [
+      0.019263921325317606,
+      0.2299676921787752
+     ],
+     "residual": [
+      0.0,
+      0.18852592528933826
+     ]
+    },
+    "confounded": false,
+    "total_variance": 0.10217630889282313
+   }
+  },
   "ltx2/bouncing_ball": {
    "labels": {
     "valid": 8,

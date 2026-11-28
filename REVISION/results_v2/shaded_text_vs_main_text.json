@@ -56,6 +56,66 @@
   "rho_theta_hat": null,
   "median_rel_change": 0.0004606811959203611
  },
+ "dynamicrafter/bouncing_ball": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 0,
+  "valid_shaded": 3,
+  "valid_both": 0,
+  "only_structured": 0,
+  "only_shaded": 3,
+  "mcnemar_p": 0.25,
+  "beta_in_structured": null,
+  "beta_in_structured_ci": null,
+  "beta_in_shaded": null,
+  "beta_in_shaded_ci": null,
+  "rho_theta_hat": null,
+  "median_rel_change": null
+ },
+ "dynamicrafter/inclined_slide": {
+  "n_pairs": 48,
+  "unmatched": 0,
+  "valid_structured": 25,
+  "valid_shaded": 7,
+  "valid_both": 7,
+  "only_structured": 18,
+  "only_shaded": 0,
+  "mcnemar_p": 7.62939453125e-06,
+  "beta_in_structured": -0.0889761701789623,
+  "beta_in_structured_ci": [
+   -3.0893240422089194,
+   3.0340858534086395
+  ],
+  "beta_in_shaded": 0.3169400165158899,
+  "beta_in_shaded_ci": [
+   -1.1613474418846996,
+   1.700351580308962
+  ],
+  "rho_theta_hat": 0.7857142857142859,
+  "median_rel_change": 1.133500756711281
+ },
+ "dynamicrafter/projectile": {
+  "n_pairs": 56,
+  "unmatched": 0,
+  "valid_structured": 28,
+  "valid_shaded": 15,
+  "valid_both": 7,
+  "only_structured": 21,
+  "only_shaded": 8,
+  "mcnemar_p": 0.0241195447742939,
+  "beta_in_structured": 0.0103806249201227,
+  "beta_in_structured_ci": [
+   -0.04924874859469032,
+   0.06414932814373017
+  ],
+  "beta_in_shaded": 0.0029240780185237885,
+  "beta_in_shaded_ci": [
+   -0.07337399799830406,
+   0.0465545359511131
+  ],
+  "rho_theta_hat": 0.7142857142857144,
+  "median_rel_change": 0.008326645795762698
+ },
  "ltx2/bouncing_ball": {
   "n_pairs": 48,
   "unmatched": 0,
