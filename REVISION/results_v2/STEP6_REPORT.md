@@ -70,15 +70,17 @@ DynamiCrafter 0.22 / 0.36 px, Wan2.2-A14B 0.20 / 0.50 px, LTX-2 0.12 / 2.18 px (
 frame), Cosmos 0.22 / 0.33 px. Wan2.2 handles `last_image` correctly even though it was not trained
 specifically for first/last-frame input.
 
-## Gate 2: do the given frames carry θ? (ideal observer, ground-truth inputs, CPU)
+## Gate 2: do the given frames carry θ? (ideal observer, ground-truth inputs, CPU; means over the 4 scene seeds)
 
 | system | pair (first + middle/last frame) | prefix (LTX-2: 9 frames at 24 fps; Cosmos: 5 at 16 fps) |
 |---|---|---|
 | projectile | strong: key-frame rise 23 px (g=5) to 69 px (g=15) | strong: prefix acceleration ∝ g |
-| inclined slide | weak: displacement 112 → 92 px over μ = 0.1 → 0.4 | weak: prefix displacement differs by 2.5 px (LTX-2) / 1.5 px (Cosmos) over the in-range grid |
-| bouncing ball | **none**: first and last frame are the same for e = 0.2–0.8 | partial: the prefix contains the first bounce |
+| inclined slide | weak: displacement 112 → 92 px over μ = 0.1 → 0.4 | weak: prefix displacement differs by 2.5 px (LTX-2) / 1.4 px (Cosmos) over the in-range grid |
+| bouncing ball | **almost none**: both key frames are pixel-identical for e = 0.2–0.6; the ball's last position moves by 0.2, 1.1 and 7.3 px at e = 0.7, 0.8 and 0.9 and by 3.5 px at e = 0.97 (not monotone in e) | partial: the prefix contains the first bounce |
 
-Bouncing ball is therefore left out for the two pair models in the main run (it cannot test anything).
+Bouncing ball is therefore left out for the two pair models in the main run: half the grid gives identical
+inputs and the rest is not monotone in e. (Corrected 2026-11-28 while registering these numbers: the first
+version said the key frames were the same for e = 0.2–0.8.)
 
 ## Pilot results (valid clips; θ̂ per clip)
 
@@ -92,7 +94,8 @@ Bouncing ball is therefore left out for the two pair models in the main run (it 
 Readings to test in the main run (12 clips per model is too few for claims):
 - **Pair mode measures the in-between timing, given fixed endpoints.** Two reference points:
   linear interpolation gives g = 0 and μ = tan 60° = 1.73 (zero acceleration); a physical ease-out gives
-  the true θ. Wan2.2 at g = 15 follows the physical profile (RMS 2.1 px from it vs 14.6 px from linear);
+  the true θ. Wan2.2 at g = 15 follows the physical profile (RMS 1.2 px from it vs 14.6 px from linear, along the fitted
+  coordinate; corrected 2026-11-28 from 2.1 px, which compared 2-D positions);
   on the slide both pair models land much closer to the linear reference than to the true μ (μ̂ 1.34–1.71,
   one DynamiCrafter clip 2.87, i.e. decelerating). The main analysis
   should report pair-mode θ̂ against both references, not only against θ.
@@ -146,7 +149,8 @@ and the sweep-level CI exclude 0.
    prefix's acceleration: median ĝ 1.50, 3.84, 5.00, 7.07, 9.71, 14.78, 20.29 for g = 1.6 … 25 (valid clips). The
    same model ignores g in the text channel. Request share of θ̂ variance 0.19 (p = 0.004).
 2. **Valid rate falls with g for LTX-2** (16/16 clips at g = 1.6; 3–6/16 at g ≥ 9.8). Cause, from the tracks:
-   the ball falls to 10–25 px above the drawn floor line and rebounds without touching it (48/112 clips, 43 of
+   the ball's bottom stops a few pixels above the drawn floor line (median 5.7 px, 10th–90th percentile 2.9–16.0
+   px; corrected 2026-11-28 from an eyeballed "10–25 px") and rebounds without touching it (48/112 clips, 43 of
    its 52 invalid_fit). The fit window ends only at contact with the drawn floor, so it runs into the
    rebound. (`early_rebound`, defined after the run; changes no label.)
 3. **Cosmos follows the prefix for about one second, then the object degrades.** Registered: 0/112 projectile

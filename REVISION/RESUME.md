@@ -10,8 +10,16 @@ comes from, see `PROVENANCE.md`.
 - Steps 1–5 of `02_revision_plan.md` are done (validity layer, structured scenes, decoupled seeds,
   pilots, the main text-channel sweep on 9 models + the API-mode tier). Results are in
   `results_v2/STEP1..5_REPORT.md` and `results_v2/main_text_analysis.md`.
-- Resumed 2026-11-27 (see `LOG.md`): data, envs and weights restored. Step 7 done (`results_v2/STEP7_REPORT.md`). Step-6 GPU pilot done; main frame-channel run `main_frame` (`slurm/v2/frame_*.tasks`) submitted or to submit (`results_v2/STEP6_REPORT.md`). Shaded ablation: 3 of 4 models done (`results_v2/shaded_text_vs_main_text.md`), DynamiCrafter pending.
-- Not started: step 9 (dataset release), step 10 (figures from real frames; Figure 2 is yours in PaperBanana), step 11 (rewrite in `elsarticle` for IVC), step 12 (final verification).
+- Resumed 2026-11-27 (see `LOG.md`). Done since: step 6 (frame channel: pilot and main run `main_frame`,
+  1,024 clips; LTX-2 follows frame-implied g, β = 0.92; `results_v2/STEP6_REPORT.md`), step 7 (raters,
+  `STEP7_REPORT.md`), the shaded ablation (4/4 models, `shaded_text_vs_main_text.md`), step 10 except
+  Figure 2 (`figures/fig_{teaser,scenes,failures,trackers,frame}`, `STEP10_REPORT.md`), two sensitivity checks
+  (`lostframe_check.md`, `window_sensitivity.md`). STEP6/7/10 numbers are registered and `PROVENANCE.md`
+  regenerated (2026-11-28: 815 entries, the same 12 known mismatches).
+- Figure layout references for the rewrite: `figure_refs/` (local only, gitignored; `notes.md` maps 28 papers'
+  figures onto ours).
+- Not started: step 9 (dataset release), Figure 2 (yours, PaperBanana), step 11 (rewrite in `elsarticle` for
+  IVC), step 12 (final verification).
 - `paper/main.tex` is still the submitted WACV text with v1 numbers; only Table 1's ω grid is fixed.
 
 ## Open items found while archiving (fix during the rewrite)

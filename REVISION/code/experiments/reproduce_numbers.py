@@ -1527,6 +1527,381 @@ def build_reports_v2():
         kind="str")
 
 
+# ---------------------------------------------------------------------------
+# Step 6: frame-implied channel (pilot_frame, main_frame), and the frame figure (added 2026-11-28)
+# ---------------------------------------------------------------------------
+FRAME_MODELS = ("dynamicrafter", "wan22_i2v_a14b", "ltx2", "cosmos2_2b")
+
+
+def mstr(x, d=2):
+    """Format like the reports: fixed decimals, Unicode minus."""
+    return f"{x:.{d}f}".replace("-", "−")
+
+
+def ci_str(b, ci, sweep=None):
+    s = f"{mstr(b)} [{mstr(ci[0])}, {mstr(ci[1])}]"
+    return s + (f" ({mstr(sweep[0])}, {mstr(sweep[1])})" if sweep else "")
+
+
+def vhat(run, model, system, theta):
+    """Valid theta_hat of one grid point, ordered by (scene seed, noise seed)."""
+    v = valid(recs(run, model), system=system, theta=theta)
+    return [x["theta_hat"] for x in sorted(v, key=lambda x: (x["scene_seed"], x["noise_seed"]))]
+
+
+def lst(vals, d):
+    return ", ".join(f"{v:.{d}f}" for v in vals)
+
+
+def ok_recs(run, model):
+    return [x for x in recs(run, model) if "error" not in x]
+
+
+def kfe(run, model):
+    return [e for x in ok_recs(run, model) for e in (x.get("key_frame_err_px") or []) if e is not None]
+
+
+def frame_json():
+    return J("v2", "main_frame_frame.json")
+
+
+def frame_an():
+    return J("v2", "main_frame_analysis.json")["results"]
+
+
+def fa():
+    return module(os.path.join(CODE_DIR, "experiments", "v2_frame_analysis.py"), "v2_frame_analysis")
+
+
+@functools.lru_cache(None)
+def _cond_track(system, theta, seed, mode, k=5, fps=None):
+    from physweep.conditioning import build_conditioning
+    from physweep.validity import centroid_track_above, shape_stats
+    fr = np.stack(build_conditioning(dict(system=system, theta=theta, scene_seed=seed, style="structured",
+                                          channel="frame"), mode, k=k, model_fps=fps)["frames"])
+    cx, cy = centroid_track_above(fr, shape_stats(fr)["ground_row0"])
+    return fr, cx, cy
+
+
+def gate2(what, theta=None, k=None, fps=None):
+    """Ideal observer on the conditioning frames, mean over scene seeds 0-3 (physweep.conditioning)."""
+    F("code", "physweep/conditioning.py")
+    vals = []
+    for s in range(4):
+        if what == "rise":                    # projectile pair: height gained first -> middle key frame (px)
+            _, cx, cy = _cond_track("projectile", theta, s, "pair")
+            vals.append(cy[0] - cy[1])
+        elif what == "slide_disp":            # slide pair: ball displacement first -> last key frame (px)
+            _, cx, cy = _cond_track("inclined_slide", theta, s, "pair")
+            vals.append(math.hypot(cx[1] - cx[0], cy[1] - cy[0]))
+        elif what == "prefix_range":          # slide prefix: spread of along-slope displacement over in-range mu
+            a = np.deg2rad(__import__("physweep.design", fromlist=["load_cfg"]).load_cfg()["systems"]["inclined_slide"]["incline_deg"])
+            d = []
+            for mu in (0.1, 0.2, 0.3, 0.4):
+                _, cx, cy = _cond_track("inclined_slide", mu, s, "prefix", k, fps)
+                d.append((cx[-1] - cx[0]) * np.cos(a) + (cy[-1] - cy[0]) * np.sin(a))
+            vals.append(max(d) - min(d))
+        elif what == "ball_shift":            # ball pair: last-key-frame position vs e = 0.2 (px)
+            _, cx, cy = _cond_track("bouncing_ball", theta, s, "pair")
+            _, cx0, cy0 = _cond_track("bouncing_ball", 0.2, s, "pair")
+            vals.append(math.hypot(cx[1] - cx0[1], cy[1] - cy0[1]))
+        elif what == "ball_identical":        # both key frames pixel-identical to e = 0.2
+            f1, _, _ = _cond_track("bouncing_ball", theta, s, "pair")
+            f0, _, _ = _cond_track("bouncing_ball", 0.2, s, "pair")
+            vals.append(float(np.array_equal(f1, f0)))
+    return float(np.mean(vals))
+
+
+@functools.lru_cache(None)
+def _win_clips(path):
+    with open(path) as f:
+        return tuple(json.loads(x) for x in f if x.strip())
+
+
+def win_clips():
+    return _win_clips(F("v2", "window_sensitivity_clips.jsonl"))
+
+
+def win_stats(run, model, system):
+    """seed_free (v2_analyze) on the window-valid clips of one run/model/system."""
+    from v2_analyze import seed_free
+    cs = [c for c in win_clips() if c["run"] == run and c["model"] == model and c["system"] == system]
+    v = [c for c in cs if c["label"] == "valid" and c["theta_hat"] is not None]
+    return seed_free(v, len(cs))
+
+
+def rebound_gaps(model="ltx2"):
+    """Ball bottom to drawn floor line (px) at the lowest point, frame-channel projectile clips that rebound."""
+    from physweep.fits import contact_index
+    from physweep.render import DISK_RADIUS
+    out = []
+    for x in ok_recs("main_frame", model):
+        if x["system"] == "projectile" and fa().early_rebound(x):
+            cy = fa().track(x, "blob_cy")[x.get("n_given") or 0:]
+            k = contact_index(cy, x["ground_row0"])
+            out.append(x["ground_row0"] - (np.nanmax(cy[:k]) + DISK_RADIUS))
+    return np.array(out)
+
+
+def pilot_profile(model, system, theta, key):
+    return float(np.median([fa().profile(x)[key] for x in ok_recs("pilot_frame", model)
+                            if fa().is_valid(x) and x["system"] == system and x["theta"] == theta]))
+
+
+def build_frame_reports():
+    D6, D10 = S[6], "results_v2/STEP10_REPORT.md"
+    PR = "runs/pilot_frame/<model>/clips_rescored.jsonl"
+    MR = "runs/main_frame/<model>/clips_rescored.jsonl"
+    FJ, AJ = "results_v2/main_frame_frame.json (v2_frame_analysis.py)", "results_v2/main_frame_analysis.json (v2_analyze.py)"
+    # ---- pilot -----------------------------------------------------------------------------------
+    a = "run `pilot_frame`: 12"
+    add(D6, a, "12", lambda: {len(recs("pilot_frame", m)) for m in FRAME_MODELS} == {12} and 12, PR, "clips per model",
+        kind="int")
+    add(D6, "clips per model (lowest and highest in-range θ, scene seeds 0–1, noise seed 1000), 0 errors", "0",
+        lambda: sum("error" in x for m in FRAME_MODELS for x in recs("pilot_frame", m)), PR, "records with error",
+        kind="int")
+    add(D6, "no label changed on rescoring", "0 label changes",
+        lambda: sum(label_changes("pilot_frame").values()) == 0, PR, "original_label vs label", kind="claim")
+    for anchor, m, med, mx in [("DynamiCrafter 0.22 / 0.36 px", "dynamicrafter", "0.22", "0.36"),
+                               ("Wan2.2-A14B 0.20 / 0.50 px", "wan22_i2v_a14b", "0.20", "0.50"),
+                               ("LTX-2 0.12 / 2.18 px (one clip", "ltx2", "0.12", "2.18"),
+                               ("Cosmos 0.22 / 0.33 px", "cosmos2_2b", "0.22", "0.33")]:
+        add(D6, anchor, med, lambda m=m: float(np.median(kfe("pilot_frame", m))), PR,
+            "median key_frame_err_px over all key frames")
+        add(D6, anchor, mx, lambda m=m: max(kfe("pilot_frame", m)), PR, "max key_frame_err_px")
+    add(D6, "LTX-2 0.12 / 2.18 px (one clip", "one clip, 9th prefix frame",
+        lambda: [(i, round(e, 2)) for x in ok_recs("pilot_frame", "ltx2") for i, e in enumerate(x["key_frame_err_px"] or [])
+                 if e is not None and e > 2] == [(8, 2.18)], PR, "key frames > 2 px: (index, error)", kind="claim")
+    # gate 2 (ideal observer)
+    a = "| system | pair (first + middle/last frame) | prefix (LTX-2: 9 frames at 24 fps"
+    for v, fn in [("9", lambda: specs()["ltx2"]["frame_k"]), ("24", lambda: specs()["ltx2"]["fps"]),
+                  ("5", lambda: specs()["cosmos2_2b"]["frame_k"]), ("16", lambda: specs()["cosmos2_2b"]["fps"])]:
+        add(D6, a, v, fn, "physweep/generators.py MODEL_SPECS", "spec", kind="int")
+    G2 = "physweep/conditioning.build_conditioning on ground-truth scenes, scene seeds 0-3"
+    a = "| projectile | strong: key-frame rise 23 px (g=5) to 69 px (g=15)"
+    add(D6, a, "23", lambda: gate2("rise", 5), G2, "mean px rise, first -> middle key frame, g = 5")
+    add(D6, a, "69", lambda: gate2("rise", 15), G2, "same, g = 15")
+    a = "| inclined slide | weak: displacement 112 → 92 px over μ = 0.1 → 0.4"
+    add(D6, a, "112", lambda: gate2("slide_disp", 0.1), G2, "mean px displacement first -> last key frame, mu = 0.1")
+    add(D6, a, "92", lambda: gate2("slide_disp", 0.4), G2, "same, mu = 0.4")
+    add(D6, a, "2.5", lambda: gate2("prefix_range", k=9, fps=24), G2,
+        "LTX-2 prefix (9 frames, 24 fps): max - min along-slope displacement over mu = 0.1-0.4")
+    add(D6, a, "1.4", lambda: gate2("prefix_range", k=5, fps=16), G2, "Cosmos prefix (5 frames, 16 fps), same")
+    a = "| bouncing ball | **almost none**: both key frames are pixel-identical for e = 0.2–0.6"
+    add(D6, a, "identical for e = 0.2, 0.35, 0.6; not for 0.7",
+        lambda: all(gate2("ball_identical", e) == 1.0 for e in (0.35, 0.6)) and gate2("ball_identical", 0.7) == 0.0,
+        G2, "np.array_equal of both key frames vs e = 0.2, every scene seed", kind="claim")
+    for e, v in [(0.7, "0.2"), (0.8, "1.1"), (0.9, "7.3"), (0.97, "3.5")]:
+        add(D6, a, v, lambda e=e: gate2("ball_shift", e), G2, f"mean px shift of the last key frame's ball vs e = 0.2, e = {e}")
+    # pilot results table
+    for anchor, m, cells in [
+        ("| DynamiCrafter (pair) | 7/12 |", "dynamicrafter",
+         [("projectile", 5, 2, "1.87, 2.93"), ("projectile", 15, 2, "7.20, 14.65"), ("inclined_slide", 0.1, 2, "2.87"),
+          ("inclined_slide", 0.4, 2, "1.42, 1.48")]),
+        ("| Wan2.2-A14B (pair) | 9/12 |", "wan22_i2v_a14b",
+         [("projectile", 5, 1, "92.8, 117.1"), ("projectile", 15, 1, "16.3, 16.1"), ("inclined_slide", 0.1, 2, "1.34, 1.49"),
+          ("inclined_slide", 0.4, 2, "1.67, 1.71"), ("bouncing_ball", 0.9, 2, "0.93")]),
+        ("| LTX-2 (prefix) | 8/12 |", "ltx2",
+         [("projectile", 15, 2, "9.13"), ("inclined_slide", 0.1, 2, "1.14, 1.16"), ("inclined_slide", 0.4, 2, "1.13, 1.16"),
+          ("bouncing_ball", 0.6, 2, "0.97"), ("bouncing_ball", 0.9, 2, "0.96, 1.10")]),
+        ("| Cosmos (prefix) | 2/12 |", "cosmos2_2b",
+         [("inclined_slide", 0.1, 2, "1.72"), ("inclined_slide", 0.4, 2, "1.71")])]:
+        add(D6, anchor, anchor.split("|")[2].strip(),
+            lambda m=m: f"{len(valid(recs('pilot_frame', m)))}/{len(recs('pilot_frame', m))}", PR, "valid / clips", kind="str")
+        for system, th, d, printed in cells:
+            add(D6, anchor, printed, lambda m=m, system=system, th=th, d=d: lst(vhat("pilot_frame", m, system, th), d), PR,
+                f"valid theta_hat, {system} theta = {th}, scene-seed order", kind="str")
+    for anchor, m, system in [("| DynamiCrafter (pair) | 7/12 |", "dynamicrafter", "bouncing_ball"),
+                              ("| Cosmos (prefix) | 2/12 |", "cosmos2_2b", "projectile"),
+                              ("| Cosmos (prefix) | 2/12 |", "cosmos2_2b", "bouncing_ball")]:
+        add(D6, anchor, "0/4 valid", lambda m=m, system=system: len(valid(recs("pilot_frame", m), system=system)) == 0
+            and sum(x["system"] == system for x in recs("pilot_frame", m)) == 4, PR, f"{system}: no valid clip of 4", kind="claim")
+    # pilot readings
+    add(D6, "linear interpolation gives g = 0 and μ = tan 60° = 1.73", "1.73", lambda: math.tan(math.radians(60)),
+        "calculation", "tan(60 deg)")
+    a = "the true θ. Wan2.2 at g = 15 follows the physical profile (RMS 1.2 px from it vs 14.6 px from linear"
+    add(D6, a, "1.2", lambda: pilot_profile("wan22_i2v_a14b", "projectile", 15, "rms_physics"), PR,
+        "v2_frame_analysis.profile: RMS along the fitted coordinate to the true motion, median over the 2 valid clips")
+    add(D6, a, "14.6", lambda: pilot_profile("wan22_i2v_a14b", "projectile", 15, "rms_linear"), PR, "same, to constant-speed motion")
+    sl = lambda: sorted(x["theta_hat"] for m in ("dynamicrafter", "wan22_i2v_a14b") for x in valid(recs("pilot_frame", m), system="inclined_slide"))
+    a = "on the slide both pair models land much closer to the linear reference than to the true μ (μ̂ 1.34–1.71,"
+    add(D6, a, "1.34", lambda: sl()[0], PR, "pair-mode valid slide mu_hat, both models: min")
+    add(D6, a, "1.71", lambda: sl()[-2], PR, "second largest (the largest is the DynamiCrafter clip below)")
+    add(D6, "one DynamiCrafter clip 2.87, i.e. decelerating", "2.87",
+        lambda: max(x["theta_hat"] for x in valid(recs("pilot_frame", "dynamicrafter"), system="inclined_slide")), PR,
+        "largest pair-mode slide mu_hat (DynamiCrafter)")
+    a = "rises above its start (energy gain). The fit uses only the pre-contact fall, so θ̂ ≈ 93–117 is a correct"
+    add(D6, a, "93", lambda: min(vhat("pilot_frame", "wan22_i2v_a14b", "projectile", 5)), PR, "Wan2.2 g = 5 valid g_hat: min")
+    add(D6, a, "117", lambda: max(vhat("pilot_frame", "wan22_i2v_a14b", "projectile", 5)), PR, "max")
+    ib = lambda m: [b for b in (fa().inserted_bounce(x) for x in ok_recs("pilot_frame", m) if x["system"] == "projectile") if b is not None]
+    a = "key frame: 2/4 Wan2.2 projectile clips, 0/4 DynamiCrafter)"
+    add(D6, a, "2/4", lambda: f"{sum(ib('wan22_i2v_a14b'))}/{len(ib('wan22_i2v_a14b'))}", PR,
+        "v2_frame_analysis.inserted_bounce: floor contact before the last frame, clips with a track", kind="str")
+    add(D6, a, "0/4", lambda: f"{sum(ib('dynamicrafter'))}/{len(ib('dynamicrafter'))}", PR, "same, DynamiCrafter", kind="str")
+    a = "μ = 0.1 and 0.4 (μ̂ 1.13–1.16), and its ball converges to e ≈ 1"
+    lt = lambda: [x["theta_hat"] for x in valid(recs("pilot_frame", "ltx2"), system="inclined_slide")]
+    add(D6, a, "1.13", lambda: min(lt()), PR, "LTX-2 valid slide mu_hat: min")
+    add(D6, a, "1.16", lambda: max(lt()), PR, "max")
+    add(D6, "continues at constant speed (μ̂ ≈ 1.71 ≈ tan 60°)", "1.71",
+        lambda: float(np.mean([x["theta_hat"] for x in valid(recs("pilot_frame", "cosmos2_2b"), system="inclined_slide")])),
+        PR, "Cosmos valid slide mu_hat, mean of 2 (1.72, 1.71)", kind="approx", tol=0.01)
+    # main-run plan (estimates from the pilot)
+    sec = lambda m: float(np.median([x["gen_seconds"] for x in ok_recs("pilot_frame", m)]))
+    nclip = lambda m: len(recs("main_frame", m))
+    est = lambda m: nclip(m) * sec(m) / 3600
+    PM = "pilot gen_seconds (runs/pilot_frame) x main_frame clip count; generation only, model load excluded"
+    for anchor, m, n, h in [("(DynamiCrafter, projectile + slide, 208 clips, ~6 GPU-h)", "dynamicrafter", "208", "6"),
+                            ("(Wan2.2-A14B 208 clips in 2 shards ~9 GPU-h;", "wan22_i2v_a14b", "208", "9"),
+                            ("LTX-2 304 clips ~2 GPU-h; Cosmos 304 clips", "ltx2", "304", "2"),
+                            ("in 3 shards ~24 GPU-h). Total ≈ 41 GPU-h.", "cosmos2_2b", "304", "24")]:
+        if m != "cosmos2_2b":
+            add(D6, anchor, n, lambda m=m: nclip(m), MR, "clips in main_frame", kind="int")
+        add(D6, anchor, h, lambda m=m: est(m), PM, "clips x median pilot s/clip / 3600", kind="approx", tol=0.5)
+    add(D6, "LTX-2 304 clips ~2 GPU-h; Cosmos 304 clips", "304", lambda: nclip("cosmos2_2b"), MR, "Cosmos clips", kind="int")
+    add(D6, "in 3 shards ~24 GPU-h). Total ≈ 41 GPU-h.", "41", lambda: sum(round(est(m)) for m in FRAME_MODELS), PM,
+        "sum of the four rounded estimates", kind="int")
+    a = "Per-clip times from the pilot: DynamiCrafter 107 s, Wan2.2 149 s"
+    add(D6, a, "107", lambda: sec("dynamicrafter"), PR, "median gen_seconds, 12 pilot clips", kind="approx", tol=1)
+    add(D6, a, "149", lambda: sec("wan22_i2v_a14b"), PR, "same (148.5 s)", kind="approx", tol=1)
+    a = "(+33 min load), LTX-2 20 s (+26 min load), Cosmos 282 s."
+    add(D6, a, "33", lambda: _json("runs", "pilot_frame/wan22_i2v_a14b/run_meta_shard0.json")["load_seconds"] / 60,
+        "runs/pilot_frame/wan22_i2v_a14b/run_meta_shard0.json", "load_seconds / 60")
+    add(D6, a, "20", lambda: sec("ltx2"), PR, "median gen_seconds", kind="approx", tol=1)
+    add(D6, a, "26", lambda: _json("runs", "pilot_frame/ltx2/run_meta_shard0.json")["load_seconds"] / 60,
+        "runs/pilot_frame/ltx2/run_meta_shard0.json", "load_seconds / 60")
+    add(D6, a, "282", lambda: sec("cosmos2_2b"), PR, "median gen_seconds (281.4 s; the log prints whole seconds)",
+        kind="approx", tol=1)
+    # ---- main run --------------------------------------------------------------------------------
+    a = "483548 (Wan2.2-A14B, LTX-2, Cosmos): 1,024 clips (Cosmos 304,"
+    add(D6, a, "1,024", lambda: sum(nclip(m) for m in FRAME_MODELS), MR, "clips, 4 models", kind="int")
+    add(D6, a, "304", lambda: nclip("cosmos2_2b"), MR, "Cosmos", kind="int")
+    a = "LTX-2 304, Wan2.2 208, DynamiCrafter 208), 0 errors, all rescored."
+    for m, v in [("ltx2", "304"), ("wan22_i2v_a14b", "208"), ("dynamicrafter", "208")]:
+        add(D6, a, v, lambda m=m: nclip(m), MR, m, kind="int")
+    add(D6, a, "0", lambda: sum("error" in x for m in FRAME_MODELS for x in recs("main_frame", m)), MR, "errors", kind="int")
+    add(D6, a, "all rescored", lambda: all(os.path.exists(os.path.join(DATA["runs"], "main_frame", m, "clips_rescored.jsonl"))
+                                           and all("original_label" in x for x in recs("main_frame", m)) for m in FRAME_MODELS),
+        MR, "every record carries original_label (written by v2_rescore.py)", kind="claim")
+    a = "**Key frames are reproduced** by all four models: median error 0.12–0.26 px; 3 LTX-2 bouncing-ball clips"
+    add(D6, a, "0.12", lambda: min(d["key_frame_err_median"] for d in frame_json().values()), FJ, "min over model/system medians")
+    add(D6, a, "0.26", lambda: max(d["key_frame_err_median"] for d in frame_json().values()), FJ, "max")
+    add(D6, a, "3", lambda: frame_json()["ltx2/bouncing_ball"]["clips_missing_a_key_frame"], FJ,
+        "clips with a key frame > 2 px off or untracked", kind="int")
+    add(D6, "miss a prefix frame by more than 2 px (max 2.24 px).", "2.24",
+        lambda: max(d["key_frame_err_max"] for d in frame_json().values()), FJ, "max key-frame error")
+    rows = [("| LTX-2 / projectile | prefix |", "ltx2/projectile", True), ("| LTX-2 / slide | prefix |", "ltx2/inclined_slide", False),
+            ("| LTX-2 / ball | prefix |", "ltx2/bouncing_ball", True), ("| Cosmos / projectile | prefix |", "cosmos2_2b/projectile", None),
+            ("| Cosmos / slide | prefix |", "cosmos2_2b/inclined_slide", False),
+            ("| DynamiCrafter / projectile | pair |", "dynamicrafter/projectile", False),
+            ("| DynamiCrafter / slide | pair |", "dynamicrafter/inclined_slide", False),
+            ("| Wan2.2 / projectile | pair |", "wan22_i2v_a14b/projectile", False),
+            ("| Wan2.2 / slide | pair |", "wan22_i2v_a14b/inclined_slide", True)]
+    for anchor, key, sweep in rows:
+        line = next(l for l in doc_lines(D6) if l.startswith(anchor))
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        add(D6, anchor, cells[2], lambda key=key: f"{frame_json()[key]['frame']['n_valid']}/{frame_json()[key]['frame']['n_clips']}",
+            FJ, "valid / clips, frame channel", kind="str")
+        fr, tx = (lambda key=key: frame_json()[key]["frame"]), (lambda key=key: frame_json()[key]["text"])
+        if sweep is None:
+            add(D6, anchor, "– (no valid clip)", lambda fr=fr: "beta_in" not in fr(), FJ, "no in-range slope", kind="claim")
+        else:
+            add(D6, anchor, cells[3].replace("**", "").split(":")[0].strip(),
+                lambda fr=fr, sweep=sweep: ci_str(fr()["beta_in"], fr()["beta_in_ci"], fr()["beta_in_ci_sweep"] if sweep else None),
+                FJ, "beta_in [clip-bootstrap CI]" + (" (sweep-bootstrap CI)" if sweep else ""), kind="str")
+        add(D6, anchor, cells[4], lambda tx=tx: ci_str(tx()["beta_in"], tx()["beta_in_ci"]), FJ,
+            "text channel (runs/main_text), beta_in [clip CI]", kind="str")
+    a = "prefix's acceleration: median ĝ 1.50, 3.84, 5.00, 7.07, 9.71, 14.78, 20.29 for g = 1.6 … 25 (valid clips)"
+    add(D6, a, "1.50, 3.84, 5.00, 7.07, 9.71, 14.78, 20.29",
+        lambda: lst(median_by_theta("main_frame", "ltx2", "projectile").values(), 2), MR, "median valid g_hat per g", kind="str")
+    a = "same model ignores g in the text channel. Request share of θ̂ variance 0.19 (p = 0.004)."
+    add(D6, a, "0.19", lambda: frame_an()["ltx2/projectile"]["decomposition"]["corrected"]["request"], AJ,
+        "chance-corrected request share")
+    add(D6, a, "0.004", lambda: frame_an()["ltx2/projectile"]["decomposition"]["p_value"]["request"], AJ, "permutation p")
+    vc = lambda th: len(valid(recs("main_frame", "ltx2"), system="projectile", theta=th))
+    a = "2. **Valid rate falls with g for LTX-2** (16/16 clips at g = 1.6; 3–6/16 at g ≥ 9.8)."
+    add(D6, a, "16/16", lambda: f"{vc(1.6)}/{sum(x['system'] == 'projectile' and x['theta'] == 1.6 for x in recs('main_frame', 'ltx2'))}",
+        MR, "valid / clips at g = 1.6", kind="str")
+    add(D6, a, "3–6/16", lambda: f"{min(vc(t) for t in (9.8, 12, 15, 25))}–{max(vc(t) for t in (9.8, 12, 15, 25))}/16", MR,
+        "valid counts at g = 9.8, 12, 15, 25", kind="str")
+    a = "the ball's bottom stops a few pixels above the drawn floor line (median 5.7 px, 10th–90th percentile 2.9–16.0"
+    add(D6, a, "5.7", lambda: float(np.median(rebound_gaps())), MR, "early_rebound clips: floor row - (lowest centroid + radius)")
+    add(D6, a, "2.9", lambda: float(np.percentile(rebound_gaps(), 10)), MR, "10th percentile")
+    add(D6, a, "16.0", lambda: float(np.percentile(rebound_gaps(), 90)), MR, "90th percentile")
+    a = "px; corrected 2026-11-28 from an eyeballed \"10–25 px\") and rebounds without touching it (48/112 clips, 43 of"
+    reb = lambda: frame_json()["ltx2/projectile"]["early_rebound"]["frame"]
+    add(D6, a, "48/112", lambda: f"{reb()['n']}/{reb()['n_tracked']}", FJ, "early_rebound, frame channel", kind="str")
+    add(D6, a, "43", lambda: reb()["invalid_fit"], FJ, "of them labelled invalid_fit", kind="int")
+    add(D6, "its 52 invalid_fit). The fit window ends only at contact", "52", lambda: frame_an()["ltx2/projectile"]["labels"]["invalid_fit"],
+        AJ, "invalid_fit clips, LTX-2 projectile", kind="int")
+    a = "3. **Cosmos follows the prefix for about one second, then the object degrades.** Registered: 0/112 projectile"
+    add(D6, a, "0/112", lambda: f"{frame_json()['cosmos2_2b/projectile']['frame']['n_valid']}/{frame_json()['cosmos2_2b/projectile']['frame']['n_clips']}",
+        FJ, "valid / clips", kind="str")
+    a = "clips valid (93-frame, 5.8-s clips; the ball shrinks and fades)."
+    add(D6, a, "93", lambda: {x["n_frames_out"] for x in ok_recs("main_frame", "cosmos2_2b")} == {93} and 93, MR, "n_frames_out",
+        kind="int")
+    add(D6, a, "5.8", lambda: 93 / specs()["cosmos2_2b"]["fps"], "MODEL_SPECS fps", "93 frames / 16 fps")
+    WS = "results_v2/window_sensitivity_clips.jsonl (v2_window_sensitivity.py), seed_free on window-valid clips"
+    a = "rules (exploratory, `window_sensitivity.md`): 93/112 valid, β = 0.71 [0.54, 0.89]."
+    w = lambda: win_stats("main_frame", "cosmos2_2b", "projectile")
+    add(D6, a, "93/112", lambda: f"{w()['n_valid']}/{w()['n_clips']}", WS, "window-valid / clips", kind="str")
+    add(D6, a, "0.71", lambda: w()["beta_in"], WS, "beta_in")
+    add(D6, a, "0.54", lambda: w()["beta_in_ci"][0], WS, "CI low")
+    add(D6, a, "0.89", lambda: w()["beta_in_ci"][1], WS, "CI high")
+    pp = lambda key: frame_json()[key]["pair_profile"]
+    a = "constant-speed motion than to the true motion in most clips: DynamiCrafter projectile 36/102 closer to"
+    add(D6, a, "36/102", lambda: f"{pp('dynamicrafter/projectile')['closer_to_physics']}/{pp('dynamicrafter/projectile')['n']}", FJ,
+        "valid clips closer to the true motion than to constant speed", kind="str")
+    a = "physics (median RMS 6.1 px physics vs 3.9 px linear), slide 5/85; Wan2.2 projectile 30/97, slide 0/92 (1.0 px"
+    add(D6, a, "6.1", lambda: pp("dynamicrafter/projectile")["median_rms_physics"], FJ, "median RMS to true motion")
+    add(D6, a, "3.9", lambda: pp("dynamicrafter/projectile")["median_rms_linear"], FJ, "median RMS to constant speed")
+    for key, v in [("dynamicrafter/inclined_slide", "5/85"), ("wan22_i2v_a14b/projectile", "30/97"), ("wan22_i2v_a14b/inclined_slide", "0/92")]:
+        add(D6, a, v, lambda key=key: f"{pp(key)['closer_to_physics']}/{pp(key)['n']}", FJ, f"{key}: closer to physics", kind="str")
+    add(D6, a, "1.0", lambda: pp("wan22_i2v_a14b/inclined_slide")["median_rms_linear"], FJ, "Wan2.2 slide median RMS to constant speed")
+    a = "from linear). Wan2.2's small positive slide slope: μ̂ rises from 1.59 to 1.71 over the grid, just below"
+    wm = lambda: list(median_by_theta("main_frame", "wan22_i2v_a14b", "inclined_slide").values())
+    add(D6, a, "1.59", lambda: wm()[0], MR, "median valid mu_hat at the lowest mu (0.01)")
+    add(D6, a, "1.71", lambda: max(wm()), MR, "largest median over the grid")
+    add(D6, a, "rises (lowest at the lowest mu)", lambda: wm()[0] == min(wm()), MR, "the lowest median is at mu = 0.01",
+        kind="claim")
+    add(D6, "tan 60° = 1.73 (constant speed), i.e. a slight acceleration", "1.73", lambda: math.tan(math.radians(60)),
+        "calculation", "tan(60 deg)")
+    a = "established. Wan2.2 meets the apex key frame by inserting a bounce in 33/112 projectile clips."
+    ibm = lambda: frame_json()["wan22_i2v_a14b/projectile"]["inserted_bounce"]
+    add(D6, a, "33/112", lambda: f"{ibm()['n']}/{ibm()['n_tracked']}", FJ, "inserted_bounce", kind="str")
+    a = "β = 0.71 [0.56, 0.86], ρ = 0.90 on 108/112 clips, and leaves every text-channel slope CI including 0; the"
+    lw = lambda: win_stats("main_frame", "ltx2", "projectile")
+    add(D6, a, "0.71", lambda: lw()["beta_in"], WS, "LTX-2 projectile, window beta_in")
+    add(D6, a, "0.56", lambda: lw()["beta_in_ci"][0], WS, "CI low")
+    add(D6, a, "0.86", lambda: lw()["beta_in_ci"][1], WS, "CI high")
+    add(D6, a, "0.90", lambda: lw()["spearman_rho"], WS, "Spearman rho, full grid")
+    add(D6, a, "108/112", lambda: f"{lw()['n_valid']}/{lw()['n_clips']}", WS, "window-valid / clips", kind="str")
+    add(D6, a, "every text-channel CI includes 0",
+        lambda: all(win_stats(r, m, s)["beta_in_ci"][0] <= 0 <= win_stats(r, m, s)["beta_in_ci"][1]
+                    for r in ("main_text", "shaded_text") for m in {c["model"] for c in win_clips() if c["run"] == r}
+                    for s in ("projectile", "inclined_slide") if win_stats(r, m, s).get("beta_in_ci")),
+        WS, "window beta_in CI contains 0 for every main_text and shaded_text model x system", kind="claim")
+    LF = "results_v2/lostframe_check.json (v2_lostframe_check.py)"
+    a = "lost-frame rule check adds 7 valid frame-channel clips and removes none."
+    add(D6, a, "7", lambda: J("v2", "lostframe_check.json")["totals"]["main_frame"]["to_valid"], LF, "clips that become valid", kind="int")
+    add(D6, a, "removes none", lambda: J("v2", "lostframe_check.json")["totals"]["main_frame"]["from_valid"] == 0, LF,
+        "valid -> invalid count is 0", kind="claim")
+    # ---- frame figure (STEP10) --------------------------------------------------------------------
+    def fig_clips():
+        ok = {(x["scene_seed"], x["noise_seed"], x["theta"]): x for x in valid(recs("main_frame", "ltx2"), system="projectile")}
+        seeds = next((s, z) for s in range(4) for z in range(1000, 1004) if all((s, z, g) in ok for g in (1.6, 9.8, 25)))
+        return seeds, [ok[(*seeds, g)] for g in (1.6, 9.8, 25)]
+    a = "**Frame channel** (`fig_frame`, added 2026-11-28). (a) LTX-2, frame channel: nine given frames (blue track)"
+    add(D10, a, "LTX-2 = largest in-range slope",
+        lambda: max(FRAME_MODELS, key=lambda m: frame_json().get(f"{m}/projectile", {}).get("frame", {}).get("beta_in", -1e9)) == "ltx2",
+        FJ, "the figure's selection rule", kind="claim")
+    add(D10, a, "nine", lambda: {x["n_given"] for x in fig_clips()[1]} == {9} and 9, MR, "n_given of the shown clips", kind="int")
+    add(D10, "and the generated continuation (red), scene seed 0, noise seed 1002 (rule:", "(0, 1002)",
+        lambda: fig_clips()[0] == (0, 1002), MR, "first (scene, noise) with g = 1.6, 9.8 and 25 all valid", kind="claim")
+    add(D10, "largest in-range slope; first seed pair valid at g = 1.6, 9.8 and 25); recovered ĝ = 1.47, 9.58, 23.77.",
+        "1.47, 9.58, 23.77", lambda: lst([x["theta_hat"] for x in fig_clips()[1]], 2), MR, "theta_hat of the three shown clips",
+        kind="str")
+
+
 # =============================================================================
 # Runner
 # =============================================================================
@@ -1720,6 +2095,7 @@ def main():
     build_appendix()
     build_steps()
     build_reports_v2()
+    build_frame_reports()
     ids = [e.id for e in REG]
     assert len(ids) == len(set(ids)), "duplicate entry ids"
     sel = REG

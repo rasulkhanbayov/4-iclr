@@ -530,3 +530,23 @@ a GPU submission by the user); figures (step 10), dataset release (9), rewrite (
 - Bibliography item for step 11: Morpheus (arXiv 2504.02918) has a new title in its latest version
   ("Evaluating Newtonian Mechanics in Video Generative Models with Real Physical Systems"); our entry has the
   v1 title and no arXiv ID.
+- Corrections found while registering the step-6 numbers (2026-11-28, afternoon), fixed in STEP6_REPORT.md:
+  the pair key frames of the bouncing ball are identical only for e = 0.2–0.6 (not 0.2–0.8; 0.2–7.3 px
+  differences above, not monotone); the pilot Wan2.2 g = 15 profile is 1.2 px from physics (2.1 px was a 2-D
+  comparison); LTX-2's frame-channel rebounds stop a median 5.7 px above the floor line (not "10–25 px", which
+  the morning entry above also says).
+
+## 2026-11-28 (afternoon) — step-6, step-7 and step-10 numbers registered; PROVENANCE.md regenerated
+
+- `reproduce_numbers.py`: `build_reports_v2` (STEP7, 35 entries) and `build_frame_reports` (STEP6 pilot and main
+  run, STEP10 frame caption, 158 entries). Sources: run records (counts, θ̂, key-frame errors, timings,
+  rebound heights), `physweep.conditioning` (gate-2 ideal observer, means over scene seeds 0–3), archived
+  analysis outputs (`main_frame_frame.json`, `main_frame_analysis.json`, `lostframe_check.json`) and the
+  per-clip window records (`window_sensitivity_clips.jsonl`). Check: 815 entries, 775 match, the same 12
+  MISMATCH as before (all in main.tex/appendix.tex/STEP1/STEP5, fixed during the rewrite); none of the new
+  entries has a warning. `PROVENANCE.md` regenerated with `--write-md` (only new rows, the status counts and
+  the registry's own hash changed).
+- Registering found four errors in STEP6_REPORT.md, corrected there with the old value stated: the ball's
+  pair key frames (identical for e = 0.2–0.6 only), the pilot Wan2.2 profile (1.2 px, not 2.1), the
+  rebound height (median 5.7 px, not "10–25 px"), and Cosmos's prefix difference (1.4 px as a mean over
+  scene seeds; 1.5 px was seed 0 alone).
